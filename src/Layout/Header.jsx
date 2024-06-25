@@ -1,11 +1,8 @@
 import styled from "styled-components"
 import '../Font/Font.css'
 
-
-
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
     background-color: #e3e3e3;
 `
 
@@ -17,6 +14,7 @@ const Nav = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
 `
 
 const Logo = styled.div`
@@ -27,28 +25,44 @@ const Logo = styled.div`
     font-size: 3rem;
 `
 
-
 const MenuList = styled.ul`
-    height: 50px;
-    
+    width:600px;
+	height:50px;
+	background: #ccc;
+	color:black;
+	line-height: 50px; 
+	margin:0 auto;
+	text-align: center;
 `
-
 const MenuItem = styled.li`
-    height: 50px;
-    background-color: coral;
-    font-size: 1.25rem;
-    line-height: 55px;
-    padding: 0 50px;
-    display: inline-block;
-    
+    float:left;
+	width:140px;
+	position:relative;
+    cursor: pointer;
+    &:hover{
+        & > ul {
+            display: block;
+        }
+    }
 `
-
+const MenuDrop = styled.ul`
+    font-size: 1.25rem;
+    display: none;
+    position: absolute;
+    background-color: skyblue;
+    width: 130px;
+`
+const MenuItemDrop = styled.li`
+    &:hover{
+        background-color: coral;
+        transition: ease 1s;
+    }
+`
 
 const SearchLogin = styled.div`
     background-color: aqua;
     height: 50px;
 `
-
 const SearchImg = styled.div`
     vertical-align: middle;
     display: inline-block;
@@ -56,7 +70,6 @@ const SearchImg = styled.div`
     height: 24px;
     line-height: 55px;
 `
-
 const LoginButton = styled.button`
     font-size: 1.25rem;
     border: 0;
@@ -65,8 +78,6 @@ const LoginButton = styled.button`
     background: none;
     line-height: 38px;
 `
-
-
 
 
 export default function Header () {
@@ -79,15 +90,47 @@ export default function Header () {
                 <MenuList>
                     <MenuItem>
                         Story
+                        <MenuDrop>
+                            <MenuItemDrop>
+                                1
+                            </MenuItemDrop>
+                            <MenuItemDrop>
+                                2
+                            </MenuItemDrop>
+                        </MenuDrop>
                     </MenuItem>
                     <MenuItem>
                         Brand
+                        <MenuDrop>
+                            <MenuItemDrop>
+                                1
+                            </MenuItemDrop>
+                            <MenuItemDrop>
+                                2
+                            </MenuItemDrop>
+                        </MenuDrop>
                     </MenuItem>
                     <MenuItem>
                         Company
+                        <MenuDrop>
+                            <MenuItemDrop>
+                                1
+                            </MenuItemDrop>
+                            <MenuItemDrop>
+                                2
+                            </MenuItemDrop>
+                        </MenuDrop>
                     </MenuItem>
                     <MenuItem>
                         Alcohol Guide
+                        <MenuDrop>
+                            <MenuItemDrop>
+                                1
+                            </MenuItemDrop>
+                            <MenuItemDrop>
+                                2
+                            </MenuItemDrop>
+                        </MenuDrop>
                     </MenuItem>
                 </MenuList>
                 <SearchLogin>

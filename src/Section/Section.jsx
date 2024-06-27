@@ -18,7 +18,7 @@ const Slide = styled.div`
     margin: 0 auto;
 `
 const Show = styled.div`
-    width: 1100px;
+    width: 1500px;
     height: 600px;
     display: flex;
     border: 1px solid #000;
@@ -27,7 +27,7 @@ const Show = styled.div`
     margin: 0 50px;
 `
 const Img = styled.div`
-    width: 1000px;
+    width: 1400px;
     height: 500px;
     flex-shrink: 0;
     text-align: center;
@@ -48,6 +48,185 @@ const Img = styled.div`
         background-color: #d6ce2d;
     }
 ` 
+
+
+const Main = styled.div`
+    width: calc(100% - 440px);
+    height: 100%;
+    margin: 0 auto;
+    background-color: azure;
+`
+const SubTitle = styled.h1`
+    font-size: 64px;
+    text-align: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 20px;
+    &:after{
+        content: "";
+        display: block;
+        width: 210px;
+        border-bottom: 2px solid #000;
+        margin: 10px auto;
+    }
+`
+
+// soju
+const SojuContainer = styled.div`
+    width: 100%;
+    height: 300px;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+const Soju = styled.div`
+    width: 100%;
+    height: 250px;
+    position: relative;
+`
+const SojuImg = styled.div`
+    width: 200px;
+    height: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px ;
+    float: left;
+`
+const SojuTitle = styled.h1`
+    font-size: 36px;
+    padding: 10px 0;
+    position: absolute;
+    top: 70%;
+    left: 21%;
+    transform: translate(-50%, -50%);
+`
+const SojuContent = styled.span`
+    font-size: 18px;
+    padding: 10px 0;
+    position: absolute;
+    top: 87%;
+    left: 22.8%;
+    transform: translate(-50%, -50%);
+    color: #909090;
+`
+
+// beer
+const BeerContainer = styled.div`
+    width: 100%;
+    height: 300px;
+    background-color: #bf9864;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+const Beer = styled.div`
+    width: 100%;
+    height: 250px;
+    position: relative;
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+`
+const BeerImg = styled.div`
+    width: 200px;
+    height: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px ;
+    float: left;
+`
+const BeerTitle = styled.h1`
+    font-size: 36px;
+    padding: 10px 0;
+    position: absolute;
+    top: 70%;
+    left: 79%;
+    transform: translate(-50%, -50%);
+`
+const BeerContent = styled.span`
+    font-size: 18px;
+    padding: 10px 0;
+    position: absolute;
+    top: 87%;
+    left: 77.2%;
+    transform: translate(-50%, -50%);
+    color: #909090;
+`
+
+// makgeolli
+const MakgeolliC = styled.div`
+    width: 100%;
+    height: 500px;
+    background-color: #855f2d;
+    
+`
+const Makgeolli = styled.div`
+    width: 100%;
+    height: 300px;
+    padding: 70px 0;
+`
+const MakgeolliImg = styled.div`
+    width: 800px;
+    height: 250px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px ;
+    margin: 0 auto;
+`
+const MakgeolliTitle = styled.h1`
+    font-size: 36px;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+`
+const MakgeolliContent = styled.span`
+    font-size: 18px;
+    padding: 10px 0;
+    color: #909090;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+`
+
+
+const Container1 = styled.div`
+    width: 100%;
+    height: 500px;
+    margin-top: 70px;
+`
+const CW = styled.div`
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-around;
+`
+const CW1 = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+`
+const Container2 = styled.div`
+    width: 300px;
+    height: 300px;
+    background-color: aqua;
+    flex-direction: column;
+    
+`
+const Container3 = styled.div`
+    width: 300px;
+    height: 300px;
+    background-color: bisque;
+    flex-direction: column;
+`
+
+const ContainerTitle = styled.h1`
+    font-size: 36px;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 20px;
+`
+
 export default function Section () {
     const example = ['1','2','3','4','5'];
 
@@ -90,7 +269,7 @@ export default function Section () {
                                 <Img 
                                     key={index} 
                                     style={{
-                                        transform: `translateX(${-1100 * imgArr}px)`,
+                                        transform: `translateX(${-1500 * imgArr}px)`,
                                         transition: 'all 0.4s ease-in-out',
                                     }}>{item}
                                 </Img>
@@ -102,6 +281,44 @@ export default function Section () {
                     </button>
                 </Slide>
             </ImgSlice>
+            <Main>
+                <SubTitle>주류 종류</SubTitle>
+                <SojuContainer>
+                    <Soju>
+                        <SojuImg />
+                        <SojuTitle>소주</SojuTitle>
+                        <SojuContent>희석주 입니다.</SojuContent>
+                    </Soju>
+                </SojuContainer>
+                <BeerContainer>
+                    <Beer>
+                        <BeerImg />
+                        <BeerTitle>맥주</BeerTitle>
+                        <BeerContent>곡료주 입니다.</BeerContent>
+                    </Beer>
+                </BeerContainer>
+                <MakgeolliC>
+                    <Makgeolli>
+                        <MakgeolliImg />
+                        <MakgeolliTitle>막걸리</MakgeolliTitle>
+                        <MakgeolliContent>전통주 입니다.</MakgeolliContent>
+                    </Makgeolli>
+                </MakgeolliC>
+                <Container1>
+                    <CW>
+                        <Container2 />
+                        <Container3 />
+                    </CW>
+                    <CW1>
+                        <ContainerTitle>증류주</ContainerTitle>
+                        <ContainerTitle>신제품</ContainerTitle>
+                    </CW1>
+                    <CW1>
+                        <MakgeolliContent>증류주</MakgeolliContent>
+                        <MakgeolliContent>신제품</MakgeolliContent>
+                    </CW1>
+                </Container1>
+            </Main>
         </Container>
     )
 }

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -31,7 +32,6 @@ const Img = styled.div`
     flex-shrink: 0;
     text-align: center;
     margin: 0 50px;
-
     &:nth-child(1){
         background-color: aqua;
     }
@@ -51,17 +51,55 @@ const Img = styled.div`
 export default function Section () {
     const example = ['1','2','3','4','5'];
 
+    const [imgArr, setImgArr] = useState(0); 
+    const FIRST_SLIDE_INDEX = 0;
+    const LAST_SLIDE_INDEX = example.length - 1;
+    const MOVE_SLIDE_INDEX = 1; 
+
+    const moveSlide = (value) => {
+        if(value === 'next'){
+            setImgArr((prevState) =>
+                prevState < LAST_SLIDE_INDEX ? prevState + MOVE_SLIDE_INDEX : FIRST_SLIDE_INDEX
+            )
+        }
+        if(value === 'prev'){
+            setImgArr((prevState) =>
+                prevState > FIRST_SLIDE_INDEX ? prevState - MOVE_SLIDE_INDEX : LAST_SLIDE_INDEX
+            )
+        }
+    }
+
+    useEffect(() => {
+        const autoImg = setInterval(() => {
+            moveSlide('next');
+        }, 2000);
+
+        return () => clearInterval(autoImg);
+    }, [imgArr, example.length]);
+
     return(
         <Container>
             <ImgSlice>
                 <Slide>
+                    <button onClick={()=> moveSlide('prev')}>
+                        뒤로
+                    </button>
                     <Show>
                         {
                             example.map((item, index) => (
-                                <Img key={index}>{item}</Img>
+                                <Img 
+                                    key={index} 
+                                    style={{
+                                        transform: `translateX(${-1100 * imgArr}px)`,
+                                        transition: 'all 0.4s ease-in-out',
+                                    }}>{item}
+                                </Img>
                             ))
                         }
                     </Show>
+                    <button onClick={()=> moveSlide('next')}>
+                        다음
+                    </button>
                 </Slide>
             </ImgSlice>
         </Container>

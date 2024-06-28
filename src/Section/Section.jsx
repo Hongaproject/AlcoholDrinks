@@ -49,7 +49,7 @@ const Img = styled.div`
     }
 ` 
 
-
+// 주류 종류 제목
 const Main = styled.div`
     width: calc(100% - 440px);
     height: 100%;
@@ -84,13 +84,18 @@ const Soju = styled.div`
     width: 100%;
     height: 250px;
     position: relative;
+    background-color: aquamarine;
+    &:hover{
+        transform: scale(1.1);
+        transition: all 0.3s linear;
+    }
 `
 const SojuImg = styled.div`
     width: 200px;
     height: 250px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px ;
+    box-shadow: 5px 5px 5px;
     float: left;
 `
 const SojuTitle = styled.h1`
@@ -124,16 +129,21 @@ const Beer = styled.div`
     width: 100%;
     height: 250px;
     position: relative;
-    display:flex;
-    flex-direction:row-reverse;
-    align-items:center;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: aquamarine;
+    &:hover{
+        transform: scale(1.1);
+        transition: all 0.3s linear;
+    }
 `
 const BeerImg = styled.div`
     width: 200px;
     height: 250px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px ;
+    box-shadow: 5px 5px 5px;
     float: left;
 `
 const BeerTitle = styled.h1`
@@ -157,21 +167,27 @@ const BeerContent = styled.span`
 // makgeolli
 const MakgeolliC = styled.div`
     width: 100%;
-    height: 500px;
+    height: 400px;
     background-color: #855f2d;
     
 `
 const Makgeolli = styled.div`
     width: 100%;
-    height: 300px;
-    padding: 70px 0;
+    height: 370px;
+    margin-top: 100px;
+    background-color: aquamarine;
+    &:hover{
+        transform: scale(1.1);
+        transition: all 0.3s linear;
+    }
+
 `
 const MakgeolliImg = styled.div`
     width: 800px;
     height: 250px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px ;
+    box-shadow: 5px 5px 5px;
     margin: 0 auto;
 `
 const MakgeolliTitle = styled.h1`
@@ -192,29 +208,102 @@ const MakgeolliContent = styled.span`
 // liquorm, new
 const LiquorNewC = styled.div`
     width: 100%;
-    height: 500px;
-    margin-top: 70px;
+    height: 400px;
+    margin-top: 50px;
+    background-color: aquamarine;
 `
 const LiquorNew = styled.div`
     width: 100%;
-    height: 265px;
+    height: 270px;
     display: flex;
     justify-content: space-around;
 `
 const LiquorImg = styled.div`
     width: 200px;
     height: 250px;
-    background-color: #fff;
-    flex-direction: column;
-    box-shadow: 5px 5px 5px ;
-`
+    background-color: #29914a;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: all 0.5s linear;
+        border-radius: 10px;
+        visibility: hidden;
+    }
+
+    &::after {
+        content: 'Your Text Here';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        visibility: hidden;
+        text-align: center;
+    }
+
+    &:hover::before, &:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+`;
+
 const NewImg = styled.div`
     width: 200px;
     height: 250px;
-    background-color: #fff;
-    flex-direction: column;
-    box-shadow: 5px 5px 5px ;
+    background-color: #29914a;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: all 0.5s linear;
+        border-radius: 10px;
+        visibility: hidden;
+    }
+
+    &::after {
+        content: 'Your Text Here';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 18px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        visibility: hidden;
+        text-align: center;
+    }
+
+    &:hover::before, &:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
 `
+
 const LiquorNewText = styled.div`
     width: 100%;
     display: flex;

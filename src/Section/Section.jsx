@@ -189,42 +189,49 @@ const MakgeolliContent = styled.span`
     display: flex;
 `
 
-
-const Container1 = styled.div`
+// liquorm, new
+const LiquorNewC = styled.div`
     width: 100%;
     height: 500px;
     margin-top: 70px;
 `
-const CW = styled.div`
+const LiquorNew = styled.div`
     width: 100%;
-    height: 300px;
+    height: 265px;
     display: flex;
     justify-content: space-around;
 `
-const CW1 = styled.div`
+const LiquorImg = styled.div`
+    width: 200px;
+    height: 250px;
+    background-color: #fff;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px ;
+`
+const NewImg = styled.div`
+    width: 200px;
+    height: 250px;
+    background-color: #fff;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px ;
+`
+const LiquorNewText = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-around;
 `
-const Container2 = styled.div`
-    width: 300px;
-    height: 300px;
-    background-color: aqua;
-    flex-direction: column;
-    
-`
-const Container3 = styled.div`
-    width: 300px;
-    height: 300px;
-    background-color: bisque;
-    flex-direction: column;
-`
-
-const ContainerTitle = styled.h1`
+const LiquorNewTitle = styled.h1`
     font-size: 36px;
     padding: 10px 0;
     text-align: center;
-    margin-top: 20px;
+`
+const LiquorNewSpan = styled.span`
+    font-size: 18px;
+    padding: 10px 0;
+    color: #909090;
+    text-align: center;
+    justify-content: center;
+    display: flex;
 `
 
 export default function Section () {
@@ -304,20 +311,20 @@ export default function Section () {
                         <MakgeolliContent>전통주 입니다.</MakgeolliContent>
                     </Makgeolli>
                 </MakgeolliC>
-                <Container1>
-                    <CW>
-                        <Container2 />
-                        <Container3 />
-                    </CW>
-                    <CW1>
-                        <ContainerTitle>증류주</ContainerTitle>
-                        <ContainerTitle>신제품</ContainerTitle>
-                    </CW1>
-                    <CW1>
-                        <MakgeolliContent>증류주</MakgeolliContent>
-                        <MakgeolliContent>신제품</MakgeolliContent>
-                    </CW1>
-                </Container1>
+                <LiquorNewC>
+                    <LiquorNew>
+                        <LiquorImg />
+                        <NewImg />
+                    </LiquorNew>
+                    <LiquorNewText>
+                        <LiquorNewTitle>증류주</LiquorNewTitle>
+                        <LiquorNewTitle>신제품</LiquorNewTitle>
+                    </LiquorNewText>
+                    <LiquorNewText>
+                        <LiquorNewSpan>증류주</LiquorNewSpan>
+                        <LiquorNewSpan>신제품</LiquorNewSpan>
+                    </LiquorNewText>
+                </LiquorNewC>
             </Main>
         </Container>
     )

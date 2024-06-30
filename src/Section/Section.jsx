@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import Sidebtn from "./Sidebtn"
 
 const Container = styled.div`
     width: 100%;
@@ -38,7 +39,6 @@ const NextButton = styled.div`
     position: absolute;
     top: 38.5%;
     right: 10%;
-    z-index: 1;
     cursor: pointer;
 `
 const Show = styled.div`
@@ -391,13 +391,13 @@ const CompanyImg = styled.div`
     height: 450px;
     margin-right: 40px;
     background-color: #5e5e5e;
+    /* background-image:url('https://i.ibb.co/3493r17/cat.jpg'); */
 `
 const ShopImg = styled.div`
     width: 270px;
     height: 450px;
     margin-right: 40px;
     background-color: #5e5e5e;
-
 `
 const GuideImg = styled.div`
     width: 270px;
@@ -418,8 +418,8 @@ const CImgTitle = styled.h1`
     font-family: 'Inknut Antiqua';
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #fff;
-
 `
+
 const CImgSpan = styled.span`
     font-size: 32px;
     text-align: center;
@@ -496,6 +496,8 @@ export default function Section () {
                     </NextButton>
                 </Slide>
             </ImgSlice>
+            <Sidebtn />
+
             <Main>
                 <SubTitle>주류 종류</SubTitle>
                 <SojuContainer>

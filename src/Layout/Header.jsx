@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import '../Font/Font.css'
+import { useNavigate } from "react-router-dom"
 
 const Container = styled.div`
     width: 100%;
@@ -81,6 +82,8 @@ const LoginButton = styled.button`
 
 
 export default function Header () {
+
+    
     return(
         <Container>
             <Nav>

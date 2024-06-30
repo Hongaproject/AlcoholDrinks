@@ -17,6 +17,30 @@ const Slide = styled.div`
     justify-content: center;
     margin: 0 auto;
 `
+const PrevButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 38.5%;
+    left: 10%;
+    z-index: 1;
+    cursor: pointer;
+    & > svg {
+        transform: rotate(180deg); 
+    }
+`
+
+const NextButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 38.5%;
+    right: 10%;
+    z-index: 1;
+    cursor: pointer;
+`
 const Show = styled.div`
     width: 1500px;
     height: 600px;
@@ -323,6 +347,101 @@ const LiquorNewSpan = styled.span`
     display: flex;
 `
 
+// collection
+const Collection = styled.div`
+    width: 100%;
+    height: 900px;
+    background-color: #FFF;
+`
+const CollectionSub = styled.div`
+    width: 100%;
+    height: 700px;
+    background-color: #141A2A;
+    position: relative;
+`
+
+const CollectionText = styled.div`
+    width: 480px;
+    height: 90px;
+    position: absolute;
+    top: 20%;
+    left: 13%;
+`
+const CTextTitle = styled.h1`
+    font-size: 40px;
+    color: #fff;
+    padding: 16px 0;
+`
+const CTextSpan = styled.span`
+    font-size: 16px;
+    color: #909090;
+    margin-top: 16px;
+`
+
+const CollectionImg = styled.div`
+    width: 1200px;
+    height: 450px;
+    display: flex;
+    position: absolute;
+    top: 52%;
+    left: 43%;
+`
+const CompanyImg = styled.div`
+    width: 270px;
+    height: 450px;
+    margin-right: 40px;
+    background-color: #5e5e5e;
+`
+const ShopImg = styled.div`
+    width: 270px;
+    height: 450px;
+    margin-right: 40px;
+    background-color: #5e5e5e;
+
+`
+const GuideImg = styled.div`
+    width: 270px;
+    height: 450px;
+    background-color: #5e5e5e;
+    margin-right: 40px;
+`
+const OutImg = styled.div`
+    width: 270px;
+    height: 450px;
+    background-color: #5e5e5e;
+`
+
+const CImgTitle = styled.h1`
+    font-size: 32px;
+    text-align: center;
+    margin-top: 100px;
+    font-family: 'Inknut Antiqua';
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #fff;
+
+`
+const CImgSpan = styled.span`
+    font-size: 32px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 250px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #FAF1D7;
+`
+const CImgSpanIcon = styled.div`
+    width: 36px;
+    height: 36px;
+    border-radius: 50px;
+    background-color: #FAF1D7;
+    & > svg {
+        transform: rotate(90deg);    
+    }
+`
+
 export default function Section () {
     const example = ['1','2','3','4','5'];
 
@@ -356,9 +475,9 @@ export default function Section () {
         <Container>
             <ImgSlice>
                 <Slide>
-                    <button onClick={()=> moveSlide('prev')}>
-                        뒤로
-                    </button>
+                    <PrevButton onClick={()=> moveSlide('prev')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
+                    </PrevButton>
                     <Show>
                         {
                             example.map((item, index) => (
@@ -372,9 +491,9 @@ export default function Section () {
                             ))
                         }
                     </Show>
-                    <button onClick={()=> moveSlide('next')}>
-                        다음
-                    </button>
+                    <NextButton onClick={()=> moveSlide('next')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
+                    </NextButton>
                 </Slide>
             </ImgSlice>
             <Main>
@@ -415,6 +534,29 @@ export default function Section () {
                     </LiquorNewText>
                 </LiquorNewC>
             </Main>
+            <Collection>
+                <CollectionSub>
+                    <CollectionText>
+                        <CTextTitle>회사 소개 판매처 주류 가이드</CTextTitle>
+                        <CTextSpan>주류 회사 소개와 제품 판매처 및 상식으로 알아두는 주류 가이드</CTextSpan>
+                    </CollectionText>
+                    <CollectionImg>
+                        <CompanyImg>
+                            <CImgTitle>Company</CImgTitle>
+                            <CImgSpan>View more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
+                        </CompanyImg>
+                        <ShopImg>
+                            <CImgTitle>Shop</CImgTitle>
+                            <CImgSpan>View more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
+                        </ShopImg>
+                        <GuideImg>
+                            <CImgTitle>Guide</CImgTitle>
+                            <CImgSpan>view more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
+                        </GuideImg>
+                        <OutImg />
+                    </CollectionImg>
+                </CollectionSub>
+            </Collection>
         </Container>
     )
 }

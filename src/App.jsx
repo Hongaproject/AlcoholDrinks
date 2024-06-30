@@ -1,12 +1,14 @@
+import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import Section from "./Section/Section";
 
 function App() {
 
   return (
-    <div>
+    <div style={{overflowX: "hidden"}}>
       <Header />
       <Section />
+      <Footer />
     </div>
   );
 }

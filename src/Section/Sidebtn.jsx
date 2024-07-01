@@ -10,6 +10,7 @@ const TopBtn = styled.button`
     width: 64px;
     height: 64px;
     border-radius: 50px;
+    cursor: pointer;
 `
 
 const ServiceBtn = styled.button`
@@ -18,6 +19,7 @@ width: 64px;
     border-radius: 50px;
     display: block;
     margin-top: 35px;
+    cursor: pointer;
 `
 
 export default function Sidebtn () {
@@ -25,7 +27,7 @@ export default function Sidebtn () {
     const moveTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth'})
     }
-    
+
     return(
         <Container>
             <TopBtn onClick={moveTop}>

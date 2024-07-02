@@ -56,7 +56,7 @@ const SummaryContent = styled.span`
 
 const SummaryImg = styled.div`
     width: 100%;
-    height: 150px;
+    height: 180px;
 `
 const SummaryKImg = styled.div`
     float: left;
@@ -68,15 +68,15 @@ const SummaryKImg = styled.div`
 `
 const SummaryTImg = styled.div`
     float: left;
-    width: 670px;
-    height: 120px;
+    width: 700px;
+    height: 130px;
     background-image: url("/img/story/traditional.png");
     background-position: center;
 `
 const SummaryGImg = styled.div`
     float: left;
-    width: 600px;
-    height: 180px;
+    width: 700px;
+    height: 200px;
     background-image: url("/img/story/global.png");
     background-position: center;
     background-size: cover;
@@ -85,13 +85,11 @@ const SummaryTImgContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
-    margin-left: 30px;
 `
 const SummaryGImgContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
-    margin-left: 100px;
 `
 
 export default function Story () {
@@ -162,15 +160,26 @@ export default function Story () {
                     <SummaryTitle>대한민국 주류 시장</SummaryTitle>
                     <SummaryImg>
                         <SummaryKImg />
-                        <SummaryContent>국내 주류 시장 규모입니다.</SummaryContent>
+                        <SummaryContent>
+                            국내 주류 시장 규모입니다. <br />
+                            22년도 기준 국내 주류 시장 규모가 10조원에 육박했고 시장 규모가 커진 이유는 다양한 주류들의 등장과 제로슈가와 제로칼로리의 여파가 크지 않을까 라는 생각이듭니다.
+                        </SummaryContent>
                     </SummaryImg>
                     <SummaryImg>
                         <SummaryTImg />
-                        <SummaryTImgContent>국내 전통주 시장 규모입니다.</SummaryTImgContent>
+                        <SummaryTImgContent>
+                            국내 전통주 시장 규모입니다. <br />
+                            최근 들어 문화 전통에 관심을 가지고 젊은 세대들이 관심을 가지고 있어서 시장 규모가 커지고 있습니다.
+                            또한 21년도에 막걸리 빚기를 국가무형문화재 신규 종목으로 지정했고 현재 UNESCO 세계무형문화유산으로 등재하기 위해 노력하고 있습니다.
+                        </SummaryTImgContent>
                     </SummaryImg>
                     <SummaryImg>
                         <SummaryGImg />
-                        <SummaryGImgContent>글로벌 시장 규모입니다.</SummaryGImgContent>
+                        <SummaryGImgContent>
+                            글로벌 시장 규모입니다. <br />
+                            글로벌 시장은 꾸준하게 커지고 있으며 이때 대한민국 소주를 홍보할 좋은 기회라고 생각합니다. 전통적인 술인 막걸리와 소주를 글로벌 주류 시장에 공격적으로 이미지 마켓팅
+                            적극 사업추진을 한다면 주류회사에게 이익이 될 수 있는 좋은 기회이며 또한 대한민국의 홍보와 인식에 변화가 있을거라 생각하고 있습니다.
+                        </SummaryGImgContent>
                     </SummaryImg>
                 </SummaryText>
             </Summary>

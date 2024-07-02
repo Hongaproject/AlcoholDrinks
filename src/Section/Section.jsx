@@ -600,7 +600,7 @@ export default function Section () {
     useEffect(() => {
         const autoImg = setInterval(() => {
             moveSlide('next');
-        }, 2000);
+        }, 3000);
 
         return () => clearInterval(autoImg);
     }, [imgArr, imgSlide.length]);

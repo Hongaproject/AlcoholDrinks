@@ -39,19 +39,24 @@ const Summary = styled.div`
     margin: 0 auto;
     margin-bottom: 180px;
 `
-const SummaryText = styled.div`
+const HistoryText = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 90px;
 `
-const SummaryTitle = styled.h1`
+const HistoryTitle = styled.h1`
     font-size: 48px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 `
-const SummaryContent = styled.span`
+const HistoryContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
+`
+const HistoryText2 = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
 `
 
 export default function SojuStory () {
@@ -109,6 +114,22 @@ export default function SojuStory () {
                     </Link>
                 </IntroduceTitle>
             </Introduce>
+            <Summary>
+                <HistoryText>
+                    <HistoryTitle>소주의 역사</HistoryTitle>
+                    <HistoryContent>
+                        처음에는 우리가 알던 소주가 아닌 증류주 방식인 소주가 나타났습니다. <br/ > 증류주는 10세기경 페르시아에서 처음 만들어졌고 몽골이 대제국을 지배하면서 고려 후기에 우리나라에 소주가 들어오게 되었습니다.<br />
+                        몽골군이 일본 정벌을 위해 안동, 제주, 개성에 주둔했었는데 그로 인해 안동, 제주, 개성에서 소주 제조법이 발달하게 되어 현재까지도 그 전통을 유지하여 유명합니다.  
+                    </HistoryContent>
+                </HistoryText>
+                <HistoryText2>
+                    <HistoryContent>
+                        희석식 소주는 일본에서 탄생한 조주 방식입니다. 우리나라에 들어왔을때는 일제강점기 초기인 1910년대이며 주세법 발표와 허가증을 만들어서 주류 업체들이 나타나기 시작했습니다. <br />
+                        단식 증류기로 소주를 만들었었는데 연속식증류기가 발명된 후, 소주를 대량 생산할 수 있게 되었으며 1919년에 최초로 희석식 소주 공장이 세워지게 되었습니다. <br />
+                        낮은 생산 가격을 무기로 대중 사이에 퍼져나갈수 있었습니다.
+                    </HistoryContent>
+                </HistoryText2>
+            </Summary>
         </Container>
     );
 }

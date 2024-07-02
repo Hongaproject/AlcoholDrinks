@@ -6,7 +6,6 @@ const Container = styled.div`
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 10px 20px rgba(0, 0, 13, 0.07);
-
 `
 
 const Nav = styled.div`
@@ -40,25 +39,27 @@ const MenuItem = styled.li`
 	width:140px;
 	position:relative;
     cursor: pointer;
+    color: #000;
     &:hover{
-        & > ul {
+        /* & > ul {
             display: block;
-        }
+        } */
+        border-bottom: 2px solid #000;
     }
 `
-const MenuDrop = styled.ul`
-    font-size: 1.25rem;
-    display: none;
-    position: absolute;
-    background-color: skyblue;
-    width: 130px;
-`
-const MenuItemDrop = styled.li`
-    &:hover{
-        background-color: coral;
-        transition: ease 1s;
-    }
-`
+// const MenuDrop = styled.ul`
+//     font-size: 1.25rem;
+//     display: none;
+//     position: absolute;
+//     background-color: skyblue;
+//     width: 130px;
+// `
+// const MenuItemDrop = styled.li`
+//     &:hover{
+//         background-color: coral;
+//         transition: ease 1s;
+//     }
+// `
 
 const SearchLogin = styled.div`
     height: 50px;
@@ -94,48 +95,26 @@ export default function Header () {
                 </Link>
                 <MenuList>
                     <MenuItem>
-                        Story
-                        <MenuDrop>
+                        <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                            Story
+                        </Link>   
+                        {/* <MenuDrop>
                             <MenuItemDrop>
                                 1
                             </MenuItemDrop>
                             <MenuItemDrop>
                                 2
                             </MenuItemDrop>
-                        </MenuDrop>
+                        </MenuDrop> */}
                     </MenuItem>
                     <MenuItem>
                         Brand
-                        <MenuDrop>
-                            <MenuItemDrop>
-                                1
-                            </MenuItemDrop>
-                            <MenuItemDrop>
-                                2
-                            </MenuItemDrop>
-                        </MenuDrop>
                     </MenuItem>
                     <MenuItem>
                         Company
-                        <MenuDrop>
-                            <MenuItemDrop>
-                                1
-                            </MenuItemDrop>
-                            <MenuItemDrop>
-                                2
-                            </MenuItemDrop>
-                        </MenuDrop>
                     </MenuItem>
                     <MenuItem>
                         Alcohol Guide
-                        <MenuDrop>
-                            <MenuItemDrop>
-                                1
-                            </MenuItemDrop>
-                            <MenuItemDrop>
-                                2
-                            </MenuItemDrop>
-                        </MenuDrop>
                     </MenuItem>
                 </MenuList>
                 <SearchLogin>

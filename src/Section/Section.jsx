@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import Sidebtn from "./Sidebtn"
 import { Link } from "react-router-dom"
-import axios from "axios"
 
 const Container = styled.div`
     width: 100%;
@@ -163,8 +162,7 @@ const SojuImg = styled.div`
     float: left;
     border: 1px solid #000;
     color: #000;
-    /* background-image: url("img/home/chamiseul.jpg"); */
-    background-image: url("img/brand/soju/chamiseul.png");
+    background-image: url("/img/brand/soju/chamiseul.png");
     background-size: cover;
     background-position: center;
 `
@@ -248,7 +246,7 @@ const BeerImg = styled.div`
     float: left;
     border: 1px solid #000;
     color: #000;
-    background-image: url("img/home/terra.jpg");
+    background-image: url("/img/home/terra.jpg");
     background-size: cover;
     background-position: center;
 `
@@ -291,7 +289,7 @@ const MakgeolliImg = styled.div`
     margin: 0 auto;
     border: 1px solid #000;
     color: #000;
-    background-image: url("img/home/makgeolli.jpg");
+    background-image: url("/img/home/makgeolli.jpg");
     background-size: cover;
     background-position: center;
     &::before {
@@ -368,7 +366,7 @@ const LiquorImg = styled.div`
     position: relative;
     color: #000;
     border: 1px solid #000;
-    background-image: url("img/home/liquorjinro.jpg");
+    background-image: url("/img/home/liquorjinro.jpg");
     background-size: cover;
     background-position: center;
 
@@ -415,7 +413,7 @@ const NewImg = styled.div`
     overflow: hidden;
     color: #000;
     border: 1px solid #000;
-    background-image: url("img/home/new.jpg");
+    background-image: url("/img/home/new.jpg");
     background-size: cover;
     background-position: center;
 
@@ -516,7 +514,7 @@ const CompanyImg = styled.div`
     width: 270px;
     height: 450px;
     margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("img/home/company.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/company.jpg");
     background-size: cover;
     background-position: center;
 `
@@ -524,7 +522,7 @@ const ShopImg = styled.div`
     width: 270px;
     height: 450px;
     margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("img/home/shop.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/shop.jpg");
     background-size: cover;
     background-position: center;
 `
@@ -532,14 +530,14 @@ const GuideImg = styled.div`
     width: 270px;
     height: 450px;
     margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("img/home/guide.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/guide.jpg");
     background-size: cover;
     background-position: center;
 `
 const OutImg = styled.div`
     width: 270px;
     height: 450px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("img/home/out.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/out.jpg");
     background-size: cover;
     background-position: center;
 `
@@ -635,33 +633,34 @@ export default function Section () {
 
             <Main>
                 <SubTitle>주류 종류</SubTitle>
-                <SojuContainer>
-                    <Soju>
-                        <Link to='/' style={{ textDecoration: "none"}}>
+                <Link to='/brand/soju' style={{ textDecoration: "none"}} >
+                    <SojuContainer>
+                        <Soju>
                             <SojuImg />
                             <SojuTitle>소주</SojuTitle>
                             <SojuContent>희석주 입니다.</SojuContent>
-                        </Link>
-                    </Soju>
-                </SojuContainer>
-                <BeerContainer>
-                    <Beer>
-                        <Link to='/' style={{ textDecoration: "none"}}>
+                        </Soju>
+                    </SojuContainer>
+                </Link>
+                <Link to='/' style={{ textDecoration: "none"}}>
+                    <BeerContainer>
+                        <Beer>
                             <BeerImg />
                             <BeerTitle>맥주</BeerTitle>
                             <BeerContent>곡료주 입니다.</BeerContent>
-                        </Link>
-                    </Beer>
-                </BeerContainer>
-                <MakgeolliC>
-                    <Makgeolli>
-                        <Link to='/' style={{ textDecoration: "none"}}>
+                        </Beer>
+                    </BeerContainer>
+                </Link>
+                <Link to='/' style={{ textDecoration: "none"}}>
+                    <MakgeolliC>
+                        <Makgeolli>
                             <MakgeolliImg />
                             <MakgeolliTitle>막걸리</MakgeolliTitle>
                             <MakgeolliContent>전통주 입니다.</MakgeolliContent>
-                        </Link>
-                    </Makgeolli>
-                </MakgeolliC>
+                        </Makgeolli>
+                    </MakgeolliC>
+                </Link>
+
                 <LiquorNewC>
                     <LiquorNew>
                         <Link to='/' style={{ textDecoration: "none"}}>

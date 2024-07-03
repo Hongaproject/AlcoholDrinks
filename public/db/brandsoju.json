@@ -10,7 +10,31 @@
             "id": 2,
             "name": "진로",
             "price": "2100원",
-            "img": "img/brand/soju/jinro.jpg"
+            "url": "/img/brand/soju/jinro.jpg"
+        },
+        {
+            "id": 3,
+            "name": "이제우린",
+            "price": "2100원",
+            "url": "/img/brand/soju/rin.jpg"
+        },
+        {
+            "id": 4,
+            "name": "처음처럼",
+            "price": "2100원",
+            "url": "/img/brand/soju/chumchurum.jpg"
+        },
+        {
+            "id": 5,
+            "name": "좋은데이",
+            "price": "2100원",
+            "url": "/img/brand/soju/day.jpg"
+        },
+        {
+            "id": 6,
+            "name": "대선",
+            "price": "2100원",
+            "url": "/img/brand/soju/daesun.jpg"
         }
     ]
 }

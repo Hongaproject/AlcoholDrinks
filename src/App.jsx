@@ -5,6 +5,7 @@ import Story from "./Story/Story";
 import SojuStory from "./Story/SojuStory";
 import BeerStory from "./Story/BeerStory";
 import MakgeolliStory from "./Story/MakgeolliStory";
+import Soju from "./Brand/Soju";
 
 function App() {
 
@@ -32,6 +33,10 @@ function App() {
         {
           path: '/story/makgeolli',
           element: <MakgeolliStory />
+        },
+        {
+          path: '/brand/soju',
+          element: <Soju />
         },
       ]
     },

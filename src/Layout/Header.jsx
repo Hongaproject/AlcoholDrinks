@@ -108,7 +108,9 @@ export default function Header () {
                         </MenuDrop> */}
                     </MenuItem>
                     <MenuItem>
+                    <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000"}}>
                         Brand
+                    </Link>   
                     </MenuItem>
                     <MenuItem>
                         Company

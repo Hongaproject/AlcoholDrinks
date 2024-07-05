@@ -95,7 +95,7 @@ export default function Header () {
                 </Link>
                 <MenuList>
                     <MenuItem>
-                        <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                        <Link to='/story' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
                             Story
                         </Link>   
                         {/* <MenuDrop>
@@ -108,7 +108,7 @@ export default function Header () {
                         </MenuDrop> */}
                     </MenuItem>
                     <MenuItem>
-                    <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000"}}>
+                    <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
                         Brand
                     </Link>   
                     </MenuItem>

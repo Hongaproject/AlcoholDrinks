@@ -73,13 +73,13 @@ const ProductImgPrice = styled.span`
     justify-content: center;
 `
 
-export default function Soju () {
+export default function Liquor () {
     
-    const [sojuImg, setSojuImg] = useState([]);
+    const [liquorImg, setLiquorImg] = useState([]);
 
     const imgAPi = async() => {
-        const res = await axios.get('/db/brandsoju.json');
-        setSojuImg(res.data.soju);
+        const res = await axios.get('/db/brandliquor.json');
+        setLiquorImg(res.data.liquor);
     }
 
     useEffect(() => {
@@ -89,12 +89,10 @@ export default function Soju () {
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
 
-    
-
     useEffect(() => {
         switch (location.pathname) {
-            case '/brand/soju':
-                setActiveTitle('소주');
+            case '/brand/liquor':
+                setActiveTitle('증류주');
                 break;
             default:
                 setActiveTitle('');
@@ -145,7 +143,7 @@ export default function Soju () {
             <Sidebtn />
             <Outline>
                 {
-                    sojuImg.map((item)=>(
+                    liquorImg.map((item)=>(
                         <Product key={item.id}>
                             <ProductImg src={item.url}/>
                             <ProductImgName>{item.name}</ProductImgName>

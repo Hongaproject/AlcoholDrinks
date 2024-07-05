@@ -1,0 +1,70 @@
+{
+    "beer": [
+        {
+            "id": 1,
+            "name": "카스",
+            "company": "OB 맥주",
+            "url": "/img/brand/beer/cass.jpg"
+        },
+        {
+            "id": 2,
+            "name": "테라",
+            "company": "하이트진로",
+            "url": "/img/brand/beer/terra.jpg"
+        },
+        {
+            "id": 3,
+            "name": "하이트",
+            "company": "하이트진로",
+            "url": "/img/brand/beer/hitebeer.jpg"
+        },
+        {
+            "id": 4,
+            "name": "켈리",
+            "company": "하이트진로",
+            "url": "/img/brand/beer/kelly.jpg"
+        },
+        {
+            "id": 5,
+            "name": "클라우드",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/beer/kloud.jpg"
+        },
+        {
+            "id": 6,
+            "name": "카프리",
+            "company": "OB 맥주",
+            "url": "/img/brand/beer/cafri.jpg"
+        },
+        {
+            "id": 7,
+            "name": "곰표 맥주",
+            "company": "제주맥주",
+            "url": "/img/brand/beer/bear.jpg"
+        },
+        {
+            "id": 8,
+            "name": "한맥",
+            "company": "OB 맥주",
+            "url": "/img/brand/beer/hanmac.jpg"
+        },
+        {
+            "id": 9,
+            "name": "크러쉬",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/beer/crush.jpg"
+        },
+        {
+            "id": 10,
+            "name": "대표 맥주",
+            "company": "세븐브로이",
+            "url": "/img/brand/beer/seven.png"
+        },
+        {
+            "id": 11,
+            "name": "제주 위트 에일",
+            "company": "제주맥주",
+            "url": "/img/brand/beer/jejubeer.jpg"
+        }
+    ]
+}

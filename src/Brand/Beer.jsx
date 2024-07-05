@@ -73,13 +73,13 @@ const ProductImgPrice = styled.span`
     justify-content: center;
 `
 
-export default function Soju () {
+export default function Beer () {
     
-    const [sojuImg, setSojuImg] = useState([]);
+    const [beerImg, setBeerImg] = useState([]);
 
     const imgAPi = async() => {
-        const res = await axios.get('/db/brandsoju.json');
-        setSojuImg(res.data.soju);
+        const res = await axios.get('/db/brandbeer.json');
+        setBeerImg(res.data.beer);
     }
 
     useEffect(() => {
@@ -89,12 +89,10 @@ export default function Soju () {
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
 
-    
-
     useEffect(() => {
         switch (location.pathname) {
-            case '/brand/soju':
-                setActiveTitle('소주');
+            case '/brand/beer':
+                setActiveTitle('맥주');
                 break;
             default:
                 setActiveTitle('');
@@ -109,7 +107,7 @@ export default function Soju () {
     return(
         <Container>
             <Introduce>
-                <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000"}}>
+            <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000"}}>
                     <IntroduceTitle
                         active={activeTitle === '소주'}
                         onClick={() => handleClick('소주')}
@@ -145,7 +143,7 @@ export default function Soju () {
             <Sidebtn />
             <Outline>
                 {
-                    sojuImg.map((item)=>(
+                    beerImg.map((item)=>(
                         <Product key={item.id}>
                             <ProductImg src={item.url}/>
                             <ProductImgName>{item.name}</ProductImgName>

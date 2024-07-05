@@ -81,38 +81,38 @@ export default function SojuStory () {
     return(
         <Container>
             <Introduce>
-                <IntroduceTitle
-                    active={activeTitle === '개요'}
-                    onClick={() => handleClick('개요')}
-                >
-                    <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+            <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                    <IntroduceTitle
+                        active={activeTitle === '개요'}
+                        onClick={() => handleClick('개요')}
+                    >
                         개요
-                    </Link>
-                </IntroduceTitle>
-                <IntroduceTitle
-                    active={activeTitle === '소주의 역사'}
-                    onClick={() => handleClick('소주의 역사')}
-                >
-                    <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                    </IntroduceTitle>
+                </Link>
+                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                    <IntroduceTitle
+                        active={activeTitle === '소주의 역사'}
+                        onClick={() => handleClick('소주의 역사')}
+                    >
                         소주의 역사
-                    </Link>
-                </IntroduceTitle>
-                <IntroduceTitle
-                    active={activeTitle === '맥주의 역사'}
-                    onClick={() => handleClick('맥주의 역사')}
-                >
-                    <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                    </IntroduceTitle>
+                </Link>
+                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                    <IntroduceTitle
+                        active={activeTitle === '맥주의 역사'}
+                        onClick={() => handleClick('맥주의 역사')}
+                    >
                         맥주의 역사
-                    </Link>
-                </IntroduceTitle>
-                <IntroduceTitle
-                    active={activeTitle === '막걸리 역사'}
-                    onClick={() => handleClick('막걸리 역사')}
-                >  
-                    <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                    </IntroduceTitle>
+                </Link>
+                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                    <IntroduceTitle
+                        active={activeTitle === '막걸리 역사'}
+                        onClick={() => handleClick('막걸리 역사')}
+                    >  
                         막걸리 역사
-                    </Link>
-                </IntroduceTitle>
+                    </IntroduceTitle>
+                </Link>
             </Introduce>
             <Summary>
                 <HistoryText>

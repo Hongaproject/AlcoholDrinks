@@ -642,7 +642,7 @@ export default function Section () {
                         </Soju>
                     </SojuContainer>
                 </Link>
-                <Link to='/' style={{ textDecoration: "none"}}>
+                <Link to='/brand/beer' style={{ textDecoration: "none"}}>
                     <BeerContainer>
                         <Beer>
                             <BeerImg />
@@ -651,7 +651,7 @@ export default function Section () {
                         </Beer>
                     </BeerContainer>
                 </Link>
-                <Link to='/' style={{ textDecoration: "none"}}>
+                <Link to='/brand/makgeolli' style={{ textDecoration: "none"}}>
                     <MakgeolliC>
                         <Makgeolli>
                             <MakgeolliImg />
@@ -663,7 +663,7 @@ export default function Section () {
 
                 <LiquorNewC>
                     <LiquorNew>
-                        <Link to='/' style={{ textDecoration: "none"}}>
+                        <Link to='/brand/liquor' style={{ textDecoration: "none"}}>
                             <LiquorImg />
                         </Link>
                         <Link to='/' style={{ textDecoration: "none"}}>

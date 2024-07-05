@@ -1,0 +1,142 @@
+{
+    "liquor": [
+        {
+            "id": 1,
+            "name": "안동소주",
+            "company": "안동지역",
+            "url": "/img/brand/liquor/andong.jpg"
+        },
+        {
+            "id": 2,
+            "name": "일품진로",
+            "company": "하이트진로",
+            "url": "/img/brand/liquor/jinro.jpg"
+        },
+        {
+            "id": 3,
+            "name": "삼해소주",
+            "company": "삼해소주",
+            "url": "/img/brand/liquor/samhae.jpg"
+        },
+        {
+            "id": 4,
+            "name": "모월소주",
+            "company": "모월",
+            "url": "/img/brand/liquor/mowol.jpg"
+        },
+        {
+            "id": 5,
+            "name": "화요",
+            "company": "광주요",
+            "url": "/img/brand/liquor/hwayo.jpg"
+        },
+        {
+            "id": 6,
+            "name": "서울의밤 소주",
+            "company": "더한주류",
+            "url": "/img/brand/liquor/seoul.jpg"
+        },
+        {
+            "id": 7,
+            "name": "원소주",
+            "company": "원스피리츠",
+            "url": "/img/brand/liquor/won.jpg"
+        },
+        {
+            "id": 8,
+            "name": "이도소주",
+            "company": "조은술세종",
+            "url": "/img/brand/liquor/leedo.jpg"
+        },
+        {
+            "id": 9,
+            "name": "문배술",
+            "company": "문배주 양조원",
+            "url": "/img/brand/liquor/munbae.jpg"
+        },
+        {
+            "id": 10,
+            "name": "려 소주",
+            "company": "여주명주",
+            "url": "/img/brand/liquor/ru.jpg"
+        },
+        {
+            "id": 11,
+            "name": "풍정사계",
+            "company": "유한회사 화양",
+            "url": "/img/brand/liquor/pungjeong.jpg"
+        },
+        {
+            "id": 12,
+            "name": "도원결의 소주",
+            "company": "영덕주조",
+            "url": "/img/brand/liquor/dowon.jpg"
+        },
+        {
+            "id": 13,
+            "name": "독도 소주",
+            "company": "케이알컴퍼니",
+            "url": "/img/brand/liquor/dokdo.jpg"
+        },
+        {
+            "id": 14,
+            "name": "토끼 소주",
+            "company": "토끼소주",
+            "url": "/img/brand/liquor/tokki.jpg"
+        },
+        {
+            "id": 15,
+            "name": "백로 소주",
+            "company": "금복주",
+            "url": "/img/brand/liquor/baekro.jpg"
+        },
+        {
+            "id": 16,
+            "name": "필 25",
+            "company": "연천양조주식회사",
+            "url": "/img/brand/liquor/fill.jpg"
+        },
+        {
+            "id": 17,
+            "name": "황금보리 소주",
+            "company": "황금보리소주",
+            "url": "/img/brand/liquor/bori.jpg"
+        },
+        {
+            "id": 18,
+            "name": "매화랑",
+            "company": "참주가",
+            "url": "/img/brand/liquor/maehwa.jpg"
+        },
+        {
+            "id": 19,
+            "name": "백송 화랑 소주",
+            "company": "한산소곡주",
+            "url": "/img/brand/liquor/back.jpg"
+        },
+        {
+            "id": 20,
+            "name": "여울 소주",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/liquor/yuwol.jpg"
+        },
+        {
+            "id": 21,
+            "name": "느린마을 소주",
+            "company": "배상면주가",
+            "url": "/img/brand/liquor/maeul.jpg"
+        },
+        {
+            "id": 22,
+            "name": "동해 밤 바다",
+            "company": "참주가",
+            "url": "/img/brand/liquor/donghae.jpg"
+        },
+        {
+            "id": 23,
+            "name": "서해 밤 바다",
+            "company": "참주가",
+            "url": "/img/brand/liquor/suhae.jpg"
+        }
+    ]
+}

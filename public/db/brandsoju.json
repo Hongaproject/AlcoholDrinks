@@ -3,38 +3,116 @@
         {
             "id": 1,
             "name": "참이슬 후레쉬",
-            "price": "2100원",
+            "company": "하이트진로",
             "url": "/img/brand/soju/chamiseul.png"
         },
         {
             "id": 2,
             "name": "진로",
-            "price": "2100원",
+            "company": "하이트진로",
             "url": "/img/brand/soju/jinro.jpg"
         },
         {
             "id": 3,
             "name": "이제우린",
-            "price": "2100원",
+            "company": "맥키스컴퍼니",
             "url": "/img/brand/soju/rin.jpg"
         },
         {
             "id": 4,
             "name": "처음처럼",
-            "price": "2100원",
+            "company": "롯데칠성음료",
             "url": "/img/brand/soju/chumchurum.jpg"
         },
         {
             "id": 5,
             "name": "좋은데이",
-            "price": "2100원",
+            "company": "무학",
             "url": "/img/brand/soju/day.jpg"
         },
         {
             "id": 6,
             "name": "대선",
-            "price": "2100원",
+            "company": "대선주조",
             "url": "/img/brand/soju/daesun.jpg"
+        },
+        {
+            "id": 7,
+            "name": "잎새주",
+            "company": "보해양조",
+            "url": "/img/brand/soju/ipsaeju.jpg"
+        },
+        {
+            "id": 8,
+            "name": "깨끗한 아침 참",
+            "company": "금복주",
+            "url": "/img/brand/soju/cham.jpg"
+        },
+        {
+            "id": 9,
+            "name": "C1",
+            "company": "대선주조",
+            "url": "/img/brand/soju/c1.png"
+        },
+        {
+            "id": 10,
+            "name": "시원한 청풍",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/soju/siwon.jpg"
+        },
+        {
+            "id": 11,
+            "name": "한라산 오리지날",
+            "company": "주식회사 한라산",
+            "url": "/img/brand/soju/hallasan.jpg"
+        },
+        {
+            "id": 12,
+            "name": "참이슬 오리지날",
+            "company": "하이트진로",
+            "url": "/img/brand/soju/ChamiseulO.png"
+        },
+        {
+            "id": 13,
+            "name": "하이트 소주",
+            "company": "하이트진로",
+            "url": "/img/brand/soju/hite.jpg"
+        },
+        {
+            "id": 14,
+            "name": "무학 화이트",
+            "company": "무학",
+            "url": "/img/brand/soju/white.png"
+        },
+        {
+            "id": 15,
+            "name": "순한 한라산",
+            "company": "주식회사 한라산",
+            "url": "/img/brand/soju/soonhallasan.png"
+        },
+        {
+            "id": 16,
+            "name": "새로",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/soju/saero.jpg"
+        },
+        {
+            "id": 17,
+            "name": "선양",
+            "company": "맥키스컴퍼니",
+            "url": "/img/brand/soju/sunyang.jpg"
+        },
+        {
+            "id": 18,
+            "name": "진로 골드",
+            "company": "하이트진로",
+            "url": "/img/brand/soju/jinrogold.jpg"
+        },
+        {
+            "id": 19,
+            "name": "새로 살구",
+            "company": "롯데칠성음료",
+            "url": "/img/brand/soju/saerosargu.jpg"
         }
     ]
 }

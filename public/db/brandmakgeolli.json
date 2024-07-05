@@ -1,0 +1,130 @@
+{
+    "makgeolli": [
+        {
+            "id": 1,
+            "name": "복순도가",
+            "company": "복순도가",
+            "url": "/img/brand/makgeolli/boksun.jpg"
+        },
+        {
+            "id": 2,
+            "name": "이화백주",
+            "company": "이화백주",
+            "url": "/img/brand/makgeolli/leehwa.jpg"
+        },
+        {
+            "id": 3,
+            "name": "지평생막걸리",
+            "company": "지평주조",
+            "url": "/img/brand/makgeolli/jipyeong.jpg"
+        },
+        {
+            "id": 4,
+            "name": "장수생막걸리",
+            "company": "서울탁주",
+            "url": "/img/brand/makgeolli/jangsu.jpg"
+        },
+        {
+            "id": 5,
+            "name": "느린마을생막걸리",
+            "company": "배상면주가",
+            "url": "/img/brand/makgeolli/maeul.jpg"
+        },
+        {
+            "id": 6,
+            "name": "경주법주쌀막걸리",
+            "company": "고성주류",
+            "url": "/img/brand/makgeolli/gyeongju.jpg"
+        },
+        {
+            "id": 7,
+            "name": "국순당생막걸리",
+            "company": "국순당",
+            "url": "/img/brand/makgeolli/guksun.jpg"
+        },
+        {
+            "id": 8,
+            "name": "서울생막걸리",
+            "company": "서울탁주",
+            "url": "/img/brand/makgeolli/seoul.jpg"
+        },
+        {
+            "id": 9,
+            "name": "해창막걸리",
+            "company": "해창조주장",
+            "url": "/img/brand/makgeolli/haecang.jpg"
+        },
+        {
+            "id": 10,
+            "name": "영탁생막걸리",
+            "company": "예천양조",
+            "url": "/img/brand/makgeolli/yeongtak.jpg"
+        },
+        {
+            "id": 11,
+            "name": "제주막걸리",
+            "company": "제주막걸리",
+            "url": "/img/brand/makgeolli/jeju.jpg"
+        },
+        {
+            "id": 12,
+            "name": "우도땅콩막걸리",
+            "company": "조은술세종",
+            "url": "/img/brand/makgeolli/woodo.jpg"
+        },
+        {
+            "id": 13,
+            "name": "지평이랑이랑",
+            "company": "지평주조",
+            "url": "/img/brand/makgeolli/leerang.jpg"
+        },
+        {
+            "id": 14,
+            "name": "인생막걸리",
+            "company": "서울탁주",
+            "url": "/img/brand/makgeolli/insaeng.jpg"
+        },
+        {
+            "id": 15,
+            "name": "화성생막걸리",
+            "company": "배혜정도가",
+            "url": "/img/brand/makgeolli/hwaseong.jpg"
+        },
+        {
+            "id": 16,
+            "name": "가평잣생막걸리",
+            "company": "우리술",
+            "url": "/img/brand/makgeolli/gapyeong.jpg"
+        },
+        {
+            "id": 17,
+            "name": "골목막걸리",
+            "company": "인주로주식회사",
+            "url": "/img/brand/makgeolli/goal.jpg"
+        },
+        {
+            "id": 18,
+            "name": "평생막걸리",
+            "company": "지평주조",
+            "url": "/img/brand/makgeolli/pyeong.jpg"
+        },
+        {
+            "id": 19,
+            "name": "원막걸리",
+            "company": "대전주조",
+            "url": "/img/brand/makgeolli/won.jpg"
+        },
+        {
+            "id": 20,
+            "name": "공주알밤막걸리",
+            "company": "사곡양조원",
+            "url": "/img/brand/makgeolli/gongju.jpg"
+        },
+        {
+            "id": 21,
+            "name": "담은",
+            "company": "포천일동막걸리",
+            "url": "/img/brand/makgeolli/dameun.jpg"
+        }
+    ]
+}

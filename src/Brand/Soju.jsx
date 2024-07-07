@@ -84,6 +84,7 @@ const Loader = styled.div`
     align-items: center;
     width: 100%;
     height: 100px;
+    margin: 20px 0;
 `;
 
 // Main Component
@@ -93,17 +94,22 @@ export default function Soju() {
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
 
-    const imgAPi = async(page = 1) => {
+    const imgAPi = async (page = 1) => {
         setLoading(true);
         try {
             const res = await axios.get('/db/brandsoju.json');
             const data = res.data.soju;
             const newSoju = data.slice((page - 1) * 8, page * 8);
-            setSojuImg(prevSojuImg => [...prevSojuImg, ...newSoju]);
+
+            // 인위적인 딜레이 추가 (1초)
+            setTimeout(() => {
+                setSojuImg(prevSojuImg => [...prevSojuImg, ...newSoju]);
+                setLoading(false);
+            }, 1000);  // 1초 동안 로딩 상태 유지
         } catch (error) {
-            console.error('소주 데이터를 가져오는 중 오류 발생ta:', error);
+            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     useEffect(() => {

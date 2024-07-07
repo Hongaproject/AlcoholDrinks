@@ -9,6 +9,7 @@ import Soju from "./Brand/Soju";
 import Beer from "./Brand/Beer";
 import Liquor from "./Brand/Liquor";
 import Makgeolli from "./Brand/Makgeolli";
+import SojuDetail from "./Brand/details/SojuDetail";
 
 function App() {
 
@@ -52,6 +53,10 @@ function App() {
         {
           path: '/brand/makgeolli',
           element: <Makgeolli />
+        },
+        {
+          path: '/brand/detail/:id',
+          element: <SojuDetail />
         }
       ]
     },

@@ -95,11 +95,12 @@ const SectionIntroduce = styled.div`
     width: calc(100% - 600px);
     height: 100%;
     margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 160px;
 `
 
 const SectionTitle = styled.h2`
     font-size: 48px;
-    margin-top: 80px;
 `
 
 const SectionSpan = styled.span`
@@ -107,7 +108,7 @@ const SectionSpan = styled.span`
     margin-top: 60px;
     display: block;
     line-height: 1.4;
-    margin-bottom: 160px;
+    white-space: pre-line;
 `
 
 
@@ -156,19 +157,19 @@ export default function SojuDetail() {
                                 <ProductContent>
                                     <ProductCTS>
                                         <ProductCTitle>국가/지역</ProductCTitle>
-                                        <ProductCSpan>대한민국</ProductCSpan>
+                                        <ProductCSpan>{sojuItem.country}</ProductCSpan>
                                     </ProductCTS>
                                     <ProductCTS>
                                         <ProductCTitle>스타일</ProductCTitle>
-                                        <ProductCSpan>증류주</ProductCSpan>
+                                        <ProductCSpan>{sojuItem.style}</ProductCSpan>
                                     </ProductCTS>
                                     <ProductCTS>
                                         <ProductCTitle>도수</ProductCTitle>
-                                        <ProductCSpan>16%</ProductCSpan>
+                                        <ProductCSpan>{sojuItem.alcohol}</ProductCSpan>
                                     </ProductCTS>
                                     <ProductCTS>
                                         <ProductCTitle>용량</ProductCTitle>
-                                        <ProductCSpan>360mL</ProductCSpan>
+                                        <ProductCSpan>{sojuItem.netw}</ProductCSpan>
                                     </ProductCTS>
                                 </ProductContent>
                             </ProductDiv>
@@ -179,12 +180,16 @@ export default function SojuDetail() {
             </Outline>
             <Section>
                 <SectionSub>상품 설명</SectionSub>
-                <SectionIntroduce>
-                    <SectionTitle>참이슬 후레쉬</SectionTitle>
-                    <SectionSpan> 
-                        하이트진로에서 만든 희석식 소주이다. 
-                    </SectionSpan>
-                </SectionIntroduce>
+                {
+                    sojuItem ? (
+                        <SectionIntroduce>
+                            <SectionTitle>{sojuItem.name}</SectionTitle>
+                            <SectionSpan>{sojuItem.discription}</SectionSpan>
+                        </SectionIntroduce>
+                    ) : (
+                        <p>로딩 중...</p>
+                    )
+                }
             </Section>
         </Container>
     );

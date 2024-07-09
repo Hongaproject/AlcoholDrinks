@@ -33,12 +33,13 @@ const ProductImg = styled.img`
     object-fit: contain;
 `
 const ProductDiv = styled.div`
-    width: 300px;
+    width: 350px;
     height: 80px;
 `
 const ProductImgTitle = styled.h1`
     font-size: 48px;
     margin-top: 90px;
+
 `
 const ProductImgCompany = styled.span`
     font-size: 20px;

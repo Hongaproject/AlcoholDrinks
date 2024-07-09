@@ -15,109 +15,200 @@
             "id": 2,
             "name": "진로",
             "company": "하이트진로",
-            "url": "/img/brand/soju/jinro.jpg"
+            "url": "/img/brand/soju/jinro.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "1924년 처음 출시했을 때는 흑국으로 당화한 증류식 소주였으나, 1965년부터 희석식 소주가 되었다. \n진로그룹의 모태가 된 제품으로, 일제강점기 때 출시했으며 서민들이 즐겨찾고 마셨던 소주이기도 하다.\n\n 진로만이 가지고 있는 No.1 헤리티지를 재해석하여\n스카이 블루 색상의 병과 은색 트위스트 캡으로 복원한\n소주의 원조 진로가 재탄생했습니다.\n\n2023년 1월 새해을 맞아 제로슈거 및 알코올 도수 16도의\n진로 오리지널 레시피를 완성하여 초깔끔하고\n부드러운 목넘김을 한층 강화했습니다."
+            
         },
         {
             "id": 3,
-            "name": "이제우린",
+            "name": "맑을린",
             "company": "맥키스컴퍼니",
-            "url": "/img/brand/soju/rin.jpg"
+            "url": "/img/brand/soju/rin.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": " 대전, 세종, 충남 지역을 중심으로 충북 일부 지역(청주,옥천)까지 충청도에서만 판매되고 있는 희석식 소주, 2005년에 맑을린으로 출시되어, \n2008년 O2린(오투린)을 거쳐, 2018년 이제우린으로 제품명이 바뀌었고 다시 2024년에 맑을린으로 돌아왔다. \n\n 더 맑게 돌아온 맑을린 \n충청 대표 소주로 지역민의 사랑을 받아온 ‘이제우린’이 \n자연을 담아 더욱 깔끔해진 ‘맑을린’으로 돌아왔습니다. \n\n 쌀 증류원액에 15년 숙성 보리증류원액을 첨가해 \n소주 맛의 깊이를 더하고, 더블 정제 공법을 통해\n한층 더 맑고 깨끗한 맛을 구현했습니다."
         },
         {
             "id": 4,
             "name": "처음처럼",
             "company": "롯데칠성음료",
-            "url": "/img/brand/soju/chumchurum.jpg"
+            "url": "/img/brand/soju/chumchurum.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16.5%",
+            "netw" : "360ml",
+            "discription": "롯데주류에서 생산 중인 희석식 소주로 2006년에 처음 등장했습니다. \n처음처럼은 성공회대 신영복 교수님의 시에서 영감을 얻어 브랜드 네임으로 사용하게 되었고 \n글씨체도 신영복 교수님의 글씨체를 활용하게 되었습니다. \n\n대관령 기슭 암반수로 만들어 술맛이 부드럽고 목 넘김이 좋은 특징을 가지고 있습니다."
         },
         {
             "id": 5,
             "name": "좋은데이",
             "company": "무학",
-            "url": "/img/brand/soju/day.jpg"
+            "url": "/img/brand/soju/day.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16.5%",
+            "netw" : "360ml",
+            "discription": "경상남도를 연고로하는 무학에서 제조하는 희석식 소주입니다. 지역소주 중에서 전국구화 비중이 굉장히 높습니다. \n 최초로 저도주를 유행시키고, 여러 종류의 소주를 만들고 새로운 도전을 많이 하는 기업입니다. \n\n 72시간 산소숙성으로 부드러운 목넘김을 완성했고 과당제로로 더 깔끔해졌고 과당제로 소주 트렌드의 시작점입니다."
         },
         {
             "id": 6,
             "name": "대선",
             "company": "대선주조",
-            "url": "/img/brand/soju/daesun.jpg"
+            "url": "/img/brand/soju/daesun.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16.5%",
+            "netw" : "360ml",
+            "discription": "BN그룹 계열 주류업체. 부산에서 가장 오래된 향토 주류업체이며, 희석식 소주 제조사로 대표적인 소주로는 대선, C1(시원)이 있습니다. \n\n더욱 부드럽고 산뜻한 맛! 과당 0% 슈가프리 저칼로리 소주 감미료 토마틴 원적외석 숙성공법을 사용해서 한층 더 부드러운 맛을 냅니다."
         },
         {
             "id": 7,
             "name": "잎새주",
             "company": "보해양조",
-            "url": "/img/brand/soju/ipsaeju.jpg"
+            "url": "/img/brand/soju/ipsaeju.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16.5%",
+            "netw" : "360ml",
+            "discription": "2002년 출시한 보해양조의 주력 상품으로, 광주광역시와 전라남도를 대표하는 소주입니다. \n\n 잎새주는 100% 자연에서 추출한 감미료만을 사용했습니다. 잎새주는 당과 나트륨, MSG를 넣지 않은 소주입니다. \n 지하 253M 방울샘 천연암반수로 빚은 잎새주. 일반 수돗물을 걸러서 만든 소주와는 비교할 수 없을 만큼 그 맛이 싱그럽습니다."
         },
         {
             "id": 8,
             "name": "깨끗한 아침 참",
             "company": "금복주",
-            "url": "/img/brand/soju/cham.jpg"
+            "url": "/img/brand/soju/cham.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "대구, 경북 지역에서 유명하며 금복주 제품입니다. \n\n 효소처리스테비아, 에리스리톨 (버섯, 포토) 토마틴 (토마스코커스 다니엘리 열매) 등 \n100% 자연 소재에서 추출한 식물성 원료만을 사용하여, 더 깨끗하고 산뜻해진 맛을 자랑합니다.\n\n 듀얼 여과공법을 통해 불순물과 잡미를 완벽하게 차단하여, 한층 더 부드럽고 깔끔해진 목넘김을 경험하실 수 있습니다."
         },
         {
             "id": 9,
             "name": "C1",
             "company": "대선주조",
-            "url": "/img/brand/soju/c1.png"
+            "url": "/img/brand/soju/c1.png",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "BN그룹 계열 주류업체. 부산에서 가장 오래된 향토 주류업체이며, 희석식 소주 제조사로 대표적인 소주로는 대선, C1(시원)이 있습니다. \n\n소주의 참 맛을 살린 소주다운 소주 특허받은 음향진동숙성공법을 사용해서 부드러운 소주로 인정받고 있습니다.\n 감미료 토마틴 첨가, 아스파라진, 아르지닌 첨가를 해서 쓴맛을 줄이고 풍미를 증가시키고 숙취해소에 도움이 됩니다."
         },
         {
             "id": 10,
             "name": "시원한 청풍",
             "company": "롯데칠성음료",
-            "url": "/img/brand/soju/siwon.jpg"
+            "url": "/img/brand/soju/siwon.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16.7%",
+            "netw" : "360ml",
+            "discription": "충청북도를 연고로하는 충북소주입니다. \n\n 더 부드럽게 새로워진 시원한청풍 16.7%로 더 부드러워진 목넘김과 \n청풍의 시원한 바람을 반영하여 역동적으로 개선된 라벨 디자인으로 새롭게 태어난 시원한청품"
         },
         {
             "id": 11,
             "name": "한라산 오리지날",
             "company": "주식회사 한라산",
-            "url": "/img/brand/soju/hallasan.jpg"
+            "url": "/img/brand/soju/hallasan.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "21%",
+            "netw" : "360ml",
+            "discription": "1993년에 출시 후 현재까지 사랑을 받아오고 있으며, 제주도에서 시장점유율이 압도적 1위를 차지하고 있습니다. \n\n제주산 쌀을 원료로 한 증류식 원액첨가, 화산암반수로 빚어냈습니다. 21도 소주지만 첫 느낌이 부드럽고 뒷끝이 깔끔한 소주입니다. "
         },
         {
             "id": 12,
             "name": "참이슬 오리지날",
             "company": "하이트진로",
-            "url": "/img/brand/soju/ChamiseulO.png"
+            "url": "/img/brand/soju/ChamiseulO.png",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "20.1%",
+            "netw" : "360ml",
+            "discription": "대한민국 소주의 정통성을 지켜온 전통 소주로서 대나무 숯으로 4번 걸러, \n숙취 유발 물질을 깨끗하게 제거하고 레귤러 대비 높은 도수로, \n깊고 진한 맛을 구현해 진짜 소주의 참맛을 아는 소비자들에게 꾸준히 사랑받는 제품입니다."
         },
         {
             "id": 13,
             "name": "하이트 소주",
             "company": "하이트진로",
-            "url": "/img/brand/soju/hite.jpg"
+            "url": "/img/brand/soju/hite.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "전북 지방의 희석식 소주입니다.. 2021년 하이트소주에 직접 전화해서 문의하니 마트에서 판매하다가 중단하고 업소용으로만 판매한다고 합니다."
         },
         {
             "id": 14,
             "name": "무학 화이트",
             "company": "무학",
-            "url": "/img/brand/soju/white.png"
+            "url": "/img/brand/soju/white.png",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "19%",
+            "netw" : "360ml",
+            "discription": "경상남도를 연고로하는 무학에서 제조하는 희석식 소주입니다. \n 소주 최초 브랜드명 적용, 소주 도수 변화의 시작 묵직한 목넘김과 진한 맛을 자랑하는 무학의 스테디 셀러입니다. "
         },
         {
             "id": 15,
             "name": "순한 한라산",
             "company": "주식회사 한라산",
-            "url": "/img/brand/soju/soonhallasan.png"
+            "url": "/img/brand/soju/soonhallasan.png",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "2023년에 등장한 제로슈가 소주입니다. \n\n 한라산순한은 청정 제주산 보리 증류원액 블랜딩으로 깊은 풍미와 깔끔한 목넘김을 자랑합니다. \n 한라산 소주 양조장에서 생산하는 가장 낮은 도수의 제로슈가 소주입니다."
         },
         {
             "id": 16,
             "name": "새로",
             "company": "롯데칠성음료",
-            "url": "/img/brand/soju/saero.jpg"
+            "url": "/img/brand/soju/saero.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "16%",
+            "netw" : "360ml",
+            "discription": "2022년도에 등장한 제로슈가 소주로 산뜻하고 부드러운 소주입니다. \n\n 희석식 소주에 증류식 소주를 첨가해서 증류식 소주의 맛을 냈습니다.  \n 맛은 부드러우면서도 달콤하고 그러면서도 소주 특유의 알콜향이 적어서 거부감도 적고 먹기도 편합니다." 
         },
         {
             "id": 17,
             "name": "선양",
             "company": "맥키스컴퍼니",
-            "url": "/img/brand/soju/sunyang.jpg"
+            "url": "/img/brand/soju/sunyang.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "14.9%",
+            "netw" : "360ml",
+            "discription": "다시 만난 선양, 새로 만난 선양! 선양소주 창립 50주년을 맞이하여 2023년 신제품 선양을 출시했습니다. \n옛 사명을 제품 이름으로 활용하여 브랜드 정통성을 리브랜딩해 새로움을 추구하였습니다. \n\n 국내 최저 도수, 국내 최저 칼로리 소주 \n\n즐거운 시간, 더 편하게 오래 누릴 수 있도록\n도수와 칼로리는 내리고 깔끔함은 올렸습니다. "
         },
         {
             "id": 18,
             "name": "진로 골드",
             "company": "하이트진로",
-            "url": "/img/brand/soju/jinrogold.jpg"
+            "url": "/img/brand/soju/jinrogold.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "15.5%",
+            "netw" : "360ml",
+            "discription": "2019년 현대적 감성을 입고 돌아온 소주의 원조 진로가 2024년 창립 100주년을 맞이하여 신제품 진로골드를 선보입니다. \n\n 부드러움의 함금비율 탄생 '진로골드' \n '쌀 100% 증류원액' 함유와 순한 목넘김의 알코올 도수 '15.5도', 100년의 양조 기술력과 '제로슈거'를 통해 조화와 균형이 잡힌\n부드러운 소주 맛의 황금비율을 구현하였으며 행운과 부의 상징 황금 두꺼비 전면 배치와 젊은 감각의 컬러 조합으로\n한층 더 세련되고 고급스러운 느낌을 강조하였습니다."
         },
         {
             "id": 19,
             "name": "새로 살구",
             "company": "롯데칠성음료",
-            "url": "/img/brand/soju/saerosargu.jpg"
+            "url": "/img/brand/soju/saerosargu.jpg",
+            "country" : "대한민국",
+            "style" : "희석주",
+            "alcohol" : "12%",
+            "netw" : "360ml",
+            "discription": "2024년에 등장한 제로슈가 소주로 희석주 소주가 아닌 증류주소주입니다. \n\n 살구로 상큼하게, 제로슈가로 산뜻하게 새로 살구 \n 다양해진 음주 트렌드에 맞춰 살구 과즙을 더한 새로 살구를 선보이게 되었습니다. 기존 과실주 보다 단맛을 줄였습니다."
         }
     ]
 }

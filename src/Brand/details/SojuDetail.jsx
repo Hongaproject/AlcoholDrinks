@@ -1,6 +1,116 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+`
+
+const IntroduceTitle = styled.div`
+    width: 295px;
+    height: 75px;
+    font-size: 48px;
+`
+
+const Outline = styled.div`
+    width: calc(100% - 600px);
+    height: 100%;
+    margin: auto;
+    margin-top: 160px;
+`
+const Product = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-top: 60px;
+    display: flex;
+`
+
+const ProductImg = styled.img`
+    width: 300px;
+    height: 350px;
+    object-fit: contain;
+`
+const ProductDiv = styled.div`
+    width: 300px;
+    height: 80px;
+`
+const ProductImgTitle = styled.h1`
+    font-size: 48px;
+    margin-top: 90px;
+`
+const ProductImgCompany = styled.span`
+    font-size: 20px;
+    padding: 10px 0;
+    display: flex;
+    color: #909090;
+    margin-bottom: 30px;
+`
+
+const ProductContent = styled.div`
+    width: 500px;
+    height: 100px;
+    display: flex;
+`
+const ProductCTS = styled.div`
+    width: 110px;
+    height: 60px;
+    margin-right: 30px;
+`
+
+const ProductCTitle = styled.h2`
+    font-size: 24px;
+    text-align: center;
+`
+
+const ProductCSpan = styled.span`
+    font-size: 18px;
+    color: #909090;
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: center;
+`
+
+const Section = styled.div`
+    width: 100%;
+    height: 100%;
+    margin-top: 130px;
+`
+
+const SectionSub = styled.h1`
+    width: 230px;
+    height: 80px;
+    border: 1px solid #000;
+    box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+`
+const SectionIntroduce = styled.div`
+    width: calc(100% - 600px);
+    height: 100%;
+    margin: 0 auto;
+`
+
+const SectionTitle = styled.h2`
+    font-size: 48px;
+    margin-top: 80px;
+`
+
+const SectionSpan = styled.span`
+    font-size: 20px;
+    margin-top: 60px;
+    display: block;
+    line-height: 1.4;
+    margin-bottom: 160px;
+`
+
+
 
 export default function SojuDetail() {
     // URL 매개변수에서 id 가져오기
@@ -34,17 +144,48 @@ export default function SojuDetail() {
     }, [id, sojuData]);
 
     return (
-        <div>
-            <h1>소주 상세 페이지</h1>
-            {sojuItem ? (
-                <div>
-                    <h2>{sojuItem.name}</h2>
-                    <p>제조사: {sojuItem.company}</p>
-                    <img src={sojuItem.url} alt={sojuItem.name} style={{ width: '200px', height: 'auto' }} />
-                </div>
-            ) : (
-                <p>로딩 중...</p>
-            )}
-        </div>
+        <Container>
+            <Outline>
+                <IntroduceTitle>세부페이지</IntroduceTitle>
+                    {sojuItem ? (
+                        <Product>
+                            <ProductImg src={sojuItem.url} alt={sojuItem.name} />
+                            <ProductDiv>
+                                <ProductImgTitle>{sojuItem.name}</ProductImgTitle>
+                                <ProductImgCompany>{sojuItem.company}</ProductImgCompany>
+                                <ProductContent>
+                                    <ProductCTS>
+                                        <ProductCTitle>국가/지역</ProductCTitle>
+                                        <ProductCSpan>대한민국</ProductCSpan>
+                                    </ProductCTS>
+                                    <ProductCTS>
+                                        <ProductCTitle>스타일</ProductCTitle>
+                                        <ProductCSpan>증류주</ProductCSpan>
+                                    </ProductCTS>
+                                    <ProductCTS>
+                                        <ProductCTitle>도수</ProductCTitle>
+                                        <ProductCSpan>16%</ProductCSpan>
+                                    </ProductCTS>
+                                    <ProductCTS>
+                                        <ProductCTitle>용량</ProductCTitle>
+                                        <ProductCSpan>360mL</ProductCSpan>
+                                    </ProductCTS>
+                                </ProductContent>
+                            </ProductDiv>
+                        </Product>
+                    ) : (
+                        <p>로딩 중...</p>
+                    )}
+            </Outline>
+            <Section>
+                <SectionSub>상품 설명</SectionSub>
+                <SectionIntroduce>
+                    <SectionTitle>참이슬 후레쉬</SectionTitle>
+                    <SectionSpan> 
+                        하이트진로에서 만든 희석식 소주이다. 
+                    </SectionSpan>
+                </SectionIntroduce>
+            </Section>
+        </Container>
     );
 }

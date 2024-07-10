@@ -48,7 +48,7 @@ const Shops = styled.div`
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 80px;
     cursor: pointer;
 `
 

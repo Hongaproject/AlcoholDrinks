@@ -49,11 +49,64 @@
             "homepage": "http://www.bohae.co.kr/"
         },
         {
+            "id": 9,
+            "name": "오비맥주",
+            "url": "/img/company/ob.jpg",
+            "homepage": "https://www.ob.co.kr"
+        },
+        {
+            "id": 10,
+            "name": "제주맥주",
+            "url": "/img/company/jeju.jpg",
+            "homepage": "https://jejubeer.co.kr"
+        },
+        {
+            "id": 11,
+            "name": "세븐브로이",
+            "url": "/img/company/seven.jpg",
+            "homepage": "https://www.sevenbrau.com"
+        },
+        {
             "id": 1,
             "name": "",
             "url": "",
-            "homepage": "",
-            "tel": ""
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": ""
         }
     ]
 }

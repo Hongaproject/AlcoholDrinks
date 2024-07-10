@@ -57,6 +57,41 @@
             "tel": "1644-4796"
         },
         {
+            "id": 9,
+            "name": "다나와",
+            "url": "/img/shop/danawa.jpg",
+            "homepage": "https://search.danawa.com/dsearch.php?query=전통주&tab=main",
+            "tel": "1688-2470"
+        },
+        {
+            "id": 10,
+            "name": "공영홈쇼핑",
+            "url": "/img/shop/gong.jpg",
+            "homepage": "https://www.gongyoungshop.kr/",
+            "tel": "1566-7770"
+        },
+        {
+            "id": 11,
+            "name": "11번가",
+            "url": "/img/shop/11st.jpg",
+            "homepage": "https://11st.co.kr",
+            "tel": "1599-0110"
+        },
+        {
+            "id": 12,
+            "name": "ns홈쇼핑",
+            "url": "/img/shop/ns.jpg",
+            "homepage": "https://m.nsmall.com/",
+            "tel": "1688-7700"
+        },
+        {
+            "id": 13,
+            "name": "우체국쇼핑",
+            "url": "/img/shop/epost.jpg",
+            "homepage": "https://mall.epost.go.kr/",
+            "tel": "1588-1300"
+        },
+        {
             "id": 1,
             "name": "",
             "url": "",

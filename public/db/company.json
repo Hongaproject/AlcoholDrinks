@@ -1,0 +1,59 @@
+{
+    "company" : [
+        {
+            "id": 1,
+            "name": "하이트진로",
+            "url": "/img/company/hitejinro.jpg",
+            "homepage": "https://www.hitejinro.com"
+        },
+        {
+            "id": 2,
+            "name": "롯데칠성음료",
+            "url": "/img/company/lotte.jpg",
+            "homepage": "https://company.lottechilsung.co.kr/"
+        },
+        {
+            "id": 3,
+            "name": "선양소주",
+            "url": "/img/company/sunyang.jpg",
+            "homepage": "https://sunyangsoju.co.kr"
+        },
+        {
+            "id": 4,
+            "name": "무학",
+            "url": "/img/company/muhak.jpg",
+            "homepage": "https://www.muhak.co.kr"
+        },
+        {
+            "id": 5,
+            "name": "대선주조",
+            "url": "/img/company/daesun.jpg",
+            "homepage": "https://www.c1.co.kr/"
+        },
+        {
+            "id": 6,
+            "name": "한라산",
+            "url": "/img/company/hallasan.jpg",
+            "homepage": "http://www.hallasan.co.kr/"
+        },
+        {
+            "id": 7,
+            "name": "금복주",
+            "url": "/img/company/kumbokju.jpg",
+            "homepage": "https://kumbokju.co.kr/"
+        },
+        {
+            "id": 8,
+            "name": "보해양조",
+            "url": "/img/company/bohae.jpg",
+            "homepage": "http://www.bohae.co.kr/"
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": "",
+            "tel": ""
+        }
+    ]
+}

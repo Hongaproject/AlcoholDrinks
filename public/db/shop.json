@@ -1,0 +1,74 @@
+{
+    "shop": [
+        {
+            "id": 1,
+            "name": "홈플러스",
+            "url": "/img/shop/homeplus.jpg",
+            "homepage": "https://mfront.homeplus.co.kr/",
+            "tel": "1577-3355"
+        },
+        {
+            "id": 2,
+            "name": "이마트몰",
+            "url": "/img/shop/emart.jpg",
+            "homepage": "https://emart.ssg.com/",
+            "tel": "1577-3419"
+        },
+        {
+            "id": 3,
+            "name": "신세계몰",
+            "url": "/img/shop/ssgcom.jpg",
+            "homepage": "https://shinsegaemall.ssg.com/",
+            "tel": "1577-3419"
+        },
+        {
+            "id": 4,
+            "name": "쿠팡",
+            "url": "/img/shop/coupang.jpg",
+            "homepage": "https://www.coupang.com/",
+            "tel": "1577-7011"
+        },
+        {
+            "id": 5,
+            "name": "티몬",
+            "url": "/img/shop/tmon.jpg",
+            "homepage": "http://www.tmon.co.kr/",
+            "tel": "1544-6240"
+        },
+        {
+            "id": 6,
+            "name": "네이버쇼핑",
+            "url": "/img/shop/naver.jpg",
+            "homepage": "https://shopping.naver.com/",
+            "tel": "1588-3819"
+        },
+        {
+            "id": 7,
+            "name": "지마켓",
+            "url": "/img/shop/gmarket.jpg",
+            "homepage": "https://www.gmarket.co.kr/",
+            "tel": "1566-5701"
+        },
+        {
+            "id": 8,
+            "name": "위메프",
+            "url": "/img/shop/wemake.jpg",
+            "homepage": "https://search.wemakeprice.com/",
+            "tel": "1644-4796"
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": "",
+            "tel": ""
+        },
+        {
+            "id": 1,
+            "name": "",
+            "url": "",
+            "homepage": "",
+            "tel": ""
+        }
+    ]
+}

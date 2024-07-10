@@ -108,15 +108,19 @@ export default function Header () {
                         </MenuDrop> */}
                     </MenuItem>
                     <MenuItem>
-                    <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
-                        Brand
-                    </Link>   
+                        <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
+                            Brand
+                        </Link>   
                     </MenuItem>
                     <MenuItem>
-                        Company
+                        <Link to='/company' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
+                            Company
+                        </Link> 
                     </MenuItem>
                     <MenuItem>
-                        Alcohol Guide
+                        <Link to='/' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
+                            Alcohol Guide
+                        </Link> 
                     </MenuItem>
                 </MenuList>
                 <SearchLogin>

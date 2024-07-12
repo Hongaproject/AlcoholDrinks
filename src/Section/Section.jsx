@@ -666,7 +666,7 @@ export default function Section () {
                         <Link to='/brand/liquor' style={{ textDecoration: "none"}}>
                             <LiquorImg />
                         </Link>
-                        <Link to='/' style={{ textDecoration: "none"}}>
+                        <Link to='/brand/new' style={{ textDecoration: "none"}}>
                             <NewImg />
                         </Link>
                     </LiquorNew>

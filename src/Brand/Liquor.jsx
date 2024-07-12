@@ -139,6 +139,14 @@ export default function Liquor () {
                         막걸리
                     </IntroduceTitle>
                 </Link>
+                <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
+                    <IntroduceTitle
+                        active={activeTitle === '막걸리'}
+                        onClick={() => handleClick('막걸리')}
+                    >
+                        신제품
+                    </IntroduceTitle>
+                </Link>
             </Introduce>
             <Sidebtn />
             <Outline>

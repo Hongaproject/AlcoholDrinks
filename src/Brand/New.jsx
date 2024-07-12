@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
-import Sidebtn from '../Section/Sidebtn';
+import styled from "styled-components";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import Sidebtn from "../Section/Sidebtn";
 
-// Styled-components
 const Container = styled.div`
     width: 100%;
     height: 100%;
-`;
-
+`
 const Introduce = styled.div`
     width: 100%;
     height: 120px;
@@ -17,8 +15,7 @@ const Introduce = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 160px;
-`;
-
+`
 const IntroduceTitle = styled.h1`
     width: 230px;
     height: 80px;
@@ -44,7 +41,7 @@ const Outline = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-`;
+`
 
 const Product = styled.div`
     width: 23%;
@@ -52,7 +49,7 @@ const Product = styled.div`
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
-`;
+`
 
 const ProductImg = styled.img`
     display: block;
@@ -60,15 +57,13 @@ const ProductImg = styled.img`
     width: 210px;
     height: 254px;
     object-fit: contain;
-`;
-
+`
 const ProductImgName = styled.h1`
     font-size: 32px;
     color: #000;
     text-align: center;
     margin-top: 30px;
-`;
-
+`
 const ProductImgPrice = styled.span`
     font-size: 20px;
     color: #909090;
@@ -76,48 +71,28 @@ const ProductImgPrice = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-`;
+`
 
-const Loader = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    margin: 20px 0;
-`;
+export default function New () {
+    
+    const [newImg, setNewImg] = useState([]);
 
-// Main Component
-export default function Soju() {
-    const [sojuImg, setSojuImg] = useState([]);
-    const [page, setPage] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const loader = useRef(null);
-
-    const imgAPi = async(page = 1) => {
-        setLoading(true);
-        try {
-            const res = await axios.get('/db/brandsoju.json');
-            const data = res.data.soju;
-            const newSoju = data.slice((page - 1) * 8, page * 8);
-            setSojuImg(prevSojuImg => [...prevSojuImg, ...newSoju]);
-        } catch (error) {
-            console.error('소주 데이터를 가져오는 중 오류 발생ta:', error);
-        }
-        setLoading(false);
-    };
+    const imgAPi = async() => {
+        const res = await axios.get('/db/brandnew.json');
+        setNewImg(res.data.new);
+    }
 
     useEffect(() => {
-        imgAPi(page);
-    }, [page]);
+        imgAPi();
+    }, [])
 
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
 
     useEffect(() => {
         switch (location.pathname) {
-            case '/brand/soju':
-                setActiveTitle('소주');
+            case '/brand/new':
+                setActiveTitle('신제품');
                 break;
             default:
                 setActiveTitle('');
@@ -128,31 +103,11 @@ export default function Soju() {
         setActiveTitle(title);
     };
 
-    // Intersection Observer 설정
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setPage(prevPage => prevPage + 1);
-                }
-            });
-        }, { threshold: 1.0 });
 
-        if (loader.current) {
-            observer.observe(loader.current);
-        }
-
-        return () => {
-            if (loader.current) {
-                observer.unobserve(loader.current);
-            }
-        };
-    }, []);
-
-    return (
+    return(
         <Container>
             <Introduce>
-                <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000"}}>
                     <IntroduceTitle
                         active={activeTitle === '소주'}
                         onClick={() => handleClick('소주')}
@@ -160,7 +115,7 @@ export default function Soju() {
                         소주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/beer' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/beer' style={{ textDecoration: "none", color: "#000"}}>
                     <IntroduceTitle
                         active={activeTitle === '맥주'}
                         onClick={() => handleClick('맥주')}
@@ -168,7 +123,7 @@ export default function Soju() {
                         맥주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/liquor' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/liquor' style={{ textDecoration: "none", color: "#000"}}>
                     <IntroduceTitle
                         active={activeTitle === '증류주'}
                         onClick={() => handleClick('증류주')}
@@ -176,18 +131,18 @@ export default function Soju() {
                         증류주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
                     <IntroduceTitle
                         active={activeTitle === '막걸리'}
                         onClick={() => handleClick('막걸리')}
-                    >
+                    >  
                         막걸리
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '막걸리'}
-                        onClick={() => handleClick('막걸리')}
+                        active={activeTitle === '신제품'}
+                        onClick={() => handleClick('신제품')}
                     >
                         신제품
                     </IntroduceTitle>
@@ -195,22 +150,16 @@ export default function Soju() {
             </Introduce>
             <Sidebtn />
             <Outline>
-                {sojuImg.map(item => (
-                    <Product key={item.id}>
-                        <Link to={`/brand/detail/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
-                            <ProductImg src={item.url} />
+                {
+                    newImg.map((item)=>(
+                        <Product key={item.id}>
+                            <ProductImg src={item.url}/>
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgPrice>{item.company}</ProductImgPrice>
-                        </Link>
-                    </Product>
-                ))}
+                        </Product>
+                    ))
+                }
             </Outline>
-            {loading && (
-                <Loader>
-                    <img src="/img/Spinner.gif" alt="Loading..." />
-                </Loader>
-            )}
-            <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
         </Container>
     );
 }

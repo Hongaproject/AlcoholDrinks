@@ -12,6 +12,7 @@ import Makgeolli from "./Brand/Makgeolli";
 import SojuDetail from "./Brand/details/SojuDetail";
 import Company from "./Company,Shop/Company";
 import Shop from "./Company,Shop/Shop";
+import SBGuide from "./Guide/SBGuide";
 
 function App() {
 
@@ -67,6 +68,10 @@ function App() {
         {
           path: '/shop',
           element: <Shop />
+        },
+        {
+          path: '/guide',
+          element: <SBGuide />
         }
       ]
     },

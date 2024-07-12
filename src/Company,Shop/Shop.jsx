@@ -71,19 +71,64 @@ const ShopTel = styled.span`
     margin-top: 12px;
     display: block;
 `
+const PaginationControls = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+`;
+
+const PaginationButton = styled.button`
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+`;
+
+const PageNumber = styled.span`
+    font-size: 18px;
+    margin: 0 10px;
+`;
 
 export default function Shop () {
 
     const [shopImg, setShopImg] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const companiesPerPage = 8;
+
 
     const shopImgApi = async() => {
         const res = await axios.get("/db/shop.json");
-        setShopImg(res.data.shop);
+        setShopImg(res.data.shop.filter(item => item.name !== ""));
     }
 
     useState(() => {
         shopImgApi();
     }, []);
+
+    const totalPages = Math.ceil(shopImg.length / companiesPerPage);
+
+    const currentShops = shopImg.slice(
+        (currentPage - 1) * companiesPerPage,
+        currentPage * companiesPerPage
+    );
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
 
     return(
         <Container>
@@ -95,7 +140,7 @@ export default function Shop () {
             <Sidebtn />
             <Outline>
                 {
-                    shopImg.slice(0,8).map((item)=> (
+                    currentShops.map((item)=> (
                         <Shops key={item.id} onClick={()=> window.open(`${item.homepage}`)}>
                             <ShopImg src={item.url}/>
                             <ShopTitle>{item.name}</ShopTitle>
@@ -105,6 +150,15 @@ export default function Shop () {
                     ))
                 }
             </Outline>
+            <PaginationControls>
+                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
+                    이전
+                </PaginationButton>
+                <PageNumber>{currentPage} / {totalPages}</PageNumber>
+                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                    다음
+                </PaginationButton>
+            </PaginationControls>
         </Container>
     );
 }

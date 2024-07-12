@@ -118,7 +118,7 @@ export default function Header () {
                         </Link> 
                     </MenuItem>
                     <MenuItem>
-                        <Link to='/' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
+                        <Link to='/guide' style={{ textDecoration: "none", color: "#000", padding: "15px 20px"}}>
                             Alcohol Guide
                         </Link> 
                     </MenuItem>

@@ -57,27 +57,27 @@ const Img = styled.div`
     text-align: center;
     margin: 0 50px;
     &:nth-child(1){
-        background-image: url("img/home/chamiseulpst.jpg");
+        background-image: url("/img/home/chamiseulpst.jpg");
         background-size: cover;
         background-position: center;
     }
     &:nth-child(2){
-        background-image: url("img/home/terrapst.jpg");
+        background-image: url("/img/home/terrapst.jpg");
         background-size: cover;
         background-position: center;
     }
     &:nth-child(3){
-        background-image: url("img/home/makgeollipst.jpg");
+        background-image: url("/img/home/makgeollipst.jpg");
         background-size: cover;
         background-position: center;
     }
     &:nth-child(4){
-        background-image: url("img/home/liquorjinropst.jpg");
+        background-image: url("/img/home/liquorjinropst.jpg");
         background-size: cover;
         background-position: center;
     }
     &:nth-child(5){
-        background-image: url("img/home/newpst.jpg");
+        background-image: url("/img/home/newpst.jpg");
         background-size: cover;
         background-position: center;
     }
@@ -571,9 +571,6 @@ const CImgSpanIcon = styled.div`
         transform: rotate(90deg);    
     }
 `
-const CImgTBack = styled.h1`
-    
-`
 
 export default function Section () {
     const imgSlide = ['','','','',''];
@@ -690,7 +687,6 @@ export default function Section () {
                         <CompanyImg>
                             <Link to='/company' style={{ textDecoration: "none"}}>
                                 <CImgTitle>Company</CImgTitle>
-                                <CImgTBack></CImgTBack>
                                 <CImgSpan>View more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
                             </Link>
                         </CompanyImg>

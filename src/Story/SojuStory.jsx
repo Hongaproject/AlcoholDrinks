@@ -37,7 +37,11 @@ const Summary = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    margin-bottom: 180px;
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 const HistoryText = styled.div`
     width: 100%;
@@ -57,6 +61,15 @@ const HistoryText2 = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 40px;
+`
+const SojuGuide = styled.button`
+    width: 310px;
+    height: 58px;
+    background-color: #000;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 70px;
 `
 
 export default function SojuStory () {
@@ -129,6 +142,9 @@ export default function SojuStory () {
                         낮은 생산 가격을 무기로 대중 사이에 퍼져나갈수 있었습니다.
                     </HistoryContent>
                 </HistoryText2>
+                <Link to="/guide/soju">
+                    <SojuGuide>소주 가이드 확인하기</SojuGuide>
+                </Link>
             </Summary>
         </Container>
     );

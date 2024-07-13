@@ -37,7 +37,11 @@ const Summary = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    margin-bottom: 180px;
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 const HistoryText = styled.div`
     width: 100%;
@@ -58,6 +62,17 @@ const HistoryText2 = styled.div`
     height: 100%;
     margin-top: 40px;
 `
+
+const BeerGuide = styled.button`
+    width: 310px;
+    height: 58px;
+    background-color: #000;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 70px;
+`
+
 
 export default function BeerStory () {
 
@@ -131,6 +146,9 @@ export default function BeerStory () {
                         80년대 이후 맥주 고유의 신선도를 유지하면서 장기 유통을 할 수 있는 첨단 비열처리 공법이 개발되면서 소비자들은 더욱 신선한 맥주를 즐길 수 있게 되었습니다.
                     </HistoryContent>
                 </HistoryText2>
+                <Link to="/guide/beer">
+                    <BeerGuide>맥주 가이드 확인하기</BeerGuide>
+                </Link>
             </Summary>
         </Container>
     );

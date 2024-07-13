@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -61,6 +62,7 @@ const BeerBtn = styled.button`
     background-color: #000;
     color: #fff;
     font-size: 24px;
+    cursor: pointer;
 `
 
 const Content2 = styled.div`
@@ -93,6 +95,7 @@ const SojuBtn = styled.button`
     background-color: #000;
     color: #fff;
     font-size: 24px;
+    cursor: pointer;
 `
 
 
@@ -108,14 +111,18 @@ export default function SBGuide (){
                     <Content>
                         <BeerTitle>맥주의 시작 '조선맥주주식회사'</BeerTitle>
                         <BeerSpan>대한민국 최초의 맥주회사 ‘조선맥주’는 1933년 8월 당시 경기도 시흥군 영등포읍에설립되었습니다. 조선맥주는 국내 최초로 해외수출을 시작하여 대한민국의 맥주를처음으로 세계에 알리게 됩니다. ‘조선맥주’는 맥주업계 1위 탈환 후 1998년 사명을‘하이트맥주’로 변경하였습니다. 2019년 출시한 ‘테라’는 런칭 후 1초에 22병이 판매되는히트상품으로 자리잡았습니다.</BeerSpan>
-                        <BeerBtn>맥주상식 가이드 확인하기</BeerBtn>
+                        <Link to="/guide/beer">
+                            <BeerBtn>맥주상식 가이드 확인하기</BeerBtn>
+                        </Link>
                     </Content>
                 </BeerGuide>
                 <BeerGuide>
                     <Content2>
                         <SojuTitle>대한민국 최초 주류산업진출 ‘진로’</SojuTitle>
                         <SojuSpan>대한민국 현대 주류역사는 1924년 평안남도 용강에서 설립된 진로의 전신 ‘진천양조상회’로 부터시작합니다. 1950년대 영등포에 정착 한 후 진로는 1970년 12월 대망의 국내 소주시장 1위에오른 이후 현재까지 50년간 소주시장을 석권하고 있습니다. ‘참이슬’은 2001년 이후글로벌 증류주 시장에서 1위를 차지하는 대한민국의 대표 브랜드로 성장하였습니다.</SojuSpan>
-                        <SojuBtn>소주상식 가이드 확인하기</SojuBtn>
+                        <Link to="/guide/soju">
+                            <SojuBtn>소주상식 가이드 확인하기</SojuBtn>
+                        </Link>
                     </Content2>
                     <SojuImg src="/img/brand/soju/jinro.jpg"/>
                 </BeerGuide>

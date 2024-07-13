@@ -14,6 +14,8 @@ import Company from "./Company,Shop/Company";
 import Shop from "./Company,Shop/Shop";
 import SBGuide from "./Guide/SBGuide";
 import New from "./Brand/New";
+import SojuGuide from "./Guide/SojuGuide";
+import BeerGuide from "./Guide/BeerGuide";
 
 function App() {
 
@@ -77,6 +79,14 @@ function App() {
         {
           path: '/guide',
           element: <SBGuide />
+        },
+        {
+          path: '/guide/soju',
+          element: <SojuGuide />
+        },
+        {
+          path: '/guide/beer',
+          element: <BeerGuide />
         }
       ]
     },

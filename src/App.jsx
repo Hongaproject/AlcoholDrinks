@@ -65,7 +65,7 @@ function App() {
           element: <New />
         },
         {
-          path: '/brand/detail/:id',
+          path: '/brand/detail/:category/:id',
           element: <SojuDetail />
         },
         {

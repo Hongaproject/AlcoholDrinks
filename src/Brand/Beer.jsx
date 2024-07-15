@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Sidebtn from "../Section/Sidebtn";
 
@@ -73,18 +73,39 @@ const ProductImgPrice = styled.span`
     justify-content: center;
 `
 
+const Loader = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+`;
+
 export default function Beer () {
     
     const [beerImg, setBeerImg] = useState([]);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const loader = useRef(null);
 
-    const imgAPi = async() => {
-        const res = await axios.get('/db/brandbeer.json');
-        setBeerImg(res.data.beer);
+    const imgAPi = async(page = 1) => {
+        setLoading(true);
+        try {
+            const res = await axios.get('/db/brandbeer.json');
+            const data = res.data.beer.map(item => ({ ...item, category: 'beer' }));
+            const newBeer = data.slice((page - 1) * 8, page * 8);
+            setBeerImg(prevSojuImg => [...prevSojuImg, ...newBeer]);
+        } catch (error) {
+            console.error('맥주 데이터를 가져오는 중 오류 발생ta:', error);
+        }
+        setLoading(false);
     }
 
     useEffect(() => {
-        imgAPi();
-    }, [])
+        imgAPi(page);
+    }, [page]);
+
 
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
@@ -102,6 +123,27 @@ export default function Beer () {
     const handleClick = (title) => {
         setActiveTitle(title);
     };
+
+    // Intersection Observer 설정
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setPage(prevPage => prevPage + 1);
+                }
+            });
+        }, { threshold: 1.0 });
+
+        if (loader.current) {
+            observer.observe(loader.current);
+        }
+
+        return () => {
+            if (loader.current) {
+                observer.unobserve(loader.current);
+            }
+        };
+    }, []);
 
 
     return(
@@ -153,13 +195,21 @@ export default function Beer () {
                 {
                     beerImg.map((item)=>(
                         <Product key={item.id}>
-                            <ProductImg src={item.url}/>
-                            <ProductImgName>{item.name}</ProductImgName>
-                            <ProductImgPrice>{item.company}</ProductImgPrice>
+                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                <ProductImg src={item.url}/>
+                                <ProductImgName>{item.name}</ProductImgName>
+                                <ProductImgPrice>{item.company}</ProductImgPrice>
+                            </Link>
                         </Product>
                     ))
                 }
             </Outline>
+            {loading && (
+                <Loader>
+                    <img src="/img/Spinner.gif" alt="Loading..." />
+                </Loader>
+            )}
+            <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
         </Container>
     );
 }

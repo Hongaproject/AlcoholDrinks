@@ -98,11 +98,11 @@ export default function Soju() {
         setLoading(true);
         try {
             const res = await axios.get('/db/brandsoju.json');
-            const data = res.data.soju;
+            const data = res.data.soju.map(item => ({ ...item, category: 'soju' }));
             const newSoju = data.slice((page - 1) * 8, page * 8);
             setSojuImg(prevSojuImg => [...prevSojuImg, ...newSoju]);
         } catch (error) {
-            console.error('소주 데이터를 가져오는 중 오류 발생ta:', error);
+            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
         }
         setLoading(false);
     };
@@ -186,8 +186,8 @@ export default function Soju() {
                 </Link>
                 <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '막걸리'}
-                        onClick={() => handleClick('막걸리')}
+                        active={activeTitle === '신제품'}
+                        onClick={() => handleClick('신제품')}
                     >
                         신제품
                     </IntroduceTitle>
@@ -197,7 +197,7 @@ export default function Soju() {
             <Outline>
                 {sojuImg.map(item => (
                     <Product key={item.id}>
-                        <Link to={`/brand/detail/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
                             <ProductImg src={item.url} />
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgPrice>{item.company}</ProductImgPrice>

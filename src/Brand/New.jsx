@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Sidebtn from "../Section/Sidebtn";
 
@@ -73,18 +73,38 @@ const ProductImgPrice = styled.span`
     justify-content: center;
 `
 
+const Loader = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+`;
+
 export default function New () {
     
     const [newImg, setNewImg] = useState([]);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const loader = useRef(null);
 
-    const imgAPi = async() => {
-        const res = await axios.get('/db/brandnew.json');
-        setNewImg(res.data.new);
+    const imgAPi = async(page = 1) => {
+        setLoading(true);
+        try {
+            const res = await axios.get('/db/brandnew.json');
+            const data = res.data.new.map(item => ({ ...item, category: 'new' }));
+            const newData = data.slice((page - 1) * 8, page * 8);
+            setNewImg(prevSojuImg => [...prevSojuImg, ...newData]);
+        } catch (error) {
+            console.error('신제품 데이터를 가져오는 중 오류 발생ta:', error);
+        }
+        setLoading(false);
     }
 
     useEffect(() => {
-        imgAPi();
-    }, [])
+        imgAPi(page);
+    }, [page]);
 
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
@@ -103,6 +123,26 @@ export default function New () {
         setActiveTitle(title);
     };
 
+    // Intersection Observer 설정
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setPage(prevPage => prevPage + 1);
+                }
+            });
+        }, { threshold: 1.0 });
+
+        if (loader.current) {
+            observer.observe(loader.current);
+        }
+
+        return () => {
+            if (loader.current) {
+                observer.unobserve(loader.current);
+            }
+        };
+    }, []);
 
     return(
         <Container>
@@ -153,13 +193,21 @@ export default function New () {
                 {
                     newImg.map((item)=>(
                         <Product key={item.id}>
-                            <ProductImg src={item.url}/>
-                            <ProductImgName>{item.name}</ProductImgName>
-                            <ProductImgPrice>{item.company}</ProductImgPrice>
+                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                <ProductImg src={item.url}/>
+                                <ProductImgName>{item.name}</ProductImgName>
+                                <ProductImgPrice>{item.company}</ProductImgPrice>
+                            </Link>
                         </Product>
                     ))
                 }
             </Outline>
+            {loading && (
+                <Loader>
+                    <img src="/img/Spinner.gif" alt="Loading..." />
+                </Loader>
+            )}
+            <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
         </Container>
     );
 }

@@ -112,85 +112,97 @@ const SectionSpan = styled.span`
     white-space: pre-line;
 `
 
-
-
 export default function SojuDetail() {
-    // URL 매개변수에서 id 가져오기
-    const { id } = useParams();
-    // 소주 데이터를 저장할 상태
-    const [sojuData, setSojuData] = useState([]);
+    // URL 매개변수에서 category, id 가져오기
+    const { category, id } = useParams();
+    // 데이터를 저장할 상태
+    const [allData, setAllData] = useState([]);
     // 특정 소주 항목을 저장할 상태
-    const [sojuItem, setSojuItem] = useState(null);
+    const [alcoholItem, setAlcoholItem] = useState(null);
 
     // 엔드포인트에서 JSON 데이터 가져오기
-    const fetchSojuData = async () => {
+    const fetchData = async () => {
         try {
-            const res = await axios.get('/db/brandsoju.json');
-            setSojuData(res.data.soju);
+            const res = await Promise.all([
+                axios.get('/db/brandsoju.json'),
+                axios.get('/db/brandbeer.json'),
+                axios.get('/db/brandliquor.json'),
+                axios.get('/db/brandmakgeolli.json'),
+                axios.get('/db/brandnew.json')
+            ]);
+
+            const mergedData = res.flatMap(response => {
+                if (response.data.soju) return response.data.soju.map(item => ({ ...item, category: 'soju' }));
+                if (response.data.beer) return response.data.beer.map(item => ({ ...item, category: 'beer' }));
+                if (response.data.liquor) return response.data.liquor.map(item => ({ ...item, category: 'liquor' }));
+                if (response.data.makgeolli) return response.data.makgeolli.map(item => ({ ...item, category: 'makgeolli' }));
+                if (response.data.new) return response.data.new.map(item => ({ ...item, category: 'new' }));
+                return [];
+            });
+
+            setAllData(mergedData);
         } catch (error) {
-            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
+            console.error('데이터를 가져오는 중 오류 발생:', error);
         }
     };
 
     // 컴포넌트가 마운트될 때 데이터 가져오기
     useEffect(() => {
-        fetchSojuData();
+        fetchData();
     }, []);
 
     // id를 기반으로 특정 소주 항목 필터링
     useEffect(() => {
-        if (sojuData.length > 0) {
-            const foundItem = sojuData.find((item) => item.id === parseInt(id));
-            setSojuItem(foundItem);
+        if (allData.length > 0) {
+            const foundItem = allData.find((item) => item.category === category && item.id === parseInt(id));
+            setAlcoholItem(foundItem);
         }
-    }, [id, sojuData]);
+    }, [category, id, allData]);
 
     return (
         <Container>
             <Outline>
                 <IntroduceTitle>세부페이지</IntroduceTitle>
-                    {sojuItem ? (
-                        <Product>
-                            <ProductImg src={sojuItem.url} alt={sojuItem.name} />
-                            <ProductDiv>
-                                <ProductImgTitle>{sojuItem.name}</ProductImgTitle>
-                                <ProductImgCompany>{sojuItem.company}</ProductImgCompany>
-                                <ProductContent>
-                                    <ProductCTS>
-                                        <ProductCTitle>국가/지역</ProductCTitle>
-                                        <ProductCSpan>{sojuItem.country}</ProductCSpan>
-                                    </ProductCTS>
-                                    <ProductCTS>
-                                        <ProductCTitle>스타일</ProductCTitle>
-                                        <ProductCSpan>{sojuItem.style}</ProductCSpan>
-                                    </ProductCTS>
-                                    <ProductCTS>
-                                        <ProductCTitle>도수</ProductCTitle>
-                                        <ProductCSpan>{sojuItem.alcohol}</ProductCSpan>
-                                    </ProductCTS>
-                                    <ProductCTS>
-                                        <ProductCTitle>용량</ProductCTitle>
-                                        <ProductCSpan>{sojuItem.netw}</ProductCSpan>
-                                    </ProductCTS>
-                                </ProductContent>
-                            </ProductDiv>
-                        </Product>
-                    ) : (
-                        <p>로딩 중...</p>
-                    )}
+                {alcoholItem ? (
+                    <Product>
+                        <ProductImg src={alcoholItem.url} alt={alcoholItem.name} />
+                        <ProductDiv>
+                            <ProductImgTitle>{alcoholItem.name}</ProductImgTitle>
+                            <ProductImgCompany>{alcoholItem.company}</ProductImgCompany>
+                            <ProductContent>
+                                <ProductCTS>
+                                    <ProductCTitle>국가/지역</ProductCTitle>
+                                    <ProductCSpan>{alcoholItem.country}</ProductCSpan>
+                                </ProductCTS>
+                                <ProductCTS>
+                                    <ProductCTitle>스타일</ProductCTitle>
+                                    <ProductCSpan>{alcoholItem.style}</ProductCSpan>
+                                </ProductCTS>
+                                <ProductCTS>
+                                    <ProductCTitle>도수</ProductCTitle>
+                                    <ProductCSpan>{alcoholItem.alcohol}</ProductCSpan>
+                                </ProductCTS>
+                                <ProductCTS>
+                                    <ProductCTitle>용량</ProductCTitle>
+                                    <ProductCSpan>{alcoholItem.netw}</ProductCSpan>
+                                </ProductCTS>
+                            </ProductContent>
+                        </ProductDiv>
+                    </Product>
+                ) : (
+                    <p>로딩 중...</p>
+                )}
             </Outline>
             <Section>
                 <SectionSub>상품 설명</SectionSub>
-                {
-                    sojuItem ? (
-                        <SectionIntroduce>
-                            <SectionTitle>{sojuItem.name}</SectionTitle>
-                            <SectionSpan>{sojuItem.discription}</SectionSpan>
-                        </SectionIntroduce>
-                    ) : (
-                        <p>로딩 중...</p>
-                    )
-                }
+                {alcoholItem ? (
+                    <SectionIntroduce>
+                        <SectionTitle>{alcoholItem.name}</SectionTitle>
+                        <SectionSpan>{alcoholItem.discription}</SectionSpan>
+                    </SectionIntroduce>
+                ) : (
+                    <p>로딩 중...</p>
+                )}
             </Section>
         </Container>
     );

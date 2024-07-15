@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Sidebtn from "../Section/Sidebtn";
 
@@ -73,18 +73,40 @@ const ProductImgPrice = styled.span`
     justify-content: center;
 `
 
+const Loader = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+`;
+
 export default function Makgeolli () {
     
     const [makgeolliImg, setMakgeolliImg] = useState([]);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const loader = useRef(null);
 
-    const imgAPi = async() => {
-        const res = await axios.get('/db/brandmakgeolli.json');
-        setMakgeolliImg(res.data.makgeolli);
+    const imgAPi = async(page = 1) => {
+        setLoading(true);
+        try {
+            const res = await axios.get('/db/brandmakgeolli.json');
+            const data = res.data.makgeolli.map(item => ({ ...item, category: 'makgeolli' }));
+
+            const newMakgeolli = data.slice((page - 1) * 8, page * 8);
+            setMakgeolliImg(prevSojuImg => [...prevSojuImg, ...newMakgeolli]);
+        } catch (error) {
+            console.error('막걸리 데이터를 가져오는 중 오류 발생ta:', error);
+        }
+        setLoading(false);
     }
 
     useEffect(() => {
-        imgAPi();
-    }, [])
+        imgAPi(page);
+    }, [page]);
+
 
     const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
@@ -102,6 +124,27 @@ export default function Makgeolli () {
     const handleClick = (title) => {
         setActiveTitle(title);
     };
+
+    // Intersection Observer 설정
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setPage(prevPage => prevPage + 1);
+                }
+            });
+        }, { threshold: 1.0 });
+
+        if (loader.current) {
+            observer.observe(loader.current);
+        }
+
+        return () => {
+            if (loader.current) {
+                observer.unobserve(loader.current);
+            }
+        };
+    }, []);
 
 
     return(
@@ -141,8 +184,8 @@ export default function Makgeolli () {
                 </Link>
                 <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '막걸리'}
-                        onClick={() => handleClick('막걸리')}
+                        active={activeTitle === '신제품'}
+                        onClick={() => handleClick('신제품')}
                     >
                         신제품
                     </IntroduceTitle>
@@ -152,14 +195,22 @@ export default function Makgeolli () {
             <Outline>
                 {
                     makgeolliImg.map((item)=>(
-                        <Product key={item.id}>
-                            <ProductImg src={item.url}/>
-                            <ProductImgName>{item.name}</ProductImgName>
-                            <ProductImgPrice>{item.company}</ProductImgPrice>
+                        <Product key={item.id}>\
+                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                <ProductImg src={item.url}/>
+                                <ProductImgName>{item.name}</ProductImgName>
+                                <ProductImgPrice>{item.company}</ProductImgPrice>
+                            </Link>
                         </Product>
                     ))
                 }
             </Outline>
+            {loading && (
+                <Loader>
+                    <img src="/img/Spinner.gif" alt="Loading..." />
+                </Loader>
+            )}
+            <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
         </Container>
     );
 }

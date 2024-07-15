@@ -4,7 +4,12 @@
             "id": 1,
             "name": "카스",
             "company": "OB 맥주",
-            "url": "/img/brand/beer/cass.jpg"
+            "url": "/img/brand/beer/cass.jpg",
+            "country" : "대한민국",
+            "style" : "발효주",
+            "alcohol" : "4.5%",
+            "netw" : "500ml",
+            "discription": "기존 진로소주의 알코올도수를 낮춰 1998년에 판매를 시작한 하이트진로의 대표 소주 브랜드이며 희석식 소주 중 판매량 1위 입니다.\n 대나무 숯으로 5번 걸러 더욱 깨끗해졌으며,\n트렌디하고 깔끔한 서체 적용과 대나무 심볼 이미지 강화를 통해 참이슬 fresh의 정체성을 담아냈습니다."
         },
         {
             "id": 2,

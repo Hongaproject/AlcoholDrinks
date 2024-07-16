@@ -24,9 +24,14 @@
         },
         {
             "id": 3,
-            "name": "크러쉬",
+            "name": "크러시",
             "company": "롯데칠성음료",
-            "url": "/img/brand/beer/crush.jpg"
+            "url": "/img/brand/beer/crush.jpg",
+            "country" : "대한민국",
+            "style" : "라거",
+            "alcohol" : "4.5%",
+            "netw" : "500ml",
+            "discription": "2023년 11월에 출시한 라거 맥주 Crush on KRUSH 기존 맥주와 선긋는 4세대 맥주\n\n 기존의 국내 맥주에서는 볼 수 없었던 청량한 탄산을 느낄 수 있는 숄더리스(shoulder-less)병을 도입했으며, 패키지 겉면에 빙산을 모티브로 한 디자인을 적용함과 동시에 투명병을 사용하여 시각적 청량감을 극대화시켰습니다. \n 짜릿한 탄산과 상쾌한 아로마로 시원함과 청량함을 더욱 살렸습니다."
         }
     ]
 }

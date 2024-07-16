@@ -195,7 +195,7 @@ export default function Makgeolli () {
             <Outline>
                 {
                     makgeolliImg.map((item)=>(
-                        <Product key={item.id}>\
+                        <Product key={item.id}>
                             <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
                                 <ProductImg src={item.url}/>
                                 <ProductImgName>{item.name}</ProductImgName>

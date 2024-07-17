@@ -16,6 +16,7 @@ import SBGuide from "./Guide/SBGuide";
 import New from "./Brand/New";
 import SojuGuide from "./Guide/SojuGuide";
 import BeerGuide from "./Guide/BeerGuide";
+import MakgeolliGuide from "./Guide/MakgeolliGuide";
 
 function App() {
 
@@ -87,6 +88,10 @@ function App() {
         {
           path: '/guide/beer',
           element: <BeerGuide />
+        },
+        {
+          path: '/guid/makgeolli',
+          element: <MakgeolliGuide />
         }
       ]
     },

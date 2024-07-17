@@ -33,14 +33,14 @@ const Notification = styled.span`
 `
 
 const Outline = styled.div`
-    width: calc(100% - 400px);
+    width: calc(100% - 440px);
     height: 100%;
-    margin: 0 auto;
+    margin: auto;
     margin-top: 187px;
     margin-bottom: 180px;
     display: flex;
     flex-wrap: wrap;
-    gap: 70px;
+    gap: 140px;
 `
 const Shops = styled.div`
     width: 600px;
@@ -48,8 +48,8 @@ const Shops = styled.div`
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
-    margin-bottom: 80px;
     cursor: pointer;
+    margin: auto;
 `
 
 const ShopImg = styled.img`  

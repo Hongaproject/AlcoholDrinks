@@ -37,7 +37,11 @@ const Summary = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    margin-bottom: 180px;
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 const HistoryText = styled.div`
     width: 100%;
@@ -57,6 +61,15 @@ const HistoryText2 = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 40px;
+`
+const BeerGuide = styled.button`
+    width: 310px;
+    height: 58px;
+    background-color: #000;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 70px;
 `
 
 export default function MakgeolliStory () {
@@ -131,6 +144,9 @@ export default function MakgeolliStory () {
                         현재도 UNESCO 세계무형문화유산으로 등재하기 위한 노력을 하고 있습니다. 
                     </HistoryContent>
                 </HistoryText2>
+                <Link to="/guid/makgeolli">
+                    <BeerGuide>막걸리 가이드 확인하기</BeerGuide>
+                </Link>
             </Summary>
         </Container>
     );

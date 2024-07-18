@@ -5,18 +5,14 @@ import Story from "./Story/Story";
 import SojuStory from "./Story/SojuStory";
 import BeerStory from "./Story/BeerStory";
 import MakgeolliStory from "./Story/MakgeolliStory";
-import Soju from "./Brand/Soju";
-import Beer from "./Brand/Beer";
-import Liquor from "./Brand/Liquor";
-import Makgeolli from "./Brand/Makgeolli";
-import SojuDetail from "./Brand/details/SojuDetail";
 import Company from "./Company,Shop/Company";
 import Shop from "./Company,Shop/Shop";
-import SBGuide from "./Guide/SBGuide";
-import New from "./Brand/New";
 import SojuGuide from "./Guide/SojuGuide";
 import BeerGuide from "./Guide/BeerGuide";
 import MakgeolliGuide from "./Guide/MakgeolliGuide";
+import DrinksDetail from "./Brand/details/DrinksDetail";
+import SBMGuide from "./Guide/SBMGuide";
+import BrandList from "./Brand/BrandList";
 
 function App() {
 
@@ -46,28 +42,28 @@ function App() {
           element: <MakgeolliStory />
         },
         {
-          path: '/brand/soju',
-          element: <Soju />
+          path: "/brand/soju",
+          element: <BrandList category="soju" jsonFile="/db/brandsoju.json" title="소주" />,
         },
         {
-          path: '/brand/beer',
-          element: <Beer />
+          path: "/brand/beer",
+          element: <BrandList category="beer" jsonFile="/db/brandbeer.json" title="맥주" />,
         },
         {
-          path: '/brand/liquor',
-          element: <Liquor />
+          path: "/brand/liquor",
+          element: <BrandList category="liquor" jsonFile="/db/brandliquor.json" title="증류주" />,
         },
         {
-          path: '/brand/makgeolli',
-          element: <Makgeolli />
+          path: "/brand/makgeolli",
+          element: <BrandList category="makgeolli" jsonFile="/db/brandmakgeolli.json" title="막걸리" />,
         },
         {
-          path: '/brand/new',
-          element: <New />
+          path: "/brand/new",
+          element: <BrandList category="new" jsonFile="/db/brandnew.json" title="신제품" />,
         },
         {
           path: '/brand/detail/:category/:id',
-          element: <SojuDetail />
+          element: <DrinksDetail />
         },
         {
           path: '/company',
@@ -79,7 +75,7 @@ function App() {
         },
         {
           path: '/guide',
-          element: <SBGuide />
+          element: <SBMGuide />
         },
         {
           path: '/guide/soju',
@@ -106,3 +102,4 @@ function App() {
 }
 
 export default App;
+

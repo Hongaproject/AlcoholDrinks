@@ -26,7 +26,7 @@ const IntroduceTitle = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; /* SkyBlue when active */
+    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')};
     box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     margin-right: 70px;
@@ -88,27 +88,27 @@ const Loader = styled.div`
 `;
 
 // Main Component
-export default function Soju() {
-    const [sojuImg, setSojuImg] = useState([]);
+export default function BrandList({ category, jsonFile, title }) {
+    const [items, setItems] = useState([]);
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
 
-    const imgAPi = async(page = 1) => {
+    const fetchItems = async(page = 1) => {
         setLoading(true);
         try {
-            const res = await axios.get('/db/brandsoju.json');
-            const data = res.data.soju.map(item => ({ ...item, category: 'soju' }));
-            const newSoju = data.slice((page - 1) * 8, page * 8);
-            setSojuImg(prevSojuImg => [...prevSojuImg, ...newSoju]);
+            const res = await axios.get(jsonFile);
+            const data = res.data[category].map(item => ({ ...item, category }));
+            const newItems = data.slice((page - 1) * 8, page * 8);
+            setItems(prevItems => [...prevItems, ...newItems]);
         } catch (error) {
-            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
+            console.error(`${title} 데이터를 가져오는 중 오류 발생:`, error);
         }
         setLoading(false);
     };
 
     useEffect(() => {
-        imgAPi(page);
+        fetchItems(page);
     }, [page]);
 
     const location = useLocation();
@@ -116,8 +116,8 @@ export default function Soju() {
 
     useEffect(() => {
         switch (location.pathname) {
-            case '/brand/soju':
-                setActiveTitle('소주');
+            case `/brand/${category}`:
+                setActiveTitle(title);
                 break;
             default:
                 setActiveTitle('');
@@ -128,7 +128,6 @@ export default function Soju() {
         setActiveTitle(title);
     };
 
-    // Intersection Observer 설정
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -195,7 +194,7 @@ export default function Soju() {
             </Introduce>
             <Sidebtn />
             <Outline>
-                {sojuImg.map(item => (
+                {items.map(item => (
                     <Product key={item.id}>
                         <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
                             <ProductImg src={item.url} />

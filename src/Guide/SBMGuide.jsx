@@ -133,7 +133,7 @@ const MakgeolliBtn = styled.button`
 `
 
 
-export default function SBGuide (){
+export default function SBMGuide (){
     
     return(
         <Container>

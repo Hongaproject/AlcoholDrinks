@@ -112,7 +112,7 @@ const SectionSpan = styled.span`
     white-space: pre-line;
 `
 
-export default function SojuDetail() {
+export default function DrinksDetail() {
     // URL 매개변수에서 category, id 가져오기
     const { category, id } = useParams();
     // 데이터를 저장할 상태

@@ -43,23 +43,23 @@ function App() {
         },
         {
           path: "/brand/soju",
-          element: <BrandList category="soju" jsonFile="/db/brandsoju.json" title="소주" />,
+          element: <BrandList category="soju" />,
         },
         {
           path: "/brand/beer",
-          element: <BrandList category="beer" jsonFile="/db/brandbeer.json" title="맥주" />,
+          element: <BrandList category="beer" />,
         },
         {
           path: "/brand/liquor",
-          element: <BrandList category="liquor" jsonFile="/db/brandliquor.json" title="증류주" />,
+          element: <BrandList category="liquor"  />,
         },
         {
           path: "/brand/makgeolli",
-          element: <BrandList category="makgeolli" jsonFile="/db/brandmakgeolli.json" title="막걸리" />,
+          element: <BrandList category="makgeolli" />,
         },
         {
           path: "/brand/new",
-          element: <BrandList category="new" jsonFile="/db/brandnew.json" title="신제품" />,
+          element: <BrandList category="new" />,
         },
         {
           path: '/brand/detail/:category/:id',

@@ -26,7 +26,7 @@ const IntroduceTitle = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')};
+    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; /* SkyBlue when active */
     box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     margin-right: 70px;
@@ -88,46 +88,55 @@ const Loader = styled.div`
 `;
 
 // Main Component
-export default function BrandList({ category, jsonFile, title }) {
-    const [items, setItems] = useState([]);
-    const [page, setPage] = useState(0);
+export default function BrandList({ category }) {
+    const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(0); // 페이지 상태를 0으로 초기화
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
+    const location = useLocation();
 
-    const fetchItems = async(page = 1) => {
+    const imgAPi = async (page = 1) => {
+        if (page <= 0) return; // 페이지가 0 이하일 때는 데이터 페칭하지 않음
         setLoading(true);
         try {
-            const res = await axios.get(jsonFile);
+            const res = await axios.get(`/db/brand${category}.json`);
             const data = res.data[category].map(item => ({ ...item, category }));
-            const newItems = data.slice((page - 1) * 8, page * 8);
-            setItems(prevItems => [...prevItems, ...newItems]);
+            const newProducts = data.slice((page - 1) * 8, page * 8);
+            setProducts(prevProducts => [...prevProducts, ...newProducts]);
         } catch (error) {
-            console.error(`${title} 데이터를 가져오는 중 오류 발생:`, error);
+            console.error(`${category} 데이터를 가져오는 중 오류 발생:`, error);
         }
         setLoading(false);
     };
 
     useEffect(() => {
-        fetchItems(page);
+        setProducts([]); // 카테고리 변경 시 제품 목록 초기화
+        setPage(0);      // 페이지 번호 초기화
+    }, [category, location.pathname]);
+
+    useEffect(() => {
+        if (page > 0) {
+            imgAPi(page); // 페이지가 변경될 때마다 데이터 가져오기
+        }
     }, [page]);
 
-    const location = useLocation();
     const [activeTitle, setActiveTitle] = useState('');
 
     useEffect(() => {
         switch (location.pathname) {
             case `/brand/${category}`:
-                setActiveTitle(title);
+                setActiveTitle(category);
                 break;
             default:
                 setActiveTitle('');
         }
-    }, [location.pathname]);
+    }, [location.pathname, category]);
 
     const handleClick = (title) => {
         setActiveTitle(title);
     };
 
+    // Intersection Observer 설정
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -153,40 +162,40 @@ export default function BrandList({ category, jsonFile, title }) {
             <Introduce>
                 <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '소주'}
-                        onClick={() => handleClick('소주')}
+                        active={activeTitle === 'soju'}
+                        onClick={() => handleClick('soju')}
                     >
                         소주
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/beer' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '맥주'}
-                        onClick={() => handleClick('맥주')}
+                        active={activeTitle === 'beer'}
+                        onClick={() => handleClick('beer')}
                     >
                         맥주
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/liquor' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '증류주'}
-                        onClick={() => handleClick('증류주')}
+                        active={activeTitle === 'liquor'}
+                        onClick={() => handleClick('liquor')}
                     >
                         증류주
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '막걸리'}
-                        onClick={() => handleClick('막걸리')}
+                        active={activeTitle === 'makgeolli'}
+                        onClick={() => handleClick('makgeolli')}
                     >
                         막걸리
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
                     <IntroduceTitle
-                        active={activeTitle === '신제품'}
-                        onClick={() => handleClick('신제품')}
+                        active={activeTitle === 'new'}
+                        onClick={() => handleClick('new')}
                     >
                         신제품
                     </IntroduceTitle>
@@ -194,7 +203,7 @@ export default function BrandList({ category, jsonFile, title }) {
             </Introduce>
             <Sidebtn />
             <Outline>
-                {items.map(item => (
+                {products.map(item => (
                     <Product key={item.id}>
                         <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
                             <ProductImg src={item.url} />

@@ -10,6 +10,7 @@ const Container = styled.div`
 const ImgSlice = styled.div`
     width: 100%;
     height: 600px;
+    margin-top: 100px;
 `
 // 이미지 슬라이드 예시
 const Slide = styled.div`
@@ -22,7 +23,7 @@ const PrevButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 38.5%;
+    top: 43.5%;
     left: 10%;
     z-index: 1;
     cursor: pointer;
@@ -37,7 +38,7 @@ const NextButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 38.5%;
+    top: 43.5%;
     right: 10%;
     cursor: pointer;
     color: #858585;

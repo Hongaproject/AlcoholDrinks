@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import '../Font/Font.css'
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 const Container = styled.div`
     width: 100%;
@@ -138,23 +139,85 @@ const ContentsBoxes = styled.div`
 `
 
 const ContentsBox = styled.div`
-    width: 150px;
-    height: 150px;
-    border-radius: 15px;
-    background-color: beige;
+    flex: 1 1 auto; /* 필요한 공간만 차지하도록 설정 */
+    max-width: 200px; /* 최대 너비 설정 */
+    display: flex; /* 내부 요소를 가로로 배치 */
+    flex-direction: column; /* 내부 요소를 세로 방향으로 배치 */
+    align-items: center; /* 중앙 정렬 */
+    flex-wrap: wrap;
+    padding: 8px; /* 패딩 추가 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    background-color: #fff; /* 배경 색상 */
     margin-right: 20px;
-`
+    margin-bottom: 20px;
+
+`;
+
+const ProductImg = styled.img`
+    display: block;
+    margin: auto;
+    width: 210px;
+    height: 254px;
+    object-fit: contain;
+    border-bottom: 1px solid #ddd; /* 이미지와 텍스트 구분을 위한 테두리 */
+`;
+
+const ProductImgName = styled.h2`
+    font-size: 22px;
+    color: #000;
+    text-align: center;
+    margin-top: 30px;
+`;
+
+const ProductImgCompany = styled.span`
+    color: #909090;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
 
 export default function Header() {
-    const [modalOpen, setModalOpen] = useState(false);
-    const modalBackground = useRef();
+    const [modalOpen, setModalOpen] = useState(false); // 모달 창 열고 닫기
+    const modalBackground = useRef(); // 모달 창 뒷배경 참조
 
-    const modalClick = (e) => {
-        if (e.target === modalBackground.current) {
-            setModalOpen(false);
+    const modalClick = (e) => { 
+        if (e.target === modalBackground.current) { // 함수 내부에서 클릭 된 대상이 동일한지 확인
+            setModalOpen(false); // 맞다면 닫는다.
         }
-    };  
+    };  // 모달 창 배경을 클릭하면 모달 창이 닫히도록 하는 기능을 구현
+
+    const [search, setSearch] = useState(''); // 검색 내용 받아오기
+    const [brandData, setBrandData] = useState([]); // 데이터 저장하는 부분
+    const [filterBrand, setFilterBrand] = useState([]); // 필터링 된 데이터 저장
+
+    useEffect(() => {
+        axios.get('/db/brandsoju.json')
+        .then((res) => {
+            setBrandData(res.data.soju);
+        })
+        .catch((error) => {
+            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
+        });
+    })
+
+     const searchChange = (e) => {
+        const text = e.target.value;
+        setSearch(text);
+
+        if(text){
+            const filtered = brandData.filter((item) => 
+                item.name.includes(text)
+            );
+            setFilterBrand(filtered);
+        } else {
+            setFilterBrand([]);
+        }
+     }
+
 
     return (
         <Container>
@@ -202,7 +265,7 @@ export default function Header() {
                     <Modal ref={modalBackground} onClick={modalClick} >
                         <ModalContent>
                             <ContentSearch>
-                                <ContentInput type="text" placeholder="원하시는 상품 이름을 검색해주세요." />
+                                <ContentInput type="text" placeholder="원하시는 상품 이름을 검색해주세요." value={search} onChange={searchChange}/>
                                 <ContentSearchClose onClick={() => setModalOpen(false)}>
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 50 50"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path></svg>
                                 </ContentSearchClose>
@@ -214,6 +277,17 @@ export default function Header() {
                                     <ContentsBox>2</ContentsBox>
                                     <ContentsBox>3</ContentsBox>
                                     <ContentsBox>4</ContentsBox>
+                                </ContentsBoxes>
+                                <ContentsBoxes>
+                                    {
+                                        filterBrand.map((item) => (
+                                            <ContentsBox key={item.id}>
+                                                <ProductImg src={item.url} alt={item.name} />
+                                                <ProductImgName>{item.name}</ProductImgName>
+                                                <ProductImgCompany>{item.company}</ProductImgCompany>
+                                            </ContentsBox>
+                                        ))
+                                    }
                                 </ContentsBoxes>
                             </ContentsRecently>
                         </ModalContent>

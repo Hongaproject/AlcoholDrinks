@@ -10,7 +10,7 @@ const Container = styled.div`
 const ImgSlice = styled.div`
     width: 100%;
     height: 600px;
-    margin-top: 100px;
+    
 `
 // 이미지 슬라이드 예시
 const Slide = styled.div`
@@ -351,6 +351,7 @@ const LiquorNewC = styled.div`
     width: 100%;
     height: 400px;
     margin-top: 50px;
+    margin-bottom: 50px;
 `
 const LiquorNew = styled.div`
     width: 100%;

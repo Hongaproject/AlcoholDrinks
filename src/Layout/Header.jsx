@@ -135,7 +135,8 @@ const RecentlyText = styled.h2`
 `
 const ContentsBoxes = styled.div`
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap; /* 여러 줄로 나눠서 배치 */
+    gap: 20px; /* 항목 간의 간격 */
 `
 
 const ContentsBox = styled.div`
@@ -144,15 +145,12 @@ const ContentsBox = styled.div`
     display: flex; /* 내부 요소를 가로로 배치 */
     flex-direction: column; /* 내부 요소를 세로 방향으로 배치 */
     align-items: center; /* 중앙 정렬 */
-    flex-wrap: wrap;
     padding: 8px; /* 패딩 추가 */
     border: 1px solid #ddd; /* 테두리 추가 */
     border-radius: 4px; /* 모서리 둥글게 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
     background-color: #fff; /* 배경 색상 */
-    margin-right: 20px;
     margin-bottom: 20px;
-
 `;
 
 const ProductImg = styled.img`
@@ -195,22 +193,57 @@ export default function Header() {
     const [filterBrand, setFilterBrand] = useState([]); // 필터링 된 데이터 저장
 
     useEffect(() => {
-        axios.get('/db/brandsoju.json')
-        .then((res) => {
-            setBrandData(res.data.soju);
-        })
-        .catch((error) => {
-            console.error('소주 데이터를 가져오는 중 오류 발생:', error);
-        });
-    })
+        // 여러 JSON 파일에서 데이터를 가져오는 비동기 작업
+        const jsonData = async () => {
+            try {
+                const res = await Promise.all([
+                    axios.get('/db/brandsoju.json'),
+                    axios.get('/db/brandbeer.json'),
+                    axios.get('/db/brandliquor.json'),
+                    axios.get('/db/brandmakgeolli.json'),
+                    axios.get('/db/brandnew.json')
+                ]);
+                
+                console.log(res);
+                // 각 응답에서 데이터를 추출하여 병합
+                const sojuData = res[0].data.soju;
+                const beerData = res[1].data.beer;
+                const liquorData = res[2].data.liquor;
+                const makgeolliData = res[3].data.makgeolli;
+                const newData = res[4].data.new;
+
+
+                // 모든 데이터를 하나의 배열로 병합
+                const mergeData = [
+                    ...sojuData,
+                    ...beerData,
+                    ...liquorData,
+                    ...makgeolliData,
+                    ...newData
+                ];
+
+                // const mergeData = res.flatMap(response => 
+                //     Object.values(response.data).flat()
+                // );
+
+                // 상태에 병합된 데이터 저장
+                setBrandData(mergeData);
+            } catch (error) {
+                console.error('데이터를 가져오는 중 오류 발생:', error);
+            }
+        };
+
+        jsonData();
+    }, []);
 
      const searchChange = (e) => {
         const text = e.target.value;
         setSearch(text);
 
         if(text){
-            const filtered = brandData.filter((item) => 
-                item.name.includes(text)
+            // 입력 값에 따라 데이터를 필터링
+            const filtered = brandData.filter((item) =>
+                item.name && item.name.toLowerCase().includes(text.toLowerCase()) // 유효성 검사 및 대소문자 무시
             );
             setFilterBrand(filtered);
         } else {
@@ -285,6 +318,7 @@ export default function Header() {
                                                 <ProductImg src={item.url} alt={item.name} />
                                                 <ProductImgName>{item.name}</ProductImgName>
                                                 <ProductImgCompany>{item.company}</ProductImgCompany>
+                                                <ProductImgCompany>{item.new}</ProductImgCompany>
                                             </ContentsBox>
                                         ))
                                     }

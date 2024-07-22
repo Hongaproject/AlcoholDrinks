@@ -204,7 +204,6 @@ export default function Header() {
                     axios.get('/db/brandnew.json')
                 ]);
                 
-                console.log(res);
                 // 각 응답에서 데이터를 추출하여 병합
                 const sojuData = res[0].data.soju;
                 const beerData = res[1].data.beer;
@@ -221,10 +220,7 @@ export default function Header() {
                     ...makgeolliData,
                     ...newData
                 ];
-
-                // const mergeData = res.flatMap(response => 
-                //     Object.values(response.data).flat()
-                // );
+                
 
                 // 상태에 병합된 데이터 저장
                 setBrandData(mergeData);
@@ -237,19 +233,22 @@ export default function Header() {
     }, []);
 
      const searchChange = (e) => {
-        const text = e.target.value;
-        setSearch(text);
+        const value = e.target.value.trim().toLowerCase();
+        setSearch(value);
 
-        if(text){
+        if(value){
             // 입력 값에 따라 데이터를 필터링
-            const filtered = brandData.filter((item) =>
-                item.name && item.name.toLowerCase().includes(text.toLowerCase()) // 유효성 검사 및 대소문자 무시
-            );
+            const filtered = brandData.filter((item) => {
+                const name = item.name ? item.name.toLowerCase() : '';
+            // 정확히 일치하는 항목을 필터링
+                return name.startsWith(value);
+            });
             setFilterBrand(filtered);
         } else {
             setFilterBrand([]);
         }
      }
+
 
 
     return (

@@ -23,7 +23,7 @@ const PrevButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 43.5%;
+    top: 33.5%;
     left: 10%;
     z-index: 1;
     cursor: pointer;
@@ -38,7 +38,7 @@ const NextButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 43.5%;
+    top: 33.5%;
     right: 10%;
     cursor: pointer;
     color: #858585;

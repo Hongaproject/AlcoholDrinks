@@ -14,6 +14,7 @@ import DrinksDetail from "./Brand/details/DrinksDetail";
 import SBMGuide from "./Guide/SBMGuide";
 import BrandList from "./Brand/BrandList";
 import Login from "./auth/Login";
+import SignUp from "./auth/SignUp";
 
 function App() {
 
@@ -95,6 +96,10 @@ function App() {
     {
       path: '/login',
       element: <Login />
+    },
+    {
+      path: '/signup',
+      element: <SignUp />
     }
   ])
 

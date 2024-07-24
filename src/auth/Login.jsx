@@ -41,14 +41,14 @@ export default function Login() {
     return(
         <div>
             <h1>Login 🙌</h1>
-            <form action={onSubmit}>
-                <input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} />
-                <input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} />
+            <form onSubmit={onSubmit}>
+                <input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
+                <input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
                 <input type="submit" value={isLoading ? "Loading..." : "Login"} />    
             </form>
             {err !== "" ? <div>{err}</div> : null}
             <div>
-                계정이 없으신가요? <Link to="">회원가입</Link>
+                계정이 없으신가요? <Link to="/signup">회원가입</Link>
             </div>
         </div>
     );

@@ -13,6 +13,7 @@ import MakgeolliGuide from "./Guide/MakgeolliGuide";
 import DrinksDetail from "./Brand/details/DrinksDetail";
 import SBMGuide from "./Guide/SBMGuide";
 import BrandList from "./Brand/BrandList";
+import Login from "./auth/Login";
 
 function App() {
 
@@ -91,7 +92,10 @@ function App() {
         }
       ]
     },
-
+    {
+      path: '/login',
+      element: <Login />
+    }
   ])
 
   return (

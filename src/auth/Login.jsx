@@ -3,6 +3,74 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { FirebaseError } from "firebase/app";
+import styled from "styled-components";
+
+const Container = styled.div`
+    height: 100vh; 
+    width: 100vw; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E3F2FD;
+`;
+
+const LoginModal = styled.div`
+    width: 450px;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F3F3F3; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    box-sizing: border-box;
+`;
+
+const Title = styled.h1`
+    font-size: 48px;
+`
+
+const Form = styled.form`
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+`;
+
+const Input = styled.input`
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    width: 80%;
+    font-size: 16px;
+    box-sizing: border-box;
+
+    
+    &[type="submit"] {
+    cursor: pointer;
+    background-color: #aab4c3;
+        &:hover {
+        opacity: 0.8;
+        }
+    }
+`;
+
+const Error = styled.span`
+    font-weight: 600;
+    color: tomato;
+    margin-top: 10px;
+`;
+
+const Switcher = styled.span`
+    margin-top: 20px;
+    a {
+        color: #1d9bf0;
+    }
+`
 
 export default function Login() {
     // Firebase를 사용해서 로그인 구현
@@ -21,7 +89,7 @@ export default function Login() {
         }
     }
 
-    const onSubmit = async(e) => { // 사용자가 form이용하면 이때 작성해놓은 함수를 실행시킨다. 
+    const onSubmit = async(e) => {  
         e.preventDefault();
         setErr("");
         if(isLoading || email === "" || password === "") return;
@@ -39,17 +107,19 @@ export default function Login() {
     }
 
     return(
-        <div>
-            <h1>Login 🙌</h1>
-            <form onSubmit={onSubmit}>
-                <input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
-                <input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
-                <input type="submit" value={isLoading ? "Loading..." : "Login"} />    
-            </form>
-            {err !== "" ? <div>{err}</div> : null}
-            <div>
-                계정이 없으신가요? <Link to="/signup">회원가입</Link>
-            </div>
-        </div>
+        <Container>
+            <LoginModal>
+                <Title>Login 🙌</Title>
+                <Form onSubmit={onSubmit}>
+                    <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
+                    <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
+                    <Input type="submit" value={isLoading ? "Loading..." : "Login"} />    
+                </Form>
+                {err !== "" ? <Error>{err}</Error> : null}
+                <Switcher>
+                    계정이 없으신가요? <Link to="/signup">회원가입</Link>
+                </Switcher>
+            </LoginModal>
+        </Container>
     );
 }

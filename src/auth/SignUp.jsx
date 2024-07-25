@@ -1,9 +1,10 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";  // firebase.js 파일에서 auth 가져오기
 import { FirebaseError } from "firebase/app";
 import styled from "styled-components";
+import { useUserContext } from "./Context/UserContext";
 
 const Container = styled.div`
     height: 100vh; 
@@ -72,7 +73,8 @@ export default function SignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const [err, setErr] = useState("");
     const navigate = useNavigate();  
-    
+    const {setUser} = useUserContext(); 
+
     const onChange = (e) => {
         const { name, value } = e.target;
         if (name === "name") {
@@ -90,7 +92,9 @@ export default function SignUp() {
         if (isLoading || name === "" || email === "" || password === "") return;
         try {
             setIsLoading(true);
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCreate = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(userCreate.user, { displayName: name});
+            setUser({ name });
             navigate('/login');
         } catch (e) {
             if (e instanceof FirebaseError) {
@@ -104,7 +108,7 @@ export default function SignUp() {
     return (
         <Container>
             <SignupModal>
-                <Title>회원가입 🙌</Title>
+                <Title>회원가입</Title>
                 <Form onSubmit={onSubmit}>
                     <Input type="text" placeholder="이름을 입력해주세요." name="name" value={name} onChange={onChange} required />
                     <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />

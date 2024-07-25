@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { FirebaseError } from "firebase/app";
 import styled from "styled-components";
+import { useUserContext } from "./Context/UserContext";
 
 const Container = styled.div`
     height: 100vh; 
@@ -11,7 +12,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #E3F2FD;
+    background-color: #d7ebfa;
 `;
 
 const LoginModal = styled.div`
@@ -79,6 +80,7 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false);
     const [err, setErr] = useState("");
     const navigator = useNavigate();
+    const {setUser} = useUserContext();
     
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -95,7 +97,9 @@ export default function Login() {
         if(isLoading || email === "" || password === "") return;
         try{
             setIsLoading(true);
-            await signInWithEmailAndPassword(auth, email, password);
+            const userSignup = await signInWithEmailAndPassword(auth, email, password);
+            const user = userSignup.user;
+            setUser({ name: user.displayName })
             navigator('/');
         } catch(e){
             if(e instanceof FirebaseError){
@@ -109,8 +113,8 @@ export default function Login() {
     return(
         <Container>
             <LoginModal>
-                <Title>Login 🙌</Title>
-                <Form onSubmit={onSubmit}>
+                <Title>Login</Title>
+                <Form onSubmit={onSubmit}>  
                     <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
                     <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
                     <Input type="submit" value={isLoading ? "Loading..." : "Login"} />    

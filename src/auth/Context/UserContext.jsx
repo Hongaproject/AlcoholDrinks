@@ -13,12 +13,12 @@ export const UserProvider = ({children}) => {
     // 초기값은 null로 설정, setUser는 user 상태를 업데이트하는 함수.
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => { // 로그인 유지
         // Firebase의 onAuthStateChanged 메서드를 사용하여 사용자 상태 감시
         const userCheck = onAuthStateChanged(auth, (currentUser) => {
             if(currentUser) {
                 // 사용자가 로그인되어 있는 경우, 사용자 상태 업데이트
-                setUser({name: currentUser.displayName});
+                setUser({name: currentUser.displayName, photoURL: currentUser.photoURL});
             } else {
                 // 사용자가 로그아웃된 경우, 사용자 상태를 null로 설정
                 setUser(null);

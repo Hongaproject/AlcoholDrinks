@@ -93,7 +93,7 @@ export default function SignUp() {
         try {
             setIsLoading(true);
             const userCreate = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCreate.user, { displayName: name}); // 사용자 프로필 업데이트
+            await updateProfile(userCreate.user, { displayName: name}); // 사용자 프로필 업데이트 name
             setUser({ name }); // Context에 사용자 정보 설정
             navigate('/login');
         } catch (e) {

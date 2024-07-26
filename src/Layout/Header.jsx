@@ -176,6 +176,24 @@ const ProductImgCompany = styled.span`
     justify-content: center;
 `;
 
+const ProfileImage = styled.img`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+`;
+const AvatarUpload = styled.label`
+  width: 40px;
+  overflow: hidden;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 50px;
+  }
+`;
 
 export default function Header() {
     const [modalOpen, setModalOpen] = useState(false); // 모달 창 열고 닫기
@@ -250,8 +268,6 @@ export default function Header() {
 
     const {user} = useUserContext();
 
-    console.log('User:', user);
-
     return (
         <Container>
             <Nav>
@@ -288,7 +304,24 @@ export default function Header() {
                     </SearchImg>
                     {
                         user ? (
-                            <span>{user.name}님 환영합니다.</span>
+                            <Link to='/profile' style={{ textDecoration: "none" }}>
+                                <AvatarUpload>
+                                {
+                                    user.photoURL ? (
+                                        <ProfileImage src={user.photoURL} alt="Profile" />
+                                    ) : (
+                                        <svg
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                                        </svg>
+                                    )
+                                }   
+                                </AvatarUpload>
+                        </Link>
                         ) : (
                             <Link to='/login' style={{ textDecoration: "none" }}>
                                 <LoginButton>

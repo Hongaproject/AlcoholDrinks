@@ -15,6 +15,7 @@ import SBMGuide from "./Guide/SBMGuide";
 import BrandList from "./Brand/BrandList";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
+import Profile from "./auth/Profile";
 
 function App() {
 
@@ -100,6 +101,10 @@ function App() {
     {
       path: '/signup',
       element: <SignUp />
+    },
+    {
+      path: '/profile',
+      element: <Profile />
     }
   ])
 

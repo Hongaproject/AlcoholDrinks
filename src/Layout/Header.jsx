@@ -69,10 +69,8 @@ const SearchImg = styled.div`
 const LoginButton = styled.button`
     font-size: 1.25rem;
     border: 0;
-    vertical-align: middle;
     height: 24px;
     background: none;
-    line-height: 38px;
     cursor: pointer;
 `;
 

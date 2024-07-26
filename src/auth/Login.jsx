@@ -99,7 +99,7 @@ export default function Login() {
             setIsLoading(true);
             const userSignup = await signInWithEmailAndPassword(auth, email, password);
             const user = userSignup.user;
-            setUser({ name: user.displayName })
+            setUser({ name: user.displayName }) // Context에 사용자 정보 설정
             navigator('/');
         } catch(e){
             if(e instanceof FirebaseError){

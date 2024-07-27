@@ -182,17 +182,17 @@ const ProfileImage = styled.img`
     border-radius: 50%;
 `;
 const AvatarUpload = styled.label`
-  width: 40px;
-  overflow: hidden;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  svg {
-    width: 50px;
-  }
+    width: 40px;
+    overflow: hidden;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        width: 50px;
+    }
 `;
 
 export default function Header() {
@@ -268,6 +268,7 @@ export default function Header() {
 
     const {user} = useUserContext();
 
+    console.log(user);
     return (
         <Container>
             <Nav>

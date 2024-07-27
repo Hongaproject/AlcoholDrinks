@@ -75,37 +75,37 @@ const Switcher = styled.span`
 `
 
 const Button = styled.span`
-  margin-top: 10px;
-  background-color: white;
-  font-weight: 500;
-  width: 80%;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: 0;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-sizing: border-box;
-  background-color: #8aa1c2;
+    margin-top: 10px;
+    background-color: white;
+    font-weight: 500;
+    width: 80%;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: #8aa1c2;
 
-  &:hover {
+    &:hover {
         opacity: 0.8;
     }
 `;
 const Logo = styled.img`
-  height: 25px;
+    height: 25px;
 `;
 
 const SignupLink = styled.span`
-  color: #000;
-  padding: 15px 20px;
+    color: #000;
+    padding: 15px 20px;
 
-  &:hover {
-    text-decoration: underline;
-  }
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
 
@@ -151,7 +151,7 @@ export default function Login() {
             setIsLoading(true);
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            setUser({ name: user.displayName, photoURL: user.photoURL });
+            setUser({ name: user.displayName, photoURL: user.photoURL }); // Context에 사용자 정보 설정 photoURL
             navigate('/');
         } catch(e){
             if(e instanceof FirebaseError){

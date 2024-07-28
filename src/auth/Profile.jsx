@@ -116,9 +116,7 @@ const LogOut = styled.div`
 
 export default function Profile () {
     
-    const {user} = useUserContext();
-    
-    console.log(user);
+    const {user, savedItems} = useUserContext();
 
     const navigate = useNavigate();
 
@@ -178,10 +176,17 @@ export default function Profile () {
                 <Store>
                     <StoreTitle>저장 상품</StoreTitle>
                     <StoreProduct>
-                        <StoreItem>1</StoreItem>
-                        <StoreItem>2</StoreItem>
-                        <StoreItem>3</StoreItem>
-                        <StoreItem>4</StoreItem>
+                        {
+                            savedItems.map((item) => (
+                                <StoreItem>
+                                    <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                        <img src={item.url} alt={item.name}/>
+                                        <h2>{item.name}</h2>
+                                        <span>{item.company}</span>
+                                    </Link>
+                                </StoreItem>
+                            ))
+                        }
                     </StoreProduct>
                 </Store>
                 <CommentLine>

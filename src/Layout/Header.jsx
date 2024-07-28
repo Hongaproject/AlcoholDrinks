@@ -268,7 +268,6 @@ export default function Header() {
 
     const {user} = useUserContext();
 
-    console.log(user);
     return (
         <Container>
             <Nav>

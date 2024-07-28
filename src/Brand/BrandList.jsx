@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebtn from '../Section/Sidebtn';
+import { useUserContext } from '../auth/Context/UserContext';
 
 // Styled-components
 const Container = styled.div`
@@ -157,6 +158,12 @@ export default function BrandList({ category }) {
         };
     }, []);
 
+    const { saveItem } = useUserContext();
+
+    const handleSave = (item) => {
+        saveItem(item);
+    }
+
     return (
         <Container>
             <Introduce>
@@ -210,6 +217,7 @@ export default function BrandList({ category }) {
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgPrice>{item.company}</ProductImgPrice>
                         </Link>
+                        <button onClick={() => handleSave(item)}>저장</button>
                     </Product>
                 ))}
             </Outline>

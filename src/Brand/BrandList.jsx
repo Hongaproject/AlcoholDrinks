@@ -88,6 +88,18 @@ const Loader = styled.div`
     margin: 20px 0;
 `;
 
+const SavedMessage = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+`;
+
 // Main Component
 export default function BrandList({ category }) {
     const [products, setProducts] = useState([]);
@@ -159,9 +171,14 @@ export default function BrandList({ category }) {
     }, []);
 
     const { saveItem } = useUserContext();
+    const [savedMessage, setSavedMessage] = useState('');
 
     const handleSave = (item) => {
         saveItem(item);
+        setSavedMessage('저장되었습니다'); // 추가됨: 저장 메시지 업데이트
+        setTimeout(() => {
+            setSavedMessage(''); // 2초 후에 저장 메시지 숨기기
+        }, 2000);
     }
 
     return (
@@ -227,6 +244,7 @@ export default function BrandList({ category }) {
                 </Loader>
             )}
             <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
+            {savedMessage && <SavedMessage>{savedMessage}</SavedMessage> }
         </Container>
     );
 }

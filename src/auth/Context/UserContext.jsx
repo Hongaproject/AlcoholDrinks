@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
-import firebase from "firebase/compat/app";
+import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 // UserContext생성
 // React의 createContext를 사용해서 Context 객체를 생성
@@ -22,14 +22,13 @@ export const UserProvider = ({children}) => {
                 // 사용자가 로그인되어 있는 경우, 사용자 상태 업데이트
                 setUser({name: currentUser.displayName, photoURL: currentUser.photoURL});
 
-                // Firestore에서 저장된 아이템 불러오기
-                const userDoc = await db.collection('users').doc(currentUser.uid).get();
-                if(userDoc.exists){ // exists는 Firestore에서 제공하는 속성 문서가 존재하면 true, 존재하지 않으면 false를 반환함.
+                const userDocRef = doc(db, 'users', currentUser.uid); // Firestore 문서 참조
+                const userDoc = await getDoc(userDocRef); // 문서 읽기
+                if(userDoc.exists()){ // exists는 Firestore에서 제공하는 속성 문서가 존재하면 true, 존재하지 않으면 false를 반환함.
                     // Firestore에 저장된 사용자 문서가 존재하는 경우, savedItems를 상태로 설정
                     setSavedItems(userDoc.data().savedItems || []);
                 } else {
-                    // 사용자 문서가 존재하지 않는 경우, 새 문서 생성
-                    await db.collection('users').doc(currentUser.uid).set({savedItems: []}); 
+                    await setDoc(userDocRef, { savedItems: [] }); // 문서 생성
                 }
             } else {
                 // 사용자가 로그아웃된 경우, 사용자 상태를 null로 설정
@@ -44,12 +43,10 @@ export const UserProvider = ({children}) => {
     // 상품을 저장하는 함수
     const saveItem = async (item) => {
         if (user) { // 사용자 로그인 확인 
-            const userRef = db.collection('users').doc(auth.currentUser.uid); // 사용자의 문서를 참조하고 로그인된 사용자의 고유 UID를 확인합니다.
-            // Firestore 필드 값을 업데이트하여 아이템 추가
-            await userRef.update({ // update 메서드를 사용해서 해당 문서를 업데이트 함.
-                savedItems: firebase.firestore.FieldValue.arrayUnion(item) // Firestore에서 제공하는 메서드 배열 필드에 값을 추가, 중목 항목을 허용하지 않고, 추가하려는 값이 배열에 이미 존재하면 무시한다.
+            const userRef = doc(db, 'users', auth.currentUser.uid); // Firestore 문서 참조
+            await updateDoc(userRef, {
+                savedItems: arrayUnion(item) // 배열 필드에 값 추가
             });
-            // 로컬 상태 업데이트
             setSavedItems(prevItems => [...prevItems, item]);
         }
     }

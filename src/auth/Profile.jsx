@@ -54,32 +54,23 @@ const StoreTitle = styled.h2`
 
 const StoreProduct = styled.div`
     display: flex;
-    flex-wrap: nowrap; // 상품이 한 줄로 나열되도록 설정 
-    overflow-x: auto; // 상품이 넘칠경우 스크롤이 가능하도록 설정 
+    flex-wrap: nowrap;
+    overflow-x: auto;
     width: 100%;
-    gap: 20px; // 상품 사이 간격 설정 
+    gap: 20px;
+    border: 3px solid #000;
+    padding-bottom: 10px; // 스크롤바 공간 확보
 `
 
 const StoreItem = styled.div`
-    min-width: 100px; 
-    height: 100px; 
-    background-color: #e0e0e0; 
-    border-radius: 8px; 
-`
-
-const CommentLine = styled.div`
-    width: 100%;
-    margin-top: 100px;
-    align-items: flex-start;
-`
-
-const CommentTitle = styled.h2`
-    font-size: 20px;
-    margin-bottom: 10px;
-`
-
-const Comment = styled.div`
-    
+    min-width: 210px; // 아이템의 최소 너비 설정
+    border-radius: 8px;
+    border: 2px solid #EBEAEC;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 `
 
 const Linked = styled.div`
@@ -114,6 +105,30 @@ const LogOut = styled.div`
     }
 `
 
+const ProductImg = styled.img`
+    display: block;
+    margin: auto;
+    width: 210px;
+    height: 254px;
+    object-fit: contain;
+`;
+
+const ProductImgName = styled.h2`
+    font-size: 32px;
+    color: #000;
+    text-align: center;
+    margin-top: 30px;
+`;
+
+const ProductImgCompany = styled.span`
+    font-size: 20px;
+    color: #909090;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export default function Profile () {
     
     const {user, savedItems} = useUserContext();
@@ -127,6 +142,10 @@ export default function Profile () {
             navigate("/");
         }
     }
+    
+    console.log('User:', user); // 디버깅: 현재 사용자 정보 출력
+    console.log('Saved Items:', savedItems); // 디버깅: 저장된 아이템 출력
+
     return(
         <Container>
             <Linked>
@@ -175,26 +194,24 @@ export default function Profile () {
                 <UserName>{user ? user.name : '이름 없음'}</UserName>
                 <Store>
                     <StoreTitle>저장 상품</StoreTitle>
-                    <StoreProduct>
-                        {
-                            savedItems.map((item) => (
-                                <StoreItem>
-                                    <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
-                                        <img src={item.url} alt={item.name}/>
-                                        <h2>{item.name}</h2>
-                                        <span>{item.company}</span>
-                                    </Link>
-                                </StoreItem>
-                            ))
-                        }
-                    </StoreProduct>
+                    {savedItems.length > 0 ? (
+                        <StoreProduct>
+                            {
+                                savedItems.map((item) => (
+                                    <StoreItem key={item.id}>
+                                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                            <ProductImg src={item.url} alt={item.name}/>
+                                            <ProductImgName>{item.name}</ProductImgName>
+                                            <ProductImgCompany>{item.company}</ProductImgCompany>
+                                        </Link>
+                                    </StoreItem>
+                                ))
+                            }
+                        </StoreProduct>
+                    ) : (
+                        <p>저장된 상품이 없습니다.</p>
+                    )}
                 </Store>
-                <CommentLine>
-                    <CommentTitle>댓글 내용</CommentTitle>
-                    <Comment>
-
-                    </Comment>
-                </CommentLine>
             </Section>
         </Container>
     );

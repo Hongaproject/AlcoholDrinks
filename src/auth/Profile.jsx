@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { auth } from "../firebase";
 import { useUserContext } from "./Context/UserContext";
+import { useRef } from "react";
 
 const Container = styled.div`
     width: 100%;
@@ -52,18 +53,22 @@ const StoreTitle = styled.h2`
     margin-bottom: 10px; 
 `
 
+const StoreProductContainer = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+`;
+
 const StoreProduct = styled.div`
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    gap: 20px;
-    border: 3px solid #000;
+    flex-wrap: nowrap; // 여러 줄로 나열되도록 변경
+    overflow-x: auto; // 수평 스크롤 제거
+    gap: 20px; 
     padding-bottom: 10px; // 스크롤바 공간 확보
 `
 
 const StoreItem = styled.div`
-    min-width: 210px; // 아이템의 최소 너비 설정
+    min-width: 208px; // 아이템의 최소 너비 설정
     border-radius: 8px;
     border: 2px solid #EBEAEC;
     border-radius: 20px;
@@ -129,11 +134,50 @@ const ProductImgCompany = styled.span`
     justify-content: center;
 `;
 
+const PrevButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 56%;
+    left: 13%;
+    z-index: 1;
+    cursor: pointer;
+    & > svg {
+        transform: rotate(180deg); 
+        color: #858585;
+    }
+`
+
+const NextButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 56%;
+    right: 13%;
+    cursor: pointer;
+    color: #858585;
+`
+
 export default function Profile () {
     
     const {user, savedItems} = useUserContext();
-
     const navigate = useNavigate();
+    const storeProductRef = useRef(null);
+
+    const scroll = (direction) => {
+        if (storeProductRef.current) {
+            const scrollAmount = 230; // 스크롤할 너비 설정
+            if (direction === "left") {
+                storeProductRef.current.scrollLeft -= scrollAmount;
+            } else {
+                storeProductRef.current.scrollLeft += scrollAmount;
+            }
+        }
+    }
+
+
 
     const Logout = () => {
         const ok = window.confirm("로그아웃을 하시겠습니까?");
@@ -142,9 +186,6 @@ export default function Profile () {
             navigate("/");
         }
     }
-    
-    console.log('User:', user); // 디버깅: 현재 사용자 정보 출력
-    console.log('Saved Items:', savedItems); // 디버깅: 저장된 아이템 출력
 
     return(
         <Container>
@@ -195,19 +236,27 @@ export default function Profile () {
                 <Store>
                     <StoreTitle>저장 상품</StoreTitle>
                     {savedItems.length > 0 ? (
-                        <StoreProduct>
-                            {
-                                savedItems.map((item) => (
-                                    <StoreItem key={item.id}>
-                                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
-                                            <ProductImg src={item.url} alt={item.name}/>
-                                            <ProductImgName>{item.name}</ProductImgName>
-                                            <ProductImgCompany>{item.company}</ProductImgCompany>
-                                        </Link>
-                                    </StoreItem>
-                                ))
-                            }
-                        </StoreProduct>
+                        <StoreProductContainer>
+                            <PrevButton onClick={() => scroll("left")}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
+                            </PrevButton>
+                            <StoreProduct ref={storeProductRef}>
+                                {
+                                    savedItems.map((item) => (
+                                        <StoreItem key={item.id}>
+                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                                <ProductImg src={item.url} alt={item.name} />
+                                                <ProductImgName>{item.name}</ProductImgName>
+                                                <ProductImgCompany>{item.company}</ProductImgCompany>
+                                            </Link>
+                                        </StoreItem>
+                                    ))
+                                }
+                            </StoreProduct>
+                            <NextButton onClick={() => scroll("right")}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
+                            </NextButton>
+                        </StoreProductContainer>
                     ) : (
                         <p>저장된 상품이 없습니다.</p>
                     )}

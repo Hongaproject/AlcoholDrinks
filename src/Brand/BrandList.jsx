@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Sidebtn from '../Section/Sidebtn';
 import { useUserContext } from '../auth/Context/UserContext';
+import { FaRegHeart } from "react-icons/fa";
 
 // Styled-components
 const Container = styled.div`
@@ -100,13 +101,45 @@ const SavedMessage = styled.div`
     z-index: 1000;
 `;
 
+const Favorite = styled.button`
+    border: 0;
+    background: none;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+    img {
+        cursor: pointer; /* 버튼에 커서 추가 */
+        margin-right: 7px;
+        display: flex; 
+        align-items: center;
+        transition: filter 0.3s ease; /* 색상 변경 애니메이션 */
+
+    }
+`;
+
+
+const FavoriteNumber = styled.span`
+    font-size: 22px;
+    height: 24px;
+    color: #909090; 
+    font-weight: bold;
+`
+
 // Main Component
 export default function BrandList({ category }) {
+    const { saveItem, savedItems } = useUserContext(); // useUserContext 훅 호출 위치 조정
+
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(0); // 페이지 상태를 0으로 초기화
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
     const location = useLocation();
+    const [favorite, setFavorite] = useState([]);
+    const [savedMessage, setSavedMessage] = useState('');
+    const [activeTitle, setActiveTitle] = useState('');
+    const [favoriteCount, setFavoriteCount] = useState({}); // 각 상품의 좋아요 수를 관리
 
     const imgAPi = async (page = 1) => {
         if (page <= 0) return; // 페이지가 0 이하일 때는 데이터 페칭하지 않음
@@ -124,16 +157,17 @@ export default function BrandList({ category }) {
 
     useEffect(() => {
         setProducts([]); // 카테고리 변경 시 제품 목록 초기화
-        setPage(0);      // 페이지 번호 초기화
-    }, [category, location.pathname]);
+        setPage(0); // 페이지 번호 초기화
+        if (savedItems) { // savedItems가 정의된 후에 사용
+            setFavorite(savedItems.map(item => item.id));
+        }
+    }, [category, location.pathname, savedItems]);
 
     useEffect(() => {
         if (page > 0) {
             imgAPi(page); // 페이지가 변경될 때마다 데이터 가져오기
         }
     }, [page]);
-
-    const [activeTitle, setActiveTitle] = useState('');
 
     useEffect(() => {
         switch (location.pathname) {
@@ -170,16 +204,23 @@ export default function BrandList({ category }) {
         };
     }, []);
 
-    const { saveItem } = useUserContext();
-    const [savedMessage, setSavedMessage] = useState('');
+    const handleHeart = (itemId) => {
+        setFavorite(prevFavorites => {
+            const isFavorite = prevFavorites.includes(itemId);
+            if (isFavorite) {
+                return prevFavorites.filter(id => id !== itemId);
+            } else {
+                return [...prevFavorites, itemId];
+            }
+        });
 
-    const handleSave = (item) => {
-        saveItem(item);
-        setSavedMessage('저장되었습니다'); // 추가됨: 저장 메시지 업데이트
-        setTimeout(() => {
-            setSavedMessage(''); // 2초 후에 저장 메시지 숨기기
-        }, 2000);
-    }
+        setFavoriteCount(prevCount => ({
+            ...prevCount,
+            [itemId]: (prevCount[itemId] || 0) + (favorite.includes(itemId) ? -1 : 1) // 좋아요 상태에 따라 증가/감소
+        }));
+    };
+    
+    
 
     return (
         <Container>
@@ -234,7 +275,10 @@ export default function BrandList({ category }) {
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgPrice>{item.company}</ProductImgPrice>
                         </Link>
-                        <button onClick={() => handleSave(item)}>저장</button>
+                        <Favorite onClick={() => handleHeart(item.id)}>
+                            <FaRegHeart style={{fontSize: "30px", color: favorite.includes(item.id) ? "red" : "black", }} />
+                            <FavoriteNumber>{favoriteCount[item.id] || 0}</FavoriteNumber>
+                        </Favorite>
                     </Product>
                 ))}
             </Outline>

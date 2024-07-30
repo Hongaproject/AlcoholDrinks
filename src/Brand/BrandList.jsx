@@ -138,7 +138,7 @@ export default function BrandList({ category }) {
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
     const location = useLocation();
-    const [favorite, setFavorite] = useState([]);
+    const [favorite, setFavorite] = useState({});
     const [savedMessage, setSavedMessage] = useState('');
     const [activeTitle, setActiveTitle] = useState('');
     const [favoriteCount, setFavoriteCount] = useState({}); // 각 상품의 좋아요 수를 관리
@@ -161,15 +161,26 @@ export default function BrandList({ category }) {
         setProducts([]);
         setPage(0);
         if (savedItems) {
-            setFavorite(savedItems.map(item => item.id));
+            const categoryFavorites = savedItems
+                .filter(item => item.category === category)
+                .map(item => item.id);
+            setFavorite(prevFavorites => ({
+                ...prevFavorites,
+                [category]: categoryFavorites,
+            }));
+
             const initialFavoriteCount = {};
             savedItems.forEach(item => {
-                initialFavoriteCount[item.id] = (initialFavoriteCount[item.id] || 0) + 1;
+                if (item.category === category) {
+                    initialFavoriteCount[item.id] = (initialFavoriteCount[item.id] || 0) + 1;
+                }
             });
-            setFavoriteCount(initialFavoriteCount);
+            setFavoriteCount(prevCounts => ({
+                ...prevCounts,
+                [category]: initialFavoriteCount,
+            }));
         }
     }, [category, location.pathname, savedItems]);
-    
 
     useEffect(() => {
         if (page > 0) {
@@ -213,43 +224,48 @@ export default function BrandList({ category }) {
     }, []);
 
     const handleHeart = async (itemId) => {
-        const isFavorite = favorite.includes(itemId);
+        const isFavorite = favorite[category]?.includes(itemId);
     
         if (isFavorite) {
-            setFavorite(prevFavorites => prevFavorites.filter(id => id !== itemId));
+            setFavorite(prevFavorites => ({
+                ...prevFavorites,
+                [category]: prevFavorites[category].filter(id => id !== itemId),
+            }));
             setFavoriteCount(prevCount => ({
                 ...prevCount,
-                [itemId]: (prevCount[itemId] || 0) - 1
+                [category]: {
+                    ...prevCount[category],
+                    [itemId]: (prevCount[category][itemId] || 0) - 1,
+                },
             }));
     
-            // 상품 삭제 처리
             const item = products.find(product => product.id === itemId);
             if (item) {
-                await removeItem(itemId); // 삭제 처리
+                await removeItem(itemId);
                 setSavedMessage('상품이 삭제되었습니다.');
                 setTimeout(() => setSavedMessage(''), 2000);
             }
         } else {
-            setFavorite(prevFavorites => [...prevFavorites, itemId]);
+            setFavorite(prevFavorites => ({
+                ...prevFavorites,
+                [category]: [...(prevFavorites[category] || []), itemId],
+            }));
             setFavoriteCount(prevCount => ({
                 ...prevCount,
-                [itemId]: (prevCount[itemId] || 0) + 1
+                [category]: {
+                    ...prevCount[category],
+                    [itemId]: (prevCount[category][itemId] || 0) + 1,
+                },
             }));
     
-            // 상품 저장 처리
             const item = products.find(product => product.id === itemId);
             if (item) {
-                await saveItem(item); // 저장 처리
+                await saveItem(item);
                 setSavedMessage('상품이 저장되었습니다.');
                 setTimeout(() => setSavedMessage(''), 2000);
             }
         }
     };
-    
-    
-    
-    
-    
 
     return (
         <Container>
@@ -306,10 +322,10 @@ export default function BrandList({ category }) {
                         </Link>
                         <Favorite 
                             onClick={() => handleHeart(item.id)}
-                            active={favorite.includes(item.id)}
+                            active={favorite[category]?.includes(item.id)}
                         >
                             <FaRegHeart />
-                            <FavoriteNumber>{favoriteCount[item.id] || 0}</FavoriteNumber>
+                            <FavoriteNumber>{favoriteCount[category]?.[item.id] || 0}</FavoriteNumber>
                         </Favorite>
                     </Product>
                 ))}

@@ -51,9 +51,22 @@ export const UserProvider = ({children}) => {
         }
     }
 
+    // 상품을 삭제하는 함수
+    const removeItem = async(itemId) => {
+        if(user){
+            const userRef = doc(db, 'users', auth.currentUser.uid); // Firestore 문서 참조
+            const userDoc = await getDoc(userRef);
+            const updatedItems = userDoc.data().savedItems.filter(item => item.id !== itemId);
+            await updateDoc(userRef, {
+                savedItems: updatedItems
+            });
+            setSavedItems(updatedItems);
+        }
+    }
+
 
     return(
-        <UserContext.Provider value={{user, setUser, savedItems, saveItem}}>
+        <UserContext.Provider value={{user, setUser, savedItems, saveItem, removeItem}}>
             {children}
         </UserContext.Provider>
     );

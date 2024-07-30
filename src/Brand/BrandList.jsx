@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -109,16 +110,17 @@ const Favorite = styled.button`
     align-items: center;
     padding: 0;
 
-    img {
+    svg {
         cursor: pointer; /* 버튼에 커서 추가 */
-        margin-right: 7px;
+        font-size: 30px; /* 아이콘 크기 설정 */
+        color: ${({ active }) => (active ? 'red' : 'black')}; /* 아이콘 색상 설정 */
+        transition: color 0.3s ease; /* 색상 변경 애니메이션 */
+        margin-right: 7px; /* 아이콘 오른쪽 여백 */
+        margin-left: 10px;
         display: flex; 
         align-items: center;
-        transition: filter 0.3s ease; /* 색상 변경 애니메이션 */
-
     }
 `;
-
 
 const FavoriteNumber = styled.span`
     font-size: 22px;
@@ -129,7 +131,7 @@ const FavoriteNumber = styled.span`
 
 // Main Component
 export default function BrandList({ category }) {
-    const { saveItem, savedItems } = useUserContext(); // useUserContext 훅 호출 위치 조정
+    const { saveItem, savedItems, removeItem } = useUserContext(); // useUserContext 훅 호출 위치 조정
 
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(0); // 페이지 상태를 0으로 초기화
@@ -156,12 +158,18 @@ export default function BrandList({ category }) {
     };
 
     useEffect(() => {
-        setProducts([]); // 카테고리 변경 시 제품 목록 초기화
-        setPage(0); // 페이지 번호 초기화
-        if (savedItems) { // savedItems가 정의된 후에 사용
+        setProducts([]);
+        setPage(0);
+        if (savedItems) {
             setFavorite(savedItems.map(item => item.id));
+            const initialFavoriteCount = {};
+            savedItems.forEach(item => {
+                initialFavoriteCount[item.id] = (initialFavoriteCount[item.id] || 0) + 1;
+            });
+            setFavoriteCount(initialFavoriteCount);
         }
     }, [category, location.pathname, savedItems]);
+    
 
     useEffect(() => {
         if (page > 0) {
@@ -204,21 +212,42 @@ export default function BrandList({ category }) {
         };
     }, []);
 
-    const handleHeart = (itemId) => {
-        setFavorite(prevFavorites => {
-            const isFavorite = prevFavorites.includes(itemId);
-            if (isFavorite) {
-                return prevFavorites.filter(id => id !== itemId);
-            } else {
-                return [...prevFavorites, itemId];
+    const handleHeart = async (itemId) => {
+        const isFavorite = favorite.includes(itemId);
+    
+        if (isFavorite) {
+            setFavorite(prevFavorites => prevFavorites.filter(id => id !== itemId));
+            setFavoriteCount(prevCount => ({
+                ...prevCount,
+                [itemId]: (prevCount[itemId] || 0) - 1
+            }));
+    
+            // 상품 삭제 처리
+            const item = products.find(product => product.id === itemId);
+            if (item) {
+                await removeItem(itemId); // 삭제 처리
+                setSavedMessage('상품이 삭제되었습니다.');
+                setTimeout(() => setSavedMessage(''), 2000);
             }
-        });
-
-        setFavoriteCount(prevCount => ({
-            ...prevCount,
-            [itemId]: (prevCount[itemId] || 0) + (favorite.includes(itemId) ? -1 : 1) // 좋아요 상태에 따라 증가/감소
-        }));
+        } else {
+            setFavorite(prevFavorites => [...prevFavorites, itemId]);
+            setFavoriteCount(prevCount => ({
+                ...prevCount,
+                [itemId]: (prevCount[itemId] || 0) + 1
+            }));
+    
+            // 상품 저장 처리
+            const item = products.find(product => product.id === itemId);
+            if (item) {
+                await saveItem(item); // 저장 처리
+                setSavedMessage('상품이 저장되었습니다.');
+                setTimeout(() => setSavedMessage(''), 2000);
+            }
+        }
     };
+    
+    
+    
     
     
 
@@ -275,8 +304,11 @@ export default function BrandList({ category }) {
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgPrice>{item.company}</ProductImgPrice>
                         </Link>
-                        <Favorite onClick={() => handleHeart(item.id)}>
-                            <FaRegHeart style={{fontSize: "30px", color: favorite.includes(item.id) ? "red" : "black", }} />
+                        <Favorite 
+                            onClick={() => handleHeart(item.id)}
+                            active={favorite.includes(item.id)}
+                        >
+                            <FaRegHeart />
                             <FavoriteNumber>{favoriteCount[item.id] || 0}</FavoriteNumber>
                         </Favorite>
                     </Product>

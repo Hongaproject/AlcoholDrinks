@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Sidebtn from '../Section/Sidebtn';
 import { useUserContext } from '../auth/Context/UserContext';
 import { FaRegHeart } from "react-icons/fa";
@@ -131,20 +131,20 @@ const FavoriteNumber = styled.span`
 
 // Main Component
 export default function BrandList({ category }) {
-    const { saveItem, savedItems, removeItem } = useUserContext(); // useUserContext 훅 호출 위치 조정
-
+    const { user, saveItem, savedItems, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount } = useUserContext();
+    
     const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(0); // 페이지 상태를 0으로 초기화
+    const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const loader = useRef(null);
     const location = useLocation();
     const [favorite, setFavorite] = useState({});
     const [savedMessage, setSavedMessage] = useState('');
     const [activeTitle, setActiveTitle] = useState('');
-    const [favoriteCount, setFavoriteCount] = useState({}); // 각 상품의 좋아요 수를 관리
+    const navigate = useNavigate('');
 
     const imgAPi = async (page = 1) => {
-        if (page <= 0) return; // 페이지가 0 이하일 때는 데이터 페칭하지 않음
+        if (page <= 0) return;
         setLoading(true);
         try {
             const res = await axios.get(`/db/brand${category}.json`);
@@ -168,23 +168,12 @@ export default function BrandList({ category }) {
                 ...prevFavorites,
                 [category]: categoryFavorites,
             }));
-
-            const initialFavoriteCount = {};
-            savedItems.forEach(item => {
-                if (item.category === category) {
-                    initialFavoriteCount[item.id] = (initialFavoriteCount[item.id] || 0) + 1;
-                }
-            });
-            setFavoriteCount(prevCounts => ({
-                ...prevCounts,
-                [category]: initialFavoriteCount,
-            }));
         }
     }, [category, location.pathname, savedItems]);
 
     useEffect(() => {
         if (page > 0) {
-            imgAPi(page); // 페이지가 변경될 때마다 데이터 가져오기
+            imgAPi(page);
         }
     }, [page]);
 
@@ -202,7 +191,6 @@ export default function BrandList({ category }) {
         setActiveTitle(title);
     };
 
-    // Intersection Observer 설정
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -224,6 +212,13 @@ export default function BrandList({ category }) {
     }, []);
 
     const handleHeart = async (itemId) => {
+        if (!user) {
+            // 로그인하지 않은 상태일 경우 알림 표시
+            alert('로그인 후 이용하실 수 있습니다.');
+            navigate('/login');
+            return;
+        }
+
         const isFavorite = favorite[category]?.includes(itemId);
     
         if (isFavorite) {
@@ -231,17 +226,10 @@ export default function BrandList({ category }) {
                 ...prevFavorites,
                 [category]: prevFavorites[category].filter(id => id !== itemId),
             }));
-            setFavoriteCount(prevCount => ({
-                ...prevCount,
-                [category]: {
-                    ...prevCount[category],
-                    [itemId]: (prevCount[category][itemId] || 0) - 1,
-                },
-            }));
-    
             const item = products.find(product => product.id === itemId);
             if (item) {
                 await removeItem(itemId);
+                await decrementFavoriteCount(category, itemId);
                 setSavedMessage('상품이 삭제되었습니다.');
                 setTimeout(() => setSavedMessage(''), 2000);
             }
@@ -250,17 +238,10 @@ export default function BrandList({ category }) {
                 ...prevFavorites,
                 [category]: [...(prevFavorites[category] || []), itemId],
             }));
-            setFavoriteCount(prevCount => ({
-                ...prevCount,
-                [category]: {
-                    ...prevCount[category],
-                    [itemId]: (prevCount[category][itemId] || 0) + 1,
-                },
-            }));
-    
             const item = products.find(product => product.id === itemId);
             if (item) {
                 await saveItem(item);
+                await incrementFavoriteCount(category, itemId);
                 setSavedMessage('상품이 저장되었습니다.');
                 setTimeout(() => setSavedMessage(''), 2000);
             }
@@ -291,7 +272,7 @@ export default function BrandList({ category }) {
                         active={activeTitle === 'liquor'}
                         onClick={() => handleClick('liquor')}
                     >
-                        증류주
+                        양주
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }}>
@@ -325,7 +306,7 @@ export default function BrandList({ category }) {
                             active={favorite[category]?.includes(item.id)}
                         >
                             <FaRegHeart />
-                            <FavoriteNumber>{favoriteCount[category]?.[item.id] || 0}</FavoriteNumber>
+                            <FavoriteNumber>{favoriteCounts[category]?.[item.id] || 0}</FavoriteNumber>
                         </Favorite>
                     </Product>
                 ))}
@@ -336,7 +317,7 @@ export default function BrandList({ category }) {
                 </Loader>
             )}
             <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
-            {savedMessage && <SavedMessage>{savedMessage}</SavedMessage> }
+            {savedMessage && <SavedMessage>{savedMessage}</SavedMessage>}
         </Container>
     );
 }

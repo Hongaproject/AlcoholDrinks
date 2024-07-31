@@ -34,8 +34,8 @@ const UserImg = styled.label`
 `
 
 const User = styled.img`
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
 `
 const UserName = styled.h1`
@@ -234,7 +234,7 @@ export default function Profile () {
                 </UserImg>
                 <UserName>{user ? user.name : '이름 없음'}</UserName>
                 <Store>
-                    <StoreTitle>저장 상품</StoreTitle>
+                    <StoreTitle>좋아요 상품</StoreTitle>
                     {savedItems.length > 0 ? (
                         <StoreProductContainer>
                             <PrevButton onClick={() => scroll("left")}>

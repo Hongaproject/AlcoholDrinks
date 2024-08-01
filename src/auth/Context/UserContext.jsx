@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
-import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, arrayUnion, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 const UserContext = createContext();
@@ -9,6 +9,7 @@ export const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [savedItems, setSavedItems] = useState([]);
     const [favoriteCounts, setFavoriteCounts] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -111,9 +112,27 @@ export const UserProvider = ({children}) => {
             console.error("Error decrementing favorite count: ", error);
         }
     };
+    
+    const submitText = async (text) => {
+        const user = auth.currentUser;
+        if(!user || isLoading || text === "" || text.length > 150) return; 
+        try{
+            setIsLoading(true);
+            await addDoc(collection(db, "texts"),{
+                text,
+                createdAT: Date.now(),
+                name: user.displayName || "Annoymous",
+                userId: user.uid,
+            })
+        }catch(err){
+            console.log(err);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     return (
-        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount }}>
+        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, submitText }}>
             {children}
         </UserContext.Provider>
     );

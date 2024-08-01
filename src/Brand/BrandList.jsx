@@ -272,7 +272,7 @@ export default function BrandList({ category }) {
                         active={activeTitle === 'liquor'}
                         onClick={() => handleClick('liquor')}
                     >
-                        양주
+                        증류주
                     </IntroduceTitle>
                 </Link>
                 <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }}>

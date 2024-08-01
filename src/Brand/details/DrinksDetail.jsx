@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -112,6 +112,49 @@ const SectionSpan = styled.span`
     white-space: pre-line;
 `
 
+const Form = styled.form`
+    width: calc(100% - 600px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+    margin-bottom: 160px;
+    margin-top: 80px;
+`;
+
+const TextArea = styled.textarea`
+    border: 2px solid white;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #000;
+    border: 1px solid #000;
+    resize: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    &::placeholder {
+        font-size: 16px;
+    }
+    &:focus {
+        outline: none;
+        border-color: #1d9bf0;
+    }
+`;
+
+const SubmitBtn = styled.input`
+    background-color: #1d9bf0;
+    color: white;
+    border: none;
+    padding: 10px 0px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover,
+    &:active {
+        opacity: 0.9;
+    }
+`;
+
 export default function DrinksDetail() {
     // URL 매개변수에서 category, id 가져오기
     const { category, id } = useParams();
@@ -120,6 +163,9 @@ export default function DrinksDetail() {
     // 특정 소주 항목을 저장할 상태
     const [alcoholItem, setAlcoholItem] = useState(null);
 
+    const [text, setText] = useState("");
+
+    const {isLoading, submitText} = useContext();
     // 엔드포인트에서 JSON 데이터 가져오기
     const fetchData = async () => {
         try {
@@ -159,6 +205,16 @@ export default function DrinksDetail() {
         }
     }, [category, id, allData]);
 
+    const onTextChange = (e) => {
+        setText(e.target.value);
+    }
+
+    const onSubmit = async(e) => {
+        e.preventDefault();
+        await submitText(text);
+    }
+
+    
     return (
         <Container>
             <Outline>
@@ -203,6 +259,13 @@ export default function DrinksDetail() {
                 ) : (
                     <p>로딩 중...</p>
                 )}
+            </Section>
+            <Section>
+                <SectionSub>상품평</SectionSub>
+                <Form onSubmit={onSubmit}>
+                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} />
+                    <SubmitBtn type='submit'value={isLoading ? "...Loading" : "등록"}/>
+                </Form>
             </Section>
         </Container>
     );

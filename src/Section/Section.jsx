@@ -575,8 +575,8 @@ const CImgSpanIcon = styled.div`
 `
 
 export default function Section () {
-    const imgSlide = ['','','','',''];
 
+    const imgSlide = ['','','','',''];
     const [imgArr, setImgArr] = useState(0); 
     const FIRST_SLIDE_INDEX = 0;
     const LAST_SLIDE_INDEX = imgSlide.length - 1;
@@ -602,7 +602,7 @@ export default function Section () {
 
         return () => clearInterval(autoImg);
     }, [imgArr, imgSlide.length]);
-    
+
     return(
         <Container>
             <ImgSlice>

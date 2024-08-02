@@ -5,7 +5,10 @@ import styled from "styled-components";
 import Text from "./Text";
 
 const Container = styled.div`
-    
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-top: 80px;
 `
 
 export default function Comments () {

@@ -1,7 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { auth, db } from '../../firebase';
+import { addDoc, collection } from 'firebase/firestore';
+import Comments from '../comment/Comments';
 
 const Container = styled.div`
     width: 100%;
@@ -164,8 +167,8 @@ export default function DrinksDetail() {
     const [alcoholItem, setAlcoholItem] = useState(null);
 
     const [text, setText] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
-    const {isLoading, submitText} = useContext();
     // 엔드포인트에서 JSON 데이터 가져오기
     const fetchData = async () => {
         try {
@@ -211,8 +214,23 @@ export default function DrinksDetail() {
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        await submitText(text);
+        const user = auth.currentUser;
+        if(!user || isLoading || text === "" || text.length > 100) return;  // 
+        try {
+            setIsLoading(true);
+            await addDoc(collection(db, "texts"), {
+            text, 
+            createdAT: Date.now(), 
+            username: user.displayName || "Anonymous", 
+            userId: user.uid, 
+            }) 
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setIsLoading(false);
+        }
     }
+
 
     
     return (
@@ -262,8 +280,9 @@ export default function DrinksDetail() {
             </Section>
             <Section>
                 <SectionSub>상품평</SectionSub>
+                <Comments />
                 <Form onSubmit={onSubmit}>
-                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} />
+                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} required />
                     <SubmitBtn type='submit'value={isLoading ? "...Loading" : "등록"}/>
                 </Form>
             </Section>

@@ -10,6 +10,8 @@ export const UserProvider = ({children}) => {
     const [savedItems, setSavedItems] = useState([]);
     const [favoriteCounts, setFavoriteCounts] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [err, setErr] = useState("");
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -114,25 +116,23 @@ export const UserProvider = ({children}) => {
     };
     
     const submitText = async (text) => {
-        const user = auth.currentUser;
-        if(!user || isLoading || text === "" || text.length > 150) return; 
-        try{
-            setIsLoading(true);
-            await addDoc(collection(db, "texts"),{
-                text,
-                createdAT: Date.now(),
-                name: user.displayName || "Annoymous",
-                userId: user.uid,
-            })
-        }catch(err){
-            console.log(err);
-        } finally {
-            setIsLoading(false);
-        }
+        
+    }
+
+    const submitLogin = () => {
+
+    }
+    
+    const oauthLogin = () => {
+
+    }
+
+    const submitSingout = () => {
+
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, submitText }}>
+        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, }}>
             {children}
         </UserContext.Provider>
     );

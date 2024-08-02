@@ -574,6 +574,63 @@ const CImgSpanIcon = styled.div`
     }
 `
 
+const Popup = styled.div`
+    font-family: Arial, sans-serif;
+    text-align: center;
+`;
+
+const PopupOverlay = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const PopupContent = styled.div`
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+`;
+
+const CloseButton = styled.span`
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        color: #000;
+    }
+`;
+
+const Content = styled.div`
+    margin-top: 80px;
+    margin-bottom: 80px;
+`
+
+const ContentSpan = styled.span`
+    font-size: 20px;
+    line-height: 1.6;
+`
+const ContextTitle = styled.h2`
+    font-size: 28px;
+    font-weight: 700;
+`
+
 export default function Section () {
 
     const imgSlide = ['','','','',''];
@@ -581,6 +638,7 @@ export default function Section () {
     const FIRST_SLIDE_INDEX = 0;
     const LAST_SLIDE_INDEX = imgSlide.length - 1;
     const MOVE_SLIDE_INDEX = 1; 
+    const [isOpen, setIsOpen] = useState(false);
 
     const moveSlide = (value) => {
         if(value === 'next'){
@@ -602,9 +660,39 @@ export default function Section () {
 
         return () => clearInterval(autoImg);
     }, [imgArr, imgSlide.length]);
+    
+    useEffect(() => {
+        setIsOpen(true);
+    }, [])
+
+    const closePopup = () => {
+        setIsOpen(false);
+    }
 
     return(
         <Container>
+            <Popup>
+                {
+                    isOpen && (
+                        <PopupOverlay>
+                            <PopupContent>
+                                <CloseButton onClick={closePopup}>&times;</CloseButton>
+                                <Content>
+                                    <ContentSpan>
+                                        <ContextTitle>필독해 주세요!! 읽어주셔서 감사합니다.</ContextTitle><br /><br />
+                                        처음 만든 페이지다 보니 오류나 불편한 사항이 있을 수 있습니다. <br />이 점은 먼저 사죄드립니다.<br /><br />
+                                        오류나 불편한 사항, 데이터 추가 요청 등이 있을 시 저에게 말씀해 주시면 <br />
+                                        신속하게 해결하여 더 나은 서비스로 보답하겠습니다.<br /><br />
+                                        왼쪽에 있는 비행기 모양 아이콘을 클릭하시면 저에게 메일을 발송하실 수 있습니다.<br /><br />
+                                        현재 데이터는 무료 버전으로 제공되고 있어 자동 업데이트가 되지 않습니다. <br />이럴 경우, 페이지를 새로 고침하시면 데이터가 정상적으로 작동합니다. <br /><br />
+                                        다시 한번 사이트에 방문해 주셔서 감사드립니다.
+                                    </ContentSpan>
+                                </Content>
+                            </PopupContent>
+                        </PopupOverlay> 
+                    )
+                }
+            </Popup>
             <ImgSlice>
                 <Slide>
                     <PrevButton onClick={()=> moveSlide('prev')}>

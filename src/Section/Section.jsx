@@ -662,11 +662,15 @@ export default function Section () {
     }, [imgArr, imgSlide.length]);
     
     useEffect(() => {
-        setIsOpen(true);
+        const popupClose = sessionStorage.getItem('popupClosed');
+        if(!popupClose){
+            setIsOpen(true);
+        }
     }, [])
 
     const closePopup = () => {
         setIsOpen(false);
+        sessionStorage.setItem('popupClosed', 'true');
     }
 
     return(

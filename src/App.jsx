@@ -16,6 +16,7 @@ import BrandList from "./Brand/BrandList";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import Profile from "./auth/Profile";
+import ServiceMail from "./Section/mail/ServiceMail";
 
 function App() {
 
@@ -105,6 +106,10 @@ function App() {
     {
       path: '/profile',
       element: <Profile />
+    },
+    {
+      path: '/mail',
+      element: <ServiceMail />
     }
   ])
 

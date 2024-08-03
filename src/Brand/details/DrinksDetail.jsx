@@ -6,6 +6,7 @@ import { auth, db } from '../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import Comments from '../comment/Comments';
 
+
 const Container = styled.div`
     width: 100%;
     height: 100%;

@@ -1,8 +1,6 @@
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, githubProvider, googleProvider } from "../firebase";
-import { FirebaseError } from "firebase/app";
+import { githubProvider, googleProvider } from "../firebase";
 import styled from "styled-components";
 import { useUserContext } from "./Context/UserContext";
 
@@ -113,10 +111,8 @@ export default function Login() {
     // Firebase를 사용해서 로그인 구현
     const [email, setEmail] =  useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [err, setErr] = useState("");
     const navigate = useNavigate();
-    const {setUser} = useUserContext();
+    const {submitOauth, submitLogin, err, isLoading} = useUserContext();
     
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -129,36 +125,16 @@ export default function Login() {
 
     const onSubmit = async(e) => {  
         e.preventDefault();
-        setErr("");
-        if(isLoading || email === "" || password === "") return;
-        try{
-            setIsLoading(true);
-            const userSignup = await signInWithEmailAndPassword(auth, email, password);
-            const user = userSignup.user;
-            setUser({ name: user.displayName, photoURL: user.photoURL }) // Context에 사용자 정보 설정
+        const user = await submitLogin(email, password);
+        if(user){
             navigate('/');
-        } catch(e){
-            if(e instanceof FirebaseError){
-                setErr(e.message);
-            }
-        } finally{
-            setIsLoading(false);
         }
     }
 
     const onClick = async(provider) => {
-        try{
-            setIsLoading(true);
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            setUser({ name: user.displayName, photoURL: user.photoURL }); // Context에 사용자 정보 설정 photoURL
+        const user = await submitOauth(provider);
+        if(user){
             navigate('/');
-        } catch(e){
-            if(e instanceof FirebaseError){
-                setErr(e.message);
-            }
-        } finally{
-            setIsLoading(false);
         }
     }
 

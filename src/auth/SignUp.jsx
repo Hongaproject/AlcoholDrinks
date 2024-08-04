@@ -70,10 +70,9 @@ export default function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [err, setErr] = useState("");
     const navigate = useNavigate();  
-    const {setUser} = useUserContext(); 
+    const {submitSignUp, err, isLoading} = useUserContext();
+
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -88,22 +87,12 @@ export default function SignUp() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setErr("");
         if (isLoading || name === "" || email === "" || password === "") return;
-        try {
-            setIsLoading(true);
-            const userCreate = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCreate.user, { displayName: name}); // 사용자 프로필 업데이트 name
-            setUser({ name }); // Context에 사용자 정보 설정
+        const user = await submitSignUp(name, email, password);
+        if(user){
             navigate('/login');
-        } catch (e) {
-            if (e instanceof FirebaseError) {
-                setErr(e.message);
-            }
-        } finally {
-            setIsLoading(false);
         }
-    }
+    }  
 
     return (
         <Container>

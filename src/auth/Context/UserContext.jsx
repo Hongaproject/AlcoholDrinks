@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { addDoc, arrayUnion, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 
 const UserContext = createContext();
 
@@ -115,24 +116,63 @@ export const UserProvider = ({children}) => {
         }
     };
     
-    const submitText = async (text) => {
-        
+    const submitSignUp = async(name, email, password) => {
+        setErr("");
+        if (isLoading || name === "" || email === "" || password === "") return;
+        try {
+            setIsLoading(true);
+            const userCreate = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(userCreate.user, { displayName: name }); // 사용자 프로필 업데이트
+            setUser({ name }); // Context에 사용자 정보 설정
+            const userDocRef = doc(db, 'users', userCreate.user.uid);
+            await setDoc(userDocRef, { savedItems: [] });
+            return userCreate.user;
+        } catch (e) {
+            if (e instanceof FirebaseError) {
+                setErr(e.message);
+            }
+        } finally {
+            setIsLoading(false);
+        }
+
     }
 
-    const submitLogin = () => {
-
+    const submitLogin = async (email, password) => {
+        setErr("");
+        if(isLoading || email === "" || password === "") return;
+        try{
+            setIsLoading(true);
+            const userSignup = await signInWithEmailAndPassword(auth, email, password);
+            const user = userSignup.user;
+            setUser({ name: user.displayName, photoURL: user.photoURL }) // Context에 사용자 정보 설정
+            return user;
+        } catch(e){
+            if(e instanceof FirebaseError){
+                setErr(e.message);
+            }
+        } finally{
+            setIsLoading(false);
+        }
     }
-    
-    const oauthLogin = () => {
 
-    }
-
-    const submitSingout = () => {
-
+    const submitOauth = async(provider) => {
+        try{
+            setIsLoading(true);
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            setUser({ name: user.displayName, photoURL: user.photoURL }); // Context에 사용자 정보 설정 photoURL
+            return user;
+        } catch(e){
+            if(e instanceof FirebaseError){
+                setErr(e.message);
+            }
+        } finally{
+            setIsLoading(false);
+        }
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, }}>
+        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, isLoading, err, submitLogin, submitOauth, submitSignUp}}>
             {children}
         </UserContext.Provider>
     );

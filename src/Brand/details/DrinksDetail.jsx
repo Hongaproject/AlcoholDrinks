@@ -224,6 +224,8 @@ export default function DrinksDetail() {
             createdAT: Date.now(), 
             username: user.displayName || "Anonymous", 
             userId: user.uid, 
+            productId: id,
+            category: category
             }) 
         } catch (err) {
             console.log(err);
@@ -281,7 +283,7 @@ export default function DrinksDetail() {
             </Section>
             <Section>
                 <SectionSub>상품평</SectionSub>
-                <Comments />
+                {alcoholItem && <Comments category={category} productId={id} />}
                 <Form onSubmit={onSubmit}>
                     <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} required />
                     <SubmitBtn type='submit'value={isLoading ? "...Loading" : "등록"}/>

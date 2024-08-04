@@ -1,4 +1,4 @@
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import styled from "styled-components";
@@ -11,11 +11,14 @@ const Container = styled.div`
     margin-top: 80px;
 `
 
-export default function Comments () {
+export default function Comments ({category, productId}) {
     const [texts, setTexts] = useState([]);
     const fetchTexts = async() => {
+        if(!productId) return;
         const textsQuery = query(
             collection(db, "texts"),
+            where("productId", "==", productId),
+            where("category", "==", category),
             orderBy("createdAT", "desc"),
             limit(10)
         );
@@ -31,7 +34,7 @@ export default function Comments () {
 
     useEffect(() => {
         fetchTexts();
-    }, []);
+    }, [category, productId]);
 
     return(
         <Container>

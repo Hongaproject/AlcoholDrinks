@@ -33,6 +33,8 @@ const Outline = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 140px;
+    justify-content: flex-start;
+    align-items: flex-start;
 `;
 
 const Companys = styled.div`
@@ -42,7 +44,7 @@ const Companys = styled.div`
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
-    margin: auto;
+    margin-bottom: 60px;
 `;
 
 const CompanyImg = styled.img`  
@@ -86,12 +88,12 @@ const PageNumber = styled.span`
     margin: 0 10px;
 `;
 
-export default function Company () {
+export default function Company() {
     const [companyImg, setCompanyImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
 
-    const companyImgApi = async() => {
+    const companyImgApi = async () => {
         const res = await axios.get("/db/company.json");
         setCompanyImg(res.data.company.filter(item => item.name !== ""));
     }
@@ -119,7 +121,7 @@ export default function Company () {
         }
     };
 
-    return(
+    return (
         <Container>
             <IntroduceTitle>주류 회사 소개</IntroduceTitle>
             <Link to='/shop' style={{ textDecoration: "none", color: "#000" }}>

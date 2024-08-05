@@ -46,17 +46,17 @@ const Outline = styled.div`
 `;
 
 const Shops = styled.div`
-    width: 600px;
+    width: 500px;
     height: 200px;
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
-    margin-bottom: 60px;
+    margin: auto;
 `
 
 const ShopImg = styled.img`  
-    width: 600px;
+    width: 500px;
     height: 200px;
     object-fit: contain;
 `
@@ -79,6 +79,7 @@ const PaginationControls = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+    margin-top: 160px;
 `;
 
 const PaginationButton = styled.button`

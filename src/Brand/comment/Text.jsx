@@ -43,32 +43,35 @@ const SaveButton = styled(Button)`
 `
 
 export default function Text ({username, text, userId, id}) {
-
+    
     const [isEditMod, setIsEditMod] = useState(false);
     const [editText, setEditText] = useState(text);
 
-    const user = auth.currentUser;
-    const onDelete = async() => {
+    const user = auth.currentUser; // 인증된 사용자 정보
+
+    // 텍스트 삭제 함수
+    const onDelete = async() => { 
         const ok = window.confirm("삭제 하시겠습니까?")
         if(!ok || user?.uid !== userId) return;
         try{
             await deleteDoc(doc(db, "texts", id))
         } catch (err) {
             console.log(err);
-        } finally {
-
         }
     }
 
+    // 텍스트 수정 함수 
     const onEdit = async() => {
         if(user?.uid !== userId) return;
         setIsEditMod(true);
     }
 
+    // 텍스트 수정 취소 함수
     const onCancel = () => {
         setIsEditMod(false);
     }
 
+    // 텍스트 저장 함수
     const onSave = async() => {
         if(user?.uid !== userId) return;
         try{
@@ -77,11 +80,8 @@ export default function Text ({username, text, userId, id}) {
             setIsEditMod(false);
         } catch (err) {
             console.log(err);
-        } finally {
-
         }
     }
-
 
     return(
         <Container>
@@ -89,16 +89,16 @@ export default function Text ({username, text, userId, id}) {
                 <Username>{username}</Username>
                 <Payload>
                 {
-                        isEditMod ? (
-                            <>
-                                <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
-                            </>
-                        ) : (
-                            <>
-                                {text}
-                            </>
-                        )
-                    }    
+                    isEditMod ? (
+                        <>
+                            <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
+                        </>
+                    ) : (
+                        <>
+                            {text}
+                        </>
+                    )
+                }    
                 </Payload>
                 {
                     user?.uid === userId ? (

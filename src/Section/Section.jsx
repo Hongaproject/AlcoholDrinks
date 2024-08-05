@@ -766,8 +766,8 @@ export default function Section () {
                         <LiquorNewTitle>신제품</LiquorNewTitle>
                     </LiquorNewText>
                     <LiquorNewText>
-                        <LiquorNewSpan>증류주</LiquorNewSpan>
-                        <LiquorNewSpan>신제품</LiquorNewSpan>
+                        <LiquorNewSpan>증류주 입니다.</LiquorNewSpan>
+                        <LiquorNewSpan>신제품 입니다.</LiquorNewSpan>
                     </LiquorNewText>
                 </LiquorNewC>
             </Main>

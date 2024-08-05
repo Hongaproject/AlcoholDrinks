@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,8 +24,6 @@ width: 64px;
 `
 
 export default function Sidebtn () {
-
-    const navigate = useNavigate('');
 
     const moveTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth'})

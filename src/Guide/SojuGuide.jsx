@@ -47,6 +47,7 @@ const CommonSenseContent = styled.span`
 `
 
 export default function SojuGuide () {
+    
     return(
         <Container>
             <MainTitle>소주상식 가이드</MainTitle>

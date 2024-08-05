@@ -67,12 +67,12 @@ const Error = styled.span`
 `;
 
 export default function SignUp() {
+    
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();  
-    const {submitSignUp, err, isLoading} = useUserContext();
-
+    const {submitSignUp, err, isLoading} = useUserContext(); // Context에서 회원가입 함수 가져옴
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -85,6 +85,7 @@ export default function SignUp() {
         }
     }
 
+    // 회원가입 폼 제출 시 호출되는 함수
     const onSubmit = async (e) => {
         e.preventDefault();
         if (isLoading || name === "" || email === "" || password === "") return;

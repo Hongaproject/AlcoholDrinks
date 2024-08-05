@@ -47,6 +47,7 @@ const CommonSenseContent = styled.span`
 `
 
 export default function MakgeolliGuide () {
+    
     return(
         <Container>
             <MainTitle>막걸리상식 가이드</MainTitle>

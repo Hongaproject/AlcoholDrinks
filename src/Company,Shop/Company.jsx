@@ -89,32 +89,38 @@ const PageNumber = styled.span`
 `;
 
 export default function Company() {
+    
     const [companyImg, setCompanyImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
 
+    // API로 company 데이터를 가져 옴
     const companyImgApi = async () => {
         const res = await axios.get("/db/company.json");
-        setCompanyImg(res.data.company.filter(item => item.name !== ""));
+        setCompanyImg(res.data.company.filter(item => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
     }
 
+    // 컴포넌트 마운트시 회사 이미지 데이터 가져오기
     useEffect(() => {
         companyImgApi();
     }, []);
 
-    const totalPages = Math.ceil(companyImg.length / companiesPerPage);
+    const totalPages = Math.ceil(companyImg.length / companiesPerPage); // 총 페이지수 계산
 
+    // 현재 페이지에 해당하는 회사 이미지 목록을 slice해서 가져옴
     const currentCompanies = companyImg.slice(
         (currentPage - 1) * companiesPerPage,
         currentPage * companiesPerPage
     );
 
+    // 이전 페이지 이동 함수
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
 
+    // 다음 페이지 이동 함수
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);

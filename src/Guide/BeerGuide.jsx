@@ -47,6 +47,7 @@ const CommonSenseContent = styled.span`
 `
 
 export default function BeerGuide () {
+    
     return(
         <Container>
             <MainTitle>맥주상식 가이드</MainTitle>

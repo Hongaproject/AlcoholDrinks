@@ -160,13 +160,10 @@ const SubmitBtn = styled.input`
 `;
 
 export default function DrinksDetail() {
-    // URL 매개변수에서 category, id 가져오기
-    const { category, id } = useParams();
-    // 데이터를 저장할 상태
-    const [allData, setAllData] = useState([]);
-    // 특정 소주 항목을 저장할 상태
-    const [alcoholItem, setAlcoholItem] = useState(null);
-
+    
+    const { category, id } = useParams(); // URL 매개변수에서 category, id 가져오기
+    const [allData, setAllData] = useState([]); // 데이터를 저장할 상태
+    const [alcoholItem, setAlcoholItem] = useState(null); // 특정 소주 항목을 저장할 상태
     const [text, setText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -201,7 +198,7 @@ export default function DrinksDetail() {
         fetchData();
     }, []);
 
-    // id를 기반으로 특정 소주 항목 필터링
+    // 카테고리와 아이디를 기반으로 특정 항목 필터링
     useEffect(() => {
         if (allData.length > 0) {
             const foundItem = allData.find((item) => item.category === category && item.id === parseInt(id));
@@ -213,6 +210,7 @@ export default function DrinksDetail() {
         setText(e.target.value);
     }
 
+    // 폼 제출 함수 -> 텍스트를 Firestore에 추가
     const onSubmit = async(e) => {
         e.preventDefault();
         const user = auth.currentUser;
@@ -233,8 +231,6 @@ export default function DrinksDetail() {
             setIsLoading(false);
         }
     }
-
-
     
     return (
         <Container>

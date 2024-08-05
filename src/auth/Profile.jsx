@@ -162,23 +162,23 @@ const NextButton = styled.div`
 
 export default function Profile () {
     
-    const {user, savedItems} = useUserContext();
+    const {user, savedItems} = useUserContext(); // Context에서 사용자 및 저장된 정보 가져옴
     const navigate = useNavigate();
     const storeProductRef = useRef(null);
 
+    // 방향에 따라 컨테이너를 스크롤 할 수 있는 스크롤 함수
     const scroll = (direction) => {
         if (storeProductRef.current) {
             const scrollAmount = 230; // 스크롤할 너비 설정
             if (direction === "left") {
-                storeProductRef.current.scrollLeft -= scrollAmount;
+                storeProductRef.current.scrollLeft -= scrollAmount; 
             } else {
-                storeProductRef.current.scrollLeft += scrollAmount;
+                storeProductRef.current.scrollLeft += scrollAmount; 
             }
         }
     }
 
-
-
+    // 로그아웃 함수
     const Logout = () => {
         const ok = window.confirm("로그아웃을 하시겠습니까?");
         if(ok) {

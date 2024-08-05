@@ -131,24 +131,26 @@ const FavoriteNumber = styled.span`
 
 // Main Component
 export default function BrandList({ category }) {
-    const { user, saveItem, savedItems, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount } = useUserContext();
     
-    const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const loader = useRef(null);
-    const location = useLocation();
-    const [favorite, setFavorite] = useState({});
-    const [savedMessage, setSavedMessage] = useState('');
-    const [activeTitle, setActiveTitle] = useState('');
-    const navigate = useNavigate('');
+    const { user, saveItem, savedItems, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount } = useUserContext(); // Context함수에서 기능 가져오기
+    
+    const [products, setProducts] = useState([]); // 제품 목록을 저장할 상태 변수
+    const [page, setPage] = useState(0); // 현재 페이지 번호 상태 변수
+    const [loading, setLoading] = useState(false); // 
+    const loader = useRef(null); // IntersectionObserver를 위한 참조 변수
+    const location = useLocation(); // 현재 위치 
+    const [favorite, setFavorite] = useState({}); // 즐겨찾기 상태 변수
+    const [savedMessage, setSavedMessage] = useState(''); // 저장/삭제 메시지 변수
+    const [activeTitle, setActiveTitle] = useState(''); // 활성화된 제목 상태 변수
+    const navigate = useNavigate(''); // 페이지 이동
 
+    // API에서 데이터 가져오고 8개씩 보여주게 설정
     const imgAPi = async (page = 1) => {
         if (page <= 0) return;
         setLoading(true);
         try {
-            const res = await axios.get(`/db/brand${category}.json`);
-            const data = res.data[category].map(item => ({ ...item, category }));
+            const res = await axios.get(`/db/brand${category}.json`); 
+            const data = res.data[category].map(item => ({ ...item, category })); 
             const newProducts = data.slice((page - 1) * 8, page * 8);
             setProducts(prevProducts => [...prevProducts, ...newProducts]);
         } catch (error) {
@@ -157,6 +159,7 @@ export default function BrandList({ category }) {
         setLoading(false);
     };
 
+    // 카테고리와 저장된 항목에 따라 즐겨찾기 상태 업데이트
     useEffect(() => {
         setProducts([]);
         setPage(0);
@@ -171,12 +174,14 @@ export default function BrandList({ category }) {
         }
     }, [category, location.pathname, savedItems]);
 
+    // 페이지 변경시 데이터 가져오기
     useEffect(() => {
         if (page > 0) {
             imgAPi(page);
         }
     }, [page]);
 
+    // 현재 경로에 따라 카테고리 변경
     useEffect(() => {
         switch (location.pathname) {
             case `/brand/${category}`:
@@ -187,18 +192,21 @@ export default function BrandList({ category }) {
         }
     }, [location.pathname, category]);
 
+    // 제목 클릭 시 활성화된 제목 설정
     const handleClick = (title) => {
         setActiveTitle(title);
     };
 
+    // 무한 스크롤 설정
     useEffect(() => {
+        // IntersectionObserver를 사용하여 스크롤 감지
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setPage(prevPage => prevPage + 1);
+                    setPage(prevPage => prevPage + 1); 
                 }
             });
-        }, { threshold: 1.0 });
+        }, { threshold: 1.0 }); // 화면에 100% 보일 때 감지
 
         if (loader.current) {
             observer.observe(loader.current);
@@ -211,17 +219,18 @@ export default function BrandList({ category }) {
         };
     }, []);
 
+    // 제품 즐겨찾기 상태 토굴 함수
     const handleHeart = async (itemId) => {
-        if (!user) {
-            // 로그인하지 않은 상태일 경우 알림 표시
+        if (!user) { // 로그인하지 않은 상태일 경우 알림 표시
             alert('로그인 후 이용하실 수 있습니다.');
             navigate('/login');
             return;
         }
 
-        const isFavorite = favorite[category]?.includes(itemId);
+        const isFavorite = favorite[category]?.includes(itemId); // 현재 항목이 즐겨찾기 인지 확인 
     
         if (isFavorite) {
+            // 즐겨찾기 항목 제거
             setFavorite(prevFavorites => ({
                 ...prevFavorites,
                 [category]: prevFavorites[category].filter(id => id !== itemId),
@@ -234,6 +243,7 @@ export default function BrandList({ category }) {
                 setTimeout(() => setSavedMessage(''), 2000);
             }
         } else {
+            // 즐겨찾기 항목 추가
             setFavorite(prevFavorites => ({
                 ...prevFavorites,
                 [category]: [...(prevFavorites[category] || []), itemId],

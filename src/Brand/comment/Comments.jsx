@@ -36,12 +36,14 @@ const PageNumber = styled.span`
 `;
 
 export default function Comments({ category, productId }) {
+    
     const [texts, setTexts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [lastVisible, setLastVisible] = useState(null);
-    const [totalPages, setTotalPages] = useState(1); // 기본값을 1로 설정
+    const [totalPages, setTotalPages] = useState(1); 
     const textsPerPage = 5;
 
+    // 전체 텍스트 개수 가져오는 함수
     const fetchTotalTextsCount = async () => {
         const textsQuery = query(
             collection(db, "texts"),
@@ -52,6 +54,7 @@ export default function Comments({ category, productId }) {
         return snapshot.data().count;
     };
 
+    // 페이지를 따라 텍스트를 가져오는 함수
     const fetchTexts = async (page) => {
         if (!productId) return;
         
@@ -79,22 +82,25 @@ export default function Comments({ category, productId }) {
         setTexts(newTexts);
     };
 
+    // 페이지와 관련된 데이터를 초기화하는 useEffect
     useEffect(() => {
         const initializePagination = async () => {
             const totalCount = await fetchTotalTextsCount();
             const calculatedTotalPages = Math.ceil(totalCount / textsPerPage);
-            setTotalPages(calculatedTotalPages > 0 ? calculatedTotalPages : 1); // 최소 페이지 수를 1로 설정
+            setTotalPages(calculatedTotalPages > 0 ? calculatedTotalPages : 1);
             fetchTexts(currentPage);
         };
         initializePagination();
     }, [category, productId, currentPage]);
 
+    // 이전 페이지로 이동하는 함수
     const handlePrevPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
 
+    // 다음 페이지로 이동하는 함수
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -108,7 +114,7 @@ export default function Comments({ category, productId }) {
                 <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
                     이전
                 </PaginationButton>
-                <PageNumber>{totalPages === 0 ? 1 : currentPage} / {totalPages === 0 ? 1 : totalPages}</PageNumber>
+                <PageNumber>{currentPage} / {totalPages}</PageNumber>
                 <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 0}>
                     다음
                 </PaginationButton>

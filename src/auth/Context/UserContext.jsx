@@ -4,20 +4,24 @@ import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
+// UserContext 생성 
+// 애플리케이션 전역 상태를 관리하는데 사용
 const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
+    
     const [user, setUser] = useState(null);
     const [savedItems, setSavedItems] = useState([]);
     const [favoriteCounts, setFavoriteCounts] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [err, setErr] = useState("");
 
-
+    // 사용자 인증 상태 변화 감지 및 처리
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             try {
                 if (currentUser) {
+                    // 사용자 정보 업데이트
                     setUser({ name: currentUser.displayName, photoURL: currentUser.photoURL });
                     const userDocRef = doc(db, 'users', currentUser.uid);
                     const userDoc = await getDoc(userDocRef);
@@ -34,9 +38,10 @@ export const UserProvider = ({children}) => {
                 console.error("Error in auth state change: ", error);
             }
         });
-        return () => unsubscribe(); // Ensure the listener is unsubscribed on component unmount
+        return () => unsubscribe(); // 언마운트시 해제
     }, []);
 
+    // 저장 상품 숫자 초기화
     useEffect(() => {
         const fetchFavoriteCounts = async () => {
             try {
@@ -55,6 +60,7 @@ export const UserProvider = ({children}) => {
         fetchFavoriteCounts();
     }, []);
 
+    // 저장 상품 함수
     const saveItem = async (item) => {
         if (user) {
             try {
@@ -67,8 +73,9 @@ export const UserProvider = ({children}) => {
                 console.error("Error saving item: ", error);
             }
         }
-    };
+    };  
 
+    // 저장 상품 삭제 함수
     const removeItem = async (itemId) => {
         if (user) {
             try {
@@ -85,6 +92,7 @@ export const UserProvider = ({children}) => {
         }
     };
 
+    // 저장 상품 카운터 증가 함수
     const incrementFavoriteCount = async (category, itemId) => {
         try {
             const countsDocRef = doc(db, 'favoriteCounts', 'global');
@@ -101,6 +109,7 @@ export const UserProvider = ({children}) => {
         }
     };
 
+    // 저장 상품 카운터 감소 함수
     const decrementFavoriteCount = async (category, itemId) => {
         try {
             const countsDocRef = doc(db, 'favoriteCounts', 'global');
@@ -116,6 +125,7 @@ export const UserProvider = ({children}) => {
         }
     };
     
+    // 사용자 가입 함수
     const submitSignUp = async(name, email, password) => {
         setErr("");
         if (isLoading || name === "" || email === "" || password === "") return;
@@ -137,6 +147,7 @@ export const UserProvider = ({children}) => {
 
     }
 
+    // 사용자 로그인 함수
     const submitLogin = async (email, password) => {
         setErr("");
         if(isLoading || email === "" || password === "") return;
@@ -155,6 +166,7 @@ export const UserProvider = ({children}) => {
         }
     }
 
+    // OAuth 로그인 함수
     const submitOauth = async(provider) => {
         try{
             setIsLoading(true);

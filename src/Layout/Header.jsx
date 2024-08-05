@@ -128,10 +128,7 @@ const ContentsRecently = styled.div`
     flex-direction: column; /* 세로 정렬 */
     align-items: center; /* 중앙 정렬 */
 `
-const RecentlyText = styled.h2`
-    font-size: 20px;
-    margin-bottom: 20px;
-`
+
 const ContentsBoxes = styled.div`
     display: flex;
     flex-wrap: wrap; /* 여러 줄로 나눠서 배치 */
@@ -196,6 +193,7 @@ const AvatarUpload = styled.label`
 `;
 
 export default function Header() {
+    
     const [modalOpen, setModalOpen] = useState(false); // 모달 창 열고 닫기
     const modalBackground = useRef(); // 모달 창 뒷배경 참조
 
@@ -249,15 +247,17 @@ export default function Header() {
         jsonData();
     }, []);
 
+    // 검색 입력 값에 따라 데이터를 필터링하는 함수
     const searchChange = (e) => {
         const value = e.target.value.trim().toLowerCase();
         setSearch(value);
 
+        // 입력 값이 존해하는 경우
         if(value){
             // 입력 값에 따라 데이터를 필터링
             const filtered = brandData.filter((item) => {
-                const name = item.name ? item.name.toLowerCase() : '';
-            // 정확히 일치하는 항목을 필터링
+                const name = item.name ? item.name.toLowerCase() : ''; // 시작 부분이 입력 값과 일치하는지 확인
+                // 입력 값으로 시작하는 항목만 필터링
                 return name.startsWith(value);
             });
             setFilterBrand(filtered);
@@ -266,7 +266,7 @@ export default function Header() {
         }
     }
 
-    const {user} = useUserContext();
+    const {user} = useUserContext(); // Context에서 사용자 정보 가져옴
 
     return (
         <Container>
@@ -343,13 +343,6 @@ export default function Header() {
                                 </ContentSearchClose>
                             </ContentSearch>
                             <ContentsRecently>
-                                <RecentlyText>최근 본 상품</RecentlyText>
-                                <ContentsBoxes>
-                                    <ContentsBox>1</ContentsBox>
-                                    <ContentsBox>2</ContentsBox>
-                                    <ContentsBox>3</ContentsBox>
-                                    <ContentsBox>4</ContentsBox>
-                                </ContentsBoxes>
                                 <ContentsBoxes>
                                     {
                                         filterBrand.map((item) => (

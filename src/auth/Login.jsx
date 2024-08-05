@@ -108,11 +108,11 @@ const SignupLink = styled.span`
 
 
 export default function Login() {
-    // Firebase를 사용해서 로그인 구현
+    
     const [email, setEmail] =  useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const {submitOauth, submitLogin, err, isLoading} = useUserContext();
+    const {submitOauth, submitLogin, err, isLoading} = useUserContext(); // Context에서 로그인 및 OAuth 함수 가져오기
     
     const onChange = (e) => {
         const {name, value} = e.target;
@@ -123,6 +123,7 @@ export default function Login() {
         }
     }
 
+    // 로그인 폼 제출 시 호출되는 함수 
     const onSubmit = async(e) => {  
         e.preventDefault();
         const user = await submitLogin(email, password);
@@ -131,6 +132,7 @@ export default function Login() {
         }
     }
 
+    // OAuth 제공 로그인 시 호출되는 함수
     const onClick = async(provider) => {
         const user = await submitOauth(provider);
         if(user){

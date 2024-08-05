@@ -163,7 +163,7 @@ const SojuImg = styled.div`
     float: left;
     border: 1px solid #000;
     color: #000;
-    background-image: url("/img/brand/soju/chamiseul.png");
+    background-image: url("/img/home/chamiseul.jpg");
     background-size: cover;
     background-position: center;
 `

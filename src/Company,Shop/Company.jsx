@@ -38,17 +38,17 @@ const Outline = styled.div`
 `;
 
 const Companys = styled.div`
-    width: 600px;
+    width: 500px;
     height: 200px;
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
-    margin-bottom: 60px;
+    margin: auto;
 `;
 
 const CompanyImg = styled.img`  
-    width: 600px;
+    width: 500px;
     height: 200px;
     object-fit: contain;
 `;
@@ -68,6 +68,7 @@ const PaginationControls = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 160px;
     margin-bottom: 100px;
 `;
 

@@ -5,7 +5,7 @@
 ## 화면 구성
 소개하는 페이지다보니 사진이 많아서 자세한 내용은 블로그에서 확인해주세요.
 
-## 프로젝트 상세
+## 프로젝트 상세 - chrome을 기준으로 제작했습니다.
 서비스화면
 ![screencapture-localhost-3000-2024-08-05-16_33_48](https://github.com/user-attachments/assets/028dbb51-6236-4d34-9215-ae5144049f97)
 

@@ -106,7 +106,7 @@ export default function ServiceMail() {
     return (
         <Background>
             <Container>
-                <Title>문의 사항</Title>
+                <Title>문의 사항 - 실제로 메일이 전송됩니다!</Title>
                 <Form onSubmit={onSubmit}>
                     <Input
                         type="text"

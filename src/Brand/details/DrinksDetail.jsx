@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { auth, db } from '../../firebase';
 import { addDoc, collection } from 'firebase/firestore';
@@ -166,6 +166,7 @@ export default function DrinksDetail() {
     const [alcoholItem, setAlcoholItem] = useState(null); // 특정 소주 항목을 저장할 상태
     const [text, setText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate('');
 
     // 엔드포인트에서 JSON 데이터 가져오기
     const fetchData = async () => {
@@ -214,7 +215,14 @@ export default function DrinksDetail() {
     const onSubmit = async(e) => {
         e.preventDefault();
         const user = auth.currentUser;
-        if(!user || isLoading || text === "" || text.length > 100) return;  // 
+        if (!user) { // 로그인하지 않은 상태일 경우 알림 표시
+            alert('로그인 후 이용하실 수 있습니다.');
+            navigate('/login');
+            return;
+        }
+
+        if(!user || isLoading || text === "" || text.length > 100) return;  
+
         try {
             setIsLoading(true);
             await addDoc(collection(db, "texts"), {

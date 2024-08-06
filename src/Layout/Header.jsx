@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import '../Font/Font.css'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useUserContext } from "../auth/Context/UserContext";
@@ -47,9 +47,24 @@ const MenuItem = styled.li`
     position: relative;
     cursor: pointer;
     color: #000;
-    &:hover{
-        border-bottom: 2px solid #000;
+    &::after {
+        content: '';
+        display: block;
+        width: 0; /* 기본적으로 밑줄 길이 0으로 설정 */
+        height: 2px; /* 밑줄 두께 */
+        background: #000; /* 밑줄 색상 */
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%); /* 가운데 정렬 */
+        transition: width 0.3s ease; /* 부드러운 애니메이션 */
     }
+
+    ${(props) => props.active && `
+        &::after {
+            width: 80%; /* 클릭된 메뉴 항목의 밑줄 길이 조정 */
+        }
+    `}
 `;
 
 const SearchLogin = styled.div`
@@ -268,6 +283,8 @@ export default function Header() {
 
     const {user} = useUserContext(); // Context에서 사용자 정보 가져옴
 
+    const location = useLocation();
+
     return (
         <Container>
             <Nav>
@@ -277,24 +294,24 @@ export default function Header() {
                     </Logo>
                 </Link>
                 <MenuList>
-                    <MenuItem>
+                    <MenuItem active={location.pathname === '/story'}>
                         <Link to='/story' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Story
                         </Link>   
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem active={location.pathname === '/brand/soju'}>
                         <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Brand
                         </Link>   
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem active={location.pathname === '/company'}>
                         <Link to='/company' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Company
                         </Link> 
                     </MenuItem>
-                    <MenuItem>
+                    <MenuItem active={location.pathname === '/guide'}>
                         <Link to='/guide' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
-                            Alcohol Guide
+                            Guide
                         </Link> 
                     </MenuItem>
                 </MenuList>

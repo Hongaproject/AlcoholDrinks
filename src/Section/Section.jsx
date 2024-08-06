@@ -487,7 +487,7 @@ const CollectionSub = styled.div`
 `
 
 const CollectionText = styled.div`
-    width: 480px;
+    width: 550px;
     height: 90px;
     position: absolute;
     top: 20%;
@@ -574,6 +574,7 @@ const CImgSpanIcon = styled.div`
     }
 `
 
+// popup
 const Popup = styled.div`
     font-family: Arial, sans-serif;
     text-align: center;

@@ -41,7 +41,7 @@ export default function Comments({ category, productId }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [lastVisible, setLastVisible] = useState(null);
     const [totalPages, setTotalPages] = useState(1); 
-    const textsPerPage = 5;
+    const textsPerPage = 10;
 
     // 전체 텍스트 개수 가져오는 함수
     const fetchTotalTextsCount = async () => {

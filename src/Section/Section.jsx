@@ -132,7 +132,7 @@ const Soju = styled.div`
     }
 
     &::after {
-        content: '국내 소주 브랜드를 소개해 드립니다..';
+        content: '국내 소주 브랜드를 소개해 드립니다.';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -216,7 +216,7 @@ const Beer = styled.div`
     }
 
     &::after {
-        content: '국내 맥주 브랜드를 소개해 드립니다..';
+        content: '국내 맥주 브랜드를 소개해 드립니다.';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -308,7 +308,7 @@ const MakgeolliImg = styled.div`
     }
 
     &::after {
-        content: '국내 막걸리 브랜드를 소개해 드립니다..';
+        content: '국내 막걸리 브랜드를 소개해 드립니다.';
         position: absolute;
         top: 50%;
         left: 50%;

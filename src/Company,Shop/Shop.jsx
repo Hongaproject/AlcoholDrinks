@@ -52,7 +52,6 @@ const Shops = styled.div`
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
-    margin: auto;
 `
 
 const ShopImg = styled.img`  

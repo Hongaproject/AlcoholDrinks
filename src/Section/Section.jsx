@@ -10,8 +10,8 @@ const Container = styled.div`
 const ImgSlice = styled.div`
     width: 100%;
     height: 600px;
-    
 `
+
 // 이미지 슬라이드 예시
 const Slide = styled.div`
     display: flex;
@@ -23,8 +23,8 @@ const PrevButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 33.5%;
-    left: 10%;
+    top: 37.5%;
+    left: 2%;  // 조정: 기존 10%에서 2%로
     z-index: 1;
     cursor: pointer;
     & > svg {
@@ -38,13 +38,13 @@ const NextButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 33.5%;
-    right: 10%;
+    top: 37.5%;
+    right: 2%;  // 조정: 기존 10%에서 2%로
     cursor: pointer;
     color: #858585;
 `
 const Show = styled.div`
-    width: 1500px;
+    width: calc(100% - 100px);  // 조정: 기존 50px에서 100px로
     height: 600px;
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@ const Show = styled.div`
     margin: 0 50px;
 `
 const Img = styled.div`
-    width: 1400px;
+    width: calc(100% - 100px);  // 조정: 기존 1400px에서 100% 기준으로
     height: 500px;
     flex-shrink: 0;
     text-align: center;
@@ -172,7 +172,7 @@ const SojuTitle = styled.h1`
     padding: 10px 0;
     position: absolute;
     top: 70%;
-    left: 21%;
+    left: 20%;  // 조정: 기존 21%에서 20%로
     transform: translate(-50%, -50%);
     color: #000;
 `
@@ -181,7 +181,7 @@ const SojuContent = styled.span`
     padding: 10px 0;
     position: absolute;
     top: 87%;
-    left: 22.8%;
+    left: 22%;  // 조정: 기존 22.8%에서 22%로
     transform: translate(-50%, -50%);
     color: #909090;
 `
@@ -256,7 +256,7 @@ const BeerTitle = styled.h1`
     padding: 10px 0;
     position: absolute;
     top: 70%;
-    left: 79%;
+    left: 80%;  // 조정: 기존 79%에서 80%로
     transform: translate(-50%, -50%);
     color: #000;
 `
@@ -265,7 +265,7 @@ const BeerContent = styled.span`
     padding: 10px 0;
     position: absolute;
     top: 87%;
-    left: 77.2%;
+    left: 77%;  // 조정: 기존 77.2%에서 77%로
     transform: translate(-50%, -50%);
     color: #909090;
 `
@@ -493,11 +493,13 @@ const CollectionText = styled.div`
     top: 20%;
     left: 13%;
 `
+
 const CTextTitle = styled.h1`
     font-size: 40px;
     color: #fff;
     padding: 16px 0;
 `
+
 const CTextSpan = styled.span`
     font-size: 16px;
     color: #909090;
@@ -512,6 +514,7 @@ const CollectionImg = styled.div`
     top: 52%;
     left: 43%;
 `
+
 const CompanyImg = styled.div`
     width: 270px;
     height: 450px;
@@ -520,6 +523,7 @@ const CompanyImg = styled.div`
     background-size: cover;
     background-position: center;
 `
+
 const ShopImg = styled.div`
     width: 270px;
     height: 450px;
@@ -528,6 +532,7 @@ const ShopImg = styled.div`
     background-size: cover;
     background-position: center;
 `
+
 const GuideImg = styled.div`
     width: 270px;
     height: 450px;
@@ -536,6 +541,7 @@ const GuideImg = styled.div`
     background-size: cover;
     background-position: center;
 `
+
 const OutImg = styled.div`
     width: 270px;
     height: 450px;
@@ -552,6 +558,7 @@ const CImgTitle = styled.h1`
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #fff;
 `
+
 const CImgSpan = styled.span`
     font-size: 32px;
     text-align: center;
@@ -564,6 +571,7 @@ const CImgSpan = styled.span`
     gap: 1rem;
     color: #FAF1D7;
 `
+
 const CImgSpanIcon = styled.div`
     width: 36px;
     height: 36px;
@@ -631,6 +639,7 @@ const ContextTitle = styled.h2`
     font-size: 28px;
     font-weight: 700;
 `
+
 
 export default function Section () {
 
@@ -709,7 +718,7 @@ export default function Section () {
                                 <Img 
                                     key={index} 
                                     style={{
-                                        transform: `translateX(${-1500 * imgArr}px)`,
+                                        transform: `translateX(${-1595 * imgArr}px)`,
                                         transition: 'all 0.4s ease-in-out',
                                     }}>{item}
                                 </Img>

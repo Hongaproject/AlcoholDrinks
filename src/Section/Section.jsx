@@ -24,7 +24,7 @@ const PrevButton = styled.div`
     align-items: center;
     position: absolute;
     top: 37.5%;
-    left: 2%;  // 조정: 기존 10%에서 2%로
+    left: 5%;  
     z-index: 1;
     cursor: pointer;
     & > svg {
@@ -39,12 +39,12 @@ const NextButton = styled.div`
     align-items: center;
     position: absolute;
     top: 37.5%;
-    right: 2%;  // 조정: 기존 10%에서 2%로
+    right: 5%;
     cursor: pointer;
     color: #858585;
 `
 const Show = styled.div`
-    width: calc(100% - 100px);  // 조정: 기존 50px에서 100px로
+    width: 1500px; 
     height: 600px;
     display: flex;
     align-items: center;
@@ -52,7 +52,7 @@ const Show = styled.div`
     margin: 0 50px;
 `
 const Img = styled.div`
-    width: calc(100% - 100px);  // 조정: 기존 1400px에서 100% 기준으로
+    width: 1400px;  // 조정: 기존 1400px에서 100% 기준으로
     height: 500px;
     flex-shrink: 0;
     text-align: center;
@@ -487,7 +487,8 @@ const CollectionSub = styled.div`
 `
 
 const CollectionText = styled.div`
-    width: 550px;
+    width: 60%; /* %로 조정 */
+    max-width: 550px; /* 최대 너비를 픽셀로 제한 */
     height: 90px;
     position: absolute;
     top: 20%;
@@ -507,7 +508,8 @@ const CTextSpan = styled.span`
 `
 
 const CollectionImg = styled.div`
-    width: 1200px;
+    width: 100%; /* 전체 너비로 조정 */
+    max-width: 1200px; /* 최대 너비를 픽셀로 제한 */
     height: 450px;
     display: flex;
     position: absolute;
@@ -718,7 +720,7 @@ export default function Section () {
                                 <Img 
                                     key={index} 
                                     style={{
-                                        transform: `translateX(${-1595 * imgArr}px)`,
+                                        transform: `translateX(${-1500 * imgArr}px)`,
                                         transition: 'all 0.4s ease-in-out',
                                     }}>{item}
                                 </Img>

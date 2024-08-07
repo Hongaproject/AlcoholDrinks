@@ -23,7 +23,7 @@ const Introduce = styled.div`
 `;
 
 const IntroduceTitle = styled.h1`
-    width: 230px;
+    width: 200px;
     height: 80px;
     border: 1px solid #000;
     display: flex;

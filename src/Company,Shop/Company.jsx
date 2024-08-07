@@ -32,23 +32,25 @@ const Outline = styled.div`
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;
-    gap: 140px;
+    gap: 100px; /* 줄여진 gap */
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
 const Companys = styled.div`
-    width: 500px;
+    width: 45%; /* 조정된 width */
     height: 200px;
     border: 1px solid #EBEAEC;
-    box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
+    box-sizing: border-box; /* Padding과 border를 포함한 width 계산 */
+    margin-bottom: 50px;
 `;
 
 const CompanyImg = styled.img`  
-    width: 500px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 `;
 
@@ -87,6 +89,7 @@ const PageNumber = styled.span`
     font-size: 18px;
     margin: 0 10px;
 `;
+
 
 export default function Company() {
     

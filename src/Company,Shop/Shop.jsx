@@ -40,23 +40,24 @@ const Outline = styled.div`
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;
-    gap: 140px;
+    gap: 100px;
     justify-content: flex-start;
     align-items: flex-start;
 `;
 
 const Shops = styled.div`
-    width: 500px;
+    width: 45%;
     height: 200px;
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
+    margin-bottom: 50px;
 `
 
 const ShopImg = styled.img`  
-    width: 500px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 `
 const ShopTitle = styled.h2`

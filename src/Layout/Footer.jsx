@@ -8,24 +8,34 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`
+`;
+
 const CC = styled.div`
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px; /* 최대 너비를 설정 */
     height: 120px;
     margin-top: 40px;
-`
+    display: flex; /* 중앙 정렬을 위한 추가 */
+    flex-direction: column; /* 중앙 정렬을 위한 추가 */
+    align-items: center; /* 중앙 정렬을 위한 추가 */
+    justify-content: center; /* 중앙 정렬을 위한 추가 */
+`;
+
 const Copyright = styled.h1`
     color: #fff;
     text-align: center;
     font-size: 32px;
     margin-bottom: 20px;
-`
+`;
+
 const Communication = styled.div`
-    width: 230px;
+    width: 100%;
+    max-width: 300px; /* 최대 너비를 설정 */
     height: 48px;
     display: flex;
-    margin: 0 auto;
-`
+    justify-content: space-between; /* 균등 간격을 위한 추가 */
+`;
+
 const Email = styled.div`
     margin-right: 40px;
 `

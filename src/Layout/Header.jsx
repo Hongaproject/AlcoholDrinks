@@ -14,7 +14,8 @@ const Container = styled.div`
 `;
 
 const Nav = styled.div`
-    width: calc(100% - 220px);
+    width: 100%; /* 100% 기준으로 변경 */
+    max-width: 1200px; /* 최대 너비 설정 */
     margin: 0 auto;
     height: 100px;
     display: flex;
@@ -25,7 +26,8 @@ const Nav = styled.div`
 `;
 
 const Logo = styled.div`
-    width: 360px;
+    width: 100%; /* 너비를 %로 변경 */
+    max-width: 360px; /* 최대 너비 설정 */
     height: 50px;
     font-family: 'Jeju Hallasan';
     font-size: 3rem;
@@ -33,39 +35,44 @@ const Logo = styled.div`
 `;
 
 const MenuList = styled.ul`
-    width: 600px;
+    flex: 1;
+    max-width: 600px;
     height: 50px;
     color: black;
-    line-height: 50px; 
-    margin: 0 auto;
-    text-align: center;
+    line-height: 50px;
+    display: flex; /* flexbox로 변경 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 `;
 
 const MenuItem = styled.li`
-    float: left;
-    width: 140px;
+    margin: 0 20px; /* 항목 사이의 간격 설정 */
     position: relative;
     cursor: pointer;
     color: #000;
     &::after {
         content: '';
         display: block;
-        width: 0; /* 기본적으로 밑줄 길이 0으로 설정 */
-        height: 2px; /* 밑줄 두께 */
-        background: #000; /* 밑줄 색상 */
+        width: 0;
+        height: 2px;
+        background: #000;
         position: absolute;
         bottom: 0;
         left: 50%;
-        transform: translateX(-50%); /* 가운데 정렬 */
-        transition: width 0.3s ease; /* 부드러운 애니메이션 */
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
     }
 
     ${(props) => props.active && `
         &::after {
-            width: 80%; /* 클릭된 메뉴 항목의 밑줄 길이 조정 */
+            width: 80%;
         }
     `}
 `;
+
 
 const SearchLogin = styled.div`
     height: 50px;
@@ -99,31 +106,34 @@ const Modal = styled.div`
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;  // 모달의 z-index를 높게 설정
+    z-index: 1000;
 `;
 
 const ModalContent = styled.div`
     background-color: #fff;
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px; /* 최대 너비 설정 */
     height: 800px;
     padding: 15px;
     text-align: center;
 `;
+
 const ContentSearch = styled.div`
     width: 100%;
     height: 100px;
     margin-top: 30px;
-`
+`;
 
 const ContentInput = styled.input`
-    width: 400px;
+    width: 100%;
+    max-width: 400px; /* 최대 너비 설정 */
     height: 50px;
     border-radius: 30px;
     border: 0;
     background-color: #e7e7e7;
     font-size: 20px;
     padding-left: 30px;
-`
+`;
 
 const ContentSearchClose = styled.button`
     position: absolute;
@@ -135,42 +145,44 @@ const ContentSearchClose = styled.button`
     border-radius: 50px;
     border: 0;
     cursor: pointer;
-`
+`;
+
 const ContentsRecently = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column; /* 세로 정렬 */
-    align-items: center; /* 중앙 정렬 */
-`
+    flex-direction: column;
+    align-items: center;
+`;
 
 const ContentsBoxes = styled.div`
     display: flex;
-    flex-wrap: wrap; /* 여러 줄로 나눠서 배치 */
-    gap: 20px; /* 항목 간의 간격 */
-`
+    flex-wrap: wrap;
+    gap: 20px;
+`;
 
 const ContentsBox = styled.div`
-    flex: 1 1 auto; /* 필요한 공간만 차지하도록 설정 */
-    max-width: 200px; /* 최대 너비 설정 */
-    display: flex; /* 내부 요소를 가로로 배치 */
-    flex-direction: column; /* 내부 요소를 세로 방향으로 배치 */
-    align-items: center; /* 중앙 정렬 */
-    padding: 8px; /* 패딩 추가 */
-    border: 1px solid #ddd; /* 테두리 추가 */
-    border-radius: 4px; /* 모서리 둥글게 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-    background-color: #fff; /* 배경 색상 */
+    flex: 1 1 auto;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
     margin-bottom: 20px;
 `;
 
 const ProductImg = styled.img`
     display: block;
     margin: auto;
-    width: 210px;
+    width: 100%;
+    max-width: 210px; /* 최대 너비 설정 */
     height: 254px;
     object-fit: contain;
-    border-bottom: 1px solid #ddd; /* 이미지와 텍스트 구분을 위한 테두리 */
+    border-bottom: 1px solid #ddd;
 `;
 
 const ProductImgName = styled.h2`
@@ -193,6 +205,7 @@ const ProfileImage = styled.img`
     height: 40px;
     border-radius: 50%;
 `;
+
 const AvatarUpload = styled.label`
     width: 40px;
     overflow: hidden;
@@ -206,6 +219,7 @@ const AvatarUpload = styled.label`
         width: 50px;
     }
 `;
+
 
 export default function Header() {
     

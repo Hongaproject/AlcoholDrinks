@@ -17,7 +17,7 @@ const ShopMove = styled.span`
 `;
 
 const IntroduceTitle = styled.h1`
-    width: 320px;
+    width: 20%;
     height: 75px;
     font-size: 48px;
     margin-left: 200px;

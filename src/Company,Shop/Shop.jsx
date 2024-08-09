@@ -9,7 +9,7 @@ const Container = styled.div`
     height: 100%;
 `
 const IntroduceTitle = styled.h1`
-    width: 295px;
+    width: 20%;
     height: 75px;
     font-size: 48px;
     margin-left: 200px;

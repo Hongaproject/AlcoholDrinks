@@ -58,7 +58,8 @@ const BeerSpan = styled.span`
     color: #909090;
 `
 const BeerBtn = styled.button`
-    width: 310px;
+    width: 80%; /* 퍼센트 단위로 변경 */
+    max-width: 310px; /* 최대 크기 설정 */
     height: 58px;
     background-color: #000;
     color: #fff;
@@ -91,7 +92,8 @@ const SojuSpan = styled.span`
     color: #909090;
 `
 const SojuBtn = styled.button`
-    width: 310px;
+    width: 80%; /* 퍼센트 단위로 변경 */
+    max-width: 310px; /* 최대 크기 설정 */
     height: 58px;
     background-color: #000;
     color: #fff;
@@ -124,7 +126,8 @@ const MakgeolliSpan = styled.span`
     color: #909090;
 `
 const MakgeolliBtn = styled.button`
-    width: 310px;
+    width: 80%; /* 퍼센트 단위로 변경 */
+    max-width: 310px; /* 최대 크기 설정 */
     height: 58px;
     background-color: #000;
     color: #fff;

@@ -59,7 +59,7 @@ const ProductContent = styled.div`
     display: flex;
 `
 const ProductCTS = styled.div`
-    width: 110px;
+    width: 150px;
     height: 60px;
     margin-right: 30px;
 `

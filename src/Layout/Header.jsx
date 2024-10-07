@@ -14,8 +14,8 @@ const Container = styled.div`
 `;
 
 const Nav = styled.div`
-    width: 100%; /* 100% 기준으로 변경 */
-    max-width: 1200px; /* 최대 너비 설정 */
+    width: 100%; 
+    max-width: 1200px; 
     margin: 0 auto;
     height: 100px;
     display: flex;
@@ -23,6 +23,7 @@ const Nav = styled.div`
     align-items: center;
     position: sticky;
     z-index: 2;
+    white-space: nowrap; 
 `;
 
 const Logo = styled.div`
@@ -30,14 +31,19 @@ const Logo = styled.div`
     max-width: 360px; /* 최대 너비 설정 */
     height: 50px;
     font-family: 'Jeju Hallasan';
-    font-size: 3rem;
+    font-size: 3rem; /* 기본 폰트 크기 */
     color: #000;
+
+    @media (max-width: 768px) {
+        font-size: 2rem; /* 작은 화면에서 폰트 크기 조정 */
+        line-height: 50px;
+    }
 `;
 
 const MenuList = styled.ul`
     flex: 1;
     max-width: 600px;
-    height: 50px;
+    height: auto; /* 자동 높이로 변경 */
     color: black;
     line-height: 50px;
     display: flex; /* flexbox로 변경 */
@@ -46,6 +52,17 @@ const MenuList = styled.ul`
     list-style: none;
     padding: 0;
     margin: 0;
+
+    @media (max-width: 768px) {
+        display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')}; /* 메뉴가 열릴 때만 보이게 설정 */
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        position: absolute; /* 위치를 절대적으로 설정 */
+        top: 100%; /* 네비게이션 바 아래로 배치 */
+        left: 0;
+        background: white; /* 배경 색상 설정 */
+        width: 100%; /* 전체 너비 */
+        z-index: 1; /* 다른 요소 위에 보이도록 설정 */
+    }
 `;
 
 const MenuItem = styled.li`
@@ -53,6 +70,7 @@ const MenuItem = styled.li`
     position: relative;
     cursor: pointer;
     color: #000;
+
     &::after {
         content: '';
         display: block;
@@ -71,7 +89,38 @@ const MenuItem = styled.li`
             width: 80%;
         }
     `}
+
+    @media (max-width: 768px) {
+        margin: 10px 0; /* 모바일에서는 간격을 줄임 */
+        text-align: center; /* 중앙 정렬 */
+        &:hover {
+            background-color: lightgray; /* 호버 시 연한 회색 배경 */
+            transition: background-color 1s ease;
+            border-radius: 15px
+        }
+    }
 `;
+
+const HamburgerButton = styled.div`
+    display: none; /* 기본적으로 숨김 */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        display: flex; /* 모바일에서 보여짐 */
+        margin-left: 80px;
+    }
+
+    div {
+        height: 3px;
+        background: black;
+        transition: all 0.3s ease;
+    }
+`;
+
 
 
 const SearchLogin = styled.div`
@@ -299,6 +348,13 @@ export default function Header() {
 
     const location = useLocation();
 
+    const [isOpen, setIsOpen] = useState(false); // 메뉴 열기 상태 관리
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen); // 메뉴 상태 토글
+    };
+
+
     return (
         <Container>
             <Nav>
@@ -307,28 +363,34 @@ export default function Header() {
                         대한민국 모든 주류
                     </Logo>
                 </Link>
-                <MenuList>
+                <HamburgerButton onClick={toggleMenu}>
+                    <div />
+                    <div />
+                    <div />
+                </HamburgerButton>
+                <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname === '/story'}>
                         <Link to='/story' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Story
-                        </Link>   
+                        </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/brand/soju'}>
                         <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Brand
-                        </Link>   
+                        </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/company'}>
                         <Link to='/company' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Company
-                        </Link> 
+                        </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/guide'}>
                         <Link to='/guide' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Guide
-                        </Link> 
+                        </Link>
                     </MenuItem>
                 </MenuList>
+
                 <SearchLogin>
                     <SearchImg onClick={() => setModalOpen(true)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"/></svg>

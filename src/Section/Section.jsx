@@ -10,6 +10,10 @@ const Container = styled.div`
 const ImgSlice = styled.div`
     width: 100%;
     height: 600px;
+    
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 // 이미지 슬라이드 예시
@@ -89,6 +93,7 @@ const Main = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
+    white-space: nowrap; 
 `
 const SubTitle = styled.h1`
     font-size: 64px;
@@ -602,6 +607,11 @@ const PopupOverlay = styled.div`
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
 `;
 
 const PopupContent = styled.div`
@@ -613,6 +623,11 @@ const PopupContent = styled.div`
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     position: relative;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
 `;
 
 const CloseButton = styled.span`

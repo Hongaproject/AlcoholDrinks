@@ -12,15 +12,27 @@ const TopBtn = styled.button`
     height: 64px;
     border-radius: 50px;
     cursor: pointer;
+    @media (max-width: 768px) {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        margin-left: 16px; 
+        margin-bottom: 16px; 
+    }
 `
 
 const ServiceBtn = styled.button`
-width: 64px;
+    width: 64px;
     height: 64px;
     border-radius: 50px;
     display: block;
     margin-top: 35px;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
 `
 
 export default function Sidebtn () {

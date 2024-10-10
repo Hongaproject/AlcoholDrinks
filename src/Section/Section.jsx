@@ -93,7 +93,11 @@ const Main = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    white-space: nowrap; 
+    white-space: nowrap;
+    
+    @media (max-width: 768px) {
+        width: 100%; /* 작은 화면에서는 양쪽 여백을 없앰 */
+    }
 `
 const SubTitle = styled.h1`
     font-size: 64px;
@@ -108,6 +112,13 @@ const SubTitle = styled.h1`
         border-bottom: 2px solid #000;
         margin: 10px auto;
     }
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+        text-align: center;
+        margin-top: 50px;
+        padding: 10px;
+    }
 `
 
 // soju
@@ -117,6 +128,9 @@ const SojuContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    @media (max-width: 768px) {
+        margin-top: 50px;
+    }
 `
 const Soju = styled.div`
     width: 100%;
@@ -180,6 +194,9 @@ const SojuTitle = styled.h1`
     left: 20%;  // 조정: 기존 21%에서 20%로
     transform: translate(-50%, -50%);
     color: #000;
+    @media (max-width: 768px) {
+        left: 52%;
+    }
 `
 const SojuContent = styled.span`
     font-size: 18px;
@@ -189,6 +206,9 @@ const SojuContent = styled.span`
     left: 22%;  // 조정: 기존 22.8%에서 22%로
     transform: translate(-50%, -50%);
     color: #909090;
+    @media (max-width: 768px) {
+        left: 56%;
+    }
 `
 
 // beer
@@ -198,6 +218,9 @@ const BeerContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    @media (max-width: 768px) {
+        margin-top: 50px;
+    }
 `
 const Beer = styled.div`
     width: 100%;
@@ -264,6 +287,9 @@ const BeerTitle = styled.h1`
     left: 80%;  // 조정: 기존 79%에서 80%로
     transform: translate(-50%, -50%);
     color: #000;
+    @media (max-width: 768px) {
+        left: 48%;
+    }
 `
 const BeerContent = styled.span`
     font-size: 18px;
@@ -273,6 +299,9 @@ const BeerContent = styled.span`
     left: 77%;  // 조정: 기존 77.2%에서 77%로
     transform: translate(-50%, -50%);
     color: #909090;
+    @media (max-width: 768px) {
+        left: 44%;
+    }
 `
 
 // makgeolli
@@ -298,6 +327,11 @@ const MakgeolliImg = styled.div`
     background-image: url("/img/home/makgeolli.jpg");
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 768px) {
+        width: 100%;  /* 너비를 화면 크기에 맞춤 */
+    }
+
     &::before {
         content: '';
         position: absolute;
@@ -483,53 +517,86 @@ const LiquorNewSpan = styled.span`
 const Collection = styled.div`
     width: 100%;
     height: 900px;
-`
+
+    @media (max-width: 768px) {
+        height: auto; // Allow height to adjust based on content
+    }
+`;
+
 const CollectionSub = styled.div`
     width: 100%;
     height: 700px;
     background-color: #141A2A;
     position: relative;
-`
+`;
 
 const CollectionText = styled.div`
     width: 60%; /* %로 조정 */
     max-width: 550px; /* 최대 너비를 픽셀로 제한 */
-    height: 90px;
+    height: auto; // Allow height to adjust based on content
     position: absolute;
-    top: 20%;
-    left: 13%;
-`
+    top: 10%; // Adjusted for better positioning
+    left: 5%; // Adjusted for better positioning
+
+    @media (max-width: 768px) {
+        width: 90%; // Increase width on smaller screens
+        left: 5%; // Center it better on small screens
+        top: 5%; // Adjust vertical position
+    }
+`;
 
 const CTextTitle = styled.h1`
     font-size: 40px;
     color: #fff;
     padding: 16px 0;
-`
+
+    @media (max-width: 768px) {
+        font-size: 28px; // Smaller font size on mobile
+    }
+`;
 
 const CTextSpan = styled.span`
     font-size: 16px;
     color: #909090;
     margin-top: 16px;
-`
+
+    @media (max-width: 768px) {
+        font-size: 14px; // Smaller font size on mobile
+    }
+`;
 
 const CollectionImg = styled.div`
     width: 100%; /* 전체 너비로 조정 */
-    max-width: 1200px; /* 최대 너비를 픽셀로 제한 */
     height: 450px;
     display: flex;
     position: absolute;
-    top: 52%;
-    left: 43%;
-`
+    top: 52%; /* 기본 위치 */
+    left: 43%; /* 중앙 정렬 */
+
+    @media (max-width: 768px) {
+        flex-direction: column; /* 작은 화면에서 이미지를 세로로 쌓기 */
+        align-items: center; /* 콘텐츠 중앙 정렬 */
+        top: 15%; /* 작은 화면에서의 top 값 조정 (예시) */
+        height: auto; /* 높이 자동 조정 */
+        padding: 20px 0; /* 여백 추가하여 간격 유지 */
+        transform: translateX(-43%); /* 수평 중앙 정렬 유지 */
+    }
+`;
 
 const CompanyImg = styled.div`
     width: 270px;
     height: 450px;
     margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/company.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)), url("/img/home/company.jpg");
     background-size: cover;
     background-position: center;
-`
+
+    @media (max-width: 768px) {
+        width: 90%; // Adjust to a percentage for responsiveness
+        height: 200px; // Adjust height for mobile
+        margin: 10px 0; // Margin adjustment
+    }
+`;
 
 const ShopImg = styled.div`
     width: 270px;
@@ -538,6 +605,12 @@ const ShopImg = styled.div`
     background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/shop.jpg");
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 768px) {
+        width: 90%; // Adjust to a percentage for responsiveness
+        height: 200px; // Adjust height for mobile
+        margin: 10px 0; // Margin adjustment
+    }
 `
 
 const GuideImg = styled.div`
@@ -547,15 +620,25 @@ const GuideImg = styled.div`
     background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/guide.jpg");
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 768px) {
+        width: 90%; // Adjust to a percentage for responsiveness
+        height: 200px; // Adjust height for mobile
+        margin: 10px 0; // Margin adjustment
+    }
 `
 
 const OutImg = styled.div`
     width: 270px;
     height: 450px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 13, 0.6)), url("/img/home/out.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)), url("/img/home/out.jpg");
     background-size: cover;
     background-position: center;
-`
+    
+    @media (max-width: 768px) {
+        display: none;
+    }
+`;
 
 const CImgTitle = styled.h1`
     font-size: 32px;
@@ -564,7 +647,11 @@ const CImgTitle = styled.h1`
     font-family: 'Inknut Antiqua';
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #fff;
-`
+
+    @media (max-width: 768px) {
+        font-size: 24px; // Smaller font size on mobile
+    }
+`;
 
 const CImgSpan = styled.span`
     font-size: 32px;
@@ -573,21 +660,26 @@ const CImgSpan = styled.span`
     display: flex;
     margin-top: 250px; 
     vertical-align: middle;
-    display: flex;
     align-items: center;
     gap: 1rem;
     color: #FAF1D7;
-`
+
+    @media (max-width: 768px) {
+        font-size: 24px; // Smaller font size on mobile
+        margin-top: 20px; // Adjust margin for mobile
+    }
+`;
 
 const CImgSpanIcon = styled.div`
     width: 36px;
     height: 36px;
     border-radius: 50px;
     background-color: #FAF1D7;
+
     & > svg {
         transform: rotate(90deg);    
     }
-`
+`;
 
 // popup
 const Popup = styled.div`

@@ -8,6 +8,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        margin-top: 100px;
+    }
 `;
 
 const CC = styled.div`
@@ -26,6 +29,9 @@ const Copyright = styled.h1`
     text-align: center;
     font-size: 32px;
     margin-bottom: 20px;
+    @media (max-width: 768px) {
+        font-size: 1.75rem;
+    }
 `;
 
 const Communication = styled.div`

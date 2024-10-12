@@ -9,84 +9,82 @@ const Container = styled.div`
 `
 const ImgSlice = styled.div`
     width: 100%;
-    height: 600px;
-    
+    height: 60vh; // 높이를 뷰포트 높이의 60%로 설정
+
     @media (max-width: 768px) {
         display: none;
     }
-`
+`;
 
 // 이미지 슬라이드 예시
 const Slide = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto;
-`
+`;
+
 const PrevButton = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 37.5%;
-    left: 5%;  
+    top: 40%; // 중앙에 배치
+    left: 5%;
+    transform: translateY(-50%); // 수직 중앙 정렬
     z-index: 1;
     cursor: pointer;
+
     & > svg {
-        transform: rotate(180deg); 
+        transform: rotate(180deg);
         color: #858585;
     }
-`
+`;
 
 const NextButton = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 37.5%;
+    top: 40%; // 중앙에 배치
     right: 5%;
+    transform: translateY(-50%); // 수직 중앙 정렬
     cursor: pointer;
     color: #858585;
-`
+`;
+
 const Show = styled.div`
-    width: 1500px; 
-    height: 600px;
+    width: 90vw; // 너비를 뷰포트 너비의 90%로 설정
+    height: 60vh; // 높이를 뷰포트 높이의 60%로 설정
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin: 0 50px;
-`
+    margin: 0 auto; // 좌우 여백 자동 설정
+`;
+
 const Img = styled.div`
-    width: 1400px;  // 조정: 기존 1400px에서 100% 기준으로
-    height: 500px;
+    width: 100%; // 너비를 100%로 설정하여 Show에 맞추기
+    height: 100%; // 높이를 100%로 설정하여 Show에 맞추기
     flex-shrink: 0;
     text-align: center;
-    margin: 0 50px;
-    &:nth-child(1){
+    background-size: cover;
+    background-position: center;
+
+    &:nth-child(1) {
         background-image: url("/img/home/chamiseulpst.jpg");
-        background-size: cover;
-        background-position: center;
     }
-    &:nth-child(2){
+    &:nth-child(2) {
         background-image: url("/img/home/terrapst.jpg");
-        background-size: cover;
-        background-position: center;
     }
-    &:nth-child(3){
+    &:nth-child(3) {
         background-image: url("/img/home/makgeollipst.jpg");
-        background-size: cover;
-        background-position: center;
     }
-    &:nth-child(4){
+    &:nth-child(4) {
         background-image: url("/img/home/liquorjinropst.jpg");
-        background-size: cover;
-        background-position: center;
     }
-    &:nth-child(5){
+    &:nth-child(5) {
         background-image: url("/img/home/newpst.jpg");
-        background-size: cover;
-        background-position: center;
     }
-` 
+`;
 
 // 주류 종류 제목
 const Main = styled.div`
@@ -827,7 +825,7 @@ export default function Section () {
                                 <Img 
                                     key={index} 
                                     style={{
-                                        transform: `translateX(${-1500 * imgArr}px)`,
+                                        transform: `translateX(${(-100 * imgArr)}%)`,  // 100% 단위로 이동
                                         transition: 'all 0.4s ease-in-out',
                                     }}>{item}
                                 </Img>

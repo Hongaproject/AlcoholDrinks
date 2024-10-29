@@ -9,7 +9,7 @@ const Container = styled.div`
 `
 const ImgSlice = styled.div`
     width: 100%;
-    height: 60vh; // 높이를 뷰포트 높이의 60%로 설정
+    height: 60vh; 
 
     @media (max-width: 768px) {
         display: none;

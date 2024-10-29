@@ -28,9 +28,9 @@ const PrevButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 40%; // 중앙에 배치
+    top: 40%; 
     left: 5%;
-    transform: translateY(-50%); // 수직 중앙 정렬
+    transform: translateY(-50%); 
     z-index: 1;
     cursor: pointer;
 
@@ -45,25 +45,25 @@ const NextButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 40%; // 중앙에 배치
+    top: 40%; 
     right: 5%;
-    transform: translateY(-50%); // 수직 중앙 정렬
+    transform: translateY(-50%); 
     cursor: pointer;
     color: #858585;
 `;
 
 const Show = styled.div`
-    width: 90vw; // 너비를 뷰포트 너비의 90%로 설정
-    height: 60vh; // 높이를 뷰포트 높이의 60%로 설정
+    width: 90vw; 
+    height: 60vh; 
     display: flex;
     align-items: center;
     overflow: hidden;
-    margin: 0 auto; // 좌우 여백 자동 설정
+    margin: 0 auto;
 `;
 
 const Img = styled.div`
-    width: 100%; // 너비를 100%로 설정하여 Show에 맞추기
-    height: 100%; // 높이를 100%로 설정하여 Show에 맞추기
+    width: 100%; 
+    height: 100%; 
     flex-shrink: 0;
     text-align: center;
     background-size: cover;
@@ -86,7 +86,6 @@ const Img = styled.div`
     }
 `;
 
-// 주류 종류 제목
 const Main = styled.div`
     width: calc(100% - 440px);
     height: 100%;
@@ -94,7 +93,7 @@ const Main = styled.div`
     white-space: nowrap;
     
     @media (max-width: 768px) {
-        width: 100%; /* 작은 화면에서는 양쪽 여백을 없앰 */
+        width: 100%; 
     }
 `
 const SubTitle = styled.h1`
@@ -189,7 +188,7 @@ const SojuTitle = styled.h1`
     padding: 10px 0;
     position: absolute;
     top: 70%;
-    left: 20%;  // 조정: 기존 21%에서 20%로
+    left: 20%;  
     transform: translate(-50%, -50%);
     color: #000;
     @media (max-width: 768px) {
@@ -201,7 +200,7 @@ const SojuContent = styled.span`
     padding: 10px 0;
     position: absolute;
     top: 87%;
-    left: 22%;  // 조정: 기존 22.8%에서 22%로
+    left: 22%; 
     transform: translate(-50%, -50%);
     color: #909090;
     @media (max-width: 768px) {
@@ -282,7 +281,7 @@ const BeerTitle = styled.h1`
     padding: 10px 0;
     position: absolute;
     top: 70%;
-    left: 80%;  // 조정: 기존 79%에서 80%로
+    left: 80%; 
     transform: translate(-50%, -50%);
     color: #000;
     @media (max-width: 768px) {
@@ -294,7 +293,7 @@ const BeerContent = styled.span`
     padding: 10px 0;
     position: absolute;
     top: 87%;
-    left: 77%;  // 조정: 기존 77.2%에서 77%로
+    left: 77%;  
     transform: translate(-50%, -50%);
     color: #909090;
     @media (max-width: 768px) {
@@ -327,7 +326,7 @@ const MakgeolliImg = styled.div`
     background-position: center;
 
     @media (max-width: 768px) {
-        width: 100%;  /* 너비를 화면 크기에 맞춤 */
+        width: 100%;
     }
 
     &::before {
@@ -383,7 +382,7 @@ const MakgeolliContent = styled.span`
     display: flex;
 `
 
-// liquorm, new
+// liquorm
 const LiquorNewC = styled.div`
     width: 100%;
     height: 400px;
@@ -443,6 +442,7 @@ const LiquorImg = styled.div`
     }  
 `;
 
+// new
 const NewImg = styled.div`
     width: 200px;
     height: 250px;
@@ -490,6 +490,7 @@ const NewImg = styled.div`
     }
 `
 
+// liquor, new 설명
 const LiquorNewText = styled.div`
     width: 100%;
     display: flex;
@@ -517,7 +518,7 @@ const Collection = styled.div`
     height: 900px;
 
     @media (max-width: 768px) {
-        height: auto; // Allow height to adjust based on content
+        height: auto; 
     }
 `;
 
@@ -529,17 +530,17 @@ const CollectionSub = styled.div`
 `;
 
 const CollectionText = styled.div`
-    width: 60%; /* %로 조정 */
-    max-width: 550px; /* 최대 너비를 픽셀로 제한 */
-    height: auto; // Allow height to adjust based on content
+    width: 60%;
+    max-width: 550px;
+    height: auto; 
     position: absolute;
-    top: 10%; // Adjusted for better positioning
-    left: 5%; // Adjusted for better positioning
+    top: 10%; 
+    left: 5%; 
 
     @media (max-width: 768px) {
-        width: 90%; // Increase width on smaller screens
-        left: 5%; // Center it better on small screens
-        top: 5%; // Adjust vertical position
+        width: 90%; 
+        left: 5%; 
+        top: 5%; 
     }
 `;
 
@@ -549,7 +550,7 @@ const CTextTitle = styled.h1`
     padding: 16px 0;
 
     @media (max-width: 768px) {
-        font-size: 28px; // Smaller font size on mobile
+        font-size: 28px;
     }
 `;
 
@@ -559,25 +560,25 @@ const CTextSpan = styled.span`
     margin-top: 16px;
 
     @media (max-width: 768px) {
-        font-size: 14px; // Smaller font size on mobile
+        font-size: 14px; 
     }
 `;
 
 const CollectionImg = styled.div`
-    width: 100%; /* 전체 너비로 조정 */
+    width: 100%;
     height: 450px;
     display: flex;
     position: absolute;
-    top: 52%; /* 기본 위치 */
-    left: 43%; /* 중앙 정렬 */
+    top: 52%; 
+    left: 43%; 
 
     @media (max-width: 768px) {
-        flex-direction: column; /* 작은 화면에서 이미지를 세로로 쌓기 */
-        align-items: center; /* 콘텐츠 중앙 정렬 */
-        top: 15%; /* 작은 화면에서의 top 값 조정 (예시) */
-        height: auto; /* 높이 자동 조정 */
-        padding: 20px 0; /* 여백 추가하여 간격 유지 */
-        transform: translateX(-43%); /* 수평 중앙 정렬 유지 */
+        flex-direction: column; 
+        align-items: center; 
+        top: 15%; 
+        height: auto;
+        padding: 20px 0;
+        transform: translateX(-43%);
     }
 `;
 
@@ -590,9 +591,9 @@ const CompanyImg = styled.div`
     background-position: center;
 
     @media (max-width: 768px) {
-        width: 90%; // Adjust to a percentage for responsiveness
-        height: 200px; // Adjust height for mobile
-        margin: 10px 0; // Margin adjustment
+        width: 90%; 
+        height: 200px; 
+        margin: 10px 0; 
     }
 `;
 
@@ -605,9 +606,9 @@ const ShopImg = styled.div`
     background-position: center;
 
     @media (max-width: 768px) {
-        width: 90%; // Adjust to a percentage for responsiveness
-        height: 200px; // Adjust height for mobile
-        margin: 10px 0; // Margin adjustment
+        width: 90%; 
+        height: 200px; 
+        margin: 10px 0; 
     }
 `
 
@@ -620,9 +621,9 @@ const GuideImg = styled.div`
     background-position: center;
 
     @media (max-width: 768px) {
-        width: 90%; // Adjust to a percentage for responsiveness
-        height: 200px; // Adjust height for mobile
-        margin: 10px 0; // Margin adjustment
+        width: 90%;
+        height: 200px;
+        margin: 10px 0;
     }
 `
 
@@ -647,7 +648,7 @@ const CImgTitle = styled.h1`
     color: #fff;
 
     @media (max-width: 768px) {
-        font-size: 24px; // Smaller font size on mobile
+        font-size: 24px; 
     }
 `;
 
@@ -663,8 +664,8 @@ const CImgSpan = styled.span`
     color: #FAF1D7;
 
     @media (max-width: 768px) {
-        font-size: 24px; // Smaller font size on mobile
-        margin-top: 20px; // Adjust margin for mobile
+        font-size: 24px; 
+        margin-top: 20px; 
     }
 `;
 

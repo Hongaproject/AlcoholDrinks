@@ -27,15 +27,15 @@ const Nav = styled.div`
 `;
 
 const Logo = styled.div`
-    width: 100%; /* 너비를 %로 변경 */
-    max-width: 360px; /* 최대 너비 설정 */
+    width: 100%; 
+    max-width: 360px;
     height: 50px;
     font-family: 'Jeju Hallasan';
-    font-size: 3rem; /* 기본 폰트 크기 */
+    font-size: 3rem; 
     color: #000;
 
     @media (max-width: 768px) {
-        font-size: 2rem; /* 작은 화면에서 폰트 크기 조정 */
+        font-size: 2rem;
         line-height: 50px;
     }
 `;
@@ -43,30 +43,30 @@ const Logo = styled.div`
 const MenuList = styled.ul`
     flex: 1;
     max-width: 600px;
-    height: auto; /* 자동 높이로 변경 */
+    height: auto;
     color: black;
     line-height: 50px;
-    display: flex; /* flexbox로 변경 */
-    justify-content: center; /* 중앙 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
 
     @media (max-width: 768px) {
-        display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')}; /* 메뉴가 열릴 때만 보이게 설정 */
-        flex-direction: column; /* 세로 방향으로 정렬 */
-        position: absolute; /* 위치를 절대적으로 설정 */
-        top: 100%; /* 네비게이션 바 아래로 배치 */
+        display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')}; 
+        flex-direction: column; 
+        position: absolute; 
+        top: 100%; 
         left: 0;
-        background: white; /* 배경 색상 설정 */
-        width: 100%; /* 전체 너비 */
-        z-index: 1; /* 다른 요소 위에 보이도록 설정 */
+        background: white; 
+        width: 100%; 
+        z-index: 1; 
     }
 `;
 
 const MenuItem = styled.li`
-    margin: 0 20px; /* 항목 사이의 간격 설정 */
+    margin: 0 20px; 
     position: relative;
     cursor: pointer;
     color: #000;
@@ -91,10 +91,10 @@ const MenuItem = styled.li`
     `}
 
     @media (max-width: 768px) {
-        margin: 10px 0; /* 모바일에서는 간격을 줄임 */
-        text-align: center; /* 중앙 정렬 */
+        margin: 10px 0; 
+        text-align: center; 
         &:hover {
-            background-color: lightgray; /* 호버 시 연한 회색 배경 */
+            background-color: lightgray; 
             transition: background-color 1s ease;
             border-radius: 15px
         }
@@ -102,7 +102,7 @@ const MenuItem = styled.li`
 `;
 
 const HamburgerButton = styled.div`
-    display: none; /* 기본적으로 숨김 */
+    display: none; 
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
@@ -110,7 +110,7 @@ const HamburgerButton = styled.div`
     cursor: pointer;
 
     @media (max-width: 768px) {
-        display: flex; /* 모바일에서 보여짐 */
+        display: flex;
         margin-left: 80px;
     }
 
@@ -161,7 +161,7 @@ const Modal = styled.div`
 const ModalContent = styled.div`
     background-color: #fff;
     width: 100%;
-    max-width: 1200px; /* 최대 너비 설정 */
+    max-width: 1200px;
     height: 800px;
     padding: 15px;
     text-align: center;
@@ -175,7 +175,7 @@ const ContentSearch = styled.div`
 
 const ContentInput = styled.input`
     width: 100%;
-    max-width: 400px; /* 최대 너비 설정 */
+    max-width: 400px; 
     height: 50px;
     border-radius: 30px;
     border: 0;
@@ -228,7 +228,7 @@ const ProductImg = styled.img`
     display: block;
     margin: auto;
     width: 100%;
-    max-width: 210px; /* 최대 너비 설정 */
+    max-width: 210px; 
     height: 254px;
     object-fit: contain;
     border-bottom: 1px solid #ddd;

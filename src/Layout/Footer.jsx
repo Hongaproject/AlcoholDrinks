@@ -15,13 +15,13 @@ const Container = styled.div`
 
 const CC = styled.div`
     width: 100%;
-    max-width: 1000px; /* 최대 너비를 설정 */
+    max-width: 1000px; 
     height: 120px;
     margin-top: 40px;
-    display: flex; /* 중앙 정렬을 위한 추가 */
-    flex-direction: column; /* 중앙 정렬을 위한 추가 */
-    align-items: center; /* 중앙 정렬을 위한 추가 */
-    justify-content: center; /* 중앙 정렬을 위한 추가 */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
 `;
 
 const Copyright = styled.h1`
@@ -30,16 +30,16 @@ const Copyright = styled.h1`
     font-size: 32px;
     margin-bottom: 20px;
     @media (max-width: 768px) {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 `;
 
 const Communication = styled.div`
     width: 100%;
-    max-width: 300px; /* 최대 너비를 설정 */
+    max-width: 300px;
     height: 48px;
     display: flex;
-    justify-content: space-between; /* 균등 간격을 위한 추가 */
+    justify-content: space-between;
 `;
 
 const Email = styled.div`

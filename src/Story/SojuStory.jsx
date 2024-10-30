@@ -27,7 +27,7 @@ const IntroduceTitle = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; /* SkyBlue when active */
+    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; 
     box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     margin-right: 70px;

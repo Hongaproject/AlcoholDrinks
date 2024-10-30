@@ -19,7 +19,7 @@ const Introduce = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 160px;
+    margin-top: 110px;
 `;
 
 const IntroduceTitle = styled.h1`

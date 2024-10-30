@@ -5,6 +5,11 @@ import styled from "styled-components";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
 
 const Introduce = styled.div`
@@ -13,7 +18,7 @@ const Introduce = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 160px;
+    margin-top: 110px;
 `
 const IntroduceTitle = styled.h1`
     width: 230px;
@@ -22,7 +27,7 @@ const IntroduceTitle = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; /* SkyBlue when active */
+    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; 
     box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     margin-right: 70px;
@@ -30,6 +35,13 @@ const IntroduceTitle = styled.h1`
     cursor: pointer;
     transition: background 0.3s ease;
     color: #000;
+
+    @media (max-width: 768px) {
+        width: 100px;
+        height: 40px;
+        margin-right: 10px;
+        font-size: 1.25rem;
+    }
 `;
 
 
@@ -38,25 +50,50 @@ const Summary = styled.div`
     height: 100%;
     margin: 0 auto;
     margin-bottom: 180px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 0 20px;
+    }
 `
 const SummaryText = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 90px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 `
 const SummaryTitle = styled.h1`
     font-size: 48px;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        font-size: 32px; 
+    }
 `
 const SummaryContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
 `
 
 const SummaryImg = styled.div`
     width: 100%;
     height: 180px;
+
+    @media (max-width: 768px) {
+        height: auto;
+        text-align: center;
+    }
 `
 const SummaryKImg = styled.div`
     float: left;
@@ -65,6 +102,11 @@ const SummaryKImg = styled.div`
     background-image: url("/img/story/koreasoju.png");
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 768px) {
+        float: none;
+        width: 100%;
+    }
 `
 const SummaryTImg = styled.div`
     float: left;
@@ -72,6 +114,11 @@ const SummaryTImg = styled.div`
     height: 130px;
     background-image: url("/img/story/traditional.png");
     background-position: center;
+
+    @media (max-width: 768px) {
+        float: none;
+        width: 100%;
+    }
 `
 const SummaryGImg = styled.div`
     float: left;
@@ -80,16 +127,46 @@ const SummaryGImg = styled.div`
     background-image: url("/img/story/global.png");
     background-position: center;
     background-size: cover;
+
+    @media (max-width: 768px) {
+        float: none;
+        width: 100%;
+    }
 `
+const SummaryKImgContent = styled.span`
+    font-size: 20px;
+    color: #909090;
+    line-height: 1.4;
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
+`
+
 const SummaryTImgContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
 `
 const SummaryGImgContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
 `
 
 export default function Story () {
@@ -161,10 +238,10 @@ export default function Story () {
                     <SummaryTitle>대한민국 주류 시장</SummaryTitle>
                     <SummaryImg>
                         <SummaryKImg />
-                        <SummaryContent>
+                        <SummaryKImgContent>
                             국내 주류 시장 규모입니다. <br />
                             22년도 기준 국내 주류 시장 규모가 10조원에 육박했고 시장 규모가 커진 이유는 다양한 주류들의 등장과 제로슈가와 제로칼로리의 여파가 크지 않을까 라는 생각이듭니다.
-                        </SummaryContent>
+                        </SummaryKImgContent>
                     </SummaryImg>
                     <SummaryImg>
                         <SummaryTImg />

@@ -7,6 +7,11 @@ import Sidebtn from "../Section/Sidebtn";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 const ShopMove = styled.span`
@@ -14,6 +19,14 @@ const ShopMove = styled.span`
     font-size: 20px;
     margin-right: 200px;
     margin-top: 60px;
+
+    @media (max-width: 768px) {
+        margin-right: 0;
+        margin-top: 15px;
+        float: none;
+        display: block;
+        text-align: center;
+    }
 `;
 
 const IntroduceTitle = styled.h1`
@@ -22,6 +35,14 @@ const IntroduceTitle = styled.h1`
     font-size: 48px;
     margin-left: 200px;
     margin-top: 160px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 120px;
+    }
 `;
 
 const Outline = styled.div`
@@ -32,20 +53,31 @@ const Outline = styled.div`
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;
-    gap: 100px; /* 줄여진 gap */
+    gap: 100px; 
     justify-content: flex-start;
     align-items: flex-start;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        margin-top: 80px;
+        justify-content: center;
+        gap: 50px;
+    }
 `;
 
 const Companys = styled.div`
-    width: 45%; /* 조정된 width */
+    width: 45%;
     height: 200px;
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
     border-radius: 20px;
     cursor: pointer;
-    box-sizing: border-box; /* Padding과 border를 포함한 width 계산 */
+    box-sizing: border-box; 
     margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 const CompanyImg = styled.img`  
@@ -63,6 +95,7 @@ const CompanyHomepage = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
+    
 `;
 
 const PaginationControls = styled.div`
@@ -71,6 +104,11 @@ const PaginationControls = styled.div`
     align-items: center;
     margin-top: 160px;
     margin-bottom: 100px;
+
+    @media (max-width: 768px) {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
 `;
 
 const PaginationButton = styled.button`
@@ -88,6 +126,10 @@ const PaginationButton = styled.button`
 const PageNumber = styled.span`
     font-size: 18px;
     margin: 0 10px;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
 `;
 
 

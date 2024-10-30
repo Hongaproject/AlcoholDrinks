@@ -7,42 +7,85 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
+const HeaderContainer = styled.div`
+    position: relative;
+    
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
 const IntroduceTitle = styled.h1`
     width: 20%;
     height: 75px;
     font-size: 48px;
     margin-left: 200px;
     margin-top: 160px;
-    margin-bottom: 100px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        margin-left: 0;
+        font-size: 2rem;
+        text-align: center;
+    }
 `
 
 const CompanyMove = styled.span`
     float: right;
     font-size: 20px;
     margin-right: 200px;
-    margin-top: 60px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+
+    @media (max-width: 768px) {
+        margin-right: 0;
+        float: none;
+        display: block;
+        text-align: center;
+        order: 1;
+    }
 `
 
 const Notification = styled.span`
+    width: 100%;
     font-size: 20px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
 `
 
 const Outline = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 120px;
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;
     gap: 100px;
     justify-content: flex-start;
     align-items: flex-start;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+        gap: 80px;
+    }
 `;
 
 const Shops = styled.div`
@@ -53,6 +96,10 @@ const Shops = styled.div`
     border-radius: 20px;
     cursor: pointer;
     margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `
 
 const ShopImg = styled.img`  
@@ -80,6 +127,11 @@ const PaginationControls = styled.div`
     align-items: center;
     margin-bottom: 100px;
     margin-top: 160px;
+
+    @media (max-width: 768px) {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
 `;
 
 const PaginationButton = styled.button`
@@ -97,6 +149,10 @@ const PaginationButton = styled.button`
 const PageNumber = styled.span`
     font-size: 18px;
     margin: 0 10px;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
 `;
 
 export default function Shop () {
@@ -140,10 +196,12 @@ export default function Shop () {
 
     return(
         <Container>
-            <Link to='/company' style={{ textDecoration: "none", color: "#000" }}>
-                <CompanyMove>회사소개 구경하기</CompanyMove>
-            </Link>
-            <IntroduceTitle>판매처 소개</IntroduceTitle>
+            <HeaderContainer>
+                <IntroduceTitle>판매처 소개</IntroduceTitle>
+                <Link to='/company' style={{ textDecoration: "none", color: "#000" }}>
+                    <CompanyMove>회사소개 구경하기</CompanyMove>
+                </Link>
+            </HeaderContainer>
             <Notification>전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷 쇼핑몰에서는 판매가 불가합니다.</Notification>
             <Sidebtn />
             <Outline>

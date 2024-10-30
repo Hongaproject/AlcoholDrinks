@@ -5,6 +5,11 @@ import styled from "styled-components";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
 
 const Introduce = styled.div`
@@ -13,7 +18,7 @@ const Introduce = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 160px;
+    margin-top: 110px;
 `
 const IntroduceTitle = styled.h1`
     width: 230px;
@@ -30,6 +35,13 @@ const IntroduceTitle = styled.h1`
     cursor: pointer;
     transition: background 0.3s ease;
     color: #000;
+
+    @media (max-width: 768px) {
+        width: 100px;
+        height: 40px;
+        margin-right: 10px;
+        font-size: 1.25rem;
+    }
 `;
 
 
@@ -42,11 +54,21 @@ const Summary = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 0 20px;
+    }
 `
 const HistoryText = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 90px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 `
 const HistoryTitle = styled.h1`
     font-size: 48px;
@@ -56,11 +78,21 @@ const HistoryContent = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.4;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+    }
 `
 const HistoryText2 = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 40px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 `
 
 const BeerGuide = styled.button`

@@ -3,12 +3,22 @@ import styled from "styled-components";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
 
 const MainTitle = styled.h1`
     text-align: center;
     font-size: 64px;
     margin-top: 150px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: 3rem;
+    }
 `
 
 const Introduce = styled.div`
@@ -16,34 +26,34 @@ const Introduce = styled.div`
     height: 100%;
     margin: 0 auto;
     margin-bottom: 150px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
 `
-const HistoryText = styled.div`
+const TextSection = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 90px;
 `
-const HistoryTitle = styled.h2`
+const Title = styled.h2`
     font-size: 48px;
     margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: 2rem;
+    }
 `
-const HistoryContent = styled.span`
+const Content = styled.span`
     font-size: 20px;
     color: #909090;
-    line-height: 1.4;
-`
-const CommonSenseText = styled.div`
-    width: 100%;
-    height: 100%;
-    margin-top: 90px;
-`
-const CommonSenseTitle = styled.h2`
-    font-size: 48px;
-    margin-bottom: 40px;
-`
-const CommonSenseContent = styled.span`
-    font-size: 20px;
-    color: #909090;
-    line-height: 2;
+    line-height: 1.6;
 `
 
 export default function MakgeolliGuide () {
@@ -52,9 +62,9 @@ export default function MakgeolliGuide () {
         <Container>
             <MainTitle>막걸리상식 가이드</MainTitle>
             <Introduce>
-                <HistoryText>
-                    <HistoryTitle>막걸리의 역사</HistoryTitle>
-                    <HistoryContent>
+                <TextSection>
+                    <Title>막걸리의 역사</Title>
+                    <Content>
                         막걸리의 '막'은 '마구'의 줄임말로 특정한 규칙없이 대충이라는 의미와 부사의 형태로 '지금 바로'라는 의미를 지니고 있다. <br /><br />
 
                         고려 시대<br />
@@ -71,25 +81,25 @@ export default function MakgeolliGuide () {
         
                         현재 <br />
                         젊은 세대들이 전통주에 관심을 가지게 되면서 전통주의 매출이 증가했으며 더 나가아 2021년 대한민국 문화재청에서는 '막걸리 빚기'를 국가무형문화재 신규 종목으로 지정했는데, 국민의 제안을 수용하여 지정된 첫 번째 사례입니다. 현재도 UNESCO 세계무형문화유산으로 등재하기 위한 노력을 하고 있습니다. 
-                    </HistoryContent>
-                </HistoryText>
-                <CommonSenseText>
-                    <CommonSenseTitle>취급 상식</CommonSenseTitle>
-                    <CommonSenseContent>
+                    </Content>
+                </TextSection>
+                <TextSection>
+                    <Title>취급 상식</Title>
+                    <Content>
                         1. 생막걸리 - 살균을 따로 거치지 않아 효모가 살아있는 막걸리를 뜻한다. 유통기한이 짧다는 특징을 가진다. <br />
                         2. 보관 기간 - 가정에서 마시는 막걸리라면 맨눈으로 봤을 때 술의 상태가 괜찮고 간장 냄새 같은 이취가 나지 않으면 마셔도 별 문제가 없다는 게 전문가들의 견해다. <br />
                         3. 보관방법 - 0~10℃ 이하에서 냉장 보관, 세워서 보관하기 만약 누워서 보관하게 되면 효모에 의해 생성되는 탄산가스가 병뚜껑으로 배출되지 못하고 내용물과 새어 나올수도 있다. <br />
-                    </CommonSenseContent>
-                </CommonSenseText>
-                <CommonSenseText>
-                    <CommonSenseTitle>자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </CommonSenseTitle>
-                    <CommonSenseContent>
+                    </Content>
+                </TextSection>
+                <TextSection>
+                    <Title>자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
+                    <Content>
                         - 내용물을 깨끗이 비워주세요. <br />
                         - 담배꽁초, 참기름 등 이물질을 넣지 말아주세요. <br />
                         - 빈병에 병뚜껑을 씌워 주세요. <br />
                         * 이는 재사용을 어렵게 하는 원인이 되며, 자원절약과 환경보호를 가로막는 걸림돌이 됩니다.
-                    </CommonSenseContent>
-                </CommonSenseText>
+                    </Content>
+                </TextSection>
             </Introduce>
         </Container>
     );

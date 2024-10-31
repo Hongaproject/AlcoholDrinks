@@ -7,10 +7,14 @@ import Sidebtn from '../Section/Sidebtn';
 import { useUserContext } from '../auth/Context/UserContext';
 import { FaRegHeart } from "react-icons/fa";
 
-// Styled-components
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `;
 
 const Introduce = styled.div`
@@ -29,7 +33,7 @@ const IntroduceTitle = styled.h1`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; /* SkyBlue when active */
+    background: ${(props) => (props.active ? '#87CEEB' : '#FFFFFF')}; 
     box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     margin-right: 70px;
@@ -37,6 +41,13 @@ const IntroduceTitle = styled.h1`
     cursor: pointer;
     transition: background 0.3s ease;
     color: #000;
+
+    @media (max-width: 768px) {
+        width: 80px;
+        height: 40px;
+        margin-right: 10px;
+        font-size: 1.25rem;
+    }
 `;
 
 const Outline = styled.div`
@@ -47,6 +58,14 @@ const Outline = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 0 20px;
+    }
 `;
 
 const Product = styled.div`
@@ -55,6 +74,15 @@ const Product = styled.div`
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        width: 35%;
+        padding: 0 20px;
+        display: flex; 
+        flex-direction: column;
+        align-items: center; 
+    }
 `;
 
 const ProductImg = styled.img`
@@ -63,6 +91,12 @@ const ProductImg = styled.img`
     width: 210px;
     height: 254px;
     object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 180px;
+        height: 224px;
+
+    }
 `;
 
 const ProductImgName = styled.h1`
@@ -70,15 +104,23 @@ const ProductImgName = styled.h1`
     color: #000;
     text-align: center;
     margin-top: 30px;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
 `;
 
-const ProductImgPrice = styled.span`
+const ProductImgCompany = styled.span`
     font-size: 20px;
     color: #909090;
     padding: 20px 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        font-size: 1.25rem;
+    }
 `;
 
 const Loader = styled.div`
@@ -109,13 +151,14 @@ const Favorite = styled.button`
     display: flex;
     align-items: center;
     padding: 0;
+    cursor: pointer;
 
     svg {
-        cursor: pointer; /* 버튼에 커서 추가 */
-        font-size: 30px; /* 아이콘 크기 설정 */
-        color: ${({ active }) => (active ? 'red' : 'black')}; /* 아이콘 색상 설정 */
-        transition: color 0.3s ease; /* 색상 변경 애니메이션 */
-        margin-right: 7px; /* 아이콘 오른쪽 여백 */
+        cursor: pointer; 
+        font-size: 30px; 
+        color: ${({ active }) => (active ? 'red' : 'black')}; 
+        transition: color 0.3s ease; 
+        margin-right: 7px;
         margin-left: 10px;
         display: flex; 
         align-items: center;
@@ -306,10 +349,10 @@ export default function BrandList({ category }) {
             <Outline>
                 {products.map(item => (
                     <Product key={item.id}>
-                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000", cursor: "pointer" }}>
                             <ProductImg src={item.url} />
                             <ProductImgName>{item.name}</ProductImgName>
-                            <ProductImgPrice>{item.company}</ProductImgPrice>
+                            <ProductImgCompany>{item.company}</ProductImgCompany>
                         </Link>
                         <Favorite 
                             onClick={() => handleHeart(item.id)}

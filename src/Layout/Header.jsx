@@ -346,12 +346,15 @@ export default function Header() {
 
     const {user} = useUserContext(); // Context에서 사용자 정보 가져옴
 
-    const location = useLocation();
-
     const [isOpen, setIsOpen] = useState(false); // 메뉴 열기 상태 관리
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen); // 메뉴 상태 토글
+    };
+
+    const handleMenuItemClick = () => {
+        setIsOpen(false); // 메뉴 아이템 클릭 시 메뉴 닫기
     };
 
 
@@ -370,22 +373,22 @@ export default function Header() {
                 </HamburgerButton>
                 <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname === '/story'}>
-                        <Link to='/story' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/story' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Story
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/brand/soju'}>
-                        <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/brand/soju' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Brand
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/company'}>
-                        <Link to='/company' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/company' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Company
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/guide'}>
-                        <Link to='/guide' style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/guide' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
                             Guide
                         </Link>
                     </MenuItem>

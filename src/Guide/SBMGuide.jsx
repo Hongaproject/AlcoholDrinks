@@ -5,13 +5,24 @@ import Sidebtn from "../Section/Sidebtn";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
 
 const MainTitle = styled.h1`
     text-align: center;
     font-size: 64px;
     margin-top: 150px;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: 3rem;
+    }
 `
+
 const SubTitle = styled.span`
     font-size: 20px;
     display: flex;
@@ -19,11 +30,21 @@ const SubTitle = styled.span`
     justify-content: center;
     margin-top: 25px;
     color: #909090;
+
+    @media (max-width: 768px) {
+        text-align: center;
+        font-size: 1.25rem;
+    }
 `
 const Guide = styled.div`
     width: calc(100%-440px);
     height: 100%;
     margin-bottom: 100px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
 const BeerSojuGuide = styled.div`
     width: 1200px;
@@ -33,6 +54,34 @@ const BeerSojuGuide = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 100px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+`
+const BeerSojuGuide2 = styled.div`
+    width: 1200px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    box-sizing: border-box;
+    flex-direction: row-reverse;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
 `
 const BeerImg = styled.img`
     float: left;
@@ -40,15 +89,33 @@ const BeerImg = styled.img`
     height: 380px;
     border-radius: 50%;
     object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
 `
 const Content = styled.div`
     width: 580px;
     height: 250px;
     margin-left: 60px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
 `
 const BeerTitle = styled.h2`
     font-size: 32px;
     margin-bottom: 30px;
+    
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
 `
 const BeerSpan = styled.span`
     font-size: 18px;
@@ -58,8 +125,8 @@ const BeerSpan = styled.span`
     color: #909090;
 `
 const BeerBtn = styled.button`
-    width: 80%; /* 퍼센트 단위로 변경 */
-    max-width: 310px; /* 최대 크기 설정 */
+    width: 80%; 
+    max-width: 310px; 
     height: 58px;
     background-color: #000;
     color: #fff;
@@ -71,6 +138,13 @@ const Content2 = styled.div`
     width: 580px;
     height: 250px;
     margin-right: 60px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
 `
 
 const SojuImg = styled.img`
@@ -79,10 +153,21 @@ const SojuImg = styled.img`
     height: 380px;
     border-radius: 50%;
     object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
 `
 const SojuTitle = styled.h2`
     font-size: 32px;
     margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
 `
 const SojuSpan = styled.span`
     font-size: 18px;
@@ -92,31 +177,49 @@ const SojuSpan = styled.span`
     color: #909090;
 `
 const SojuBtn = styled.button`
-    width: 80%; /* 퍼센트 단위로 변경 */
-    max-width: 310px; /* 최대 크기 설정 */
+    width: 80%; 
+    max-width: 310px; 
     height: 58px;
     background-color: #000;
     color: #fff;
     font-size: 24px;
     cursor: pointer;
 `
+
 const Makgeolli = styled.div`
     width: 1200px;
     height: 700px;
     margin: auto;
     margin-top: 120px;
     text-align: center;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
 `
 const MakgeolliImg = styled.img`
     width: 380px;
     height: 380px;
     border-radius: 50%;
     object-fit: contain;
+
+    @media (max-width: 768px) {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
 `
 const MakgeolliTitle = styled.h2`
     font-size: 32px;
     margin-top: 50px;
     margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        font-size: 1.75rem;
+    }
 `
 const MakgeolliSpan = styled.span`
     font-size: 18px;
@@ -126,8 +229,8 @@ const MakgeolliSpan = styled.span`
     color: #909090;
 `
 const MakgeolliBtn = styled.button`
-    width: 80%; /* 퍼센트 단위로 변경 */
-    max-width: 310px; /* 최대 크기 설정 */
+    width: 80%; 
+    max-width: 310px; 
     height: 58px;
     background-color: #000;
     color: #fff;
@@ -154,7 +257,8 @@ export default function SBMGuide (){
                         </Link>
                     </Content>
                 </BeerSojuGuide>
-                <BeerSojuGuide>
+                <BeerSojuGuide2>
+                    <SojuImg src="/img/brand/soju/jinro.jpg"/>
                     <Content2>
                         <SojuTitle>대한민국 최초 주류산업진출 ‘진로’</SojuTitle>
                         <SojuSpan>대한민국 현대 주류역사는 1924년 평안남도 용강에서 설립된 진로의 전신 ‘진천양조상회’로 부터시작합니다. 1950년대 영등포에 정착 한 후 진로는 1970년 12월 대망의 국내 소주시장 1위에오른 이후 현재까지 50년간 소주시장을 석권하고 있습니다. ‘참이슬’은 2001년 이후글로벌 증류주 시장에서 1위를 차지하는 대한민국의 대표 브랜드로 성장하였습니다.</SojuSpan>
@@ -162,8 +266,7 @@ export default function SBMGuide (){
                             <SojuBtn>소주상식 가이드 확인하기</SojuBtn>
                         </Link>
                     </Content2>
-                    <SojuImg src="/img/brand/soju/jinro.jpg"/>
-                </BeerSojuGuide>
+                </BeerSojuGuide2>
                 <Makgeolli>
                     <MakgeolliImg src="/img/brand/makgeolli/jip.jpg"/>
                     <MakgeolliTitle>대한민국 대표의 막걸리 제조회사 Since 1925 지평주조</MakgeolliTitle>

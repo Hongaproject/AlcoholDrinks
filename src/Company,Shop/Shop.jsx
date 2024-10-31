@@ -42,7 +42,7 @@ const CompanyMove = styled.span`
     float: right;
     font-size: 20px;
     margin-right: 200px;
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 60px;
 
     @media (max-width: 768px) {
@@ -73,7 +73,7 @@ const Outline = styled.div`
     width: calc(100% - 440px);
     height: 100%;
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 100px;
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;

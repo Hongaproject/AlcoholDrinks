@@ -36,7 +36,7 @@ const Username = styled.span`
 const Payload = styled.p`
     margin: 10px 0px;
     font-size: 18px;
-    
+
     @media (max-width: 768px) {
         width: 100%;
     }

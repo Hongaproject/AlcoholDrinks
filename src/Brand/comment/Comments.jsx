@@ -16,6 +16,10 @@ const PaginationControls = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+
+    @media (max-width: 768px) {
+        margin-top: 80px;
+    }
 `;
 
 const PaginationButton = styled.button`

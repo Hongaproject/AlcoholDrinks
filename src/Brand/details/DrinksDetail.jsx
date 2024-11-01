@@ -16,6 +16,12 @@ const IntroduceTitle = styled.div`
     width: 295px;
     height: 75px;
     font-size: 48px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+        font-size: 2.75rem;
+    }
 `
 
 const Outline = styled.div`
@@ -23,12 +29,23 @@ const Outline = styled.div`
     height: 100%;
     margin: auto;
     margin-top: 160px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        margin-top: 80px;   
+    }
 `
 const Product = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 60px;
     display: flex;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 `
 
 const ProductImg = styled.img`
@@ -39,11 +56,18 @@ const ProductImg = styled.img`
 const ProductDiv = styled.div`
     width: 350px;
     height: 80px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+    }
 `
 const ProductImgTitle = styled.h1`
     font-size: 48px;
     margin-top: 90px;
-
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 `
 const ProductImgCompany = styled.span`
     font-size: 20px;
@@ -51,12 +75,22 @@ const ProductImgCompany = styled.span`
     display: flex;
     color: #909090;
     margin-bottom: 30px;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
 `
 
 const ProductContent = styled.div`
     width: 500px;
     height: 100px;
     display: flex;
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
 `
 const ProductCTS = styled.div`
     width: 150px;
@@ -82,6 +116,12 @@ const Section = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 130px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        margin-top: 280px;
+        padding: 0 20px;
+    }
 `
 
 const SectionSub = styled.h1`
@@ -102,10 +142,19 @@ const SectionIntroduce = styled.div`
     margin: 0 auto;
     margin-top: 80px;
     margin-bottom: 160px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        text-align: center;
+    }
 `
 
 const SectionTitle = styled.h2`
     font-size: 48px;
+
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 `
 
 const SectionSpan = styled.span`
@@ -124,6 +173,10 @@ const Form = styled.form`
     margin: auto;
     margin-bottom: 160px;
     margin-top: 80px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `;
 
 const TextArea = styled.textarea`

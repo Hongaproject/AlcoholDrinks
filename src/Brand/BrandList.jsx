@@ -74,7 +74,6 @@ const Product = styled.div`
     border: 1px solid #EBEAEC;
     box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
     border-radius: 20px;
-    cursor: pointer;
 
     @media (max-width: 768px) {
         width: 35%;
@@ -91,6 +90,8 @@ const ProductImg = styled.img`
     width: 210px;
     height: 254px;
     object-fit: contain;
+    cursor: pointer;
+
 
     @media (max-width: 768px) {
         width: 180px;

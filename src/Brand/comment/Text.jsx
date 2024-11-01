@@ -13,9 +13,21 @@ const Container = styled.div`
     flex-direction: column;
     gap: 10px;
     margin: auto;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 `
 const Column = styled.div`
     padding: 20px;
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 const Username = styled.span`
     font-weight: 600;
@@ -24,6 +36,10 @@ const Username = styled.span`
 const Payload = styled.p`
     margin: 10px 0px;
     font-size: 18px;
+    
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 const Button = styled.button`
     background-color: tomato;

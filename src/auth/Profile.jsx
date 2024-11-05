@@ -7,17 +7,31 @@ import { useRef } from "react";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
 `
+
 const Section = styled.div`
     width: calc(100% - 660px);
     height: 100%;
     display: flex;
-    flex-direction: column; // 수직 방향으로 
-    align-items: center; 
-    justify-content: center; // 수평 수직 모두 중앙정렬
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
     margin-top: 120px;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        margin-top: 0px;
+        align-items: center;
+        text-align: center;
+    }
 `
+
 const UserImg = styled.label`
     width: 80px;
     overflow: hidden;
@@ -26,7 +40,7 @@ const UserImg = styled.label`
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center; // 내부요소가 가운데로 오게 정렬
+    align-items: center; 
     margin-top: 70px;
     svg {
         width: 50px;
@@ -44,8 +58,8 @@ const UserName = styled.h1`
 `
 const Store = styled.div`
     width: 100%;
-    margin-top: 100px; 
-    align-items: flex-start; // 요소가 왼쪽부터 시작 할 수 있게 도와줌.
+    margin-top: 100px;
+    align-items: flex-start;
 `
 
 const StoreTitle = styled.h2`
@@ -61,14 +75,14 @@ const StoreProductContainer = styled.div`
 
 const StoreProduct = styled.div`
     display: flex;
-    flex-wrap: nowrap; // 여러 줄로 나열되도록 변경
-    overflow-x: auto; // 수평 스크롤 제거
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
     gap: 20px; 
-    padding-bottom: 10px; // 스크롤바 공간 확보
+    padding-bottom: 10px; 
 `
 
 const StoreItem = styled.div`
-    min-width: 208px; // 아이템의 최소 너비 설정
+    min-width: 208px; 
     border-radius: 8px;
     border: 2px solid #EBEAEC;
     border-radius: 20px;
@@ -82,6 +96,11 @@ const Linked = styled.div`
     height: 180px;
     position: fixed;
     margin-left: 150px;
+
+    @media (max-width: 768px) {
+        position: static;
+        margin: 20px 0;
+    }
 `
 const Home = styled.div`
     cursor: pointer;
@@ -119,7 +138,7 @@ const ProductImg = styled.img`
 `;
 
 const ProductImgName = styled.h2`
-    font-size: 32px;
+    font-size: 28px;
     color: #000;
     text-align: center;
     margin-top: 30px;
@@ -147,6 +166,10 @@ const PrevButton = styled.div`
         transform: rotate(180deg); 
         color: #858585;
     }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const NextButton = styled.div`
@@ -158,6 +181,10 @@ const NextButton = styled.div`
     right: 13%;
     cursor: pointer;
     color: #858585;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 export default function Profile () {

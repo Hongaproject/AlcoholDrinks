@@ -135,7 +135,7 @@ export default function SignUp() {
             if(user){
                 navigate('/login');
             }
-        } catch (error) {
+        } catch (error) {   
             setErr("회원가입 중 오류가 발생했습니다.");
         }
 

@@ -797,11 +797,11 @@ export default function Section () {
                 {
                     isOpen && (
                         <PopupOverlay>
-                            <PopupContent>
-                                <CloseButton onClick={closePopup}>&times;</CloseButton>
+                            <PopupContent aria-labelledby="popup-title">
+                                <CloseButton onClick={closePopup} aria-label="Close Popup">&times;</CloseButton>
                                 <Content>
                                     <ContentSpan>
-                                        <ContextTitle>필독해 주세요!! 읽어주셔서 감사합니다.</ContextTitle><br /><br />
+                                        <ContextTitle aria-label="popup-title">필독해 주세요!! 읽어주셔서 감사합니다.</ContextTitle><br /><br />
                                         처음 만든 페이지다 보니 오류나 불편한 사항이 있을 수 있습니다. <br />이 점은 먼저 사죄드립니다.<br /><br />
                                         오류나 불편한 사항, 데이터 추가 요청 등이 있을 시 저에게 말씀해 주시면 <br />
                                         신속하게 해결하여 더 나은 서비스로 보답하겠습니다.<br /><br />
@@ -817,7 +817,7 @@ export default function Section () {
             </Popup>
             <ImgSlice>
                 <Slide>
-                    <PrevButton onClick={()=> moveSlide('prev')}>
+                    <PrevButton onClick={()=> moveSlide('prev')} aria-label="Previous slide">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
                     </PrevButton>
                     <Show>
@@ -826,14 +826,14 @@ export default function Section () {
                                 <Img 
                                     key={index} 
                                     style={{
-                                        transform: `translateX(${(-100 * imgArr)}%)`,  // 100% 단위로 이동
+                                        transform: `translateX(${(-100 * imgArr)}%)`, 
                                         transition: 'all 0.4s ease-in-out',
                                     }}>{item}
                                 </Img>
                             ))
                         }
                     </Show>
-                    <NextButton onClick={()=> moveSlide('next')}>
+                    <NextButton onClick={()=> moveSlide('next')} aria-label="Next slide">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
                     </NextButton>
                 </Slide>
@@ -842,28 +842,28 @@ export default function Section () {
 
             <Main>
                 <SubTitle>주류 종류</SubTitle>
-                <Link to='/brand/soju' style={{ textDecoration: "none"}} >
+                <Link to='/brand/soju' style={{ textDecoration: "none"}} aria-label="Go to Soju page">
                     <SojuContainer>
                         <Soju>
-                            <SojuImg />
+                            <SojuImg alt="Soju Image" />
                             <SojuTitle>소주</SojuTitle>
                             <SojuContent>희석주 입니다.</SojuContent>
                         </Soju>
                     </SojuContainer>
                 </Link>
-                <Link to='/brand/beer' style={{ textDecoration: "none"}}>
+                <Link to='/brand/beer' style={{ textDecoration: "none"}} aria-label="Go to Beer page">
                     <BeerContainer>
                         <Beer>
-                            <BeerImg />
+                            <BeerImg alt="Beer Image" />
                             <BeerTitle>맥주</BeerTitle>
                             <BeerContent>곡료주 입니다.</BeerContent>
                         </Beer>
                     </BeerContainer>
                 </Link>
-                <Link to='/brand/makgeolli' style={{ textDecoration: "none"}}>
+                <Link to='/brand/makgeolli' style={{ textDecoration: "none"}} aria-label="Go to Makgeolli page">
                     <MakgeolliC>
                         <Makgeolli>
-                            <MakgeolliImg />
+                            <MakgeolliImg alt="Makgeolli Image" />
                             <MakgeolliTitle>막걸리</MakgeolliTitle>
                             <MakgeolliContent>전통주 입니다.</MakgeolliContent>
                         </Makgeolli>
@@ -872,11 +872,11 @@ export default function Section () {
 
                 <LiquorNewC>
                     <LiquorNew>
-                        <Link to='/brand/liquor' style={{ textDecoration: "none"}}>
-                            <LiquorImg />
+                        <Link to='/brand/liquor' style={{ textDecoration: "none"}} aria-label="Go to Liquor page">
+                            <LiquorImg alt="Liquor Image" />
                         </Link>
-                        <Link to='/brand/new' style={{ textDecoration: "none"}}>
-                            <NewImg />
+                        <Link to='/brand/new' style={{ textDecoration: "none"}} aria-label="Go to New Product page">
+                            <NewImg alt="New Product Image"/>
                         </Link>
                     </LiquorNew>
                     <LiquorNewText>
@@ -897,19 +897,19 @@ export default function Section () {
                     </CollectionText>
                     <CollectionImg>
                         <CompanyImg>
-                            <Link to='/company' style={{ textDecoration: "none"}}>
+                            <Link to='/company' style={{ textDecoration: "none"}} aria-label="Go to Company page">
                                 <CImgTitle>Company</CImgTitle>
                                 <CImgSpan>View more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
                             </Link>
                         </CompanyImg>
                         <ShopImg>
-                            <Link to='/shop' style={{ textDecoration: "none"}}>
+                            <Link to='/shop' style={{ textDecoration: "none"}} aria-label="Go to Shop page">
                                 <CImgTitle>Shop</CImgTitle>
                                 <CImgSpan>View more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
                             </Link>
                         </ShopImg>
                         <GuideImg>
-                            <Link to='/guide' style={{ textDecoration: "none"}}>
+                            <Link to='/guide' style={{ textDecoration: "none"}} aria-label="Go to Guide page">
                                 <CImgTitle>Guide</CImgTitle>
                                 <CImgSpan>view more<CImgSpanIcon><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#000" d="M13 18h-2v-8l-3.5 3.5l-1.42-1.42L12 6.16l5.92 5.92l-1.42 1.42L13 10zM12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8a8 8 0 0 0 8 8a8 8 0 0 0 8-8a8 8 0 0 0-8-8"/></svg></CImgSpanIcon></CImgSpan>
                             </Link>

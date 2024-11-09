@@ -31,21 +31,21 @@ const Input = styled.input`
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* 패딩과 보더를 포함한 전체 너비 계산 */
-    font-size: 16px; /* 폰트 크기 지정 */
+    box-sizing: border-box; 
+    font-size: 16px; 
 `;
 
 const TextArea = styled.textarea`
     width: 100%;
-    height: 200px; /* 높이 설정 */
+    height: 200px; 
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* 패딩과 보더를 포함한 전체 너비 계산 */
-    overflow: auto; /* 컨텐츠가 넘칠 경우 스크롤 */
-    resize: none; /* 사용자가 크기를 조정하지 못하게 함 */
-    font-size: 16px; /* 폰트 크기 지정 */
+    box-sizing: border-box; 
+    overflow: auto; 
+    resize: none; 
+    font-size: 16px; 
 `;
 
 const Button = styled.button`
@@ -114,6 +114,7 @@ export default function ServiceMail() {
                         placeholder="이름을 입력해주세요."
                         value={formData.name}
                         onChange={onChange}
+                        aria-label='이름 입력'
                         required
                     />
                     <Input
@@ -122,6 +123,7 @@ export default function ServiceMail() {
                         placeholder="이메일을 입력해주세요."
                         value={formData.email}
                         onChange={onChange}
+                        aria-label='이메일 입력'
                         required
                     />
                     <Input
@@ -130,15 +132,17 @@ export default function ServiceMail() {
                         placeholder="폰 번호를 입력해주세요. 필수는 아닙니다."
                         value={formData.phone}
                         onChange={onChange}
+                        aria-describedby='선택 사항입니다'
                     />
                     <TextArea
                         name="message"
                         placeholder="메세지를 입력해주세요."
                         value={formData.message}
                         onChange={onChange}
+                        aria-label='이메일 입력'
                         required
                     />
-                    <Button type="submit">Send</Button>
+                    <Button type="submit" aria-label="메세지 전송">Send</Button>
                 </Form>
             </Container>
         </Background>

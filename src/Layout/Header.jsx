@@ -360,51 +360,51 @@ export default function Header() {
 
     return (
         <Container>
-            <Nav>
+            <Nav aria-label="주요 네비게이션">
                 <Link to='/' style={{ textDecoration: "none" }}>
                     <Logo>
                         대한민국 모든 주류
                     </Logo>
                 </Link>
-                <HamburgerButton onClick={toggleMenu}>
+                <HamburgerButton onClick={toggleMenu} aria-label="메뉴 토글버튼" aria-expanded={isOpen} role="button">
                     <div />
                     <div />
                     <div />
                 </HamburgerButton>
                 <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname === '/story'}>
-                        <Link to='/story' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/story' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }} aria-current={location.pathname === '/story' ? "page" : undefined}>
                             Story
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/brand/soju'}>
-                        <Link to='/brand/soju' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/brand/soju' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }} aria-current={location.pathname === '/brand/soju' ? "page" : undefined}>
                             Brand
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/company'}>
-                        <Link to='/company' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/company' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }} aria-current={location.pathname === '/company' ? "page" : undefined}>
                             Company
                         </Link>
                     </MenuItem>
                     <MenuItem active={location.pathname === '/guide'}>
-                        <Link to='/guide' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }}>
+                        <Link to='/guide' onClick={handleMenuItemClick} style={{ textDecoration: "none", color: "#000", padding: "15px 20px" }} aria-current={location.pathname === '/guide' ? "page" : undefined}>
                             Guide
                         </Link>
                     </MenuItem>
                 </MenuList>
 
                 <SearchLogin>
-                    <SearchImg onClick={() => setModalOpen(true)}>
+                    <SearchImg onClick={() => setModalOpen(true)} aria-label="검색 모달 열기" role="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"/></svg>
                     </SearchImg>
                     {
                         user ? (
-                            <Link to='/profile' style={{ textDecoration: "none" }}>
+                            <Link to='/profile' style={{ textDecoration: "none" }} aria-label="프로필">
                                 <AvatarUpload>
                                 {
                                     user.photoURL ? (
-                                        <ProfileImage src={user.photoURL} alt="Profile" />
+                                        <ProfileImage src={user.photoURL} alt="프로필" />
                                     ) : (
                                         <svg
                                             fill="currentColor"
@@ -419,7 +419,7 @@ export default function Header() {
                                 </AvatarUpload>
                         </Link>
                         ) : (
-                            <Link to='/login' style={{ textDecoration: "none" }}>
+                            <Link to='/login' style={{ textDecoration: "none" }} aria-label="로그인">
                                 <LoginButton>
                                     Login
                                 </LoginButton>
@@ -430,19 +430,19 @@ export default function Header() {
             </Nav>
             {
                 modalOpen &&
-                    <Modal ref={modalBackground} onClick={modalClick} >
+                    <Modal ref={modalBackground} onClick={modalClick} aria-modal="true">
                         <ModalContent>
                             <ContentSearch>
-                                <ContentInput type="text" placeholder="원하시는 상품 이름을 검색해주세요." value={search} onChange={searchChange}/>
-                                <ContentSearchClose onClick={() => setModalOpen(false)}>
+                                <ContentInput type="text" placeholder="원하시는 상품 이름을 검색해주세요." value={search} onChange={searchChange} aria-label="상품 검색" />
+                                <ContentSearchClose onClick={() => setModalOpen(false)} aria-label="검색 모달 닫기" role="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 50 50"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path></svg>
                                 </ContentSearchClose>
                             </ContentSearch>
-                            <ContentsRecently>
+                            <ContentsRecently aria-label="최근 본 상품">
                                 <ContentsBoxes>
                                     {
                                         filterBrand.map((item) => (
-                                            <ContentsBox key={item.id}>
+                                            <ContentsBox key={item.id} aria-label={`상품: ${item.name}`}>
                                                 <ProductImg src={item.url} alt={item.name} />
                                                 <ProductImgName>{item.name}</ProductImgName>
                                                 <ProductImgCompany>{item.company}</ProductImgCompany>

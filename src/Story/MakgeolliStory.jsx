@@ -161,8 +161,8 @@ export default function MakgeolliStory () {
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText aria-labelledby="makgeolli-history-title">
-                    <HistoryTitle id="makgeolli-history-title">막걸리의 역사</HistoryTitle>
+                <HistoryText aria-labelledby="막걸리의 역사">
+                    <HistoryTitle id="막걸리의 역사">막걸리의 역사</HistoryTitle>
                     <HistoryContent>
                         막걸리는 대한민국에서 가장 오래된 술 입니다. 삼국시대부터 양조가 된거로 추정을하고 있으며 고려 시대 서적을 보면 탁주 이야기가 적혀져 있습니다. <br />
                         소주가 나타나기전에 대한민국 주류 시장은 탁주가 높은 점유율을 가지고 있었습니다. 하지만 60년대 70년대부터 주세법 개정으로 인하여 주류에 쌀이 금지가 되었습니다. <br />

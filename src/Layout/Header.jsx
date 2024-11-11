@@ -395,7 +395,7 @@ export default function Header() {
                 </MenuList>
 
                 <SearchLogin>
-                    <SearchImg onClick={() => setModalOpen(true)} aria-label="검색 모달 열기" role="button">
+                    <SearchImg onClick={() => setModalOpen(true)} aria-label="검색 모달 창 열기" role="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"/></svg>
                     </SearchImg>
                     {
@@ -434,7 +434,7 @@ export default function Header() {
                         <ModalContent>
                             <ContentSearch>
                                 <ContentInput type="text" placeholder="원하시는 상품 이름을 검색해주세요." value={search} onChange={searchChange} aria-label="상품 검색" />
-                                <ContentSearchClose onClick={() => setModalOpen(false)} aria-label="검색 모달 닫기" role="button">
+                                <ContentSearchClose onClick={() => setModalOpen(false)} aria-label="검색 모달 창 닫기" role="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36" viewBox="0 0 50 50"><path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path></svg>
                                 </ContentSearchClose>
                             </ContentSearch>

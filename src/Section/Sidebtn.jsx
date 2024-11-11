@@ -43,7 +43,7 @@ export default function Sidebtn () {
 
     return(
         <Container>
-            <TopBtn onClick={moveTop} aria-label="위로 스크 버튼롤" role="button">
+            <TopBtn onClick={moveTop} aria-label="최상단으로 이동" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 8 8"><path fill="currentColor" d="M3.97 0L1 3h2v5h2V3h2z"/></svg>   
             </TopBtn> 
             <Link to={'/mail'}>

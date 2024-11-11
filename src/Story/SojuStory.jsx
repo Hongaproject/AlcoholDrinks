@@ -37,10 +37,10 @@ const IntroduceTitle = styled.h1`
     color: #000;
 
     @media (max-width: 768px) {
-        width: 100px;
+        width: 110px;
         height: 40px;
         margin-right: 10px;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 `;
 
@@ -126,7 +126,7 @@ export default function SojuStory () {
     return(
         <Container>
             <Introduce>
-            <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story' style={{ textDecoration: "none", color: "#000"}} aria-label="개요 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '개요'}
                         onClick={() => handleClick('개요')}
@@ -134,7 +134,7 @@ export default function SojuStory () {
                         개요
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}} aria-label="소주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '소주의 역사'}
                         onClick={() => handleClick('소주의 역사')}
@@ -142,7 +142,7 @@ export default function SojuStory () {
                         소주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}} aria-label="맥주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '맥주의 역사'}
                         onClick={() => handleClick('맥주의 역사')}
@@ -150,18 +150,18 @@ export default function SojuStory () {
                         맥주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}} aria-label="막걸리의 역사 페이지로 이동">
                     <IntroduceTitle
-                        active={activeTitle === '막걸리 역사'}
-                        onClick={() => handleClick('막걸리 역사')}
+                        active={activeTitle === '막걸리의 역사'}
+                        onClick={() => handleClick('막걸리의 역사')}
                     >  
-                        막걸리 역사
+                        막걸리의 역사
                     </IntroduceTitle>
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText>
-                    <HistoryTitle>소주의 역사</HistoryTitle>
+                <HistoryText aria-labelledby="soju-history-title">
+                    <HistoryTitle id="soju-history-title">소주의 역사</HistoryTitle>
                     <HistoryContent>
                         처음에는 우리가 알던 소주가 아닌 증류주 방식인 소주가 나타났습니다. <br/ > 증류주는 10세기경 페르시아에서 처음 만들어졌고 몽골이 대제국을 지배하면서 고려 후기에 우리나라에 소주가 들어오게 되었습니다.<br />
                         몽골군이 일본 정벌을 위해 안동, 제주, 개성에 주둔했었는데 그로 인해 안동, 제주, 개성에서 소주 제조법이 발달하게 되어 현재까지도 그 전통을 유지하여 유명합니다.  
@@ -174,7 +174,7 @@ export default function SojuStory () {
                         낮은 생산 가격을 무기로 대중 사이에 퍼져나갈수 있었습니다.
                     </HistoryContent>
                 </HistoryText2>
-                <Link to="/guide/soju">
+                <Link to="/guide/soju" aria-label="소주 가이드 페이지로 이동">
                     <SojuGuide>소주 가이드 확인하기</SojuGuide>
                 </Link>
             </Summary>

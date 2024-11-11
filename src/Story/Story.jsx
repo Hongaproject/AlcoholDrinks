@@ -37,10 +37,10 @@ const IntroduceTitle = styled.h1`
     color: #000;
 
     @media (max-width: 768px) {
-        width: 100px;
+        width: 110px;
         height: 40px;
         margin-right: 10px;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 `;
 
@@ -191,7 +191,7 @@ export default function Story () {
     return(
         <Container>
             <Introduce>
-                <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story' style={{ textDecoration: "none", color: "#000"}} aria-label="개요 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '개요'}
                         onClick={() => handleClick('개요')}
@@ -199,7 +199,7 @@ export default function Story () {
                         개요
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}} aria-label="소주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '소주의 역사'}
                         onClick={() => handleClick('소주의 역사')}
@@ -207,8 +207,7 @@ export default function Story () {
                         소주의 역사
                     </IntroduceTitle>
                 </Link>
-
-                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}} aria-label="맥주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '맥주의 역사'}
                         onClick={() => handleClick('맥주의 역사')}
@@ -216,47 +215,45 @@ export default function Story () {
                         맥주의 역사
                     </IntroduceTitle>
                 </Link>
-
-                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}} aria-label="막걸리의 역사 페이지로 이동">
                     <IntroduceTitle
-                        active={activeTitle === '막걸리 역사'}
-                        onClick={() => handleClick('막걸리 역사')}
+                        active={activeTitle === '막걸리의 역사'}
+                        onClick={() => handleClick('막걸리의 역사')}
                     >  
-                        막걸리 역사
+                        막걸리의 역사
                     </IntroduceTitle>
                 </Link>
             </Introduce>
             <Summary>
-                <SummaryText>
-                    <SummaryTitle>사이트 제작 의도</SummaryTitle>
-                    <SummaryContent>사이트를 제작 한 이유는 평소 주류에 관심이 많았고 최근에 술이 많이 나왔는데요. 많은 사람들이 새로운 제품을 알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는 상태로 
+                <SummaryText aria-labelledby="purpose-title">
+                    <SummaryTitle id="purpose-title">사이트 제작 의도</SummaryTitle>
+                    <SummaryContent>
+                        사이트를 제작 한 이유는 평소 주류에 관심이 많았고 최근에 술이 많이 나왔는데요. 많은 사람들이 새로운 제품을 알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는 상태로 
                         주류를 고르는 것에 불편함을 직접 느끼게 되었습니다. 주류에 관하여 이야기를 해보면 많은 사람들이 술 종류가 많으니까 다 똑같은 술이라고 생각하고 드시는 분들도 꽤 많이 계셔가지고 술 종류도 
                         소개할 겸 더 나아가 외국인 분들에게 한국 술에 대해서 알려드리고 싶어서 제작하게 되었습니다.
                     </SummaryContent>
                 </SummaryText>
-                <SummaryText>
-                    <SummaryTitle>대한민국 주류 시장</SummaryTitle>
+                <SummaryText aria-labelledby="korea-alcohol-market-size">
+                    <SummaryTitle id="korea-alcohol-market-size">대한민국 주류 시장 규모</SummaryTitle>
                     <SummaryImg>
-                        <SummaryKImg />
+                        <SummaryKImg alt="대한민국 주류 시장 기사 이미지" />
                         <SummaryKImgContent>
-                            국내 주류 시장 규모입니다. <br />
-                            22년도 기준 국내 주류 시장 규모가 10조원에 육박했고 시장 규모가 커진 이유는 다양한 주류들의 등장과 제로슈가와 제로칼로리의 여파가 크지 않을까 라는 생각이듭니다.
+                            <p>국내 주류 시장 규모입니다.</p>
+                            <p>22년도 기준 국내 주류 시장 규모가 10조원에 육박했고 시장 규모가 커진 이유는 다양한 주류들의 등장과 제로슈가와 제로칼로리의 여파가 크지 않을까 라는 생각이듭니다.</p>
                         </SummaryKImgContent>
                     </SummaryImg>
                     <SummaryImg>
-                        <SummaryTImg />
+                        <SummaryTImg alt="전통주 시장 규모 기사 이미지" />
                         <SummaryTImgContent>
-                            국내 전통주 시장 규모입니다. <br />
-                            최근 들어 문화 전통에 관심을 가지고 젊은 세대들이 관심을 가지고 있어서 시장 규모가 커지고 있습니다.
-                            또한 21년도에 막걸리 빚기를 국가무형문화재 신규 종목으로 지정했고 현재 UNESCO 세계무형문화유산으로 등재하기 위해 노력하고 있습니다.
+                            <p>국내 전통주 시장 규모입니다.</p>
+                            <p>최근 들어 문화 전통에 관심을 가지고 젊은 세대들이 관심을 가지고 있어서 시장 규모가 커지고 있습니다. 또한 21년도에 막걸리 빚기를 국가무형문화재 신규 종목으로 지정했고 현재 UNESCO 세계무형문화유산으로 등재하기 위해 노력하고 있습니다.</p>
                         </SummaryTImgContent>
                     </SummaryImg>
                     <SummaryImg>
-                        <SummaryGImg />
+                        <SummaryGImg alt="글로벌 주류 시장 규모 이미지" />
                         <SummaryGImgContent>
-                            글로벌 시장 규모입니다. <br />
-                            글로벌 시장은 꾸준하게 커지고 있으며 이때 대한민국 소주를 홍보할 좋은 기회라고 생각합니다. 전통적인 술인 막걸리와 소주를 글로벌 주류 시장에 공격적으로 이미지 마켓팅
-                            적극 사업추진을 한다면 주류회사에게 이익이 될 수 있는 좋은 기회이며 또한 대한민국의 홍보와 인식에 변화가 있을거라 생각하고 있습니다.
+                            <p>글로벌 시장 규모입니다.</p>
+                            <p>글로벌 시장은 꾸준하게 커지고 있으며 이때 대한민국 소주를 홍보할 좋은 기회라고 생각합니다. 전통적인 술인 막걸리와 소주를 글로벌 주류 시장에 공격적으로 이미지 마켓팅하고 적극 사업추진을 한다면 주류회사에게 이익이 될 수 있는 좋은 기회이며 또한 대한민국의 홍보와 인식에 변화가 있을거라 생각하고 있습니다.</p>
                         </SummaryGImgContent>
                     </SummaryImg>
                 </SummaryText>

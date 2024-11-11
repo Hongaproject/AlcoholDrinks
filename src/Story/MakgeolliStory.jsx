@@ -37,10 +37,10 @@ const IntroduceTitle = styled.h1`
     color: #000;
 
     @media (max-width: 768px) {
-        width: 100px;
+        width: 110px;
         height: 40px;
         margin-right: 10px;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 `;
 
@@ -113,7 +113,7 @@ export default function MakgeolliStory () {
     useEffect(() => {
         switch (location.pathname) {
             case '/story/makgeolli':
-                setActiveTitle('막걸리 역사');
+                setActiveTitle('막걸리의 역사');
                 break;
             default:
                 setActiveTitle('');
@@ -127,7 +127,7 @@ export default function MakgeolliStory () {
     return(
         <Container>
             <Introduce>
-            <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story' style={{ textDecoration: "none", color: "#000"}} aria-label="개요 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '개요'}
                         onClick={() => handleClick('개요')}
@@ -135,7 +135,7 @@ export default function MakgeolliStory () {
                         개요
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}} aria-label="소주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '소주의 역사'}
                         onClick={() => handleClick('소주의 역사')}
@@ -143,7 +143,7 @@ export default function MakgeolliStory () {
                         소주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}} aria-label="맥주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '맥주의 역사'}
                         onClick={() => handleClick('맥주의 역사')}
@@ -151,18 +151,18 @@ export default function MakgeolliStory () {
                         맥주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}} aria-label="막걸리의 역사 페이지로 이동">
                     <IntroduceTitle
-                        active={activeTitle === '막걸리 역사'}
-                        onClick={() => handleClick('막걸리 역사')}
+                        active={activeTitle === '막걸리의 역사'}
+                        onClick={() => handleClick('막걸리의 역사')}
                     >  
-                        막걸리 역사
+                        막걸리의 역사
                     </IntroduceTitle>
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText>
-                    <HistoryTitle>막걸리 역사</HistoryTitle>
+                <HistoryText aria-labelledby="makgeolli-history-title">
+                    <HistoryTitle id="makgeolli-history-title">막걸리의 역사</HistoryTitle>
                     <HistoryContent>
                         막걸리는 대한민국에서 가장 오래된 술 입니다. 삼국시대부터 양조가 된거로 추정을하고 있으며 고려 시대 서적을 보면 탁주 이야기가 적혀져 있습니다. <br />
                         소주가 나타나기전에 대한민국 주류 시장은 탁주가 높은 점유율을 가지고 있었습니다. 하지만 60년대 70년대부터 주세법 개정으로 인하여 주류에 쌀이 금지가 되었습니다. <br />
@@ -177,7 +177,7 @@ export default function MakgeolliStory () {
                         현재도 UNESCO 세계무형문화유산으로 등재하기 위한 노력을 하고 있습니다. 
                     </HistoryContent>
                 </HistoryText2>
-                <Link to="/guid/makgeolli">
+                <Link to="/guid/makgeolli" aria-label="막걸리 가이드 페이지로 이동">
                     <BeerGuide>막걸리 가이드 확인하기</BeerGuide>
                 </Link>
             </Summary>

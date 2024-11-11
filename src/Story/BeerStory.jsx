@@ -37,10 +37,10 @@ const IntroduceTitle = styled.h1`
     color: #000;
 
     @media (max-width: 768px) {
-        width: 100px;
+        width: 110px;
         height: 40px;
         margin-right: 10px;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
     }
 `;
 
@@ -128,7 +128,7 @@ export default function BeerStory () {
     return(
         <Container>
             <Introduce>
-            <Link to='/story' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story' style={{ textDecoration: "none", color: "#000"}} aria-label="개요 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '개요'}
                         onClick={() => handleClick('개요')}
@@ -136,7 +136,7 @@ export default function BeerStory () {
                         개요
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/soju' style={{ textDecoration: "none", color: "#000"}} aria-label="소주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '소주의 역사'}
                         onClick={() => handleClick('소주의 역사')}
@@ -144,7 +144,7 @@ export default function BeerStory () {
                         소주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/beer' style={{ textDecoration: "none", color: "#000"}} aria-label="맥주의 역사 페이지로 이동">
                     <IntroduceTitle
                         active={activeTitle === '맥주의 역사'}
                         onClick={() => handleClick('맥주의 역사')}
@@ -152,18 +152,18 @@ export default function BeerStory () {
                         맥주의 역사
                     </IntroduceTitle>
                 </Link>
-                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}}>
+                <Link to='/story/makgeolli' style={{ textDecoration: "none", color: "#000"}} aria-label="막걸리의 역사 페이지로 이동">
                     <IntroduceTitle
-                        active={activeTitle === '막걸리 역사'}
-                        onClick={() => handleClick('막걸리 역사')}
+                        active={activeTitle === '막걸리의 역사'}
+                        onClick={() => handleClick('막걸리의 역사')}
                     >  
-                        막걸리 역사
+                        막걸리의 역사
                     </IntroduceTitle>
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText>
-                    <HistoryTitle>맥주의 역사</HistoryTitle>
+                <HistoryText aria-labelledby="beer-history-title">
+                    <HistoryTitle id="beer-history-title">맥주의 역사</HistoryTitle>
                     <HistoryContent>
                         맥주는 B.C 4000년경 중동 지방의 티그리스, 유프라테스 강 유역에서 수메르 민족이 최초로 제조하였던 것으로 알려져 있습니다.<br />
                         현재 고대 이집트를 탐사하고 있는 고고학자들이 새로운 정보를 알아내고 있습니다. 고대 이집트 당시 대형 양조장이 있었다고 합니다. <br />
@@ -178,7 +178,7 @@ export default function BeerStory () {
                         80년대 이후 맥주 고유의 신선도를 유지하면서 장기 유통을 할 수 있는 첨단 비열처리 공법이 개발되면서 소비자들은 더욱 신선한 맥주를 즐길 수 있게 되었습니다.
                     </HistoryContent>
                 </HistoryText2>
-                <Link to="/guide/beer">
+                <Link to="/guide/beer" aria-label="맥주 가이드 페이지로 이동">
                     <BeerGuide>맥주 가이드 확인하기</BeerGuide>
                 </Link>
             </Summary>

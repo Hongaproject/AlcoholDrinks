@@ -160,8 +160,8 @@ export default function SojuStory () {
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText aria-labelledby="soju-history-title">
-                    <HistoryTitle id="soju-history-title">소주의 역사</HistoryTitle>
+                <HistoryText aria-labelledby="소주의 역사">
+                    <HistoryTitle id="소주의 역사">소주의 역사</HistoryTitle>
                     <HistoryContent>
                         처음에는 우리가 알던 소주가 아닌 증류주 방식인 소주가 나타났습니다. <br/ > 증류주는 10세기경 페르시아에서 처음 만들어졌고 몽골이 대제국을 지배하면서 고려 후기에 우리나라에 소주가 들어오게 되었습니다.<br />
                         몽골군이 일본 정벌을 위해 안동, 제주, 개성에 주둔했었는데 그로 인해 안동, 제주, 개성에서 소주 제조법이 발달하게 되어 현재까지도 그 전통을 유지하여 유명합니다.  

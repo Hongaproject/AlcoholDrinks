@@ -225,16 +225,16 @@ export default function Story () {
                 </Link>
             </Introduce>
             <Summary>
-                <SummaryText aria-labelledby="purpose-title">
-                    <SummaryTitle id="purpose-title">사이트 제작 의도</SummaryTitle>
+                <SummaryText aria-labelledby="사이트 제작 의도">
+                    <SummaryTitle id="사이트 제작 의도">사이트 제작 의도</SummaryTitle>
                     <SummaryContent>
                         사이트를 제작 한 이유는 평소 주류에 관심이 많았고 최근에 술이 많이 나왔는데요. 많은 사람들이 새로운 제품을 알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는 상태로 
                         주류를 고르는 것에 불편함을 직접 느끼게 되었습니다. 주류에 관하여 이야기를 해보면 많은 사람들이 술 종류가 많으니까 다 똑같은 술이라고 생각하고 드시는 분들도 꽤 많이 계셔가지고 술 종류도 
                         소개할 겸 더 나아가 외국인 분들에게 한국 술에 대해서 알려드리고 싶어서 제작하게 되었습니다.
                     </SummaryContent>
                 </SummaryText>
-                <SummaryText aria-labelledby="korea-alcohol-market-size">
-                    <SummaryTitle id="korea-alcohol-market-size">대한민국 주류 시장 규모</SummaryTitle>
+                <SummaryText aria-labelledby="대한민국 주류 시장 규모">
+                    <SummaryTitle id="대한민국 주류 시장 규모">대한민국 주류 시장 규모</SummaryTitle>
                     <SummaryImg>
                         <SummaryKImg alt="대한민국 주류 시장 기사 이미지" />
                         <SummaryKImgContent>

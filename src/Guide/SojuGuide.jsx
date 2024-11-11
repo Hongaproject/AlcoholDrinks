@@ -60,11 +60,11 @@ export default function SojuGuide () {
     
     return(
         <Container>
-            <MainTitle>소주상식 가이드</MainTitle>
+            <MainTitle aria-label="소주상식 가이드">소주상식 가이드</MainTitle>
             <Introduce>
-                <TextSection>
-                    <Title>소주의 역사</Title>
-                    <Content>
+                <TextSection aria-labelledby="소주의 역사">
+                    <Title id="소주의 역사">소주의 역사</Title>
+                    <Content aria-describedby="소주의 역사 설명">
                         우리가 알던 소주가 아닌 증류주 방식인 소주가 나타났습니다. <br/ > 증류주는 10세기경 페르시아에서 처음 만들어졌고 몽골이 대제국을 지배하면서 고려 후기에 우리나라에 소주가 들어오게 되었습니다.<br />
                         일본 정벌을 위해 안동, 제주, 개성에 주둔했었는데 그로 인해 안동, 제주, 개성에서 소주 제조법이 발달하게 되어 현재까지도 그 전통을 유지하여 유명합니다. <br /> <br />
                         소주는 일본에서 탄생한 조주 방식입니다. 우리나라에 들어왔을때는 일제강점기 초기인 1910년대이며 주세법 발표와 허가증을 만들어서 주류 업체들이 나타나기 시작했습니다. <br />
@@ -72,18 +72,18 @@ export default function SojuGuide () {
                         낮은 생산 가격을 무기로 대중 사이에 퍼져나갈수 있었습니다. 
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>취급 상식</Title>
-                    <Content>
+                <TextSection aria-labelledby="취급 상식">
+                    <Title id="취급 상식">취급 상식</Title>
+                    <Content aria-describedby="취급 상식 설명">
                         1. 소주를 개봉할 때에는 뚜껑의 위쪽 부분만 엄지와 검지를 이용하여(개봉 시 주의) 반시계 방향으로 회전시켜 주세요. <br />
                         2. 보관 할 때에는 고온 다습한 환경은 피해 주시고, 직사광선을 피해 그늘지고 환기가 잘 되는 서늘한 곳에 보관 바랍니다. <br />
                         3. 소주에 함유된 스테비아 - 설탕의 200~300배 감미도를 가지고 있으면서 칼로리는 거의 없는 특징을 가지고 있습니다. <br />
                         4. 소주가 화학주다? - 아닙니다. 소주는 쌀, 보리, 고구마, 타피오카와 같은 곡물을 이용해서 발효하고 증류해서 만들어집니다. 
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
-                    <Content>
+                <TextSection aria-labelledby="공병 재사용 법">
+                    <Title id="공병 재사용 법">자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
+                    <Content aria-describedby="공병 재사용 법 설명">
                         - 내용물을 깨끗이 비워주세요. <br />
                         - 담배꽁초, 참기름 등 이물질을 넣지 말아주세요. <br />
                         - 빈병을 깨뜨리지 말아주세요. <br />

@@ -162,8 +162,8 @@ export default function BeerStory () {
                 </Link>
             </Introduce>
             <Summary>
-                <HistoryText aria-labelledby="beer-history-title">
-                    <HistoryTitle id="beer-history-title">맥주의 역사</HistoryTitle>
+                <HistoryText aria-labelledby="맥주의 역사">
+                    <HistoryTitle id="맥주의 역사">맥주의 역사</HistoryTitle>
                     <HistoryContent>
                         맥주는 B.C 4000년경 중동 지방의 티그리스, 유프라테스 강 유역에서 수메르 민족이 최초로 제조하였던 것으로 알려져 있습니다.<br />
                         현재 고대 이집트를 탐사하고 있는 고고학자들이 새로운 정보를 알아내고 있습니다. 고대 이집트 당시 대형 양조장이 있었다고 합니다. <br />

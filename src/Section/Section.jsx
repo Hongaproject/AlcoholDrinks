@@ -797,11 +797,11 @@ export default function Section () {
                 {
                     isOpen && (
                         <PopupOverlay>
-                            <PopupContent aria-labelledby="popup-title">
+                            <PopupContent aria-labelledby="팝업 내용">
                                 <CloseButton onClick={closePopup} aria-label="팝업 닫기" role="button">&times;</CloseButton>
                                 <Content>
                                     <ContentSpan>
-                                        <ContextTitle id="popup-title">필독해 주세요!! 읽어주셔서 감사합니다.</ContextTitle><br /><br />
+                                        <ContextTitle id="팝업 내용">필독해 주세요!! 읽어주셔서 감사합니다.</ContextTitle><br /><br />
                                         처음 만든 페이지다 보니 오류나 불편한 사항이 있을 수 있습니다. <br />이 점은 먼저 사죄드립니다.<br /><br />
                                         오류나 불편한 사항, 데이터 추가 요청 등이 있을 시 저에게 말씀해 주시면 <br />
                                         신속하게 해결하여 더 나은 서비스로 보답하겠습니다.<br /><br />

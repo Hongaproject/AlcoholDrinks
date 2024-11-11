@@ -60,11 +60,11 @@ export default function MakgeolliGuide () {
     
     return(
         <Container>
-            <MainTitle>막걸리상식 가이드</MainTitle>
+            <MainTitle aria-label="막걸리상식 가이드">막걸리상식 가이드</MainTitle>
             <Introduce>
-                <TextSection>
-                    <Title>막걸리의 역사</Title>
-                    <Content>
+                <TextSection aria-labelledby="막걸리의 역사">
+                    <Title id="막걸리의 역사">막걸리의 역사</Title>
+                    <Content aria-describedby="막걸리의 역사 설명">
                         막걸리의 '막'은 '마구'의 줄임말로 특정한 규칙없이 대충이라는 의미와 부사의 형태로 '지금 바로'라는 의미를 지니고 있다. <br /><br />
 
                         고려 시대<br />
@@ -83,17 +83,17 @@ export default function MakgeolliGuide () {
                         젊은 세대들이 전통주에 관심을 가지게 되면서 전통주의 매출이 증가했으며 더 나가아 2021년 대한민국 문화재청에서는 '막걸리 빚기'를 국가무형문화재 신규 종목으로 지정했는데, 국민의 제안을 수용하여 지정된 첫 번째 사례입니다. 현재도 UNESCO 세계무형문화유산으로 등재하기 위한 노력을 하고 있습니다. 
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>취급 상식</Title>
-                    <Content>
+                <TextSection aria-labelledby="취급 상식">
+                    <Title id="취급 상식">취급 상식</Title>
+                    <Content aria-describedby="취급 상식 설명">
                         1. 생막걸리 - 살균을 따로 거치지 않아 효모가 살아있는 막걸리를 뜻한다. 유통기한이 짧다는 특징을 가진다. <br />
                         2. 보관 기간 - 가정에서 마시는 막걸리라면 맨눈으로 봤을 때 술의 상태가 괜찮고 간장 냄새 같은 이취가 나지 않으면 마셔도 별 문제가 없다는 게 전문가들의 견해다. <br />
                         3. 보관방법 - 0~10℃ 이하에서 냉장 보관, 세워서 보관하기 만약 누워서 보관하게 되면 효모에 의해 생성되는 탄산가스가 병뚜껑으로 배출되지 못하고 내용물과 새어 나올수도 있다. <br />
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
-                    <Content>
+                <TextSection aria-labelledby="공병 재사용 법">
+                    <Title id="공병 재사용 법">자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
+                    <Content aria-describedby="공병 재사용 법 설명">
                         - 내용물을 깨끗이 비워주세요. <br />
                         - 담배꽁초, 참기름 등 이물질을 넣지 말아주세요. <br />
                         - 빈병에 병뚜껑을 씌워 주세요. <br />

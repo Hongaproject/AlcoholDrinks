@@ -60,11 +60,11 @@ export default function BeerGuide () {
     
     return(
         <Container>
-            <MainTitle>맥주상식 가이드</MainTitle>
+            <MainTitle aria-label="맥주상식 가이드">맥주상식 가이드</MainTitle>
             <Introduce>
-                <TextSection>
-                    <Title>맥주의 역사</Title>
-                    <Content>
+                <TextSection aria-labelledby="맥주의 역사">
+                    <Title id="맥주의 역사">맥주의 역사</Title>
+                    <Content aria-describedby="맥주의 역사 설명">
                         맥주는 B.C 4000년경 중동 지방의 티그리스, 유프라테스 강 유역에서 수메르 민족이 최초로 제조하였던 것으로 알려져 있습니다.<br />
                         현재 고대 이집트를 탐사하고 있는 고고학자들이 새로운 정보를 알아내고 있습니다. 고대 이집트 당시 대형 양조장이 있었다고 합니다. <br />
                         현재 우리가 아는 맥주 제조방법은 독일에서 시작되었으며 독일로 여행을 가신다면 몇백년 된 양조장들을 구경할 수 있습니다. <br /> <br/>
@@ -74,17 +74,17 @@ export default function BeerGuide () {
                         80년대 이후 맥주 고유의 신선도를 유지하면서 장기 유통을 할 수 있는 첨단 비열처리 공법이 개발되면서 소비자들은 더욱 신선한 맥주를 즐길 수 있게 되었습니다.
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>취급 상식</Title>
-                    <Content>
+                <TextSection aria-labelledby="취급 상식">
+                    <Title id="취급 상식">취급 상식</Title>
+                    <Content aria-describedby="취급 상식 설명">
                         1. 병맥주 - 오프너를 사용해서 개봉해주시고, 빨리 시원하게 드시려고 냉동실에 넣으면 병맥주가 터지니 절대 넣지 마십시오. <br />
                         2. 페트맥주 - 일반페트와 달리 맥주 맛을 위해 3중막 구조로 된 페트용기를 사용하고 있습니다. <br />
                         3. 생맥주 - 관리하기에 따라 맛이 달라질 수 있습니다. 과거에는 살균 처리 과정으로 인하여 생맥주, 병맥주로 나뉘게 되었지만 현재는 똑같은 맥주입니다.  <br />
                     </Content>
                 </TextSection>
-                <TextSection>
-                    <Title>자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
-                    <Content>
+                <TextSection aria-labelledby="공병 재사용 법">
+                    <Title id="공병 재사용 법">자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법 </Title>
+                    <Content aria-describedby="공병 재사용 법 설명">
                         - 내용물을 깨끗이 비워주세요. <br />
                         - 담배꽁초, 참기름 등 이물질을 넣지 말아주세요. <br />
                         - 빈병을 깨뜨리지 말아주세요. <br />

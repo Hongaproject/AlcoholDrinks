@@ -295,11 +295,11 @@ export default function DrinksDetail() {
     
     return (
         <Container>
-            <Outline>
-                <IntroduceTitle>세부페이지</IntroduceTitle>
+            <Outline role="region" aria-labelledby="세부페이지">
+                <IntroduceTitle id='세부페이지'>세부페이지</IntroduceTitle>
                 {alcoholItem ? (
                     <Product>
-                        <ProductImg src={alcoholItem.url} alt={alcoholItem.name} />
+                        <ProductImg src={alcoholItem.url} alt={`${alcoholItem.name} 이미지`} />
                         <ProductDiv>
                             <ProductImgTitle>{alcoholItem.name}</ProductImgTitle>
                             <ProductImgCompany>{alcoholItem.company}</ProductImgCompany>
@@ -324,25 +324,25 @@ export default function DrinksDetail() {
                         </ProductDiv>
                     </Product>
                 ) : (
-                    <p>로딩 중...</p>
+                    <p role="status" aria-live="polite">로딩 중...</p>
                 )}
             </Outline>
-            <Section>
-                <SectionSub>상품 설명</SectionSub>
+            <Section role="region" aria-labelledby="상품 설명">
+                <SectionSub id="상품 설명">상품 설명</SectionSub>
                 {alcoholItem ? (
                     <SectionIntroduce>
                         <SectionTitle>{alcoholItem.name}</SectionTitle>
                         <SectionSpan>{alcoholItem.discription}</SectionSpan>
                     </SectionIntroduce>
                 ) : (
-                    <p>로딩 중...</p>
+                    <p role="status" aria-live="polite">로딩 중...</p>
                 )}
             </Section>
-            <Section>
-                <SectionSub>상품평</SectionSub>
+            <Section role="region" aria-labelledby="상품평">
+                <SectionSub id="상품평">상품평</SectionSub>
                 {alcoholItem && <Comments category={category} productId={id} />}
-                <Form onSubmit={onSubmit}>
-                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} required />
+                <Form onSubmit={onSubmit} aria-label="상품평 작성 폼">
+                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} required aria-label="상품평 작성"/>
                     <SubmitBtn type='submit'value={isLoading ? "...Loading" : "등록"}/>
                 </Form>
             </Section>

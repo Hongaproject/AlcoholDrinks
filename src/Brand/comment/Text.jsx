@@ -102,32 +102,32 @@ export default function Text ({username, text, userId, id}) {
     return(
         <Container>
             <Column>
-                <Username>{username}</Username>
+                <Username aria-label="작성자 이름">{username}</Username>
                 <Payload>
                 {
                     isEditMod ? (
                         <>
-                            <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} />
+                            <input type="text" value={editText} onChange={(e) => setEditText(e.target.value)} aria-label="텍스트 편집" />
                         </>
                     ) : (
-                        <>
+                        <p aria-live="polite">
                             {text}
-                        </>
+                        </p>
                     )
                 }    
                 </Payload>
                 {
                     user?.uid === userId ? (
                     <>
-                        <Button onClick={onDelete}>Delete</Button>
+                        <Button onClick={onDelete} aria-label="텍스트 삭제">Delete</Button>
                         {
                             isEditMod ? (
                                 <>
-                                    <Button onClick={onCancel}>Cancle</Button>
-                                    <SaveButton onClick={onSave}>Save</SaveButton>
+                                    <Button onClick={onCancel} aria-label="수정 취소">Cancle</Button>
+                                    <SaveButton onClick={onSave} aria-label="수정 내용 저장">Save</SaveButton>
                                 </>
                             ) : (
-                                <Button onClick={onEdit}>Edit</Button>
+                                <Button onClick={onEdit} aria-label="댓글 수정">Edit</Button>
                             )
                         } 
                     </>

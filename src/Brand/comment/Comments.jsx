@@ -114,12 +114,12 @@ export default function Comments({ category, productId }) {
     return (
         <Container>
             {texts.map((text) => <Text key={text.id} {...text} />)}
-            <PaginationControls>
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
+            <PaginationControls role="navigation" aria-label="페이지네이션">
+                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지 이동">
                     이전
                 </PaginationButton>
-                <PageNumber>{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 0}>
+                <PageNumber aria-live="polite">{currentPage} / {totalPages}</PageNumber>
+                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 0} aria-label="다음 페이지 이동">
                     다음
                 </PaginationButton>
             </PaginationControls>

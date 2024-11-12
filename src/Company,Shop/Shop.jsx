@@ -198,17 +198,17 @@ export default function Shop () {
         <Container>
             <HeaderContainer>
                 <IntroduceTitle>판매처 소개</IntroduceTitle>
-                <Link to='/company' style={{ textDecoration: "none", color: "#000" }}>
-                    <CompanyMove>회사소개 구경하기</CompanyMove>
+                <Link to='/company' style={{ textDecoration: "none", color: "#000" }} aria-label="주류 회사 구경하기">
+                    <CompanyMove>주류 회사 구경하기</CompanyMove>
                 </Link>
             </HeaderContainer>
             <Notification>전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷 쇼핑몰에서는 판매가 불가합니다.</Notification>
             <Sidebtn />
-            <Outline>
+            <Outline role="region">
                 {
                     currentShops.map((item)=> (
-                        <Shops key={item.id} onClick={()=> window.open(`${item.homepage}`)}>
-                            <ShopImg src={item.url}/>
+                        <Shops key={item.id} onClick={()=> window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
+                            <ShopImg src={item.url} alt={`${item.name} 이미지`} />
                             <ShopTitle>{item.name}</ShopTitle>
                             <ShopHomepage>{item.homepage}</ShopHomepage>
                             <ShopTel>{item.tel}</ShopTel>
@@ -217,11 +217,11 @@ export default function Shop () {
                 }
             </Outline>
             <PaginationControls>
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
+                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지">
                     이전
                 </PaginationButton>
                 <PageNumber>{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages} aria-label="다음 페이지">
                     다음
                 </PaginationButton>
             </PaginationControls>

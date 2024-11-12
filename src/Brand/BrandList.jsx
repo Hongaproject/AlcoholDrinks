@@ -304,8 +304,8 @@ export default function BrandList({ category }) {
 
     return (
         <Container>
-            <Introduce>
-                <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000" }}>
+            <Introduce role="navigation" aria-label="브랜드 소개">
+                <Link to='/brand/soju' style={{ textDecoration: "none", color: "#000" }} aria-label="소주 브랜드로 이동">
                     <IntroduceTitle
                         active={activeTitle === 'soju'}
                         onClick={() => handleClick('soju')}
@@ -313,7 +313,7 @@ export default function BrandList({ category }) {
                         소주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/beer' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/beer' style={{ textDecoration: "none", color: "#000" }} aria-label="맥주 브랜드로 이동">
                     <IntroduceTitle
                         active={activeTitle === 'beer'}
                         onClick={() => handleClick('beer')}
@@ -321,7 +321,7 @@ export default function BrandList({ category }) {
                         맥주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/liquor' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/liquor' style={{ textDecoration: "none", color: "#000" }} aria-label="증류주 브랜드로 이동">
                     <IntroduceTitle
                         active={activeTitle === 'liquor'}
                         onClick={() => handleClick('liquor')}
@@ -329,7 +329,7 @@ export default function BrandList({ category }) {
                         증류주
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/makgeolli' style={{ textDecoration: "none", color: "#000" }} aria-label="막걸리 브랜드로 이동">
                     <IntroduceTitle
                         active={activeTitle === 'makgeolli'}
                         onClick={() => handleClick('makgeolli')}
@@ -337,7 +337,7 @@ export default function BrandList({ category }) {
                         막걸리
                     </IntroduceTitle>
                 </Link>
-                <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/brand/new' style={{ textDecoration: "none", color: "#000" }} aria-label="신제품 브랜드로 이동">
                     <IntroduceTitle
                         active={activeTitle === 'new'}
                         onClick={() => handleClick('new')}
@@ -347,17 +347,18 @@ export default function BrandList({ category }) {
                 </Link>
             </Introduce>
             <Sidebtn />
-            <Outline>
+            <Outline role="region">
                 {products.map(item => (
                     <Product key={item.id}>
-                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000", cursor: "pointer" }}>
-                            <ProductImg src={item.url} />
+                        <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000", cursor: "pointer" }} aria-label={`${item.name}의 상세 페이지로 이동`}>
+                            <ProductImg src={item.url} alt={`${item.name} 이미지`} />
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgCompany>{item.company}</ProductImgCompany>
                         </Link>
                         <Favorite 
                             onClick={() => handleHeart(item.id)}
                             active={favorite[category]?.includes(item.id)}
+                            aria-label={`좋아요 ${favorite[category]?.includes(item.id) ? '취소' : '추가'} 버튼`}
                         >
                             <FaRegHeart />
                             <FavoriteNumber>{favoriteCounts[category]?.[item.id] || 0}</FavoriteNumber>
@@ -366,12 +367,12 @@ export default function BrandList({ category }) {
                 ))}
             </Outline>
             {loading && (
-                <Loader>
-                    <img src="/img/Spinner.gif" alt="Loading..." />
+                <Loader role="status" aria-live="polite">
+                    <img src="/img/Spinner.gif" alt="로딩 중..." />
                 </Loader>
             )}
             <div ref={loader} style={{ height: '100px', background: 'transparent' }}></div>
-            {savedMessage && <SavedMessage>{savedMessage}</SavedMessage>}
+            {savedMessage && <SavedMessage role="alert" aria-live="assertive">{savedMessage}</SavedMessage>}
         </Container>
     );
 }

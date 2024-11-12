@@ -175,15 +175,15 @@ export default function Company() {
     return (
         <Container>
             <IntroduceTitle>주류 회사 소개</IntroduceTitle>
-            <Link to='/shop' style={{ textDecoration: "none", color: "#000" }}>
+            <Link to='/shop' style={{ textDecoration: "none", color: "#000" }} aria-label="판매처 구경하기">
                 <ShopMove>판매처 구경하기</ShopMove>
             </Link>
             <Sidebtn />
-            <Outline>
+            <Outline role="region">
                 {
                     currentCompanies.map((item) => (
-                        <Companys key={item.id} onClick={() => window.open(`${item.homepage}`)}>
-                            <CompanyImg src={item.url} />
+                        <Companys key={item.id} onClick={() => window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
+                            <CompanyImg src={item.url} alt={`${item.name} 이미지`} />
                             <CompanyTitle>{item.name}</CompanyTitle>
                             <CompanyHomepage>{item.homepage}</CompanyHomepage>
                         </Companys>
@@ -191,11 +191,11 @@ export default function Company() {
                 }
             </Outline>
             <PaginationControls>
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1}>
+                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지">
                     이전
                 </PaginationButton>
                 <PageNumber>{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages} aria-label="다음 페이지">
                     다음
                 </PaginationButton>
             </PaginationControls>

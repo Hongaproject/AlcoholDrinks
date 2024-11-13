@@ -144,15 +144,15 @@ export default function SignUp() {
     return (
         <Container>
             <SignupModal>
-                <Title>회원가입</Title>
-                <Form onSubmit={onSubmit}>
-                    <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
-                    <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
-                    <Input type="password" placeholder="비밀번호 확인" name="confirmPassword" value={confirmPassword} onChange={onChange} required />
-                    <Input type="text" placeholder="닉네임을 입력해주세요." name="name" value={name} onChange={onChange} required />
-                    <Input type="submit" value={isLoading ? "Loading..." : "회원가입"} />    
+                <Title >회원가입</Title>
+                <Form onSubmit={onSubmit} aria-label="회원가입 작성 폼">
+                    <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required aria-label="이메일 입력" />
+                    <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required aria-label="비밀번호 입력" />
+                    <Input type="password" placeholder="비밀번호 확인" name="confirmPassword" value={confirmPassword} onChange={onChange} required aria-label="비밀번호 확인" />
+                    <Input type="text" placeholder="닉네임을 입력해주세요." name="name" value={name} onChange={onChange} required aria-label="닉네임 입력"/>
+                    <Input type="submit" value={isLoading ? "Loading..." : "회원가입"} aria-label={isLoading ? "회원가입 진행 중" : "회원가입"}/>    
                 </Form>
-                {err !== "" ? <Error>{err}</Error> : null}
+                {err !== "" ? <Error role="alert" aria-label="assertive">{err}</Error> : null}
             </SignupModal>
         </Container>
     );

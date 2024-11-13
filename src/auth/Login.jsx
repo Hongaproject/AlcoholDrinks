@@ -144,19 +144,19 @@ export default function Login() {
         <Container>
             <LoginModal>
                 <Title>Login</Title>
-                <Form onSubmit={onSubmit}>  
-                    <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required />
-                    <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required />
-                    <Input type="submit" value={isLoading ? "Loading..." : "Login"} />    
+                <Form onSubmit={onSubmit} aria-label="로그인 작성 폼">  
+                    <Input type="email" placeholder="이메일을 입력해주세요." name="email" value={email} onChange={onChange} required aria-label="이메일 입력"/>
+                    <Input type="password" placeholder="비밀번호 6자 이상 입력해주세요." name="password" value={password} onChange={onChange} required aria-label="비밀번호 입력"/>
+                    <Input type="submit" value={isLoading ? "Loading..." : "Login"} aria-label={isLoading ? "로그인 진행 중" : "로그인"}/>    
                 </Form>
-                {err !== "" ? <Error>{err}</Error> : null}
+                {err !== "" ? <Error role="alert" aria-label="assertive">{err}</Error> : null}
                 <Switcher>
-                    계정이 없으신가요? <Link to="/signup" style={{ textDecoration: "none" }}><SignupLink>회원가입</SignupLink></Link>
+                    계정이 없으신가요? <Link to="/signup" style={{ textDecoration: "none" }} aria-label="회원가입 페이지로 이동"><SignupLink>회원가입</SignupLink></Link>
                 </Switcher>
-                <Button onClick={() => onClick(googleProvider)}>
+                <Button onClick={() => onClick(googleProvider)} role="button" aria-label="구글 계정으로 로그인">
                     <Logo /> 구글 로그인
                 </Button>
-                <Button onClick={() => onClick(githubProvider)}>
+                <Button onClick={() => onClick(githubProvider)} role="button" aria-label="깃허브 계정으로 로그인">
                     <Logo /> 깃허브 로그인
                 </Button>
             </LoginModal>

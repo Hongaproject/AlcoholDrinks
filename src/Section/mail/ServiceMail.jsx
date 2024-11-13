@@ -107,7 +107,7 @@ export default function ServiceMail() {
         <Background>
             <Container>
                 <Title>문의 사항 - 실제로 메일이 전송됩니다!</Title>
-                <Form onSubmit={onSubmit}>
+                <Form onSubmit={onSubmit} aria-label="이메일 작성 폼">
                     <Input
                         type="text"
                         name="name"

@@ -217,12 +217,12 @@ export default function Profile () {
     return(
         <Container>
             <Linked>
-                <Link to='/' style={{ textDecoration: "none", color: "#000" }}>
+                <Link to='/' style={{ textDecoration: "none", color: "#000" }} aria-label="홈으로 이동">
                     <Home>
                         <img src="/img/back.png" alt="뒤로 가기"/>
                     </Home>
                 </Link>
-                <LogOut className="logout" onClick={Logout}>
+                <LogOut className="logout" onClick={Logout} role="button" aria-label="로그아웃">
                     <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -246,7 +246,7 @@ export default function Profile () {
                 <UserImg>
                     {
                         user && user.photoURL ? (
-                            <User src={user.photoURL} alt="Profile" />
+                            <User src={user.photoURL} alt={`${user.name}의 프로필 사진`} />
                         ) : (
                             <svg
                                 fill="currentColor"
@@ -264,14 +264,14 @@ export default function Profile () {
                     <StoreTitle>좋아요 상품</StoreTitle>
                     {savedItems.length > 0 ? (
                         <StoreProductContainer>
-                            <PrevButton onClick={() => scroll("left")}>
+                            <PrevButton onClick={() => scroll("left")} role="button" aria-label="이전 상품 보기">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
                             </PrevButton>
                             <StoreProduct ref={storeProductRef}>
                                 {
                                     savedItems.map((item) => (
                                         <StoreItem key={item.id}>
-                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }}>
+                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }} aria-label={`${item.name} 상세 페이지로 이동`}>
                                                 <ProductImg src={item.url} alt={item.name} />
                                                 <ProductImgName>{item.name}</ProductImgName>
                                                 <ProductImgCompany>{item.company}</ProductImgCompany>
@@ -280,7 +280,7 @@ export default function Profile () {
                                     ))
                                 }
                             </StoreProduct>
-                            <NextButton onClick={() => scroll("right")}>
+                            <NextButton onClick={() => scroll("right")} role="button" aria-label="다음 상품 보기">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg>
                             </NextButton>
                         </StoreProductContainer>

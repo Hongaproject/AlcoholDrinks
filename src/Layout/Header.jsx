@@ -186,8 +186,8 @@ const ContentInput = styled.input`
 
 const ContentSearchClose = styled.button`
     position: absolute;
-    top: 9.5%;
-    right: 15.8%;
+    top: 11%;
+    right: 15.5%;
     width: 64px;
     height: 64px;
     background-color: #f6921f;
@@ -212,7 +212,7 @@ const ContentsBoxes = styled.div`
 
 const ContentsBox = styled.div`
     flex: 1 1 auto;
-    max-width: 200px;
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -221,14 +221,13 @@ const ContentsBox = styled.div`
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    margin-bottom: 20px;
+    border-radius: 20px;
 `;
 
 const ProductImg = styled.img`
     display: block;
     margin: auto;
-    width: 100%;
-    max-width: 210px; 
+    width: 210px;
     height: 254px;
     object-fit: contain;
     border-bottom: 1px solid #ddd;
@@ -298,11 +297,11 @@ export default function Header() {
                 ]);
                 
                 // 각 응답에서 데이터를 추출하여 병합
-                const sojuData = res[0].data.soju;
-                const beerData = res[1].data.beer;
-                const liquorData = res[2].data.liquor;
-                const makgeolliData = res[3].data.makgeolli;
-                const newData = res[4].data.new;
+                const sojuData = res[0].data.soju.map(item => ({ ...item, category: 'soju' }));
+                const beerData = res[1].data.beer.map(item => ({ ...item, category: 'beer' }));
+                const liquorData = res[2].data.liquor.map(item => ({ ...item, category: 'liquor' }));
+                const makgeolliData = res[3].data.makgeolli.map(item => ({ ...item, category: 'makgeolli' }));
+                const newData = res[4].data.new.map(item => ({ ...item, category: 'new' }));
 
 
                 // 모든 데이터를 하나의 배열로 병합
@@ -442,12 +441,14 @@ export default function Header() {
                                 <ContentsBoxes>
                                     {
                                         filterBrand.map((item) => (
-                                            <ContentsBox key={item.id} aria-label={`상품: ${item.name}`}>
-                                                <ProductImg src={item.url} alt={item.name} />
-                                                <ProductImgName>{item.name}</ProductImgName>
-                                                <ProductImgCompany>{item.company}</ProductImgCompany>
-                                                <ProductImgCompany>{item.new}</ProductImgCompany>
-                                            </ContentsBox>
+                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }} key={item.id} aria-label={`${item.name}의 상세 페이지로 이동`}>
+                                                <ContentsBox aria-label={`상품: ${item.name}`}>
+                                                    <ProductImg src={item.url} alt={item.name} />
+                                                    <ProductImgName>{item.name}</ProductImgName>
+                                                    <ProductImgCompany>{item.company}</ProductImgCompany>
+                                                    <ProductImgCompany>{item.new}</ProductImgCompany>
+                                                </ContentsBox>
+                                            </Link>
                                         ))
                                     }
                                 </ContentsBoxes>

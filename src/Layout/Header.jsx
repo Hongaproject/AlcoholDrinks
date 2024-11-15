@@ -441,7 +441,7 @@ export default function Header() {
                                 <ContentsBoxes>
                                     {
                                         filterBrand.map((item) => (
-                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }} key={item.id} aria-label={`${item.name}의 상세 페이지로 이동`}>
+                                            <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000" }} key={item.id} aria-label={`${item.name}의 상세 페이지로 이동`} onClick={() => setModalOpen(false)}>
                                                 <ContentsBox aria-label={`상품: ${item.name}`}>
                                                     <ProductImg src={item.url} alt={item.name} />
                                                     <ProductImgName>{item.name}</ProductImgName>

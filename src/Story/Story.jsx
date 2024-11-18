@@ -188,6 +188,10 @@ export default function Story () {
         setActiveTitle(title);
     };
 
+    const imgError = (e) => {
+        e.target.src = `/imgnone.png`
+    }
+
     return(
         <Container>
             <Introduce>
@@ -235,21 +239,21 @@ export default function Story () {
                 </SummaryText>
                 <SummaryText aria-labelledby="대한민국 주류 시장 규모">
                     <SummaryTitle id="대한민국 주류 시장 규모">대한민국 주류 시장 규모</SummaryTitle>
-                    <SummaryImg>
+                    <SummaryImg onError={imgError}>
                         <SummaryKImg alt="대한민국 주류 시장 기사 이미지" />
                         <SummaryKImgContent>
                             <p>국내 주류 시장 규모입니다.</p>
                             <p>22년도 기준 국내 주류 시장 규모가 10조원에 육박했고 시장 규모가 커진 이유는 다양한 주류들의 등장과 제로슈가와 제로칼로리의 여파가 크지 않을까 라는 생각이듭니다.</p>
                         </SummaryKImgContent>
                     </SummaryImg>
-                    <SummaryImg>
+                    <SummaryImg onError={imgError}>
                         <SummaryTImg alt="전통주 시장 규모 기사 이미지" />
                         <SummaryTImgContent>
                             <p>국내 전통주 시장 규모입니다.</p>
                             <p>최근 들어 문화 전통에 관심을 가지고 젊은 세대들이 관심을 가지고 있어서 시장 규모가 커지고 있습니다. 또한 21년도에 막걸리 빚기를 국가무형문화재 신규 종목으로 지정했고 현재 UNESCO 세계무형문화유산으로 등재하기 위해 노력하고 있습니다.</p>
                         </SummaryTImgContent>
                     </SummaryImg>
-                    <SummaryImg>
+                    <SummaryImg onError={imgError}>
                         <SummaryGImg alt="글로벌 주류 시장 규모 이미지" />
                         <SummaryGImgContent>
                             <p>글로벌 시장 규모입니다.</p>

@@ -172,6 +172,10 @@ export default function Company() {
         }
     };
 
+    const imgError = (e) => {
+        e.target.src = `/imgnone.png`
+    }
+
     return (
         <Container>
             <IntroduceTitle>주류 회사 소개</IntroduceTitle>
@@ -183,7 +187,7 @@ export default function Company() {
                 {
                     currentCompanies.map((item) => (
                         <Companys key={item.id} onClick={() => window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
-                            <CompanyImg src={item.url} alt={`${item.name} 이미지`} />
+                            <CompanyImg src={item.url} alt={`${item.name} 이미지`} onError={imgError} />
                             <CompanyTitle>{item.name}</CompanyTitle>
                             <CompanyHomepage>{item.homepage}</CompanyHomepage>
                         </Companys>

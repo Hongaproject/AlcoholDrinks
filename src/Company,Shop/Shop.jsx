@@ -194,6 +194,10 @@ export default function Shop () {
         }
     };
 
+    const imgError = (e) => {
+        e.target.src = `/imgnone.png`
+    }
+
     return(
         <Container>
             <HeaderContainer>
@@ -208,7 +212,7 @@ export default function Shop () {
                 {
                     currentShops.map((item)=> (
                         <Shops key={item.id} onClick={()=> window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
-                            <ShopImg src={item.url} alt={`${item.name} 이미지`} />
+                            <ShopImg src={item.url} alt={`${item.name} 이미지`} onError={imgError} />
                             <ShopTitle>{item.name}</ShopTitle>
                             <ShopHomepage>{item.homepage}</ShopHomepage>
                             <ShopTel>{item.tel}</ShopTel>

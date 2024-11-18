@@ -292,6 +292,10 @@ export default function DrinksDetail() {
             setIsLoading(false);
         }
     }
+
+    const imgError = (e) => {
+        e.target.src = `/imgnone.png`
+    }
     
     return (
         <Container>
@@ -299,7 +303,7 @@ export default function DrinksDetail() {
                 <IntroduceTitle id='세부페이지'>세부페이지</IntroduceTitle>
                 {alcoholItem ? (
                     <Product>
-                        <ProductImg src={alcoholItem.url} alt={`${alcoholItem.name} 이미지`} />
+                        <ProductImg src={alcoholItem.url} alt={`${alcoholItem.name} 이미지`} onError={imgError} />
                         <ProductDiv>
                             <ProductImgTitle>{alcoholItem.name}</ProductImgTitle>
                             <ProductImgCompany>{alcoholItem.company}</ProductImgCompany>

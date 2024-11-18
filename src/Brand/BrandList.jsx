@@ -302,6 +302,10 @@ export default function BrandList({ category }) {
         }
     };
 
+    const imgError = (e) => {
+        e.target.src = `/imgnone.png`
+    }
+
     return (
         <Container>
             <Introduce role="navigation" aria-label="브랜드 소개">
@@ -351,7 +355,7 @@ export default function BrandList({ category }) {
                 {products.map(item => (
                     <Product key={item.id}>
                         <Link to={`/brand/detail/${item.category}/${item.id}`} style={{ textDecoration: "none", color: "#000", cursor: "pointer" }} aria-label={`${item.name}의 상세 페이지로 이동`}>
-                            <ProductImg src={item.url} alt={`${item.name} 이미지`} />
+                            <ProductImg src={item.url} alt={`${item.name} 이미지`} onError={imgError} />
                             <ProductImgName>{item.name}</ProductImgName>
                             <ProductImgCompany>{item.company}</ProductImgCompany>
                         </Link>

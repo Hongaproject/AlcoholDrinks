@@ -151,7 +151,7 @@ export default function Login() {
                 </Form>
                 {err !== "" ? <Error role="alert" aria-label="assertive">{err}</Error> : null}
                 <Switcher>
-                    계정이 없으신가요? <Link to="/signup" style={{ textDecoration: "none" }} aria-label="회원가입 페이지로 이동"><SignupLink>회원가입</SignupLink></Link>
+                    계정이 없으신가요? <Link to="/signup" style={{ textDecoration: "none" }} role="button" aria-label="회원가입 페이지로 이동"><SignupLink>회원가입</SignupLink></Link>
                 </Switcher>
                 <Button onClick={() => onClick(googleProvider)} role="button" aria-label="구글 계정으로 로그인">
                     <Logo /> 구글 로그인

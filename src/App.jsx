@@ -17,6 +17,7 @@ import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import Profile from "./auth/Profile";
 import ServiceMail from "./Section/mail/ServiceMail";
+import Error404 from "./NotFound/Error404";
 
 function App() {
 
@@ -110,6 +111,10 @@ function App() {
     {
       path: '/mail',
       element: <ServiceMail />
+    },
+    {
+      path: '/*',
+      element: <Error404 />
     }
   ])
 

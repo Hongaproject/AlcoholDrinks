@@ -89,18 +89,6 @@ export default function SignUp() {
         }
     }
 
-    const checkEmailAvailability = async (email) => {
-        const q = query(collection(db, "users"), where("email", "==", email));
-        const querySnapshot = await getDocs(q);
-        return !querySnapshot.empty;
-    }
-
-    const checkNameAvailability = async (name) => {
-        const q = query(collection(db, "users"), where("name", "==", name));
-        const querySnapshot = await getDocs(q);
-        return !querySnapshot.empty;
-    }
-
     // 회원가입 폼 제출 시 호출되는 함수
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -119,18 +107,6 @@ export default function SignUp() {
         }
 
         try {
-            const emailExists = await checkEmailAvailability(email);
-            if (emailExists) {
-                setErr("이미 사용 중인 이메일입니다.");
-                return;
-            }
-
-            const nameExists = await checkNameAvailability(name);
-            if (nameExists) {
-                setErr("이미 사용 중인 닉네임입니다.");
-                return;
-            }
-
             const user = await submitSignUp(name, email, password);
             if(user){
                 navigate('/login');
@@ -138,7 +114,6 @@ export default function SignUp() {
         } catch (error) {   
             setErr("회원가입 중 오류가 발생했습니다.");
         }
-
     }  
 
     return (

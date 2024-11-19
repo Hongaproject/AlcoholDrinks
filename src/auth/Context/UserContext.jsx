@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
-import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
@@ -131,20 +131,36 @@ export const UserProvider = ({children}) => {
         if (isLoading || name === "" || email === "" || password === "") return;
         try {
             setIsLoading(true);
+
+            const checkNickname = query(
+                collection(db, 'users'),
+                where("displayName", "==", name)
+            );
+            const querySnapshot = await getDocs(checkNickname);
+            if (!querySnapshot.empty) {
+                setErr("이미 사용 중인 닉네임입니다.");
+                return;
+            }
+
             const userCreate = await createUserWithEmailAndPassword(auth, email, password);
             await updateProfile(userCreate.user, { displayName: name }); // 사용자 프로필 업데이트
-            setUser({ name }); // Context에 사용자 정보 설정
+
             const userDocRef = doc(db, 'users', userCreate.user.uid);
-            await setDoc(userDocRef, { savedItems: [] });
+            await setDoc(userDocRef, { displayName: name, savedItems: [] });
+
+            setUser({ name }); // Context에 사용자 정보 설정
             return userCreate.user;
         } catch (e) {
             if (e instanceof FirebaseError) {
-                setErr(e.message);
+                if (e.code === "auth/email-already-in-use") {
+                    setErr("이미 사용 중인 이메일입니다."); 
+                } else {
+                    setErr("회원가입 중 오류가 발생했습니다. 다시 시도해 주세요.");
+                }
             }
         } finally {
             setIsLoading(false);
         }
-
     }
 
     // 사용자 로그인 함수

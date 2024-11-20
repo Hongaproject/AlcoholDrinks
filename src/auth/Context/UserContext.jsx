@@ -155,7 +155,7 @@ export const UserProvider = ({children}) => {
                 if (e.code === "auth/email-already-in-use") {
                     setErr("이미 사용 중인 이메일입니다."); 
                 } else {
-                    setErr("회원가입 중 오류가 발생했습니다. 다시 시도해 주세요.");
+                    setErr("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
                 }
             }
         } finally {
@@ -174,9 +174,22 @@ export const UserProvider = ({children}) => {
             setUser({ name: user.displayName, photoURL: user.photoURL }) // Context에 사용자 정보 설정
             return user;
         } catch(e){
-            if(e instanceof FirebaseError){
-                setErr(e.message);
-            }
+            console.error("Full Error:", e); // 전체 에러 로그 출력
+            console.log("Email:", email, "Password:", password); // 입력값 확인
+
+            if (e instanceof FirebaseError) {
+                if (e.code === "auth/user-not-found") {
+                    setErr("해당 이메일로 가입된 사용자가 없습니다.");
+                } else if (e.code === "auth/wrong-password") {
+                    setErr("비밀번호가 올바르지 않습니다.");
+                } else if (e.code === "auth/invalid-email") {
+                    setErr("올바른 이메일 형식을 입력해주세요.");
+                } else if (e.code === "auth/invalid-credential") {
+                    setErr("이메일 혹은 비밀번호가 올바르지 않습니다.");
+                } else {
+                    setErr("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
+                }
+            }    
         } finally{
             setIsLoading(false);
         }

@@ -4,13 +4,12 @@ import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 
 export default function Layout() {
-    
-    return(
-        <div>
-            <ScrollToTop />
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <ScrollToTop />
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 }

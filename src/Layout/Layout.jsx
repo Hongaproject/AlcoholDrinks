@@ -4,8 +4,7 @@ import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 
 export default function Layout() {
-    
-    return(
+    return (
         <div>
             <ScrollToTop />
             <Header />

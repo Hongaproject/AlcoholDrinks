@@ -12,10 +12,10 @@ const Container = styled.div`
     @media (max-width: 768px) {
         padding: 0 20px;
     }
-`
+`;
 const HeaderContainer = styled.div`
     position: relative;
-    
+
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
@@ -36,7 +36,7 @@ const IntroduceTitle = styled.h1`
         font-size: 2rem;
         text-align: center;
     }
-`
+`;
 
 const CompanyMove = styled.span`
     float: right;
@@ -52,7 +52,7 @@ const CompanyMove = styled.span`
         text-align: center;
         order: 1;
     }
-`
+`;
 
 const Notification = styled.span`
     width: 100%;
@@ -67,7 +67,7 @@ const Notification = styled.span`
         font-size: 1rem;
         padding: 0 10px;
     }
-`
+`;
 
 const Outline = styled.div`
     width: calc(100% - 440px);
@@ -91,8 +91,8 @@ const Outline = styled.div`
 const Shops = styled.div`
     width: 45%;
     height: 200px;
-    border: 1px solid #EBEAEC;
-    box-shadow: 0px 2px 4px rgb(0,0,0,0.3);
+    border: 1px solid #ebeaec;
+    box-shadow: 0px 2px 4px rgb(0, 0, 0, 0.3);
     border-radius: 20px;
     cursor: pointer;
     margin-bottom: 50px;
@@ -100,27 +100,27 @@ const Shops = styled.div`
     @media (max-width: 768px) {
         width: 90%;
     }
-`
+`;
 
-const ShopImg = styled.img`  
+const ShopImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: contain;
-`
+`;
 const ShopTitle = styled.h2`
     font-size: 24px;
     margin-top: 20px;
-`
+`;
 const ShopHomepage = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
-`
+`;
 const ShopTel = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
-`
+`;
 const PaginationControls = styled.div`
     display: flex;
     justify-content: center;
@@ -155,17 +155,16 @@ const PageNumber = styled.span`
     }
 `;
 
-export default function Shop () {
-
+export default function Shop() {
     const [shopImg, setShopImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
 
     // API로 company 데이터를 가져 옴
-    const shopImgApi = async() => {
+    const shopImgApi = async () => {
         const res = await axios.get("/db/shop.json");
-        setShopImg(res.data.shop.filter(item => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
-    }
+        setShopImg(res.data.shop.filter((item) => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
+    };
 
     // 컴포넌트 마운트시 회사 이미지 데이터 가져오기
     useState(() => {
@@ -173,11 +172,11 @@ export default function Shop () {
     }, []);
 
     const totalPages = Math.ceil(shopImg.length / companiesPerPage); // 총 페이지수 계산
-    
+
     // 현재 페이지에 해당하는 회사 이미지 목록을 slice해서 가져옴
     const currentShops = shopImg.slice(
         (currentPage - 1) * companiesPerPage,
-        currentPage * companiesPerPage
+        currentPage * companiesPerPage,
     );
 
     // 이전 페이지 이동 함수
@@ -195,37 +194,61 @@ export default function Shop () {
     };
 
     const imgError = (e) => {
-        e.target.src = `/imgnone.png`
-    }
+        e.target.src = `/imgnone.png`;
+    };
 
-    return(
+    return (
         <Container>
             <HeaderContainer>
                 <IntroduceTitle>판매처 소개</IntroduceTitle>
-                <Link to='/company' style={{ textDecoration: "none", color: "#000" }} aria-label="주류 회사 구경하기">
+                <Link
+                    to="/company"
+                    style={{ textDecoration: "none", color: "#000" }}
+                    aria-label="주류 회사 구경하기"
+                >
                     <CompanyMove>주류 회사 구경하기</CompanyMove>
                 </Link>
             </HeaderContainer>
-            <Notification>전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷 쇼핑몰에서는 판매가 불가합니다.</Notification>
+            <Notification>
+                전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷
+                쇼핑몰에서는 판매가 불가합니다.
+            </Notification>
             <Sidebtn />
             <Outline role="region">
-                {
-                    currentShops.map((item)=> (
-                        <Shops key={item.id} onClick={()=> window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
-                            <ShopImg src={item.url} alt={`${item.name} 이미지`} onError={imgError} />
-                            <ShopTitle>{item.name}</ShopTitle>
-                            <ShopHomepage>{item.homepage}</ShopHomepage>
-                            <ShopTel>{item.tel}</ShopTel>
-                        </Shops>
-                    ))
-                }
+                {currentShops.map((item) => (
+                    <Shops
+                        key={item.id}
+                        onClick={() => window.open(`${item.homepage}`)}
+                        role="link"
+                        aria-label={`주류 회사 페이지: ${item.name}`}
+                    >
+                        <ShopImg
+                            src={item.url}
+                            alt={`${item.name} 이미지`}
+                            onError={imgError}
+                        />
+                        <ShopTitle>{item.name}</ShopTitle>
+                        <ShopHomepage>{item.homepage}</ShopHomepage>
+                        <ShopTel>{item.tel}</ShopTel>
+                    </Shops>
+                ))}
             </Outline>
             <PaginationControls>
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지">
+                <PaginationButton
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    aria-label="이전 페이지"
+                >
                     이전
                 </PaginationButton>
-                <PageNumber>{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages} aria-label="다음 페이지">
+                <PageNumber>
+                    {currentPage} / {totalPages}
+                </PageNumber>
+                <PaginationButton
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    aria-label="다음 페이지"
+                >
                     다음
                 </PaginationButton>
             </PaginationControls>

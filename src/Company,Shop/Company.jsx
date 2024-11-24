@@ -53,7 +53,7 @@ const Outline = styled.div`
     margin-bottom: 130px;
     display: flex;
     flex-wrap: wrap;
-    gap: 100px; 
+    gap: 100px;
     justify-content: flex-start;
     align-items: flex-start;
 
@@ -68,11 +68,11 @@ const Outline = styled.div`
 const Companys = styled.div`
     width: 45%;
     height: 200px;
-    border: 1px solid #EBEAEC;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+    border: 1px solid #ebeaec;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     cursor: pointer;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     margin-bottom: 50px;
 
     @media (max-width: 768px) {
@@ -80,7 +80,7 @@ const Companys = styled.div`
     }
 `;
 
-const CompanyImg = styled.img`  
+const CompanyImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -95,7 +95,6 @@ const CompanyHomepage = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
-    
 `;
 
 const PaginationControls = styled.div`
@@ -132,9 +131,7 @@ const PageNumber = styled.span`
     }
 `;
 
-
 export default function Company() {
-    
     const [companyImg, setCompanyImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
@@ -142,8 +139,8 @@ export default function Company() {
     // API로 company 데이터를 가져 옴
     const companyImgApi = async () => {
         const res = await axios.get("/db/company.json");
-        setCompanyImg(res.data.company.filter(item => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
-    }
+        setCompanyImg(res.data.company.filter((item) => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
+    };
 
     // 컴포넌트 마운트시 회사 이미지 데이터 가져오기
     useEffect(() => {
@@ -155,7 +152,7 @@ export default function Company() {
     // 현재 페이지에 해당하는 회사 이미지 목록을 slice해서 가져옴
     const currentCompanies = companyImg.slice(
         (currentPage - 1) * companiesPerPage,
-        currentPage * companiesPerPage
+        currentPage * companiesPerPage,
     );
 
     // 이전 페이지 이동 함수
@@ -173,33 +170,54 @@ export default function Company() {
     };
 
     const imgError = (e) => {
-        e.target.src = `/imgnone.png`
-    }
+        e.target.src = `/imgnone.png`;
+    };
 
     return (
         <Container>
             <IntroduceTitle>주류 회사 소개</IntroduceTitle>
-            <Link to='/shop' style={{ textDecoration: "none", color: "#000" }} aria-label="판매처 구경하기">
+            <Link
+                to="/shop"
+                style={{ textDecoration: "none", color: "#000" }}
+                aria-label="판매처 구경하기"
+            >
                 <ShopMove>판매처 구경하기</ShopMove>
             </Link>
             <Sidebtn />
             <Outline role="region">
-                {
-                    currentCompanies.map((item) => (
-                        <Companys key={item.id} onClick={() => window.open(`${item.homepage}`)} role="link" aria-label={`주류 회사 페이지: ${item.name}`}>
-                            <CompanyImg src={item.url} alt={`${item.name} 이미지`} onError={imgError} />
-                            <CompanyTitle>{item.name}</CompanyTitle>
-                            <CompanyHomepage>{item.homepage}</CompanyHomepage>
-                        </Companys>
-                    ))
-                }
+                {currentCompanies.map((item) => (
+                    <Companys
+                        key={item.id}
+                        onClick={() => window.open(`${item.homepage}`)}
+                        role="link"
+                        aria-label={`주류 회사 페이지: ${item.name}`}
+                    >
+                        <CompanyImg
+                            src={item.url}
+                            alt={`${item.name} 이미지`}
+                            onError={imgError}
+                        />
+                        <CompanyTitle>{item.name}</CompanyTitle>
+                        <CompanyHomepage>{item.homepage}</CompanyHomepage>
+                    </Companys>
+                ))}
             </Outline>
             <PaginationControls>
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지">
+                <PaginationButton
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    aria-label="이전 페이지"
+                >
                     이전
                 </PaginationButton>
-                <PageNumber>{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages} aria-label="다음 페이지">
+                <PageNumber>
+                    {currentPage} / {totalPages}
+                </PageNumber>
+                <PaginationButton
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    aria-label="다음 페이지"
+                >
                     다음
                 </PaginationButton>
             </PaginationControls>

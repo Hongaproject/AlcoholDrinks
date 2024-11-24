@@ -1,4 +1,13 @@
-import { collection, getDocs, limit, orderBy, query, where, startAfter, getCountFromServer } from "firebase/firestore";
+import {
+    collection,
+    getDocs,
+    limit,
+    orderBy,
+    query,
+    where,
+    startAfter,
+    getCountFromServer,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import styled from "styled-components";
@@ -40,11 +49,10 @@ const PageNumber = styled.span`
 `;
 
 export default function Comments({ category, productId }) {
-    
     const [texts, setTexts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [lastVisible, setLastVisible] = useState(null);
-    const [totalPages, setTotalPages] = useState(1); 
+    const [totalPages, setTotalPages] = useState(1);
     const textsPerPage = 10;
 
     // 전체 텍스트 개수 가져오는 함수
@@ -52,7 +60,7 @@ export default function Comments({ category, productId }) {
         const textsQuery = query(
             collection(db, "texts"),
             where("productId", "==", productId),
-            where("category", "==", category)
+            where("category", "==", category),
         );
         const snapshot = await getCountFromServer(textsQuery);
         return snapshot.data().count;
@@ -61,13 +69,13 @@ export default function Comments({ category, productId }) {
     // 페이지를 따라 텍스트를 가져오는 함수
     const fetchTexts = async (page) => {
         if (!productId) return;
-        
+
         let textsQuery = query(
             collection(db, "texts"),
             where("productId", "==", productId),
             where("category", "==", category),
             orderBy("createdAT", "asc"),
-            limit(textsPerPage)
+            limit(textsPerPage),
         );
 
         if (page > 1 && lastVisible) {
@@ -78,10 +86,14 @@ export default function Comments({ category, productId }) {
         const newTexts = snapshot.docs.map((doc) => {
             const { text, createdAT, username, userId } = doc.data();
             return {
-                text, createdAT, username, userId, id: doc.id,
+                text,
+                createdAT,
+                username,
+                userId,
+                id: doc.id,
             };
         });
-        
+
         setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
         setTexts(newTexts);
     };
@@ -113,13 +125,25 @@ export default function Comments({ category, productId }) {
 
     return (
         <Container>
-            {texts.map((text) => <Text key={text.id} {...text} />)}
+            {texts.map((text) => (
+                <Text key={text.id} {...text} />
+            ))}
             <PaginationControls role="navigation" aria-label="페이지네이션">
-                <PaginationButton onClick={handlePrevPage} disabled={currentPage === 1} aria-label="이전 페이지 이동">
+                <PaginationButton
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    aria-label="이전 페이지 이동"
+                >
                     이전
                 </PaginationButton>
-                <PageNumber aria-live="polite">{currentPage} / {totalPages}</PageNumber>
-                <PaginationButton onClick={handleNextPage} disabled={currentPage === totalPages || totalPages === 0} aria-label="다음 페이지 이동">
+                <PageNumber aria-live="polite">
+                    {currentPage} / {totalPages}
+                </PageNumber>
+                <PaginationButton
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages || totalPages === 0}
+                    aria-label="다음 페이지 이동"
+                >
                     다음
                 </PaginationButton>
             </PaginationControls>

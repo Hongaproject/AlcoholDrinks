@@ -1,15 +1,30 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
-import { arrayUnion, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import {
+    arrayUnion,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    setDoc,
+    updateDoc,
+    where,
+} from "firebase/firestore";
+import {
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile,
+} from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
-// UserContext 생성 
+// UserContext 생성
 // 애플리케이션 전역 상태를 관리하는데 사용
 const UserContext = createContext();
 
-export const UserProvider = ({children}) => {
-    
+export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [savedItems, setSavedItems] = useState([]);
     const [favoriteCounts, setFavoriteCounts] = useState({});
@@ -22,8 +37,11 @@ export const UserProvider = ({children}) => {
             try {
                 if (currentUser) {
                     // 사용자 정보 업데이트
-                    setUser({ name: currentUser.displayName, photoURL: currentUser.photoURL });
-                    const userDocRef = doc(db, 'users', currentUser.uid);
+                    setUser({
+                        name: currentUser.displayName,
+                        photoURL: currentUser.photoURL,
+                    });
+                    const userDocRef = doc(db, "users", currentUser.uid);
                     const userDoc = await getDoc(userDocRef);
                     if (userDoc.exists()) {
                         setSavedItems(userDoc.data().savedItems || []);
@@ -45,7 +63,7 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         const fetchFavoriteCounts = async () => {
             try {
-                const countsDocRef = doc(db, 'favoriteCounts', 'global');
+                const countsDocRef = doc(db, "favoriteCounts", "global");
                 const countsDoc = await getDoc(countsDocRef);
                 if (countsDoc.exists()) {
                     setFavoriteCounts(countsDoc.data());
@@ -64,26 +82,28 @@ export const UserProvider = ({children}) => {
     const saveItem = async (item) => {
         if (user) {
             try {
-                const userRef = doc(db, 'users', auth.currentUser.uid);
+                const userRef = doc(db, "users", auth.currentUser.uid);
                 await updateDoc(userRef, {
-                    savedItems: arrayUnion(item)
+                    savedItems: arrayUnion(item),
                 });
-                setSavedItems(prevItems => [...prevItems, item]);
+                setSavedItems((prevItems) => [...prevItems, item]);
             } catch (error) {
                 console.error("Error saving item: ", error);
             }
         }
-    };  
+    };
 
     // 저장 상품 삭제 함수
     const removeItem = async (itemId) => {
         if (user) {
             try {
-                const userRef = doc(db, 'users', auth.currentUser.uid);
+                const userRef = doc(db, "users", auth.currentUser.uid);
                 const userDoc = await getDoc(userRef);
-                const updatedItems = userDoc.data().savedItems.filter(item => item.id !== itemId);
+                const updatedItems = userDoc
+                    .data()
+                    .savedItems.filter((item) => item.id !== itemId);
                 await updateDoc(userRef, {
-                    savedItems: updatedItems
+                    savedItems: updatedItems,
                 });
                 setSavedItems(updatedItems);
             } catch (error) {
@@ -95,7 +115,7 @@ export const UserProvider = ({children}) => {
     // 저장 상품 카운터 증가 함수
     const incrementFavoriteCount = async (category, itemId) => {
         try {
-            const countsDocRef = doc(db, 'favoriteCounts', 'global');
+            const countsDocRef = doc(db, "favoriteCounts", "global");
             const countsDoc = await getDoc(countsDocRef);
             const counts = countsDoc.data();
             if (!counts[category]) {
@@ -112,11 +132,14 @@ export const UserProvider = ({children}) => {
     // 저장 상품 카운터 감소 함수
     const decrementFavoriteCount = async (category, itemId) => {
         try {
-            const countsDocRef = doc(db, 'favoriteCounts', 'global');
+            const countsDocRef = doc(db, "favoriteCounts", "global");
             const countsDoc = await getDoc(countsDocRef);
             const counts = countsDoc.data();
             if (counts[category] && counts[category][itemId]) {
-                counts[category][itemId] = Math.max(0, counts[category][itemId] - 1);
+                counts[category][itemId] = Math.max(
+                    0,
+                    counts[category][itemId] - 1,
+                );
                 await updateDoc(countsDocRef, counts);
                 setFavoriteCounts(counts);
             }
@@ -124,17 +147,17 @@ export const UserProvider = ({children}) => {
             console.error("Error decrementing favorite count: ", error);
         }
     };
-    
+
     // 사용자 가입 함수
-    const submitSignUp = async(name, email, password) => {
+    const submitSignUp = async (name, email, password) => {
         setErr("");
         if (isLoading || name === "" || email === "" || password === "") return;
         try {
             setIsLoading(true);
 
             const checkNickname = query(
-                collection(db, 'users'),
-                where("displayName", "==", name)
+                collection(db, "users"),
+                where("displayName", "==", name),
             );
             const querySnapshot = await getDocs(checkNickname);
             if (!querySnapshot.empty) {
@@ -142,10 +165,14 @@ export const UserProvider = ({children}) => {
                 return;
             }
 
-            const userCreate = await createUserWithEmailAndPassword(auth, email, password);
+            const userCreate = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            );
             await updateProfile(userCreate.user, { displayName: name }); // 사용자 프로필 업데이트
 
-            const userDocRef = doc(db, 'users', userCreate.user.uid);
+            const userDocRef = doc(db, "users", userCreate.user.uid);
             await setDoc(userDocRef, { displayName: name, savedItems: [] });
 
             setUser({ name }); // Context에 사용자 정보 설정
@@ -153,27 +180,33 @@ export const UserProvider = ({children}) => {
         } catch (e) {
             if (e instanceof FirebaseError) {
                 if (e.code === "auth/email-already-in-use") {
-                    setErr("이미 사용 중인 이메일입니다."); 
+                    setErr("이미 사용 중인 이메일입니다.");
                 } else {
-                    setErr("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+                    setErr(
+                        "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.",
+                    );
                 }
             }
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     // 사용자 로그인 함수
     const submitLogin = async (email, password) => {
         setErr("");
-        if(isLoading || email === "" || password === "") return;
-        try{
+        if (isLoading || email === "" || password === "") return;
+        try {
             setIsLoading(true);
-            const userSignup = await signInWithEmailAndPassword(auth, email, password);
+            const userSignup = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password,
+            );
             const user = userSignup.user;
-            setUser({ name: user.displayName, photoURL: user.photoURL }) // Context에 사용자 정보 설정
+            setUser({ name: user.displayName, photoURL: user.photoURL }); // Context에 사용자 정보 설정
             return user;
-        } catch(e){
+        } catch (e) {
             console.error("Full Error:", e); // 전체 에러 로그 출력
             console.log("Email:", email, "Password:", password); // 입력값 확인
 
@@ -189,31 +222,48 @@ export const UserProvider = ({children}) => {
                 } else {
                     setErr("로그인 중 오류가 발생했습니다. 다시 시도해주세요.");
                 }
-            }    
-        } finally{
+            }
+        } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     // OAuth 로그인 함수
-    const submitOauth = async(provider) => {
-        try{
+    const submitOauth = async (provider) => {
+        try {
             setIsLoading(true);
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             setUser({ name: user.displayName, photoURL: user.photoURL }); // Context에 사용자 정보 설정 photoURL
             return user;
-        } catch(e){
-            if(e instanceof FirebaseError){
+        } catch (e) {
+            if (e instanceof FirebaseError) {
                 setErr(e.message);
             }
-        } finally{
+        } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     return (
-        <UserContext.Provider value={{ user, setUser, savedItems, saveItem, removeItem, favoriteCounts, incrementFavoriteCount, decrementFavoriteCount, isLoading, err, setErr, submitLogin, submitOauth, submitSignUp}}>
+        <UserContext.Provider
+            value={{
+                user,
+                setUser,
+                savedItems,
+                saveItem,
+                removeItem,
+                favoriteCounts,
+                incrementFavoriteCount,
+                decrementFavoriteCount,
+                isLoading,
+                err,
+                setErr,
+                submitLogin,
+                submitOauth,
+                submitSignUp,
+            }}
+        >
             {children}
         </UserContext.Provider>
     );

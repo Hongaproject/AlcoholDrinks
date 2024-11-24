@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { auth, db } from '../../firebase';
-import { addDoc, collection } from 'firebase/firestore';
-import Comments from '../comment/Comments';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
+import { auth, db } from "../../firebase";
+import { addDoc, collection } from "firebase/firestore";
+import Comments from "../comment/Comments";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
-`
+`;
 
 const IntroduceTitle = styled.div`
     width: 295px;
@@ -22,7 +21,7 @@ const IntroduceTitle = styled.div`
         text-align: center;
         font-size: 2.75rem;
     }
-`
+`;
 
 const Outline = styled.div`
     width: calc(100% - 600px);
@@ -32,9 +31,9 @@ const Outline = styled.div`
 
     @media (max-width: 768px) {
         width: 90%;
-        margin-top: 80px;   
+        margin-top: 80px;
     }
-`
+`;
 const Product = styled.div`
     width: 100%;
     height: 100%;
@@ -46,13 +45,13 @@ const Product = styled.div`
         align-items: center;
         text-align: center;
     }
-`
+`;
 
 const ProductImg = styled.img`
     width: 300px;
     height: 350px;
     object-fit: contain;
-`
+`;
 const ProductDiv = styled.div`
     width: 350px;
     height: 80px;
@@ -61,14 +60,14 @@ const ProductDiv = styled.div`
         width: 100%;
         text-align: center;
     }
-`
+`;
 const ProductImgTitle = styled.h1`
     font-size: 48px;
     margin-top: 90px;
     @media (max-width: 768px) {
         font-size: 2.5rem;
     }
-`
+`;
 const ProductImgCompany = styled.span`
     font-size: 20px;
     padding: 10px 0;
@@ -79,7 +78,7 @@ const ProductImgCompany = styled.span`
     @media (max-width: 768px) {
         justify-content: center;
     }
-`
+`;
 
 const ProductContent = styled.div`
     width: 500px;
@@ -91,17 +90,17 @@ const ProductContent = styled.div`
         justify-content: center;
         align-items: center;
     }
-`
+`;
 const ProductCTS = styled.div`
     width: 150px;
     height: 60px;
     margin-right: 30px;
-`
+`;
 
 const ProductCTitle = styled.h2`
     font-size: 24px;
     text-align: center;
-`
+`;
 
 const ProductCSpan = styled.span`
     font-size: 18px;
@@ -110,7 +109,7 @@ const ProductCSpan = styled.span`
     padding: 10px 0;
     align-items: center;
     justify-content: center;
-`
+`;
 
 const Section = styled.div`
     width: 100%;
@@ -122,7 +121,7 @@ const Section = styled.div`
         margin-top: 280px;
         padding: 0 20px;
     }
-`
+`;
 
 const SectionSub = styled.h1`
     width: 230px;
@@ -135,7 +134,7 @@ const SectionSub = styled.h1`
     justify-content: center;
     align-items: center;
     margin: auto;
-`
+`;
 const SectionIntroduce = styled.div`
     width: calc(100% - 600px);
     height: 100%;
@@ -147,7 +146,7 @@ const SectionIntroduce = styled.div`
         width: 90%;
         text-align: center;
     }
-`
+`;
 
 const SectionTitle = styled.h2`
     font-size: 48px;
@@ -155,7 +154,7 @@ const SectionTitle = styled.h2`
     @media (max-width: 768px) {
         font-size: 2.5rem;
     }
-`
+`;
 
 const SectionSpan = styled.span`
     font-size: 20px;
@@ -163,7 +162,7 @@ const SectionSpan = styled.span`
     display: block;
     line-height: 1.4;
     white-space: pre-line;
-`
+`;
 
 const Form = styled.form`
     width: calc(100% - 600px);
@@ -187,8 +186,18 @@ const TextArea = styled.textarea`
     color: #000;
     border: 1px solid #000;
     resize: none;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
     &::placeholder {
         font-size: 16px;
     }
@@ -213,37 +222,56 @@ const SubmitBtn = styled.input`
 `;
 
 export default function DrinksDetail() {
-    
     const { category, id } = useParams(); // URL 매개변수에서 category, id 가져오기
     const [allData, setAllData] = useState([]); // 데이터를 저장할 상태
     const [alcoholItem, setAlcoholItem] = useState(null); // 특정 소주 항목을 저장할 상태
     const [text, setText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate('');
+    const navigate = useNavigate("");
 
     // 엔드포인트에서 JSON 데이터 가져오기
     const fetchData = async () => {
         try {
             const res = await Promise.all([
-                axios.get('/db/brandsoju.json'),
-                axios.get('/db/brandbeer.json'),
-                axios.get('/db/brandliquor.json'),
-                axios.get('/db/brandmakgeolli.json'),
-                axios.get('/db/brandnew.json')
+                axios.get("/db/brandsoju.json"),
+                axios.get("/db/brandbeer.json"),
+                axios.get("/db/brandliquor.json"),
+                axios.get("/db/brandmakgeolli.json"),
+                axios.get("/db/brandnew.json"),
             ]);
 
-            const mergedData = res.flatMap(response => {
-                if (response.data.soju) return response.data.soju.map(item => ({ ...item, category: 'soju' }));
-                if (response.data.beer) return response.data.beer.map(item => ({ ...item, category: 'beer' }));
-                if (response.data.liquor) return response.data.liquor.map(item => ({ ...item, category: 'liquor' }));
-                if (response.data.makgeolli) return response.data.makgeolli.map(item => ({ ...item, category: 'makgeolli' }));
-                if (response.data.new) return response.data.new.map(item => ({ ...item, category: 'new' }));
+            const mergedData = res.flatMap((response) => {
+                if (response.data.soju)
+                    return response.data.soju.map((item) => ({
+                        ...item,
+                        category: "soju",
+                    }));
+                if (response.data.beer)
+                    return response.data.beer.map((item) => ({
+                        ...item,
+                        category: "beer",
+                    }));
+                if (response.data.liquor)
+                    return response.data.liquor.map((item) => ({
+                        ...item,
+                        category: "liquor",
+                    }));
+                if (response.data.makgeolli)
+                    return response.data.makgeolli.map((item) => ({
+                        ...item,
+                        category: "makgeolli",
+                    }));
+                if (response.data.new)
+                    return response.data.new.map((item) => ({
+                        ...item,
+                        category: "new",
+                    }));
                 return [];
             });
 
             setAllData(mergedData);
         } catch (error) {
-            console.error('데이터를 가져오는 중 오류 발생:', error);
+            console.error("데이터를 가져오는 중 오류 발생:", error);
         }
     };
 
@@ -255,80 +283,102 @@ export default function DrinksDetail() {
     // 카테고리와 아이디를 기반으로 특정 항목 필터링
     useEffect(() => {
         if (allData.length > 0) {
-            const foundItem = allData.find((item) => item.category === category && item.id === parseInt(id));
+            const foundItem = allData.find(
+                (item) =>
+                    item.category === category && item.id === parseInt(id),
+            );
             setAlcoholItem(foundItem);
         }
     }, [category, id, allData]);
 
     const onTextChange = (e) => {
         setText(e.target.value);
-    }
+    };
 
     // 폼 제출 함수 -> 텍스트를 Firestore에 추가
-    const onSubmit = async(e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const user = auth.currentUser;
-        if (!user) { // 로그인하지 않은 상태일 경우 알림 표시
-            alert('로그인 후 이용하실 수 있습니다.');
-            navigate('/login');
+        if (!user) {
+            // 로그인하지 않은 상태일 경우 알림 표시
+            alert("로그인 후 이용하실 수 있습니다.");
+            navigate("/login");
             return;
         }
 
-        if(!user || isLoading || text === "" || text.length > 100) return;  
+        if (!user || isLoading || text === "" || text.length > 100) return;
 
         try {
             setIsLoading(true);
             await addDoc(collection(db, "texts"), {
-            text, 
-            createdAT: Date.now(), 
-            username: user.displayName || "Anonymous", 
-            userId: user.uid, 
-            productId: id,
-            category: category
-            }) 
+                text,
+                createdAT: Date.now(),
+                username: user.displayName || "Anonymous",
+                userId: user.uid,
+                productId: id,
+                category: category,
+            });
         } catch (err) {
             console.log(err);
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
     const imgError = (e) => {
-        e.target.src = `/imgnone.png`
-    }
-    
+        e.target.src = `/imgnone.png`;
+    };
+
     return (
         <Container>
             <Outline role="region" aria-labelledby="세부페이지">
-                <IntroduceTitle id='세부페이지'>세부페이지</IntroduceTitle>
+                <IntroduceTitle id="세부페이지">세부페이지</IntroduceTitle>
                 {alcoholItem ? (
                     <Product>
-                        <ProductImg src={alcoholItem.url} alt={`${alcoholItem.name} 이미지`} onError={imgError} />
+                        <ProductImg
+                            src={alcoholItem.url}
+                            alt={`${alcoholItem.name} 이미지`}
+                            onError={imgError}
+                        />
                         <ProductDiv>
-                            <ProductImgTitle>{alcoholItem.name}</ProductImgTitle>
-                            <ProductImgCompany>{alcoholItem.company}</ProductImgCompany>
+                            <ProductImgTitle>
+                                {alcoholItem.name}
+                            </ProductImgTitle>
+                            <ProductImgCompany>
+                                {alcoholItem.company}
+                            </ProductImgCompany>
                             <ProductContent>
                                 <ProductCTS>
                                     <ProductCTitle>국가/지역</ProductCTitle>
-                                    <ProductCSpan>{alcoholItem.country}</ProductCSpan>
+                                    <ProductCSpan>
+                                        {alcoholItem.country}
+                                    </ProductCSpan>
                                 </ProductCTS>
                                 <ProductCTS>
                                     <ProductCTitle>스타일</ProductCTitle>
-                                    <ProductCSpan>{alcoholItem.style}</ProductCSpan>
+                                    <ProductCSpan>
+                                        {alcoholItem.style}
+                                    </ProductCSpan>
                                 </ProductCTS>
                                 <ProductCTS>
                                     <ProductCTitle>도수</ProductCTitle>
-                                    <ProductCSpan>{alcoholItem.alcohol}</ProductCSpan>
+                                    <ProductCSpan>
+                                        {alcoholItem.alcohol}
+                                    </ProductCSpan>
                                 </ProductCTS>
                                 <ProductCTS>
                                     <ProductCTitle>용량</ProductCTitle>
-                                    <ProductCSpan>{alcoholItem.netw}</ProductCSpan>
+                                    <ProductCSpan>
+                                        {alcoholItem.netw}
+                                    </ProductCSpan>
                                 </ProductCTS>
                             </ProductContent>
                         </ProductDiv>
                     </Product>
                 ) : (
-                    <p role="status" aria-live="polite">로딩 중...</p>
+                    <p role="status" aria-live="polite">
+                        로딩 중...
+                    </p>
                 )}
             </Outline>
             <Section role="region" aria-labelledby="상품 설명">
@@ -339,15 +389,26 @@ export default function DrinksDetail() {
                         <SectionSpan>{alcoholItem.discription}</SectionSpan>
                     </SectionIntroduce>
                 ) : (
-                    <p role="status" aria-live="polite">로딩 중...</p>
+                    <p role="status" aria-live="polite">
+                        로딩 중...
+                    </p>
                 )}
             </Section>
             <Section role="region" aria-labelledby="상품평">
                 <SectionSub id="상품평">상품평</SectionSub>
                 {alcoholItem && <Comments category={category} productId={id} />}
                 <Form onSubmit={onSubmit} aria-label="상품평 작성 폼">
-                    <TextArea placeholder='100자 내외로 글을 작성해 주세요.' value={text} onChange={onTextChange} required aria-label="상품평 작성"/>
-                    <SubmitBtn type='submit'value={isLoading ? "...Loading" : "등록"}/>
+                    <TextArea
+                        placeholder="100자 내외로 글을 작성해 주세요."
+                        value={text}
+                        onChange={onTextChange}
+                        required
+                        aria-label="상품평 작성"
+                    />
+                    <SubmitBtn
+                        type="submit"
+                        value={isLoading ? "...Loading" : "등록"}
+                    />
                 </Form>
             </Section>
         </Container>

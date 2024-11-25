@@ -189,13 +189,6 @@ export default function Login() {
                 >
                     <Logo /> 구글 로그인
                 </Button>
-                <Button
-                    onClick={() => onClick(githubProvider)}
-                    role="button"
-                    aria-label="깃허브 계정으로 로그인"
-                >
-                    <Logo /> 깃허브 로그인
-                </Button>
             </LoginModal>
         </Container>
     );

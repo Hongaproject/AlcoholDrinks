@@ -25,8 +25,8 @@ const Section = styled.div`
     margin-top: 120px;
 
     @media (max-width: 768px) {
-        width: 90%;
-        margin-top: 0px;
+        width: 100%;
+        margin-bottom: 50px;
         align-items: center;
         text-align: center;
     }
@@ -82,7 +82,7 @@ const StoreProduct = styled.div`
 `;
 
 const StoreItem = styled.div`
-    min-width: 208px;
+    width: 170px;
     border-radius: 8px;
     border: 2px solid #ebeaec;
     border-radius: 20px;
@@ -90,6 +90,10 @@ const StoreItem = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 10px;
+
+    @media (max-width: 768px) {
+        width: 195px;
+    }
 `;
 
 const Linked = styled.div`
@@ -157,7 +161,7 @@ const PrevButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 56%;
+    top: 66%;
     left: 13%;
     z-index: 1;
     cursor: pointer;
@@ -176,7 +180,7 @@ const NextButton = styled.div`
     flex-direction: row;
     align-items: center;
     position: absolute;
-    top: 56%;
+    top: 66%;
     right: 13%;
     cursor: pointer;
     color: #858585;
@@ -194,11 +198,17 @@ export default function Profile() {
     // 방향에 따라 컨테이너를 스크롤 할 수 있는 스크롤 함수
     const scroll = (direction) => {
         if (storeProductRef.current) {
-            const scrollAmount = 230; // 스크롤할 너비 설정
+            const scrollAmount = 225; // 스크롤할 너비 설정
             if (direction === "left") {
-                storeProductRef.current.scrollLeft -= scrollAmount;
+                storeProductRef.current.scrollBy({
+                    left: -scrollAmount,
+                    behavior: "smooth",
+                });
             } else {
-                storeProductRef.current.scrollLeft += scrollAmount;
+                storeProductRef.current.scrollBy({
+                    left: scrollAmount,
+                    behavior: "smooth",
+                });
             }
         }
     };

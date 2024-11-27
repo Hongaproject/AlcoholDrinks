@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { auth } from "../firebase";
 import { useUserContext } from "./Context/UserContext";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Container = styled.div`
     width: 100%;
@@ -26,6 +26,7 @@ const Section = styled.div`
 
     @media (max-width: 768px) {
         width: 100%;
+        margin-top: -80px;
         margin-bottom: 50px;
         align-items: center;
         text-align: center;
@@ -194,6 +195,9 @@ export default function Profile() {
     const { user, savedItems } = useUserContext(); // Context에서 사용자 및 저장된 정보 가져옴
     const navigate = useNavigate();
     const storeProductRef = useRef(null);
+    const [isDrag, setIsDrag] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLR, setScrollLR] = useState(0);
 
     // 방향에 따라 컨테이너를 스크롤 할 수 있는 스크롤 함수
     const scroll = (direction) => {

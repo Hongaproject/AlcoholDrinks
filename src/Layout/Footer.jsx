@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
     width: 100%;
-    height: 200px;
-    background-color: #000;
+    height: 400px;
+    background-color: #40342f;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,69 +15,88 @@ const Container = styled.div`
 
 const CC = styled.div`
     width: 100%;
-    max-width: 1000px;
+    max-width: 1440px;
     height: 120px;
     margin-top: 40px;
     display: flex;
+    flex-direction: row; /* 가로 정렬로 변경 */
+    align-items: center;
+    justify-content: space-between; /* 요소들을 양쪽 정렬 */
+    flex-wrap: wrap; /* 모바일 대응을 위해 wrap 추가 */
+    gap: 20px; /* 간격 추가 */
+`;
+
+const Logo = styled.div`
+    width: 30%;
+    min-width: 200px;
+    font-family: "Jeju Hallasan";
+    font-size: 3rem;
+    color: #fff;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+        line-height: 50px;
+    }
+`;
+
+const InfoGroup = styled.div`
+    width: 40%;
+    min-width: 250px;
+    display: flex;
     flex-direction: column;
     align-items: center;
+`;
+
+const Communication = styled.div`
+    width: 30%;
+    min-width: 200px;
+    display: flex;
     justify-content: center;
+    gap: 20px;
+`;
+
+const Email = styled.h2`
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
 `;
 
 const Copyright = styled.h1`
     color: #fff;
     text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 20px;
+
     @media (max-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 `;
 
-const Communication = styled.div`
-    width: 100%;
-    max-width: 300px;
-    height: 48px;
-    display: flex;
-    justify-content: space-between;
-`;
-
-const Email = styled.div`
-    margin-right: 40px;
-`;
-const GitHub = styled.div`
-    margin-right: 40px;
-`;
-const Blog = styled.div`
-    margin-right: 40px;
-`;
+const GitHub = styled.div``;
+const Blog = styled.div``;
 
 export default function Footer() {
     return (
         <Container>
             <CC>
-                <Copyright>© 2024 홍성원 All Rights Reserved.</Copyright>
-                <Communication>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <Logo>대한민국 모든 주류</Logo>
+                </Link>
+
+                <InfoGroup>
                     <Link
                         to="mailto:tkwlscjq99@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="이메일 보내기"
+                        style={{ textDecoration: "none" }}
                     >
-                        <Email>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="42"
-                                height="42"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    fill="#fff"
-                                    d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"
-                                />
-                            </svg>
-                        </Email>
+                        <Email>tkwlscjq99@gmail.com</Email>
                     </Link>
+                    <Copyright>© 2024 홍성원 All Rights Reserved.</Copyright>
+                </InfoGroup>
+                <Communication>
                     <Link
                         to="https://github.com/Hongaproject"
                         target="_blank"

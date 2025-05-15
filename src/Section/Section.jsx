@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Sidebtn from "./Sidebtn";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 100%;
@@ -88,609 +88,74 @@ const Img = styled.div`
     }
 `;
 
-const Main = styled.div`
-    width: calc(100% - 440px);
-    height: 100%;
-    margin: 0 auto;
-    white-space: nowrap;
-    box-sizing: border-box;
-
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-`;
-const SubTitle = styled.h1`
-    font-size: 64px;
-    text-align: center;
-    align-items: center;
-    margin-top: 50px;
-    padding: 20px;
-    &:after {
-        content: "";
-        display: block;
-        width: 210px;
-        border-bottom: 2px solid #000;
-        margin: 10px auto;
-    }
-
-    @media (max-width: 768px) {
-        font-size: 2rem;
-        text-align: center;
-        margin-top: 50px;
-        padding: 10px;
-    }
-`;
-
-// soju
-const SojuContainer = styled.div`
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    @media (max-width: 768px) {
-        margin-top: 50px;
-    }
-`;
-const Soju = styled.div`
-    width: 100%;
-    height: 250px;
-    position: relative;
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 258px;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: all 0.5s linear;
-        border-radius: 10px;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: "국내 소주 브랜드를 소개해 드립니다.";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        visibility: hidden;
-        text-align: center;
-    }
-
-    &:hover::before,
-    &:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-    &:hover {
-        transform: scale(1.1);
-        transition: all 0.3s linear;
-    }
-`;
-const SojuImg = styled.div`
-    width: 200px;
-    height: 250px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    float: left;
-    border: 1px solid #000;
-    color: #000;
-    background-image: url("/img/home/chamiseul.png");
-    background-size: cover;
-    background-position: center;
-`;
-const SojuTitle = styled.h1`
-    font-size: 36px;
-    padding: 10px 0;
-    position: absolute;
-    top: 70%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    @media (max-width: 768px) {
-        left: 52%;
-    }
-`;
-const SojuContent = styled.span`
-    font-size: 18px;
-    padding: 10px 0;
-    position: absolute;
-    top: 87%;
-    left: 22%;
-    transform: translate(-50%, -50%);
-    color: #909090;
-    @media (max-width: 768px) {
-        left: 56%;
-    }
-`;
-
-// beer
-const BeerContainer = styled.div`
-    width: 100%;
-    height: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    @media (max-width: 768px) {
-        margin-top: 50px;
-    }
-`;
-const Beer = styled.div`
-    width: 100%;
-    height: 250px;
-    position: relative;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 258px;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: all 0.5s linear;
-        border-radius: 10px;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: "국내 맥주 브랜드를 소개해 드립니다.";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        visibility: hidden;
-        text-align: center;
-    }
-
-    &:hover::before,
-    &:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-    &:hover {
-        transform: scale(1.1);
-        transition: all 0.3s linear;
-    }
-`;
-const BeerImg = styled.div`
-    width: 200px;
-    height: 250px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    float: left;
-    border: 1px solid #000;
-    color: #000;
-    background-image: url("/img/home/terra.jpg");
-    background-size: cover;
-    background-position: center;
-`;
-const BeerTitle = styled.h1`
-    font-size: 36px;
-    padding: 10px 0;
-    position: absolute;
-    top: 70%;
-    left: 80%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    @media (max-width: 768px) {
-        left: 48%;
-    }
-`;
-const BeerContent = styled.span`
-    font-size: 18px;
-    padding: 10px 0;
-    position: absolute;
-    top: 87%;
-    left: 77%;
-    transform: translate(-50%, -50%);
-    color: #909090;
-    @media (max-width: 768px) {
-        left: 44%;
-    }
-`;
-
-// makgeolli
-const MakgeolliC = styled.div`
-    width: 100%;
-    height: 400px;
-`;
-const Makgeolli = styled.div`
-    width: 100%;
-    height: 370px;
-    margin-top: 100px;
-`;
-const MakgeolliImg = styled.div`
-    width: 800px;
-    height: 250px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    margin: 0 auto;
-    border: 1px solid #000;
-    color: #000;
-    background-image: url("/img/home/makgeolli.jpg");
-    background-size: cover;
-    background-position: center;
-
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 258px;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: all 0.5s linear;
-        border-radius: 10px;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: "국내 막걸리 브랜드를 소개해 드립니다.";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        visibility: hidden;
-        text-align: center;
-    }
-
-    &:hover::before,
-    &:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-    &:hover {
-        transform: scale(1.1);
-        transition: all 0.3s linear;
-    }
-`;
-const MakgeolliTitle = styled.h1`
-    font-size: 36px;
-    padding: 10px 0;
-    text-align: center;
-    margin-top: 20px;
-    color: #000;
-`;
-const MakgeolliContent = styled.span`
-    font-size: 18px;
-    padding: 10px 0;
-    color: #909090;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-`;
-
-// liquorm
-const LiquorNewC = styled.div`
-    width: 100%;
-    height: 400px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-`;
-const LiquorNew = styled.div`
-    width: 100%;
-    height: 270px;
-    display: flex;
-    justify-content: space-around;
-    overflow: hidden;
-`;
-const LiquorImg = styled.div`
-    width: 200px;
-    height: 250px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    position: relative;
-    color: #000;
-    border: 1px solid #000;
-    background-image: url("/img/home/liquorjinro.jpg");
-    background-size: cover;
-    background-position: center;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: all 0.5s linear;
-        border-radius: 10px;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: "국내 증류주 브랜드를 소개해 드립니다.";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        visibility: hidden;
-        text-align: center;
-        white-space: normal;
-    }
-
-    &:hover::before,
-    &:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-`;
-
-// new
-const NewImg = styled.div`
-    width: 200px;
-    height: 250px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px;
-    position: relative;
-    overflow: hidden;
-    color: #000;
-    border: 1px solid #000;
-    background-image: url("/img/home/new.jpg");
-    background-size: cover;
-    background-position: center;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: all 0.5s linear;
-        border-radius: 10px;
-        visibility: hidden;
-    }
-
-    &::after {
-        content: "신상품을 소개해 드립니다.";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        visibility: hidden;
-        text-align: center;
-        white-space: normal;
-    }
-
-    &:hover::before,
-    &:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-`;
-
-// liquor, new 설명
-const LiquorNewText = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-`;
-const LiquorNewTitle = styled.h1`
-    font-size: 36px;
-    padding: 10px 0;
-    text-align: center;
-    color: #000;
-`;
-const LiquorNewSpan = styled.span`
-    font-size: 18px;
-    padding: 10px 0;
-    color: #909090;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-`;
-
-// collection
-const Collection = styled.div`
+// alcohol
+const AlcoholContainer = styled.div`
     width: 100%;
     height: 900px;
-
-    @media (max-width: 768px) {
-        height: auto;
-    }
-`;
-
-const CollectionSub = styled.div`
-    width: 100%;
-    height: 700px;
-    background-color: #141a2a;
-    position: relative;
-`;
-
-const CollectionText = styled.div`
-    width: 60%;
-    max-width: 550px;
-    height: auto;
-    position: absolute;
-    top: 10%;
-    left: 5%;
-
-    @media (max-width: 768px) {
-        width: 90%;
-        left: 5%;
-        top: 5%;
-    }
-`;
-
-const CTextTitle = styled.h1`
-    font-size: 40px;
-    color: #fff;
-    padding: 16px 0;
-
-    @media (max-width: 768px) {
-        font-size: 28px;
-    }
-`;
-
-const CTextSpan = styled.span`
-    font-size: 16px;
-    color: #909090;
-    margin-top: 16px;
-
-    @media (max-width: 768px) {
-        font-size: 14px;
-    }
-`;
-
-const CollectionImg = styled.div`
-    width: 100%;
-    height: 450px;
+    background-color: #344368;
     display: flex;
-    position: absolute;
-    top: 52%;
-    left: 43%;
-
-    @media (max-width: 768px) {
-        flex-direction: column;
-        align-items: center;
-        top: 15%;
-        height: auto;
-        padding: 20px 0;
-        transform: translateX(-43%);
-    }
-`;
-
-const CompanyImg = styled.div`
-    width: 270px;
-    height: 450px;
-    margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)),
-        url("/img/home/company.jpg");
-    background-size: cover;
-    background-position: center;
-
-    @media (max-width: 768px) {
-        width: 90%;
-        height: 200px;
-        margin: 10px 0;
-    }
-`;
-
-const ShopImg = styled.div`
-    width: 270px;
-    height: 450px;
-    margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)),
-        url("/img/home/shop.jpg");
-    background-size: cover;
-    background-position: center;
-
-    @media (max-width: 768px) {
-        width: 90%;
-        height: 200px;
-        margin: 10px 0;
-    }
-`;
-
-const GuideImg = styled.div`
-    width: 270px;
-    height: 450px;
-    margin-right: 40px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)),
-        url("/img/home/guide.jpg");
-    background-size: cover;
-    background-position: center;
-
-    @media (max-width: 768px) {
-        width: 90%;
-        height: 200px;
-        margin: 10px 0;
-    }
-`;
-
-const OutImg = styled.div`
-    width: 270px;
-    height: 450px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 13, 0.6)),
-        url("/img/home/out.jpg");
-    background-size: cover;
-    background-position: center;
-
-    @media (max-width: 768px) {
-        display: none;
-    }
-`;
-
-const CImgTitle = styled.h1`
-    font-size: 32px;
-    text-align: center;
-    margin-top: 100px;
-    font-family: "Inknut Antiqua";
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #fff;
-
-    @media (max-width: 768px) {
-        font-size: 24px;
-    }
-`;
-
-const CImgSpan = styled.span`
-    font-size: 32px;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    margin-top: 250px;
-    vertical-align: middle;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    color: #faf1d7;
-
-    @media (max-width: 768px) {
-        font-size: 24px;
-        margin-top: 20px;
-    }
+    justify-content: center;
 `;
 
-const CImgSpanIcon = styled.div`
-    width: 36px;
-    height: 36px;
-    border-radius: 50px;
-    background-color: #faf1d7;
+const AlcoholTitle = styled.h2`
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 90px;
+`;
 
-    & > svg {
-        transform: rotate(90deg);
-    }
+const AlcoholSort = styled.div`
+    width: 100%;
+    height: 550px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const AlcoholWrapper = styled.div`
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: beige; */
+    gap: 40px;
+`;
+
+const Soju = styled.div`
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 187.5px;
+`;
+const Beer = styled.div`
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 187.5px;
+`;
+const Makgeolli = styled.div`
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 187.5px;
+`;
+const Liquor = styled.div`
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 187.5px;
+`;
+const New = styled.div`
+    width: 250px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 187.5px;
 `;
 
 // popup
@@ -804,9 +269,9 @@ export default function Section() {
         sessionStorage.setItem("popupClosed", "true");
     };
 
-    const imgError = (e) => {
-        e.target.src = `/imgnone.png`;
-    };
+    // const imgError = (e) => {
+    //     e.target.src = `/imgnone.png`;
+    // };
 
     return (
         <Container>
@@ -908,6 +373,18 @@ export default function Section() {
                 </Slide>
             </ImgSlice>
             <Sidebtn />
+            <AlcoholContainer>
+                <AlcoholTitle>alcohol beverage</AlcoholTitle>
+                <AlcoholSort>
+                    <AlcoholWrapper>
+                        <Soju></Soju>
+                        <Beer></Beer>
+                        <Makgeolli></Makgeolli>
+                        <Liquor></Liquor>
+                        <New></New>
+                    </AlcoholWrapper>
+                </AlcoholSort>
+            </AlcoholContainer>
         </Container>
     );
 }

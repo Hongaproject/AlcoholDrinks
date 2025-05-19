@@ -55,7 +55,7 @@ const NextButton = styled.div`
 `;
 
 const Show = styled.div`
-    width: 90vw;
+    width: 100vw;
     height: 60vh;
     display: flex;
     align-items: center;
@@ -100,7 +100,7 @@ const AlcoholContainer = styled.div`
 `;
 
 const AlcoholTitle = styled.h2`
-    font-size: 24px;
+    font-size: 32px;
     color: #fff;
     text-align: center;
     margin-bottom: 90px;
@@ -127,35 +127,113 @@ const AlcoholWrapper = styled.div`
     gap: 40px;
 `;
 
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); // 반투명 검정
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 187.5px;
+`;
+
 const Soju = styled.div`
+    position: relative; // 오버레이 기준
     width: 250px;
     height: 400px;
     background-color: #fff;
     border-radius: 187.5px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+
+        .overlay {
+            opacity: 1;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 `;
-const Beer = styled.div`
-    width: 250px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 187.5px;
+
+const Beer = styled(Soju)``;
+const Makgeolli = styled(Soju)``;
+const Liquor = styled(Soju)``;
+const New = styled(Soju)``;
+
+// lastSection
+const OverlayText = styled.div`
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 `;
-const Makgeolli = styled.div`
-    width: 250px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 187.5px;
+
+const LastSection = styled.div`
+    width: 100%;
+    height: 600px;
+    padding: 20px 0;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
 `;
-const Liquor = styled.div`
-    width: 250px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 187.5px;
+const Company = styled.div`
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 13, 0) 0%,
+            rgba(0, 0, 13, 0.7) 100%
+        ),
+        url("/img/home/company.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
-const New = styled.div`
-    width: 250px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 187.5px;
+const Shop = styled(Company)`
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 13, 0) 0%,
+            rgba(0, 0, 13, 0.7) 100%
+        ),
+        url("/img/home/shop.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+`;
+const Guide = styled(Company)`
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 13, 0) 0%,
+            rgba(0, 0, 13, 0.7) 100%
+        ),
+        url("/img/home/guide.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 `;
 
 // popup
@@ -377,14 +455,85 @@ export default function Section() {
                 <AlcoholTitle>alcohol beverage</AlcoholTitle>
                 <AlcoholSort>
                     <AlcoholWrapper>
-                        <Soju></Soju>
-                        <Beer></Beer>
-                        <Makgeolli></Makgeolli>
-                        <Liquor></Liquor>
-                        <New></New>
+                        <Soju>
+                            <img
+                                src="/img/home/chamiseul.png"
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">소주 더보기</Overlay>
+                        </Soju>
+                        <Beer>
+                            <img
+                                src="/img/home/cass.jpg"
+                                alt="cass"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">맥주 더보기</Overlay>
+                        </Beer>
+                        <Makgeolli>
+                            <img
+                                src="/img/home/boksun.jpg"
+                                alt="cass"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">막걸리 더보기</Overlay>
+                        </Makgeolli>
+                        <Liquor>
+                            <img
+                                src="/img/home/dokdo.jpg"
+                                alt="cass"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">증류주 더보기</Overlay>
+                        </Liquor>
+                        <New>
+                            <img
+                                src="/img/home/new.jpg"
+                                alt="cass"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">신제품 더보기</Overlay>
+                        </New>
                     </AlcoholWrapper>
                 </AlcoholSort>
             </AlcoholContainer>
+            <LastSection>
+                <Company>
+                    <OverlayText>Company</OverlayText>
+                </Company>
+                <Shop>
+                    <OverlayText>Shop</OverlayText>
+                </Shop>
+                <Guide>
+                    <OverlayText>Guide</OverlayText>
+                </Guide>
+            </LastSection>
         </Container>
     );
 }

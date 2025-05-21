@@ -200,7 +200,7 @@ const MoreButton = styled.button`
     background: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
     border: none;
-    color: #000;
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;

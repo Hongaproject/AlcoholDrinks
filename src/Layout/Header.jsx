@@ -7,7 +7,13 @@ import { useUserContext } from "../auth/Context/UserContext";
 
 const Container = styled.div`
     width: 100%;
-    background: #ffffff;
+    background: ${({ activePath }) =>
+        activePath === "/story" ||
+        activePath === "/brand/soju" ||
+        activePath === "/company" ||
+        activePath === "/guide"
+            ? "#344368"
+            : "#ffffff"};
     box-shadow: 0px 10px 20px rgba(0, 0, 13, 0.07);
     position: relative;
     z-index: 1;
@@ -369,7 +375,7 @@ export default function Header() {
     };
 
     return (
-        <Container>
+        <Container activePath={location.pathname}>
             <Nav aria-label="주요 네비게이션">
                 <Link to="/" style={{ textDecoration: "none" }}>
                     <Logo>대한민국 모든 주류</Logo>

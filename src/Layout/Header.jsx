@@ -38,11 +38,26 @@ const Logo = styled.div`
     height: 50px;
     font-family: "Jeju Hallasan";
     font-size: 3rem;
-    color: #000;
+    color: ${({ activePath }) =>
+        activePath === "/story" ||
+        activePath === "/brand/soju" ||
+        activePath === "/company" ||
+        activePath === "/guide"
+            ? "#fff"
+            : "#000"};
 
     @media (max-width: 768px) {
         font-size: 2rem;
         line-height: 50px;
+    }
+`;
+const LinkWrapper = styled(Link)`
+    text-decoration: none;
+    padding: 15px 20px;
+    color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+
+    &:visited {
+        color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
     }
 `;
 
@@ -75,14 +90,13 @@ const MenuItem = styled.li`
     margin: 0 20px;
     position: relative;
     cursor: pointer;
-    color: #000;
 
     &::after {
         content: "";
         display: block;
         width: 0;
         height: 2px;
-        background: #000;
+        background: #fff;
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -141,6 +155,7 @@ const SearchImg = styled.div`
     height: 24px;
     margin-right: 10px;
     cursor: pointer;
+    color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
 `;
 
 const LoginButton = styled.button`
@@ -149,6 +164,30 @@ const LoginButton = styled.button`
     height: 24px;
     background: none;
     cursor: pointer;
+    color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+`;
+
+const AvatarUpload = styled.label`
+    width: 40px;
+    overflow: hidden;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        width: 50px;
+    }
+`;
+
+const DefaultIcon = styled.div`
+    color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 `;
 
 const Modal = styled.div`
@@ -260,20 +299,6 @@ const ProfileImage = styled.img`
     border-radius: 50%;
 `;
 
-const AvatarUpload = styled.label`
-    width: 40px;
-    overflow: hidden;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-        width: 50px;
-    }
-`;
-
 export default function Header() {
     const [modalOpen, setModalOpen] = useState(false); // 모달 창 열고 닫기
     const modalBackground = useRef(); // 모달 창 뒷배경 참조
@@ -374,11 +399,15 @@ export default function Header() {
         setIsOpen(false); // 메뉴 아이템 클릭 시 메뉴 닫기
     };
 
+    const isMainPage = location.pathname === "/";
+
     return (
         <Container activePath={location.pathname}>
             <Nav aria-label="주요 네비게이션">
                 <Link to="/" style={{ textDecoration: "none" }}>
-                    <Logo>대한민국 모든 주류</Logo>
+                    <Logo activePath={location.pathname}>
+                        대한민국 모든 주류
+                    </Logo>
                 </Link>
                 <HamburgerButton
                     onClick={toggleMenu}
@@ -392,14 +421,10 @@ export default function Header() {
                 </HamburgerButton>
                 <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname === "/story"}>
-                        <Link
+                        <LinkWrapper
                             to="/story"
                             onClick={handleMenuItemClick}
-                            style={{
-                                textDecoration: "none",
-                                color: "#000",
-                                padding: "15px 20px",
-                            }}
+                            isMain={isMainPage}
                             aria-current={
                                 location.pathname === "/story"
                                     ? "page"
@@ -407,17 +432,13 @@ export default function Header() {
                             }
                         >
                             Story
-                        </Link>
+                        </LinkWrapper>
                     </MenuItem>
                     <MenuItem active={location.pathname === "/brand/soju"}>
-                        <Link
+                        <LinkWrapper
                             to="/brand/soju"
                             onClick={handleMenuItemClick}
-                            style={{
-                                textDecoration: "none",
-                                color: "#000",
-                                padding: "15px 20px",
-                            }}
+                            isMain={isMainPage}
                             aria-current={
                                 location.pathname === "/brand/soju"
                                     ? "page"
@@ -425,17 +446,14 @@ export default function Header() {
                             }
                         >
                             Brand
-                        </Link>
+                        </LinkWrapper>
                     </MenuItem>
+
                     <MenuItem active={location.pathname === "/company"}>
-                        <Link
+                        <LinkWrapper
                             to="/company"
                             onClick={handleMenuItemClick}
-                            style={{
-                                textDecoration: "none",
-                                color: "#000",
-                                padding: "15px 20px",
-                            }}
+                            isMain={isMainPage}
                             aria-current={
                                 location.pathname === "/company"
                                     ? "page"
@@ -443,17 +461,14 @@ export default function Header() {
                             }
                         >
                             Company
-                        </Link>
+                        </LinkWrapper>
                     </MenuItem>
+
                     <MenuItem active={location.pathname === "/guide"}>
-                        <Link
+                        <LinkWrapper
                             to="/guide"
                             onClick={handleMenuItemClick}
-                            style={{
-                                textDecoration: "none",
-                                color: "#000",
-                                padding: "15px 20px",
-                            }}
+                            isMain={isMainPage}
                             aria-current={
                                 location.pathname === "/guide"
                                     ? "page"
@@ -461,7 +476,7 @@ export default function Header() {
                             }
                         >
                             Guide
-                        </Link>
+                        </LinkWrapper>
                     </MenuItem>
                 </MenuList>
 
@@ -470,6 +485,7 @@ export default function Header() {
                         onClick={() => setModalOpen(true)}
                         aria-label="검색 모달 창 열기"
                         role="button"
+                        isMain={isMainPage}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -496,14 +512,16 @@ export default function Header() {
                                         alt="프로필"
                                     />
                                 ) : (
-                                    <svg
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true"
-                                    >
-                                        <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
-                                    </svg>
+                                    <DefaultIcon isMain={isMainPage}>
+                                        <svg
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                                        </svg>
+                                    </DefaultIcon>
                                 )}
                             </AvatarUpload>
                         </Link>
@@ -513,7 +531,7 @@ export default function Header() {
                             style={{ textDecoration: "none" }}
                             aria-label="로그인"
                         >
-                            <LoginButton>Login</LoginButton>
+                            <LoginButton isMain={isMainPage}>Login</LoginButton>
                         </Link>
                     )}
                 </SearchLogin>

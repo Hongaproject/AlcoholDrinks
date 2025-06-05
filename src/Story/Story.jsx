@@ -44,181 +44,206 @@ const IntroduceTitle = styled.h1`
     }
 `;
 
-const Summary = styled.div`
-    width: calc(100% - 440px);
-    height: 100%;
+const TitleMain = styled.div`
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    margin-bottom: 180px;
-    box-sizing: border-box;
-
-    @media (max-width: 768px) {
-        width: 100%;
-        padding: 0 20px;
-    }
+    height: auto;
 `;
-const SummaryText = styled.div`
+const TitlePoint = styled.p`
+    font-family: "JejuHallasan";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 128px;
+    text-align: center;
+    margin-top: 120px;
+`;
+const Title = styled.h1`
+    font-size: 48px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+`;
+const TitleDes = styled.h1`
+    font-size: 20px;
+    text-align: center;
+    margin-top: 40px;
+    line-height: 1.6;
+`;
+
+const MarketShare = styled.div`
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+`;
+const MarketTitle = styled.h2`
+    font-size: 48px;
+    text-align: center;
+    margin-top: 180px;
+`;
+
+const AlcoholSort = styled.div`
+    width: 100%;
+    height: 550px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const AlcoholWrapper = styled.div`
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+`;
+
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    margin-top: 90px;
-
-    @media (max-width: 768px) {
-        text-align: center;
-    }
-`;
-const SummaryTitle = styled.h1`
-    font-size: 48px;
-    margin-bottom: 20px;
-
-    @media (max-width: 768px) {
-        font-size: 32px;
-    }
-`;
-const SummaryContent = styled.span`
+    background-color: rgba(0, 0, 0, 0.5); // 반투명 검정
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
     font-size: 20px;
-    color: #909090;
-    line-height: 1.4;
-
-    @media (max-width: 768px) {
-        font-size: 18px;
-        text-align: center;
-        display: block;
-    }
+    font-weight: bold;
+    border-radius: 187.5px;
 `;
 
-const SummaryImg = styled.div`
-    width: 100%;
-    height: 180px;
+const Soju = styled.div`
+    position: relative; // 오버레이 기준
+    width: 250px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 187.5px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 
-    @media (max-width: 768px) {
-        height: auto;
-        text-align: center;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+
+        .overlay {
+            opacity: 1;
+        }
     }
-`;
-const SummaryKImg = styled.div`
-    float: left;
-    width: 700px;
-    height: 130px;
-    background-image: url("/img/story/koreasoju.png");
-    background-size: cover;
-    background-position: center;
 
-    @media (max-width: 768px) {
-        float: none;
+    img {
         width: 100%;
-    }
-`;
-const SummaryTImg = styled.div`
-    float: left;
-    width: 700px;
-    height: 130px;
-    background-image: url("/img/story/traditional.png");
-    background-position: center;
-
-    @media (max-width: 768px) {
-        float: none;
-        width: 100%;
-    }
-`;
-const SummaryGImg = styled.div`
-    float: left;
-    width: 700px;
-    height: 200px;
-    background-image: url("/img/story/global.png");
-    background-position: center;
-    background-size: cover;
-
-    @media (max-width: 768px) {
-        float: none;
-        width: 100%;
-    }
-`;
-const SummaryKImgContent = styled.span`
-    font-size: 20px;
-    color: #909090;
-    line-height: 1.4;
-
-    @media (max-width: 768px) {
-        margin-top: 20px;
-        font-size: 18px;
-        text-align: center;
-        display: block;
-    }
-`;
-
-const SummaryTImgContent = styled.span`
-    font-size: 20px;
-    color: #909090;
-    line-height: 1.4;
-
-    @media (max-width: 768px) {
-        font-size: 18px;
-        text-align: center;
-        display: block;
-    }
-`;
-const SummaryGImgContent = styled.span`
-    font-size: 20px;
-    color: #909090;
-    line-height: 1.4;
-
-    @media (max-width: 768px) {
-        font-size: 18px;
-        text-align: center;
-        display: block;
+        height: 100%;
+        object-fit: cover;
     }
 `;
 
 export default function Story() {
-    const location = useLocation();
-    const [activeTitle, setActiveTitle] = useState("");
+    // const location = useLocation();
+    // const [activeTitle, setActiveTitle] = useState("");
 
-    useEffect(() => {
-        switch (location.pathname) {
-            case "/story":
-                setActiveTitle("개요");
-                break;
-            default:
-                setActiveTitle("");
-        }
-    }, [location.pathname]);
+    // useEffect(() => {
+    //     switch (location.pathname) {
+    //         case "/story":
+    //             setActiveTitle("개요");
+    //             break;
+    //         default:
+    //             setActiveTitle("");
+    //     }
+    // }, [location.pathname]);
 
-    const handleClick = (title) => {
-        setActiveTitle(title);
-    };
-
-    const imgError = (e) => {
-        e.target.src = `/imgnone.png`;
-    };
+    // const handleClick = (title) => {
+    //     setActiveTitle(title);
+    // };
 
     return (
         <Container>
-            <div>
-                <h2>'</h2>
-                <h1>사이트 제작 의도</h1>
-                <p>
+            <TitleMain>
+                <TitlePoint>,</TitlePoint>
+                <Title>사이트 제작 의도</Title>
+                <TitleDes>
                     사이트 제작 의도 사이트를 제작 한 이유는 평소 주류에 관심이
                     많았고 최근에 술이 많이 나왔는데요. 많은 사람들이 새로운
                     제품을 알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는
                     상태로 주류를 고르는 것에 불편함을 직접 느끼게 되었습니다.
-                </p>
-                <p>
+                </TitleDes>
+                <TitleDes>
                     주류에 관하여 이야기를 해보면 많은 사람들이 술 종류가
                     많으니까 다 똑같은 술이라고 생각하고 드시는 분들도 꽤 많이
                     계셔가지고 술 종류도 소개할 겸 더 나아가 외국인 분들에게
                     한국 술에 대해서 알려드리고 싶어서 제작하게 되었습니다.
-                </p>
-            </div>
-            <div>
-                <h2></h2>
+                </TitleDes>
+            </TitleMain>
+            <MarketShare>
+                <MarketTitle>주류 시장 규모</MarketTitle>
                 <div>
-                    <img src="" alt="" />
-                    <img src="" alt="" />
+                    <div>
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2>주류의 역사 알아보기</h2>
-            </div>
-            <Introduce>
+            </MarketShare>
+            <MarketTitle>주류의 역사 알아보기</MarketTitle>
+            <AlcoholSort>
+                <AlcoholWrapper>
+                    <Link to="/brand/soju">
+                        <Soju>
+                            <img
+                                src="/img/home/chamiseul.png"
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">소주 더보기</Overlay>
+                        </Soju>
+                    </Link>
+                    <Link to="/brand/soju">
+                        <Soju>
+                            <img
+                                src="/img/home/chamiseul.png"
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">소주 더보기</Overlay>
+                        </Soju>
+                    </Link>
+                    <Link to="/brand/soju">
+                        <Soju>
+                            <img
+                                src="/img/home/chamiseul.png"
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    borderRadius: "187.5px",
+                                }}
+                            />
+                            <Overlay className="overlay">소주 더보기</Overlay>
+                        </Soju>
+                    </Link>
+                </AlcoholWrapper>
+            </AlcoholSort>
+
+            {/* <Introduce>
                 <Link
                     to="/story/soju"
                     style={{ textDecoration: "none", color: "#000" }}
@@ -255,7 +280,7 @@ export default function Story() {
                         막걸리의 역사
                     </IntroduceTitle>
                 </Link>
-            </Introduce>
+            </Introduce> */}
         </Container>
     );
 }

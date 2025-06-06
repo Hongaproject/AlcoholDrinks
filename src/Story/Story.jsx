@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,38 +8,6 @@ const Container = styled.div`
 
     @media (max-width: 768px) {
         padding: 0 20px;
-    }
-`;
-
-const Introduce = styled.div`
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 110px;
-`;
-const IntroduceTitle = styled.h1`
-    width: 230px;
-    height: 80px;
-    border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: ${(props) => (props.active ? "#87CEEB" : "#FFFFFF")};
-    box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
-    margin-right: 70px;
-    font-size: 32px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    color: #000;
-
-    @media (max-width: 768px) {
-        width: 110px;
-        height: 40px;
-        margin-right: 10px;
-        font-size: 1.1rem;
     }
 `;
 
@@ -62,7 +29,6 @@ const Title = styled.h1`
     font-size: 48px;
     text-align: center;
     margin-top: 50px;
-    margin-bottom: 10px;
 `;
 const TitleDes = styled.h1`
     font-size: 20px;
@@ -82,6 +48,23 @@ const MarketTitle = styled.h2`
     text-align: center;
     margin-top: 180px;
 `;
+const MarketImgC = styled.div`
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+`;
+const MarketImgW = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+`;
+const Temporary = styled.div`
+    width: 350px;
+    height: 250px;
+    background-color: #ccc;
+`;
 
 const AlcoholSort = styled.div`
     width: 100%;
@@ -100,7 +83,7 @@ const AlcoholWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 60px;
 `;
 
 const Overlay = styled.div`
@@ -118,15 +101,14 @@ const Overlay = styled.div`
     color: white;
     font-size: 20px;
     font-weight: bold;
-    border-radius: 187.5px;
 `;
 
 const Soju = styled.div`
     position: relative; // 오버레이 기준
-    width: 250px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     background-color: #fff;
-    border-radius: 187.5px;
+    border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -147,34 +129,20 @@ const Soju = styled.div`
     }
 `;
 
+const Beer = styled(Soju)``;
+const Makgeolli = styled(Soju)``;
+
 export default function Story() {
-    // const location = useLocation();
-    // const [activeTitle, setActiveTitle] = useState("");
-
-    // useEffect(() => {
-    //     switch (location.pathname) {
-    //         case "/story":
-    //             setActiveTitle("개요");
-    //             break;
-    //         default:
-    //             setActiveTitle("");
-    //     }
-    // }, [location.pathname]);
-
-    // const handleClick = (title) => {
-    //     setActiveTitle(title);
-    // };
-
     return (
         <Container>
             <TitleMain>
                 <TitlePoint>,</TitlePoint>
                 <Title>사이트 제작 의도</Title>
                 <TitleDes>
-                    사이트 제작 의도 사이트를 제작 한 이유는 평소 주류에 관심이
-                    많았고 최근에 술이 많이 나왔는데요. 많은 사람들이 새로운
-                    제품을 알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는
-                    상태로 주류를 고르는 것에 불편함을 직접 느끼게 되었습니다.
+                    사이트를 제작 한 이유는 평소 주류에 관심이 많았고 최근에
+                    새로운 술이 많이 나왔는데요. 많은 사람들이 새로운 제품을
+                    알지 못하고 도수는 어느 정도인지 무슨 맛인지를 모르는 상태로
+                    주류를 고르는 것에 불편함을 직접 느끼게 되었습니다.
                 </TitleDes>
                 <TitleDes>
                     주류에 관하여 이야기를 해보면 많은 사람들이 술 종류가
@@ -185,17 +153,21 @@ export default function Story() {
             </TitleMain>
             <MarketShare>
                 <MarketTitle>주류 시장 규모</MarketTitle>
-                <div>
-                    <div>
-                        <img src="" alt="" />
-                        <img src="" alt="" />
-                    </div>
-                </div>
+                <MarketImgC>
+                    <MarketImgW>
+                        <TitleDes>대한민국 주류 시장 규모</TitleDes>
+                        <Temporary></Temporary>
+                    </MarketImgW>
+                    <MarketImgW>
+                        <TitleDes>글로벌 주류 시장 규모</TitleDes>
+                        <Temporary></Temporary>
+                    </MarketImgW>
+                </MarketImgC>
             </MarketShare>
             <MarketTitle>주류의 역사 알아보기</MarketTitle>
             <AlcoholSort>
                 <AlcoholWrapper>
-                    <Link to="/brand/soju">
+                    <Link to="/story/soju">
                         <Soju>
                             <img
                                 src="/img/home/chamiseul.png"
@@ -204,83 +176,41 @@ export default function Story() {
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
-                                    borderRadius: "187.5px",
                                 }}
                             />
-                            <Overlay className="overlay">소주 더보기</Overlay>
+                            <Overlay className="overlay">소주의 역사</Overlay>
                         </Soju>
                     </Link>
-                    <Link to="/brand/soju">
-                        <Soju>
+                    <Link to="/story/beer">
+                        <Beer>
                             <img
-                                src="/img/home/chamiseul.png"
-                                alt="소주"
+                                src="/img/home/cass.jpg"
+                                alt="맥주"
                                 style={{
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
-                                    borderRadius: "187.5px",
                                 }}
                             />
-                            <Overlay className="overlay">소주 더보기</Overlay>
-                        </Soju>
+                            <Overlay className="overlay">맥주의 역사</Overlay>
+                        </Beer>
                     </Link>
-                    <Link to="/brand/soju">
-                        <Soju>
+                    <Link to="/story/makgeolli">
+                        <Makgeolli>
                             <img
-                                src="/img/home/chamiseul.png"
-                                alt="소주"
+                                src="/img/home/boksun.jpg"
+                                alt="막걸리"
                                 style={{
                                     width: "100%",
                                     height: "100%",
                                     objectFit: "cover",
-                                    borderRadius: "187.5px",
                                 }}
                             />
-                            <Overlay className="overlay">소주 더보기</Overlay>
-                        </Soju>
+                            <Overlay className="overlay">막걸리의 역사</Overlay>
+                        </Makgeolli>
                     </Link>
                 </AlcoholWrapper>
             </AlcoholSort>
-
-            {/* <Introduce>
-                <Link
-                    to="/story/soju"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="소주의 역사 페이지로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "소주의 역사"}
-                        onClick={() => handleClick("소주의 역사")}
-                    >
-                        소주의 역사
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/story/beer"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="맥주의 역사 페이지로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "맥주의 역사"}
-                        onClick={() => handleClick("맥주의 역사")}
-                    >
-                        맥주의 역사
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/story/makgeolli"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="막걸리의 역사 페이지로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "막걸리의 역사"}
-                        onClick={() => handleClick("막걸리의 역사")}
-                    >
-                        막걸리의 역사
-                    </IntroduceTitle>
-                </Link>
-            </Introduce> */}
         </Container>
     );
 }

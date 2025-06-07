@@ -9,6 +9,7 @@ const Container = styled.div`
     width: 100%;
     background: ${({ activePath }) =>
         activePath === "/story" ||
+        activePath === "/story/soju" ||
         activePath === "/brand/soju" ||
         activePath === "/company" ||
         activePath === "/guide"
@@ -40,6 +41,7 @@ const Logo = styled.div`
     font-size: 3rem;
     color: ${({ activePath }) =>
         activePath === "/story" ||
+        activePath === "/story/soju" ||
         activePath === "/brand/soju" ||
         activePath === "/company" ||
         activePath === "/guide"

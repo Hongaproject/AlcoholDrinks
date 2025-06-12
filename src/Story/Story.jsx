@@ -175,7 +175,7 @@ export default function Story() {
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                 }}
                             />
                             <Overlay className="overlay">소주의 역사</Overlay>
@@ -189,7 +189,7 @@ export default function Story() {
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                 }}
                             />
                             <Overlay className="overlay">맥주의 역사</Overlay>
@@ -203,7 +203,7 @@ export default function Story() {
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                 }}
                             />
                             <Overlay className="overlay">막걸리의 역사</Overlay>

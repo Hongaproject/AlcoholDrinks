@@ -361,7 +361,7 @@ export default function Section() {
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "cover",
+                                        objectFit: "contain",
                                         borderRadius: "187.5px",
                                     }}
                                 />
@@ -378,7 +378,7 @@ export default function Section() {
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "cover",
+                                        objectFit: "contain",
                                         borderRadius: "187.5px",
                                     }}
                                 />
@@ -429,7 +429,7 @@ export default function Section() {
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "cover",
+                                        objectFit: "contain",
                                         borderRadius: "187.5px",
                                     }}
                                 />

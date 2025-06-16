@@ -37,7 +37,7 @@ const SubTitle = styled.span`
     }
 `;
 const Guide = styled.div`
-    width: calc(100%-440px);
+    width: calc(100%-220px);
     height: 100%;
     margin-bottom: 100px;
     box-sizing: border-box;
@@ -47,7 +47,7 @@ const Guide = styled.div`
     }
 `;
 const BeerSojuGuide = styled.div`
-    width: 1200px;
+    width: 1400px;
     height: 400px;
     margin: auto;
     display: flex;
@@ -97,7 +97,7 @@ const BeerImg = styled.img`
     }
 `;
 const Content = styled.div`
-    width: 580px;
+    width: 700px;
     height: 250px;
     margin-left: 60px;
 
@@ -135,9 +135,10 @@ const BeerBtn = styled.button`
 `;
 
 const Content2 = styled.div`
-    width: 580px;
+    width: 700px;
     height: 250px;
     margin-right: 60px;
+    text-align: right;
 
     @media (max-width: 768px) {
         width: 100%;

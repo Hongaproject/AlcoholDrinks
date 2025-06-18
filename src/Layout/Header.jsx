@@ -8,13 +8,11 @@ import { useUserContext } from "../auth/Context/UserContext";
 const Container = styled.div`
     width: 100%;
     background: ${({ activePath }) =>
-        activePath === "/story" ||
-        activePath === "/story/soju" ||
-        activePath === "/story/beer" ||
-        activePath === "/story/makgeolli" ||
-        activePath === "/brand/soju" ||
-        activePath === "/company" ||
-        activePath === "/guide"
+        activePath.startsWith("/story") ||
+        activePath.startsWith("/brand") ||
+        activePath.startsWith("/company") ||
+        activePath.startsWith("/guide") ||
+        activePath === "/shop"
             ? "#344368"
             : "#ffffff"};
     box-shadow: 0px 10px 20px rgba(0, 0, 13, 0.07);
@@ -42,13 +40,11 @@ const Logo = styled.div`
     font-family: "Jeju Hallasan";
     font-size: 3rem;
     color: ${({ activePath }) =>
-        activePath === "/story" ||
-        activePath === "/story/soju" ||
-        activePath === "/story/beer" ||
-        activePath === "/story/makgeolli" ||
-        activePath === "/brand/soju" ||
-        activePath === "/company" ||
-        activePath === "/guide"
+        activePath.startsWith("/story") ||
+        activePath.startsWith("/brand") ||
+        activePath.startsWith("/company") ||
+        activePath.startsWith("/guide") ||
+        activePath === "/shop"
             ? "#fff"
             : "#000"};
 
@@ -426,7 +422,7 @@ export default function Header() {
                     <div />
                 </HamburgerButton>
                 <MenuList isOpen={isOpen}>
-                    <MenuItem active={location.pathname === "/story"}>
+                    <MenuItem active={location.pathname.startsWith("/story")}>
                         <LinkWrapper
                             to="/story"
                             onClick={handleMenuItemClick}
@@ -440,7 +436,7 @@ export default function Header() {
                             Story
                         </LinkWrapper>
                     </MenuItem>
-                    <MenuItem active={location.pathname === "/brand/soju"}>
+                    <MenuItem active={location.pathname.startsWith("/brand")}>
                         <LinkWrapper
                             to="/brand/soju"
                             onClick={handleMenuItemClick}
@@ -455,13 +451,19 @@ export default function Header() {
                         </LinkWrapper>
                     </MenuItem>
 
-                    <MenuItem active={location.pathname === "/company"}>
+                    <MenuItem
+                        active={
+                            location.pathname.startsWith("/company") ||
+                            location.pathname === "/shop"
+                        }
+                    >
                         <LinkWrapper
                             to="/company"
                             onClick={handleMenuItemClick}
                             isMain={isMainPage}
                             aria-current={
-                                location.pathname === "/company"
+                                location.pathname.startsWith("/company") ||
+                                location.pathname === "/shop"
                                     ? "page"
                                     : undefined
                             }
@@ -470,7 +472,7 @@ export default function Header() {
                         </LinkWrapper>
                     </MenuItem>
 
-                    <MenuItem active={location.pathname === "/guide"}>
+                    <MenuItem active={location.pathname.startsWith("/guide")}>
                         <LinkWrapper
                             to="/guide"
                             onClick={handleMenuItemClick}

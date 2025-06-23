@@ -356,7 +356,7 @@ export default function Section() {
                         <Link to="/brand/soju">
                             <Soju>
                                 <img
-                                    src="/img/home/chamiseul.png"
+                                    src="/img/home/sj.jpeg"
                                     alt="소주"
                                     style={{
                                         width: "100%",
@@ -373,7 +373,7 @@ export default function Section() {
                         <Link to="/brand/beer">
                             <Beer>
                                 <img
-                                    src="/img/home/cass.jpg"
+                                    src="/img/home/be.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -390,7 +390,7 @@ export default function Section() {
                         <Link to="/brand/makgeolli">
                             <Makgeolli>
                                 <img
-                                    src="/img/home/boksun.jpg"
+                                    src="/img/home/bok.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -407,7 +407,7 @@ export default function Section() {
                         <Link to="/brand/liquor">
                             <Liquor>
                                 <img
-                                    src="/img/home/dokdo.jpg"
+                                    src="/img/home/dok.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -424,7 +424,7 @@ export default function Section() {
                         <Link to="/brand/new">
                             <New>
                                 <img
-                                    src="/img/home/new.jpg"
+                                    src="/img/home/n.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",

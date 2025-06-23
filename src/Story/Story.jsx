@@ -170,7 +170,7 @@ export default function Story() {
                     <Link to="/story/soju">
                         <Soju>
                             <img
-                                src="/img/home/chamiseul.png"
+                                src="/img/home/sj.jpeg"
                                 alt="소주"
                                 style={{
                                     width: "100%",
@@ -184,7 +184,7 @@ export default function Story() {
                     <Link to="/story/beer">
                         <Beer>
                             <img
-                                src="/img/home/cass.jpg"
+                                src="/img/home/be.jpeg"
                                 alt="맥주"
                                 style={{
                                     width: "100%",
@@ -198,7 +198,7 @@ export default function Story() {
                     <Link to="/story/makgeolli">
                         <Makgeolli>
                             <img
-                                src="/img/home/boksun.jpg"
+                                src="/img/home/bok.jpeg"
                                 alt="막걸리"
                                 style={{
                                     width: "100%",

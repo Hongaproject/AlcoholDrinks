@@ -36,6 +36,11 @@ const TitleDes = styled.h1`
     margin-top: 40px;
     line-height: 1.6;
 `;
+const TitleDesP = styled.p`
+    font-size: 16px;
+    color: #808080;
+    line-height: 1.4;
+`;
 
 const MarketShare = styled.div`
     width: 100%;
@@ -64,6 +69,7 @@ const Temporary = styled.div`
     width: 350px;
     height: 250px;
     background-color: #ccc;
+    margin: 0 auto;
 `;
 
 const AlcoholSort = styled.div`
@@ -157,10 +163,22 @@ export default function Story() {
                     <MarketImgW>
                         <TitleDes>대한민국 주류 시장 규모</TitleDes>
                         <Temporary></Temporary>
+                        <TitleDesP>
+                            2022년 기준 출고 금액 기준으로 10조 원에 육박하며,
+                            전년 대비 12.9% 증가했습니다.
+                        </TitleDesP>
                     </MarketImgW>
                     <MarketImgW>
                         <TitleDes>글로벌 주류 시장 규모</TitleDes>
                         <Temporary></Temporary>
+                        <TitleDesP>
+                            새로운 보고서에 따르면 세계 주류 시장 규모는
+                            2032년까지 2조 7,400억 달러
+                            <br />
+                            (한화 약 3,785조 8,580억 원)에 도달하며 견고한
+                            성장을 경험할 것으로 전망된다.
+                            <br />
+                        </TitleDesP>
                     </MarketImgW>
                 </MarketImgC>
             </MarketShare>

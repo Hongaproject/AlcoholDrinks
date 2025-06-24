@@ -111,6 +111,7 @@ const Content = styled.div`
 const BeerTitle = styled.h2`
     font-size: 32px;
     margin-bottom: 30px;
+    color: #c98b20;
 
     @media (max-width: 768px) {
         margin-top: 20px;
@@ -125,13 +126,16 @@ const BeerSpan = styled.span`
     color: #909090;
 `;
 const BeerBtn = styled.button`
-    width: 80%;
-    max-width: 310px;
+    width: 350px;
     height: 58px;
-    background-color: #000;
-    color: #fff;
+    background-color: #eacaa2;
+    color: #000;
     font-size: 24px;
     cursor: pointer;
+    margin: 0 auto;
+    margin-top: 70px;
+    border-radius: 204px;
+    border: none;
 `;
 
 const Content2 = styled.div`
@@ -164,6 +168,7 @@ const SojuImg = styled.img`
 const SojuTitle = styled.h2`
     font-size: 32px;
     margin-bottom: 30px;
+    color: #008810;
 
     @media (max-width: 768px) {
         margin-top: 20px;
@@ -178,13 +183,16 @@ const SojuSpan = styled.span`
     color: #909090;
 `;
 const SojuBtn = styled.button`
-    width: 80%;
-    max-width: 310px;
+    width: 350px;
     height: 58px;
-    background-color: #000;
-    color: #fff;
+    background-color: #cbeaa2;
+    color: #000;
     font-size: 24px;
     cursor: pointer;
+    margin: 0 auto;
+    margin-top: 70px;
+    border-radius: 204px;
+    border: none;
 `;
 
 const Makgeolli = styled.div`
@@ -216,6 +224,7 @@ const MakgeolliTitle = styled.h2`
     font-size: 32px;
     margin-top: 50px;
     margin-bottom: 30px;
+    color: #0066d3;
 
     @media (max-width: 768px) {
         margin-top: 20px;
@@ -230,13 +239,16 @@ const MakgeolliSpan = styled.span`
     color: #909090;
 `;
 const MakgeolliBtn = styled.button`
-    width: 80%;
-    max-width: 310px;
+    width: 350px;
     height: 58px;
-    background-color: #000;
-    color: #fff;
+    background-color: #c0deff;
+    color: #000;
     font-size: 24px;
     cursor: pointer;
+    margin: 0 auto;
+    margin-top: 70px;
+    border-radius: 204px;
+    border: none;
 `;
 
 export default function SBMGuide() {

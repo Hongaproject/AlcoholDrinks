@@ -5,7 +5,7 @@ const Container = styled.div`
     height: 180px;
     position: fixed;
     z-index: 1;
-    margin-left: 77.5px;
+    margin-left: 65px;
 `;
 const TopBtn = styled.button`
     width: 64px;

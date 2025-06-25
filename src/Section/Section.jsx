@@ -236,7 +236,7 @@ const Company = styled.div`
     align-items: center;
     justify-content: center;
 `;
-const Shop = styled(Company)`
+const Story = styled(Company)`
     width: 100%;
     height: 600px;
     background: linear-gradient(
@@ -356,7 +356,7 @@ export default function Section() {
                         <Link to="/brand/soju">
                             <Soju>
                                 <img
-                                    src="/img/home/sj.jpeg"
+                                    src="/img/home/jinro.jpeg"
                                     alt="소주"
                                     style={{
                                         width: "100%",
@@ -373,7 +373,7 @@ export default function Section() {
                         <Link to="/brand/beer">
                             <Beer>
                                 <img
-                                    src="/img/home/be.jpeg"
+                                    src="/img/home/hite.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -390,7 +390,7 @@ export default function Section() {
                         <Link to="/brand/makgeolli">
                             <Makgeolli>
                                 <img
-                                    src="/img/home/bok.jpeg"
+                                    src="/img/home/jipeng.jpeg"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -442,6 +442,20 @@ export default function Section() {
                 </AlcoholSort>
             </AlcoholContainer>
             <LastSection>
+                <Story>
+                    <OverlayContent>
+                        <OverlayText>Story</OverlayText>
+                        <Link
+                            to="/story"
+                            style={{
+                                textDecoration: "none",
+                                color: "#000",
+                            }}
+                        >
+                            <MoreButton>More</MoreButton>
+                        </Link>
+                    </OverlayContent>
+                </Story>
                 <Company>
                     <OverlayContent>
                         <OverlayText>Company</OverlayText>
@@ -456,20 +470,6 @@ export default function Section() {
                         </Link>
                     </OverlayContent>
                 </Company>
-                <Shop>
-                    <OverlayContent>
-                        <OverlayText>Shop</OverlayText>
-                        <Link
-                            to="/shop"
-                            style={{
-                                textDecoration: "none",
-                                color: "#000",
-                            }}
-                        >
-                            <MoreButton>More</MoreButton>
-                        </Link>
-                    </OverlayContent>
-                </Shop>
                 <Guide>
                     <OverlayContent>
                         <OverlayText>Guide</OverlayText>

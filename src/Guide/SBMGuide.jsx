@@ -201,6 +201,10 @@ const Makgeolli = styled.div`
     margin: auto;
     margin-top: 120px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -251,6 +255,22 @@ const MakgeolliBtn = styled.button`
     border: none;
 `;
 
+const Soju = styled.div`
+    position: relative; // 오버레이 기준
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+`;
+
 export default function SBMGuide() {
     const imgError = (e) => {
         e.target.src = `/imgnone.png`;
@@ -263,10 +283,9 @@ export default function SBMGuide() {
             <Sidebtn />
             <Guide>
                 <BeerSojuGuide aria-labelledby="대한민국 맥주의 시작">
-                    <BeerImg
-                        src="/img/brand/beer/hitebeer.jpg"
-                        onError={imgError}
-                    />
+                    <Soju>
+                        <BeerImg src="/img/home/hite.jpeg" onError={imgError} />
+                    </Soju>
                     <Content>
                         <BeerTitle id="대한민국 맥주의 시작">
                             맥주의 시작 '조선맥주주식회사'
@@ -290,10 +309,12 @@ export default function SBMGuide() {
                     </Content>
                 </BeerSojuGuide>
                 <BeerSojuGuide2 aria-labelledby="대한민국 소주의 시작">
-                    <SojuImg
-                        src="/img/brand/soju/jinro.jpg"
-                        onError={imgError}
-                    />
+                    <Soju>
+                        <SojuImg
+                            src="/img/home/jinro.jpeg"
+                            onError={imgError}
+                        />
+                    </Soju>
                     <Content2>
                         <SojuTitle id="대한민국 소주의 시작">
                             대한민국 최초 주류산업진출 ‘진로’
@@ -316,10 +337,12 @@ export default function SBMGuide() {
                     </Content2>
                 </BeerSojuGuide2>
                 <Makgeolli aria-labelledby="막걸리 회사">
-                    <MakgeolliImg
-                        src="/img/brand/makgeolli/jip.jpg"
-                        onError={imgError}
-                    />
+                    <Soju>
+                        <MakgeolliImg
+                            src="/img/home/jipeng.jpeg"
+                            onError={imgError}
+                        />
+                    </Soju>
                     <MakgeolliTitle id="막걸리 회사">
                         대한민국 대표의 막걸리 제조회사 Since 1925 지평주조
                     </MakgeolliTitle>

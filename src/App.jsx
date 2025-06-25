@@ -5,8 +5,7 @@ import Story from "./Story/Story";
 import SojuStory from "./Story/SojuStory";
 import BeerStory from "./Story/BeerStory";
 import MakgeolliStory from "./Story/MakgeolliStory";
-import Company from "./Company,Shop/Company";
-import Shop from "./Company,Shop/Shop";
+import Company from "./Company/Company";
 import SojuGuide from "./Guide/SojuGuide";
 import BeerGuide from "./Guide/BeerGuide";
 import MakgeolliGuide from "./Guide/MakgeolliGuide";
@@ -72,10 +71,6 @@ function App() {
                 {
                     path: "/company",
                     element: <Company />,
-                },
-                {
-                    path: "/shop",
-                    element: <Shop />,
                 },
                 {
                     path: "/guide",

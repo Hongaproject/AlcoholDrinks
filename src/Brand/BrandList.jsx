@@ -16,6 +16,22 @@ const Container = styled.div`
     }
 `;
 
+const Notification = styled.span`
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+`;
+
 const Introduce = styled.div`
     width: 100%;
     height: 120px;
@@ -69,7 +85,7 @@ const Outline = styled.div`
 
 const Product = styled.div`
     width: 23%;
-    margin-top: 90px;
+    margin-top: 80px;
     border: 1px solid #ebeaec;
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -384,6 +400,10 @@ export default function BrandList({ category }) {
                 </Link>
             </Introduce>
             <Sidebtn />
+            <Notification>
+                전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷
+                쇼핑몰에서는 판매가 불가합니다.
+            </Notification>
             <Outline role="region">
                 {products.map((item) => (
                     <Product key={item.id}>

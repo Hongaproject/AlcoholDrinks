@@ -65,12 +65,6 @@ const MarketImgW = styled.div`
     flex-direction: column;
     gap: 70px;
 `;
-const Temporary = styled.div`
-    width: 350px;
-    height: 250px;
-    background-color: #ccc;
-    margin: 0 auto;
-`;
 
 const AlcoholSort = styled.div`
     width: 100%;
@@ -162,7 +156,15 @@ export default function Story() {
                 <MarketImgC>
                     <MarketImgW>
                         <TitleDes>대한민국 주류 시장 규모</TitleDes>
-                        <Temporary></Temporary>
+                        <img
+                            src="/img/story/korea.jpeg"
+                            alt="소주"
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                            }}
+                        />
                         <TitleDesP>
                             2022년 기준 출고 금액 기준으로 10조 원에 육박하며,
                             전년 대비 12.9% 증가했습니다.
@@ -170,7 +172,15 @@ export default function Story() {
                     </MarketImgW>
                     <MarketImgW>
                         <TitleDes>글로벌 주류 시장 규모</TitleDes>
-                        <Temporary></Temporary>
+                        <img
+                            src="/img/story/global.jpeg"
+                            alt="소주"
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                            }}
+                        />
                         <TitleDesP>
                             새로운 보고서에 따르면 세계 주류 시장 규모는
                             2032년까지 2조 7,400억 달러
@@ -188,8 +198,8 @@ export default function Story() {
                     <Link to="/story/soju">
                         <Soju>
                             <img
-                                src="/img/home/sj.jpeg"
-                                alt="소주"
+                                src="/img/home/jinro.jpeg"
+                                alt="맥주"
                                 style={{
                                     width: "100%",
                                     height: "100%",
@@ -202,7 +212,7 @@ export default function Story() {
                     <Link to="/story/beer">
                         <Beer>
                             <img
-                                src="/img/home/be.jpeg"
+                                src="/img/home/hite.jpeg"
                                 alt="맥주"
                                 style={{
                                     width: "100%",
@@ -216,7 +226,7 @@ export default function Story() {
                     <Link to="/story/makgeolli">
                         <Makgeolli>
                             <img
-                                src="/img/home/bok.jpeg"
+                                src="/img/home/jipeng.jpeg"
                                 alt="막걸리"
                                 style={{
                                     width: "100%",

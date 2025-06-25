@@ -11,8 +11,7 @@ const Container = styled.div`
         activePath.startsWith("/story") ||
         activePath.startsWith("/brand") ||
         activePath.startsWith("/company") ||
-        activePath.startsWith("/guide") ||
-        activePath === "/shop"
+        activePath.startsWith("/guide")
             ? "#344368"
             : "#ffffff"};
     box-shadow: 0px 10px 20px rgba(0, 0, 13, 0.07);
@@ -43,8 +42,7 @@ const Logo = styled.div`
         activePath.startsWith("/story") ||
         activePath.startsWith("/brand") ||
         activePath.startsWith("/company") ||
-        activePath.startsWith("/guide") ||
-        activePath === "/shop"
+        activePath.startsWith("/guide")
             ? "#fff"
             : "#000"};
 

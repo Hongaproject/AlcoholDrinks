@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Sidebtn from "../Section/Sidebtn";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 100%;
@@ -13,59 +12,20 @@ const Container = styled.div`
         padding: 0 20px;
     }
 `;
-const HeaderContainer = styled.div`
-    position: relative;
-
-    @media (max-width: 768px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-`;
 
 const IntroduceTitle = styled.h1`
     width: 20%;
     height: 75px;
     font-size: 48px;
-    margin-left: 200px;
+    margin: 0 auto;
     margin-top: 160px;
 
     @media (max-width: 768px) {
         width: 100%;
         margin-left: 0;
+        text-align: center;
         font-size: 2rem;
-        text-align: center;
-    }
-`;
-
-const CompanyMove = styled.span`
-    float: right;
-    font-size: 20px;
-    margin-right: 200px;
-    margin-top: 60px;
-    margin-bottom: 60px;
-
-    @media (max-width: 768px) {
-        margin-right: 0;
-        float: none;
-        display: block;
-        text-align: center;
-        order: 1;
-    }
-`;
-
-const Notification = styled.span`
-    width: 100%;
-    font-size: 20px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    @media (max-width: 768px) {
-        font-size: 1rem;
-        padding: 0 10px;
+        margin-top: 120px;
     }
 `;
 
@@ -83,18 +43,20 @@ const Outline = styled.div`
 
     @media (max-width: 768px) {
         width: 100%;
+        margin-top: 80px;
         justify-content: center;
-        gap: 80px;
+        gap: 50px;
     }
 `;
 
-const Shops = styled.div`
+const Companys = styled.div`
     width: 45%;
     height: 200px;
     border: 1px solid #ebeaec;
-    box-shadow: 0px 2px 4px rgb(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     cursor: pointer;
+    box-sizing: border-box;
     margin-bottom: 50px;
 
     @media (max-width: 768px) {
@@ -102,31 +64,29 @@ const Shops = styled.div`
     }
 `;
 
-const ShopImg = styled.img`
+const CompanyImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: contain;
 `;
-const ShopTitle = styled.h2`
+
+const CompanyTitle = styled.h2`
     font-size: 24px;
     margin-top: 20px;
 `;
-const ShopHomepage = styled.span`
+
+const CompanyHomepage = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
 `;
-const ShopTel = styled.span`
-    font-size: 18px;
-    margin-top: 12px;
-    display: block;
-`;
+
 const PaginationControls = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 100px;
     margin-top: 160px;
+    margin-bottom: 100px;
 
     @media (max-width: 768px) {
         margin-top: 80px;
@@ -155,26 +115,26 @@ const PageNumber = styled.span`
     }
 `;
 
-export default function Shop() {
-    const [shopImg, setShopImg] = useState([]);
+export default function Company() {
+    const [companyImg, setCompanyImg] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
 
     // API로 company 데이터를 가져 옴
-    const shopImgApi = async () => {
-        const res = await axios.get("/db/shop.json");
-        setShopImg(res.data.shop.filter((item) => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
+    const companyImgApi = async () => {
+        const res = await axios.get("/db/company.json");
+        setCompanyImg(res.data.company.filter((item) => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
     };
 
     // 컴포넌트 마운트시 회사 이미지 데이터 가져오기
-    useState(() => {
-        shopImgApi();
+    useEffect(() => {
+        companyImgApi();
     }, []);
 
-    const totalPages = Math.ceil(shopImg.length / companiesPerPage); // 총 페이지수 계산
+    const totalPages = Math.ceil(companyImg.length / companiesPerPage); // 총 페이지수 계산
 
     // 현재 페이지에 해당하는 회사 이미지 목록을 slice해서 가져옴
-    const currentShops = shopImg.slice(
+    const currentCompanies = companyImg.slice(
         (currentPage - 1) * companiesPerPage,
         currentPage * companiesPerPage,
     );
@@ -199,38 +159,24 @@ export default function Shop() {
 
     return (
         <Container>
-            <HeaderContainer>
-                <IntroduceTitle>판매처 소개</IntroduceTitle>
-                <Link
-                    to="/company"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="주류 회사 구경하기"
-                >
-                    <CompanyMove>주류 회사 구경하기</CompanyMove>
-                </Link>
-            </HeaderContainer>
-            <Notification>
-                전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷
-                쇼핑몰에서는 판매가 불가합니다.
-            </Notification>
+            <IntroduceTitle>주류 회사 소개</IntroduceTitle>
             <Sidebtn />
             <Outline role="region">
-                {currentShops.map((item) => (
-                    <Shops
+                {currentCompanies.map((item) => (
+                    <Companys
                         key={item.id}
                         onClick={() => window.open(`${item.homepage}`)}
                         role="link"
                         aria-label={`주류 회사 페이지: ${item.name}`}
                     >
-                        <ShopImg
+                        <CompanyImg
                             src={item.url}
                             alt={`${item.name} 이미지`}
                             onError={imgError}
                         />
-                        <ShopTitle>{item.name}</ShopTitle>
-                        <ShopHomepage>{item.homepage}</ShopHomepage>
-                        <ShopTel>{item.tel}</ShopTel>
-                    </Shops>
+                        <CompanyTitle>{item.name}</CompanyTitle>
+                        <CompanyHomepage>{item.homepage}</CompanyHomepage>
+                    </Companys>
                 ))}
             </Outline>
             <PaginationControls>

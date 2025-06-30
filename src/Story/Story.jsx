@@ -157,7 +157,7 @@ export default function Story() {
                     <MarketImgW>
                         <TitleDes>대한민국 주류 시장 규모</TitleDes>
                         <img
-                            src="/img/story/korea.jpeg"
+                            src="/img/story/korea.webp"
                             alt="소주"
                             style={{
                                 width: "100%",
@@ -173,7 +173,7 @@ export default function Story() {
                     <MarketImgW>
                         <TitleDes>글로벌 주류 시장 규모</TitleDes>
                         <img
-                            src="/img/story/global.jpeg"
+                            src="/img/story/global.webp"
                             alt="소주"
                             style={{
                                 width: "100%",
@@ -198,7 +198,7 @@ export default function Story() {
                     <Link to="/story/soju">
                         <Soju>
                             <img
-                                src="/img/home/jinro.jpeg"
+                                src="/img/home/jinro.webp"
                                 alt="맥주"
                                 style={{
                                     width: "100%",
@@ -212,7 +212,7 @@ export default function Story() {
                     <Link to="/story/beer">
                         <Beer>
                             <img
-                                src="/img/home/hite.jpeg"
+                                src="/img/home/hite.webp"
                                 alt="맥주"
                                 style={{
                                     width: "100%",
@@ -226,7 +226,7 @@ export default function Story() {
                     <Link to="/story/makgeolli">
                         <Makgeolli>
                             <img
-                                src="/img/home/jipeng.jpeg"
+                                src="/img/home/jipeng.webp"
                                 alt="막걸리"
                                 style={{
                                     width: "100%",

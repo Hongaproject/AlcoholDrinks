@@ -441,7 +441,7 @@ export default function BrandList({ category }) {
             </Outline>
             {loading && (
                 <Loader role="status" aria-live="polite">
-                    <img src="/img/Spinner.gif" alt="로딩 중..." />
+                    <img src="/img/Spinner.webp" alt="로딩 중..." />
                 </Loader>
             )}
             <div

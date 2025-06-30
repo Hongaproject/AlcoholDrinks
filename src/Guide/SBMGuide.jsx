@@ -284,7 +284,7 @@ export default function SBMGuide() {
             <Guide>
                 <BeerSojuGuide aria-labelledby="대한민국 맥주의 시작">
                     <Soju>
-                        <BeerImg src="/img/home/hite.jpeg" onError={imgError} />
+                        <BeerImg src="/img/home/hite.webp" onError={imgError} />
                     </Soju>
                     <Content>
                         <BeerTitle id="대한민국 맥주의 시작">
@@ -311,7 +311,7 @@ export default function SBMGuide() {
                 <BeerSojuGuide2 aria-labelledby="대한민국 소주의 시작">
                     <Soju>
                         <SojuImg
-                            src="/img/home/jinro.jpeg"
+                            src="/img/home/jinro.webp"
                             onError={imgError}
                         />
                     </Soju>
@@ -339,7 +339,7 @@ export default function SBMGuide() {
                 <Makgeolli aria-labelledby="막걸리 회사">
                     <Soju>
                         <MakgeolliImg
-                            src="/img/home/jipeng.jpeg"
+                            src="/img/home/jipeng.webp"
                             onError={imgError}
                         />
                     </Soju>

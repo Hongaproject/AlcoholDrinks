@@ -85,7 +85,7 @@ function App() {
                     element: <BeerGuide />,
                 },
                 {
-                    path: "/guid/makgeolli",
+                    path: "/guide/makgeolli",
                     element: <MakgeolliGuide />,
                 },
             ],

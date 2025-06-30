@@ -72,19 +72,19 @@ const Img = styled.div`
     background-position: center;
 
     &:nth-child(1) {
-        background-image: url("/img/home/chamiseulpst.jpg");
+        background-image: url("/img/home/chamiseulpst.webp");
     }
     &:nth-child(2) {
-        background-image: url("/img/home/terrapst.jpg");
+        background-image: url("/img/home/terrapst.webp");
     }
     &:nth-child(3) {
-        background-image: url("/img/home/makgeollipst.jpg");
+        background-image: url("/img/home/makgeollipst.webp");
     }
     &:nth-child(4) {
-        background-image: url("/img/home/liquorjinropst.jpg");
+        background-image: url("/img/home/liquorjinropst.webp");
     }
     &:nth-child(5) {
-        background-image: url("/img/home/newpst.jpg");
+        background-image: url("/img/home/terralightpst.webp");
     }
 `;
 
@@ -227,7 +227,7 @@ const Company = styled.div`
             rgba(0, 0, 13, 0) 0%,
             rgba(0, 0, 13, 0.7) 100%
         ),
-        url("/img/home/company.jpg");
+        url("/img/home/company.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -244,7 +244,7 @@ const Story = styled(Company)`
             rgba(0, 0, 13, 0) 0%,
             rgba(0, 0, 13, 0.7) 100%
         ),
-        url("/img/home/shop.jpg");
+        url("/img/home/shop.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -257,7 +257,7 @@ const Guide = styled(Company)`
             rgba(0, 0, 13, 0) 0%,
             rgba(0, 0, 13, 0.7) 100%
         ),
-        url("/img/home/guide.jpg");
+        url("/img/home/guide.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -356,7 +356,7 @@ export default function Section() {
                         <Link to="/brand/soju">
                             <Soju>
                                 <img
-                                    src="/img/home/jinro.jpeg"
+                                    src="/img/home/jinro.webp"
                                     alt="소주"
                                     style={{
                                         width: "100%",
@@ -373,7 +373,7 @@ export default function Section() {
                         <Link to="/brand/beer">
                             <Beer>
                                 <img
-                                    src="/img/home/hite.jpeg"
+                                    src="/img/home/hite.webp"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -390,7 +390,7 @@ export default function Section() {
                         <Link to="/brand/makgeolli">
                             <Makgeolli>
                                 <img
-                                    src="/img/home/jipeng.jpeg"
+                                    src="/img/home/jipeng.webp"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -407,7 +407,7 @@ export default function Section() {
                         <Link to="/brand/liquor">
                             <Liquor>
                                 <img
-                                    src="/img/home/dok.jpeg"
+                                    src="/img/home/dokdo.webp"
                                     alt="cass"
                                     style={{
                                         width: "100%",
@@ -424,7 +424,7 @@ export default function Section() {
                         <Link to="/brand/new">
                             <New>
                                 <img
-                                    src="/img/home/n.jpeg"
+                                    src="/img/home/new.webp"
                                     alt="cass"
                                     style={{
                                         width: "100%",

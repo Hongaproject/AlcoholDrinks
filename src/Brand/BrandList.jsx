@@ -32,37 +32,52 @@ const Notification = styled.span`
     }
 `;
 
-const Introduce = styled.div`
+const TitleMain = styled.div`
     width: 100%;
-    height: 120px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 110px;
 `;
 
-const IntroduceTitle = styled.h1`
-    width: 200px;
-    height: 80px;
-    border: 1px solid #000;
+const TitleNav = styled.nav`
+    width: 800px;
+    height: auto;
+    border-bottom: 2px solid #000;
+    margin-top: 120px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: ${(props) => (props.active ? "#87CEEB" : "#FFFFFF")};
-    box-shadow: 5px 3px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
-    margin-right: 70px;
-    font-size: 32px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    color: #000;
-
-    @media (max-width: 768px) {
-        width: 80px;
-        height: 40px;
-        margin-right: 10px;
-        font-size: 1.25rem;
-    }
+    justify-content: center;
+    gap: 80px;
+`;
+const TitleNavL = styled.div`
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: ${({ active }) => (active ? "#008810" : "#000")};
+`;
+const TitleNavL2 = styled.div`
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: ${(props) => (props.active ? "#C98B20" : "#000")};
+`;
+const TitleNavL3 = styled.div`
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: ${({ active }) => (active ? "#0066D3" : "#000")};
+`;
+const TitleNavL4 = styled.div`
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: ${({ active }) => (active ? "#ccc" : "#000")};
+`;
+const TitleNavL5 = styled.div`
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: ${({ active }) => (active ? "#e05555" : "#000")};
 `;
 
 const Outline = styled.div`
@@ -337,68 +352,30 @@ export default function BrandList({ category }) {
 
     return (
         <Container>
-            <Introduce role="navigation" aria-label="브랜드 소개">
-                <Link
-                    to="/brand/soju"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="소주 브랜드로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "soju"}
-                        onClick={() => handleClick("soju")}
+            <TitleMain>
+                <TitleNav>
+                    <Link to="/brand/soju" style={{ textDecoration: "none" }}>
+                        <TitleNavL active={true}>소주</TitleNavL>
+                    </Link>
+                    <Link to="/brand/beer" style={{ textDecoration: "none" }}>
+                        <TitleNavL2 active={activeTitle === "beer"}>
+                            맥주
+                        </TitleNavL2>
+                    </Link>
+                    <Link
+                        to="/brand/makgeolli"
+                        style={{ textDecoration: "none" }}
                     >
-                        소주
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/brand/beer"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="맥주 브랜드로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "beer"}
-                        onClick={() => handleClick("beer")}
-                    >
-                        맥주
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/brand/liquor"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="증류주 브랜드로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "liquor"}
-                        onClick={() => handleClick("liquor")}
-                    >
-                        증류주
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/brand/makgeolli"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="막걸리 브랜드로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "makgeolli"}
-                        onClick={() => handleClick("makgeolli")}
-                    >
-                        막걸리
-                    </IntroduceTitle>
-                </Link>
-                <Link
-                    to="/brand/new"
-                    style={{ textDecoration: "none", color: "#000" }}
-                    aria-label="신제품 브랜드로 이동"
-                >
-                    <IntroduceTitle
-                        active={activeTitle === "new"}
-                        onClick={() => handleClick("new")}
-                    >
-                        신제품
-                    </IntroduceTitle>
-                </Link>
-            </Introduce>
+                        <TitleNavL3>막걸리</TitleNavL3>
+                    </Link>
+                    <Link to="/brand/liquor" style={{ textDecoration: "none" }}>
+                        <TitleNavL4>증류주</TitleNavL4>
+                    </Link>
+                    <Link to="/brand/new" style={{ textDecoration: "none" }}>
+                        <TitleNavL5>신제품</TitleNavL5>
+                    </Link>
+                </TitleNav>
+            </TitleMain>
             <Sidebtn />
             <Notification>
                 전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷

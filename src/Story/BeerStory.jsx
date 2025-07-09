@@ -115,7 +115,7 @@ export default function BeerStory() {
                     수 있는 첨단 비열처리 공법이 개발되면서 소비자들은 더욱
                     신선한 맥주를 즐길 수 있게 되었습니다.
                 </TitleDes>
-                <Link to="/guide/soju" aria-label="맥주 가이드 페이지로 이동">
+                <Link to="/guide/beer" aria-label="맥주 가이드 페이지로 이동">
                     <SojuGuide>맥주 가이드 확인하기</SojuGuide>
                 </Link>
             </TitleMain>

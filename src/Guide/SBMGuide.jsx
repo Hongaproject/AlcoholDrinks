@@ -15,7 +15,7 @@ const Container = styled.div`
 const MainTitle = styled.h1`
     text-align: center;
     font-size: 64px;
-    margin-top: 150px;
+    margin-top: 200px;
 
     @media (max-width: 768px) {
         text-align: center;
@@ -65,7 +65,7 @@ const BeerSojuGuide = styled.div`
     }
 `;
 const BeerSojuGuide2 = styled.div`
-    width: 1200px;
+    width: 1400px;
     height: 400px;
     margin: auto;
     display: flex;
@@ -278,7 +278,7 @@ export default function SBMGuide() {
 
     return (
         <Container>
-            <MainTitle aria-label="주류상식 가이드">주류상식 가이드</MainTitle>
+            <MainTitle aria-label="주류상식 가이드">주류 상식 가이드</MainTitle>
             <SubTitle>알고 마시면 더 재밌는 주류상식 가이드입니다.</SubTitle>
             <Sidebtn />
             <Guide>
@@ -304,7 +304,7 @@ export default function SBMGuide() {
                             to="/guide/beer"
                             aria-label="맥주상식 가이드 페이지로 이동"
                         >
-                            <BeerBtn>맥주상식 가이드 확인하기</BeerBtn>
+                            <BeerBtn>맥주 상식 가이드 확인하기</BeerBtn>
                         </Link>
                     </Content>
                 </BeerSojuGuide>
@@ -332,7 +332,7 @@ export default function SBMGuide() {
                             to="/guide/soju"
                             aria-label="소주상식 가이드 페이지로 이동"
                         >
-                            <SojuBtn>소주상식 가이드 확인하기</SojuBtn>
+                            <SojuBtn>소주 상식 가이드 확인하기</SojuBtn>
                         </Link>
                     </Content2>
                 </BeerSojuGuide2>
@@ -351,10 +351,10 @@ export default function SBMGuide() {
                         먼저 떠올릴 것을 믿어 의심치 않습니다.
                     </MakgeolliSpan>
                     <Link
-                        to="/guid/makgeolli"
+                        to="/guide/makgeolli"
                         aria-label="막걸리상식 가이드 페이지로 이동"
                     >
-                        <MakgeolliBtn>막걸리상식 가이드 확인하기</MakgeolliBtn>
+                        <MakgeolliBtn>막걸리 상식 가이드 확인하기</MakgeolliBtn>
                     </Link>
                 </Makgeolli>
             </Guide>

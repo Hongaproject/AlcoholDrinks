@@ -13,7 +13,7 @@ const Container = styled.div`
 const TitleMain = styled.div`
     width: 100%;
     margin: 0 auto;
-    margin-top: 250px;
+    margin-top: 100px;
     margin-bottom: 150px;
     height: auto;
     display: flex;
@@ -22,10 +22,6 @@ const TitleMain = styled.div`
     align-items: center;
 `;
 
-const Title = styled.h1`
-    font-size: 48px;
-    text-align: center;
-`;
 const TitleNav = styled.nav`
     width: 800px;
     height: auto;
@@ -87,22 +83,21 @@ export default function BeerGuide() {
     return (
         <Container>
             <TitleMain>
-                <Title>맥주 상식 가이드</Title>
                 <TitleNav>
                     <Link to="/guide/soju" style={{ textDecoration: "none" }}>
-                        <TitleNavL>소주</TitleNavL>
+                        <TitleNavL>소주 가이드</TitleNavL>
                     </Link>
                     <Link to="/guide/beer" style={{ textDecoration: "none" }}>
-                        <TitleNavL active={true}>맥주</TitleNavL>
+                        <TitleNavL active={true}>맥주 가이드</TitleNavL>
                     </Link>
                     <Link
                         to="/guide/makgeolli"
                         style={{ textDecoration: "none" }}
                     >
-                        <TitleNavL>막걸리</TitleNavL>
+                        <TitleNavL>막걸리 가이드</TitleNavL>
                     </Link>
                 </TitleNav>
-                <TitleSub>맥주의 역사</TitleSub>
+                <TitleSub>맥주 상식 가이드</TitleSub>
                 <Introduce>
                     <TextSection aria-labelledby="맥주의 역사">
                         <Content aria-describedby="맥주의 역사 설명">
@@ -133,7 +128,7 @@ export default function BeerGuide() {
                         </Content>
                     </TextSection>
                     <TextSection aria-labelledby="취급 상식">
-                        <TitleSub2 id="취급 상식">취급 상식</TitleSub2>
+                        <TitleSub2 id="취급 상식">맥주 취급 상식</TitleSub2>
                         <Content aria-describedby="취급 상식 설명">
                             1. 병맥주 - 오프너를 사용해서 개봉해주시고, 빨리
                             시원하게 드시려고 냉동실에 넣으면 병맥주가 터지니

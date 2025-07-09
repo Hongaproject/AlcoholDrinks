@@ -14,7 +14,7 @@ const Container = styled.div`
 const TitleMain = styled.div`
     width: 100%;
     margin: 0 auto;
-    margin-top: 250px;
+    margin-top: 200px;
     margin-bottom: 150px;
     height: auto;
     display: flex;
@@ -22,11 +22,11 @@ const TitleMain = styled.div`
     justify-content: center;
     align-items: center;
 `;
-
 const Title = styled.h1`
     font-size: 48px;
     text-align: center;
 `;
+
 const TitleNav = styled.nav`
     width: 800px;
     height: auto;
@@ -89,22 +89,22 @@ export default function SojuGuide() {
     return (
         <Container>
             <TitleMain>
-                <Title>소주 상식 가이드</Title>
+                <Title>주류 상식 가이드</Title>
                 <TitleNav>
                     <Link to="/guide/soju" style={{ textDecoration: "none" }}>
-                        <TitleNavL active={true}>소주</TitleNavL>
+                        <TitleNavL active={true}>소주 가이드</TitleNavL>
                     </Link>
                     <Link to="/guide/beer" style={{ textDecoration: "none" }}>
-                        <TitleNavL>맥주</TitleNavL>
+                        <TitleNavL>맥주 가이드</TitleNavL>
                     </Link>
                     <Link
                         to="/guide/makgeolli"
                         style={{ textDecoration: "none" }}
                     >
-                        <TitleNavL>막걸리</TitleNavL>
+                        <TitleNavL>막걸리 가이드</TitleNavL>
                     </Link>
                 </TitleNav>
-                <TitleSub>소주의 역사</TitleSub>
+                <TitleSub>소주 상식 가이드</TitleSub>
                 <Introduce>
                     <TextSection aria-labelledby="소주의 역사">
                         <Content aria-describedby="소주의 역사 설명">
@@ -130,7 +130,7 @@ export default function SojuGuide() {
                         </Content>
                     </TextSection>
                     <TextSection aria-labelledby="취급 상식">
-                        <TitleSub2 id="취급 상식">취급 상식</TitleSub2>
+                        <TitleSub2 id="취급 상식">소주 취급 상식</TitleSub2>
                         <Content aria-describedby="취급 상식 설명">
                             1. 소주를 개봉할 때에는 뚜껑의 위쪽 부분만 엄지와
                             검지를 이용하여(개봉 시 주의) 반시계 방향으로

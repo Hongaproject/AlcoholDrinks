@@ -113,7 +113,10 @@ export default function MakgeolliStory() {
                     현재도 UNESCO 세계무형문화유산으로 등재하기 위한 노력을 하고
                     있습니다.
                 </TitleDes>
-                <Link to="/guide/soju" aria-label="막걸리 가이드 페이지로 이동">
+                <Link
+                    to="/guide/makgeolli"
+                    aria-label="막걸리 가이드 페이지로 이동"
+                >
                     <SojuGuide>막걸리 가이드 확인하기</SojuGuide>
                 </Link>
             </TitleMain>

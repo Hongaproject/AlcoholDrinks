@@ -14,7 +14,7 @@ const Container = styled.div`
 const TitleMain = styled.div`
     width: 100%;
     margin: 0 auto;
-    margin-top: 250px;
+    margin-top: 100px;
     margin-bottom: 150px;
     height: auto;
     display: flex;
@@ -23,10 +23,6 @@ const TitleMain = styled.div`
     align-items: center;
 `;
 
-const Title = styled.h1`
-    font-size: 48px;
-    text-align: center;
-`;
 const TitleNav = styled.nav`
     width: 800px;
     height: auto;
@@ -89,22 +85,21 @@ export default function MakgeolliGuide() {
     return (
         <Container>
             <TitleMain>
-                <Title>막걸리 상식 가이드</Title>
                 <TitleNav>
                     <Link to="/guide/soju" style={{ textDecoration: "none" }}>
-                        <TitleNavL>소주</TitleNavL>
+                        <TitleNavL>소주 가이드</TitleNavL>
                     </Link>
                     <Link to="/guide/beer" style={{ textDecoration: "none" }}>
-                        <TitleNavL>맥주</TitleNavL>
+                        <TitleNavL>맥주 가이드</TitleNavL>
                     </Link>
                     <Link
                         to="/guide/makgeolli"
                         style={{ textDecoration: "none" }}
                     >
-                        <TitleNavL active={true}>막걸리</TitleNavL>
+                        <TitleNavL active={true}>막걸리 가이드</TitleNavL>
                     </Link>
                 </TitleNav>
-                <TitleSub>막걸리의 역사</TitleSub>
+                <TitleSub>막걸리 상식 가이드</TitleSub>
                 <Introduce>
                     <TextSection aria-labelledby="막걸리의 역사">
                         <Content aria-describedby="막걸리의 역사 설명">
@@ -170,7 +165,7 @@ export default function MakgeolliGuide() {
                         </Content>
                     </TextSection>
                     <TextSection aria-labelledby="취급 상식">
-                        <Title id="취급 상식">취급 상식</Title>
+                        <TitleSub2 id="취급 상식">막걸리 취급 상식</TitleSub2>
                         <Content aria-describedby="취급 상식 설명">
                             1. 생막걸리 - 살균을 따로 거치지 않아 효모가
                             살아있는 막걸리를 뜻한다. 유통기한이 짧다는 특징을
@@ -186,9 +181,9 @@ export default function MakgeolliGuide() {
                         </Content>
                     </TextSection>
                     <TextSection aria-labelledby="공병 재사용 법">
-                        <Title id="공병 재사용 법">
+                        <TitleSub2 id="공병 재사용 법">
                             자원 절약을 위해 꼭 지켜주세요 - 공병 재사용 법{" "}
-                        </Title>
+                        </TitleSub2>
                         <Content aria-describedby="공병 재사용 법 설명">
                             - 내용물을 깨끗이 비워주세요. <br />- 담배꽁초,
                             참기름 등 이물질을 넣지 말아주세요. <br />

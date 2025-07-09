@@ -14,11 +14,9 @@ const Container = styled.div`
 `;
 
 const IntroduceTitle = styled.h1`
-    width: 20%;
-    height: 75px;
-    font-size: 48px;
-    margin: 0 auto;
-    margin-top: 160px;
+    font-size: 64px;
+    text-align: center;
+    margin-top: 200px;
 
     @media (max-width: 768px) {
         width: 100%;

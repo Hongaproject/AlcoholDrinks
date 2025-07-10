@@ -355,7 +355,9 @@ export default function BrandList({ category }) {
             <TitleMain>
                 <TitleNav>
                     <Link to="/brand/soju" style={{ textDecoration: "none" }}>
-                        <TitleNavL active={true}>소주</TitleNavL>
+                        <TitleNavL active={activeTitle === "soju"}>
+                            소주
+                        </TitleNavL>
                     </Link>
                     <Link to="/brand/beer" style={{ textDecoration: "none" }}>
                         <TitleNavL2 active={activeTitle === "beer"}>
@@ -366,13 +368,19 @@ export default function BrandList({ category }) {
                         to="/brand/makgeolli"
                         style={{ textDecoration: "none" }}
                     >
-                        <TitleNavL3>막걸리</TitleNavL3>
+                        <TitleNavL3 active={activeTitle === "makgeolli"}>
+                            막걸리
+                        </TitleNavL3>
                     </Link>
                     <Link to="/brand/liquor" style={{ textDecoration: "none" }}>
-                        <TitleNavL4>증류주</TitleNavL4>
+                        <TitleNavL4 active={activeTitle === "liquor"}>
+                            증류주
+                        </TitleNavL4>
                     </Link>
                     <Link to="/brand/new" style={{ textDecoration: "none" }}>
-                        <TitleNavL5>신제품</TitleNavL5>
+                        <TitleNavL5 active={activeTitle === "new"}>
+                            신제품
+                        </TitleNavL5>
                     </Link>
                 </TitleNav>
             </TitleMain>

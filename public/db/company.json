@@ -1,0 +1,70 @@
+{
+    "company": [
+        {
+            "id": 1,
+            "name": "하이트진로",
+            "url": "/img/company/hitejinro.webp",
+            "homepage": "https://www.hitejinro.com"
+        },
+        {
+            "id": 2,
+            "name": "롯데칠성음료",
+            "url": "/img/company/lotte.webp",
+            "homepage": "https://company.lottechilsung.co.kr/"
+        },
+        {
+            "id": 3,
+            "name": "선양소주",
+            "url": "/img/company/sunyang.webp",
+            "homepage": "https://sunyangsoju.co.kr"
+        },
+        {
+            "id": 4,
+            "name": "무학",
+            "url": "/img/company/muhak.webp",
+            "homepage": "https://www.muhak.co.kr"
+        },
+        {
+            "id": 5,
+            "name": "대선주조",
+            "url": "/img/company/daesun.webp",
+            "homepage": "https://www.c1.co.kr/"
+        },
+        {
+            "id": 6,
+            "name": "한라산",
+            "url": "/img/company/hallasan.webp",
+            "homepage": "http://www.hallasan.co.kr/"
+        },
+        {
+            "id": 7,
+            "name": "금복주",
+            "url": "/img/company/kumbokju.webp",
+            "homepage": "https://kumbokju.co.kr/"
+        },
+        {
+            "id": 8,
+            "name": "보해양조",
+            "url": "/img/company/bohae.webp",
+            "homepage": "http://www.bohae.co.kr/"
+        },
+        {
+            "id": 9,
+            "name": "오비맥주",
+            "url": "/img/company/ob.webp",
+            "homepage": "https://www.ob.co.kr"
+        },
+        {
+            "id": 10,
+            "name": "제주맥주",
+            "url": "/img/company/jeju.webp",
+            "homepage": "https://jejubeer.co.kr"
+        },
+        {
+            "id": 11,
+            "name": "세븐브로이",
+            "url": "/img/company/seven.webp",
+            "homepage": "https://www.sevenbrau.com"
+        }
+    ]
+}

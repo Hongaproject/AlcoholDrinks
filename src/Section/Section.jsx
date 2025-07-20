@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Sidebtn from "./Sidebtn";
 import { Link } from "react-router-dom";
+import useCloudinaryImages from "../hooks/useCloudinaryImages";
 
 const Container = styled.div`
     width: 100%;
@@ -227,7 +228,7 @@ const Company = styled.div`
             rgba(0, 0, 13, 0) 0%,
             rgba(0, 0, 13, 0.7) 100%
         ),
-        url("/img/home/company.webp");
+        url(${(props) => props.bgImage});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -236,38 +237,13 @@ const Company = styled.div`
     align-items: center;
     justify-content: center;
 `;
-const Story = styled(Company)`
-    width: 100%;
-    height: 600px;
-    background: linear-gradient(
-            180deg,
-            rgba(0, 0, 13, 0) 0%,
-            rgba(0, 0, 13, 0.7) 100%
-        ),
-        url("/img/home/shop.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-`;
-const Guide = styled(Company)`
-    width: 100%;
-    height: 600px;
-    background: linear-gradient(
-            180deg,
-            rgba(0, 0, 13, 0) 0%,
-            rgba(0, 0, 13, 0.7) 100%
-        ),
-        url("/img/home/guide.webp");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-`;
+const Story = styled(Company)``;
+const Guide = styled(Company)``;
 
 export default function Section() {
-    const imgSlide = ["", "", "", "", ""];
     const [imgArr, setImgArr] = useState(0);
     const FIRST_SLIDE_INDEX = 0;
-    const LAST_SLIDE_INDEX = imgSlide.length - 1;
+    const LAST_SLIDE_INDEX = 4;
     const MOVE_SLIDE_INDEX = 1;
 
     const moveSlide = (value) => {
@@ -293,7 +269,26 @@ export default function Section() {
         }, 3000);
 
         return () => clearInterval(autoImg);
-    }, [imgArr, imgSlide.length]);
+    }, [imgArr]);
+
+    const { imageSrc, loading, error } = useCloudinaryImages([
+        "chamiseulpst_vxbrxf",
+        "terrapst_mpgbjp",
+        "makgeollipst_kq8txj",
+        "liquorjinropst_wxcffj",
+        "terralightpst_ajvgoh",
+        "jinro_bexnug",
+        "hite_an9nj4",
+        "jipeng_ugwtwn",
+        "dokdo_aovji0",
+        "new_ecntvk",
+        "shop_d33rvj",
+        "company_viu0sf",
+        "guide_mcrsj9",
+    ]);
+
+    if (loading) return <p>이미지를 불러오는 중...</p>;
+    if (error) return <p>에러: {error}</p>;
 
     return (
         <Container>
@@ -317,16 +312,15 @@ export default function Section() {
                         </svg>
                     </PrevButton>
                     <Show>
-                        {imgSlide.map((item, index) => (
+                        {imageSrc.slice(0, 5).map((src, index) => (
                             <Img
                                 key={index}
                                 style={{
+                                    backgroundImage: `url(${src})`,
                                     transform: `translateX(${-100 * imgArr}%)`,
                                     transition: "all 0.4s ease-in-out",
                                 }}
-                            >
-                                {item}
-                            </Img>
+                            />
                         ))}
                     </Show>
                     <NextButton
@@ -355,16 +349,18 @@ export default function Section() {
                     <AlcoholWrapper>
                         <Link to="/brand/soju">
                             <Soju>
-                                <img
-                                    src="/img/home/jinro.webp"
-                                    alt="소주"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "contain",
-                                        borderRadius: "187.5px",
-                                    }}
-                                />
+                                {imageSrc[5] && (
+                                    <img
+                                        src={imageSrc[5]}
+                                        alt="cass"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            borderRadius: "187.5px",
+                                        }}
+                                    />
+                                )}
                                 <Overlay className="overlay">
                                     소주 더보기
                                 </Overlay>
@@ -372,16 +368,18 @@ export default function Section() {
                         </Link>
                         <Link to="/brand/beer">
                             <Beer>
-                                <img
-                                    src="/img/home/hite.webp"
-                                    alt="cass"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "contain",
-                                        borderRadius: "187.5px",
-                                    }}
-                                />
+                                {imageSrc[6] && (
+                                    <img
+                                        src={imageSrc[6]}
+                                        alt="cass"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            borderRadius: "187.5px",
+                                        }}
+                                    />
+                                )}
                                 <Overlay className="overlay">
                                     맥주 더보기
                                 </Overlay>
@@ -389,16 +387,18 @@ export default function Section() {
                         </Link>
                         <Link to="/brand/makgeolli">
                             <Makgeolli>
-                                <img
-                                    src="/img/home/jipeng.webp"
-                                    alt="cass"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        borderRadius: "187.5px",
-                                    }}
-                                />
+                                {imageSrc[7] && (
+                                    <img
+                                        src={imageSrc[7]}
+                                        alt="cass"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            borderRadius: "187.5px",
+                                        }}
+                                    />
+                                )}
                                 <Overlay className="overlay">
                                     막걸리 더보기
                                 </Overlay>
@@ -406,16 +406,18 @@ export default function Section() {
                         </Link>
                         <Link to="/brand/liquor">
                             <Liquor>
-                                <img
-                                    src="/img/home/dokdo.webp"
-                                    alt="cass"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        borderRadius: "187.5px",
-                                    }}
-                                />
+                                {imageSrc[8] && (
+                                    <img
+                                        src={imageSrc[8]}
+                                        alt="cass"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            borderRadius: "187.5px",
+                                        }}
+                                    />
+                                )}
                                 <Overlay className="overlay">
                                     증류주 더보기
                                 </Overlay>
@@ -423,16 +425,18 @@ export default function Section() {
                         </Link>
                         <Link to="/brand/new">
                             <New>
-                                <img
-                                    src="/img/home/new.webp"
-                                    alt="cass"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "contain",
-                                        borderRadius: "187.5px",
-                                    }}
-                                />
+                                {imageSrc[9] && (
+                                    <img
+                                        src={imageSrc[9]}
+                                        alt="cass"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "contain",
+                                            borderRadius: "187.5px",
+                                        }}
+                                    />
+                                )}
                                 <Overlay className="overlay">
                                     신제품 더보기
                                 </Overlay>
@@ -442,7 +446,7 @@ export default function Section() {
                 </AlcoholSort>
             </AlcoholContainer>
             <LastSection>
-                <Story>
+                <Story bgImage={imageSrc[10]}>
                     <OverlayContent>
                         <OverlayText>Story</OverlayText>
                         <Link
@@ -456,7 +460,7 @@ export default function Section() {
                         </Link>
                     </OverlayContent>
                 </Story>
-                <Company>
+                <Company bgImage={imageSrc[11]}>
                     <OverlayContent>
                         <OverlayText>Company</OverlayText>
                         <Link
@@ -470,7 +474,7 @@ export default function Section() {
                         </Link>
                     </OverlayContent>
                 </Company>
-                <Guide>
+                <Guide bgImage={imageSrc[12]}>
                     <OverlayContent>
                         <OverlayText>Guide</OverlayText>
                         <Link

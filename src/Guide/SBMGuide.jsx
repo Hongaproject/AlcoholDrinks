@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Sidebtn from "../Section/Sidebtn";
+import useCloudinaryImages from "../hooks/useCloudinaryImages";
 
 const Container = styled.div`
     width: 100%;
@@ -275,6 +276,14 @@ export default function SBMGuide() {
     const imgError = (e) => {
         e.target.src = `/imgnone.png`;
     };
+    const { imageSrc, loading, error } = useCloudinaryImages([
+        "jinro_bexnug",
+        "hite_an9nj4",
+        "jipeng_ugwtwn",
+    ]);
+
+    if (loading) return <p>이미지를 불러오는 중...</p>;
+    if (error) return <p>에러: {error}</p>;
 
     return (
         <Container>
@@ -284,7 +293,17 @@ export default function SBMGuide() {
             <Guide>
                 <BeerSojuGuide aria-labelledby="대한민국 맥주의 시작">
                     <Soju>
-                        <BeerImg src="/img/home/hite.webp" onError={imgError} />
+                        {imageSrc[1] && (
+                            <BeerImg
+                                src={imageSrc[1]}
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        )}
                     </Soju>
                     <Content>
                         <BeerTitle id="대한민국 맥주의 시작">
@@ -310,10 +329,17 @@ export default function SBMGuide() {
                 </BeerSojuGuide>
                 <BeerSojuGuide2 aria-labelledby="대한민국 소주의 시작">
                     <Soju>
-                        <SojuImg
-                            src="/img/home/jinro.webp"
-                            onError={imgError}
-                        />
+                        {imageSrc[0] && (
+                            <SojuImg
+                                src={imageSrc[0]}
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        )}
                     </Soju>
                     <Content2>
                         <SojuTitle id="대한민국 소주의 시작">
@@ -338,10 +364,17 @@ export default function SBMGuide() {
                 </BeerSojuGuide2>
                 <Makgeolli aria-labelledby="막걸리 회사">
                     <Soju>
-                        <MakgeolliImg
-                            src="/img/home/jipeng.webp"
-                            onError={imgError}
-                        />
+                        {imageSrc[2] && (
+                            <MakgeolliImg
+                                src={imageSrc[2]}
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        )}
                     </Soju>
                     <MakgeolliTitle id="막걸리 회사">
                         대한민국 대표의 막걸리 제조회사 Since 1925 지평주조

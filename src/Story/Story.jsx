@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import useCloudinaryImages from "../hooks/useCloudinaryImages";
 
 const Container = styled.div`
     width: 100%;
@@ -133,6 +134,17 @@ const Beer = styled(Soju)``;
 const Makgeolli = styled(Soju)``;
 
 export default function Story() {
+    const { imageSrc, loading, error } = useCloudinaryImages([
+        "korea",
+        "global_jlfeks",
+        "jinro_bexnug",
+        "hite_an9nj4",
+        "jipeng_ugwtwn",
+    ]);
+
+    if (loading) return <p>이미지를 불러오는 중...</p>;
+    if (error) return <p>에러: {error}</p>;
+
     return (
         <Container>
             <TitleMain>
@@ -156,15 +168,17 @@ export default function Story() {
                 <MarketImgC>
                     <MarketImgW>
                         <TitleDes>대한민국 주류 시장 규모</TitleDes>
-                        <img
-                            src="/img/story/korea.webp"
-                            alt="소주"
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                            }}
-                        />
+                        {imageSrc[0] && (
+                            <img
+                                src={imageSrc[0]}
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        )}
                         <TitleDesP>
                             2022년 기준 출고 금액 기준으로 10조 원에 육박하며,
                             전년 대비 12.9% 증가했습니다.
@@ -172,15 +186,17 @@ export default function Story() {
                     </MarketImgW>
                     <MarketImgW>
                         <TitleDes>글로벌 주류 시장 규모</TitleDes>
-                        <img
-                            src="/img/story/global.webp"
-                            alt="소주"
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                            }}
-                        />
+                        {imageSrc[1] && (
+                            <img
+                                src={imageSrc[1]}
+                                alt="소주"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                }}
+                            />
+                        )}
                         <TitleDesP>
                             새로운 보고서에 따르면 세계 주류 시장 규모는
                             2032년까지 2조 7,400억 달러
@@ -197,43 +213,49 @@ export default function Story() {
                 <AlcoholWrapper>
                     <Link to="/story/soju">
                         <Soju>
-                            <img
-                                src="/img/home/jinro.webp"
-                                alt="맥주"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "contain",
-                                }}
-                            />
+                            {imageSrc[2] && (
+                                <img
+                                    src={imageSrc[2]}
+                                    alt="소주"
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                    }}
+                                />
+                            )}
                             <Overlay className="overlay">소주의 역사</Overlay>
                         </Soju>
                     </Link>
                     <Link to="/story/beer">
                         <Beer>
-                            <img
-                                src="/img/home/hite.webp"
-                                alt="맥주"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "contain",
-                                }}
-                            />
+                            {imageSrc[3] && (
+                                <img
+                                    src={imageSrc[3]}
+                                    alt="소주"
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                    }}
+                                />
+                            )}
                             <Overlay className="overlay">맥주의 역사</Overlay>
                         </Beer>
                     </Link>
                     <Link to="/story/makgeolli">
                         <Makgeolli>
-                            <img
-                                src="/img/home/jipeng.webp"
-                                alt="막걸리"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "contain",
-                                }}
-                            />
+                            {imageSrc[4] && (
+                                <img
+                                    src={imageSrc[4]}
+                                    alt="소주"
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                    }}
+                                />
+                            )}
                             <Overlay className="overlay">막걸리의 역사</Overlay>
                         </Makgeolli>
                     </Link>

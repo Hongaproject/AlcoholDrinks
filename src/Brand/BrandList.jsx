@@ -24,8 +24,6 @@ const Notification = styled.span`
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 60px;
-
     @media (max-width: 768px) {
         font-size: 1rem;
         padding: 0 10px;
@@ -36,7 +34,7 @@ const TitleMain = styled.div`
     width: 100%;
     margin: 0 auto;
     margin-top: 100px;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
     height: auto;
     display: flex;
     flex-direction: column;

@@ -63,6 +63,11 @@ const Show = styled.div`
     overflow: hidden;
     margin: 0 auto;
 `;
+const SliderWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+`;
 
 const Img = styled.div`
     width: 100%;
@@ -71,22 +76,6 @@ const Img = styled.div`
     text-align: center;
     background-size: cover;
     background-position: center;
-
-    &:nth-child(1) {
-        background-image: url("/img/home/chamiseulpst.webp");
-    }
-    &:nth-child(2) {
-        background-image: url("/img/home/terrapst.webp");
-    }
-    &:nth-child(3) {
-        background-image: url("/img/home/makgeollipst.webp");
-    }
-    &:nth-child(4) {
-        background-image: url("/img/home/liquorjinropst.webp");
-    }
-    &:nth-child(5) {
-        background-image: url("/img/home/terralightpst.webp");
-    }
 `;
 
 // alcohol
@@ -241,35 +230,9 @@ const Story = styled(Company)``;
 const Guide = styled(Company)``;
 
 export default function Section() {
-    const [imgArr, setImgArr] = useState(0);
-    const FIRST_SLIDE_INDEX = 0;
-    const LAST_SLIDE_INDEX = 4;
-    const MOVE_SLIDE_INDEX = 1;
-
-    const moveSlide = (value) => {
-        if (value === "next") {
-            setImgArr((prevState) =>
-                prevState < LAST_SLIDE_INDEX
-                    ? prevState + MOVE_SLIDE_INDEX
-                    : FIRST_SLIDE_INDEX,
-            );
-        }
-        if (value === "prev") {
-            setImgArr((prevState) =>
-                prevState > FIRST_SLIDE_INDEX
-                    ? prevState - MOVE_SLIDE_INDEX
-                    : LAST_SLIDE_INDEX,
-            );
-        }
-    };
-
-    useEffect(() => {
-        const autoImg = setInterval(() => {
-            moveSlide("next");
-        }, 3000);
-
-        return () => clearInterval(autoImg);
-    }, [imgArr]);
+    const [currentIndex, setCurrentIndex] = useState(1);
+    const [isTransitioning, setIsTransitioning] = useState(true);
+    const [isAutoSliding, setIsAutoSliding] = useState(true);
 
     const { imageSrc, loading, error } = useCloudinaryImages([
         "chamiseulpst_vxbrxf",
@@ -287,6 +250,55 @@ export default function Section() {
         "guide_mcrsj9",
     ]);
 
+    const visibleSlides = imageSrc.slice(0, 5);
+    const loopedSlides = [
+        visibleSlides[visibleSlides.length - 1], // 마지막 이미지 복제
+        ...visibleSlides,
+        visibleSlides[0], // 첫 이미지 복제
+    ];
+
+    const moveSlide = (direction, isManual = false) => {
+        if (isManual) {
+            setIsAutoSliding(false);
+            // 일정 시간 후 자동 슬라이드 재개 (예: 5초)
+            setTimeout(() => {
+                setIsAutoSliding(true);
+            }, 5000);
+        }
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => (direction === "next" ? prev + 1 : prev - 1));
+    };
+
+    useEffect(() => {
+        if (!isAutoSliding) return;
+
+        const autoSlide = setInterval(() => {
+            moveSlide("next");
+        }, 3000);
+
+        return () => clearInterval(autoSlide);
+    }, [isAutoSliding]);
+
+    useEffect(() => {
+        if (!isTransitioning) return;
+
+        if (currentIndex === loopedSlides.length - 1) {
+            setTimeout(() => {
+                setIsTransitioning(false);
+                setCurrentIndex(1); // 첫 번째 진짜 이미지로 점프
+            }, 400); // transition 시간과 맞춰야 함
+        }
+
+        if (currentIndex === 0) {
+            setTimeout(() => {
+                setIsTransitioning(false);
+                setCurrentIndex(loopedSlides.length - 2); // 마지막 진짜 이미지로 점프
+            }, 400);
+        } else {
+            setIsTransitioning(true);
+        }
+    }, [currentIndex]);
+
     if (loading) return <p>이미지를 불러오는 중...</p>;
     if (error) return <p>에러: {error}</p>;
 
@@ -295,7 +307,7 @@ export default function Section() {
             <ImgSlice>
                 <Slide>
                     <PrevButton
-                        onClick={() => moveSlide("prev")}
+                        onClick={() => moveSlide("prev", true)}
                         aria-label="이전 버튼"
                         role="button"
                     >
@@ -312,19 +324,25 @@ export default function Section() {
                         </svg>
                     </PrevButton>
                     <Show>
-                        {imageSrc.slice(0, 5).map((src, index) => (
-                            <Img
-                                key={index}
-                                style={{
-                                    backgroundImage: `url(${src})`,
-                                    transform: `translateX(${-100 * imgArr}%)`,
-                                    transition: "all 0.4s ease-in-out",
-                                }}
-                            />
-                        ))}
+                        <SliderWrapper
+                            style={{
+                                transform: `translateX(${-100 * currentIndex}%)`,
+                                transition: isTransitioning
+                                    ? "all 0.4s ease-in-out"
+                                    : "none",
+                            }}
+                        >
+                            {loopedSlides.map((src, index) => (
+                                <Img
+                                    key={index}
+                                    style={{ backgroundImage: `url(${src})` }}
+                                />
+                            ))}
+                        </SliderWrapper>
                     </Show>
+
                     <NextButton
-                        onClick={() => moveSlide("next")}
+                        onClick={() => moveSlide("next", true)}
                         aria-label="다음 버튼"
                         role="button"
                     >

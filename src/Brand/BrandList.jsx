@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Sidebtn from "../Section/Sidebtn";
 import { useUserContext } from "../auth/Context/UserContext";
 import { FaRegHeart } from "react-icons/fa";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Container = styled.div`
     width: 100%;
@@ -221,47 +222,62 @@ export default function BrandList({ category }) {
     const [activeTitle, setActiveTitle] = useState(""); // 활성화된 제목 상태 변수
     const navigate = useNavigate(""); // 페이지 이동
 
-    // API에서 데이터 가져오고 8개씩 보여주게 설정
-    const imgAPi = async (page = 1) => {
+    // ✅ Firestore에서 데이터 불러오기
+    const fetchProducts = async (page = 1) => {
         if (page <= 0) return;
         setLoading(true);
         try {
-            const res = await axios.get(`/db/brand${category}.json`);
-            const data = res.data[category].map((item) => ({
-                ...item,
-                category,
-            }));
-            const newProducts = data.slice((page - 1) * 8, page * 8);
-            setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+            // ✅ 문서 이름은 brand + category
+            const docRef = doc(db, "brandlistdata", `brand${category}`);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                // ✅ 내부 구조: data[category] 배열
+                const data = docSnap.data().data[category];
+
+                // 페이지네이션: 8개씩 잘라서 추가
+                const newProducts = data
+                    .slice((page - 1) * 8, page * 8)
+                    .map((item) => ({
+                        ...item,
+                        category,
+                    }));
+
+                setProducts((prev) => [...prev, ...newProducts]);
+            } else {
+                console.error(
+                    `❌ Firestore에서 '${category}' 문서를 찾을 수 없습니다.`,
+                );
+            }
         } catch (error) {
             console.error(`${category} 데이터를 가져오는 중 오류 발생:`, error);
         }
         setLoading(false);
     };
 
-    // 카테고리와 저장된 항목에 따라 즐겨찾기 상태 업데이트
+    // ✅ 카테고리 변경 시 데이터 초기화 및 즐겨찾기 설정
     useEffect(() => {
         setProducts([]);
         setPage(0);
+
         if (savedItems) {
             const categoryFavorites = savedItems
                 .filter((item) => item.category === category)
                 .map((item) => item.id);
-            setFavorite((prevFavorites) => ({
-                ...prevFavorites,
+
+            setFavorite((prev) => ({
+                ...prev,
                 [category]: categoryFavorites,
             }));
         }
     }, [category, location.pathname, savedItems]);
 
-    // 페이지 변경시 데이터 가져오기
+    // ✅ 페이지 변경 시 데이터 로드
     useEffect(() => {
-        if (page > 0) {
-            imgAPi(page);
-        }
+        if (page > 0) fetchProducts(page);
     }, [page]);
 
-    // 현재 경로에 따라 카테고리 변경
+    // ✅ 현재 경로에 따라 활성화된 카테고리 설정
     useEffect(() => {
         switch (location.pathname) {
             case `/brand/${category}`:
@@ -272,14 +288,13 @@ export default function BrandList({ category }) {
         }
     }, [location.pathname, category]);
 
-    // 제목 클릭 시 활성화된 제목 설정
+    // ✅ 제목 클릭 시 활성화 설정
     const handleClick = (title) => {
         setActiveTitle(title);
     };
 
-    // 무한 스크롤 설정
+    // ✅ 무한 스크롤 IntersectionObserver 설정
     useEffect(() => {
-        // IntersectionObserver를 사용하여 스크롤 감지
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -289,38 +304,32 @@ export default function BrandList({ category }) {
                 });
             },
             { threshold: 1.0 },
-        ); // 화면에 100% 보일 때 감지
+        );
 
-        if (loader.current) {
-            observer.observe(loader.current);
-        }
+        if (loader.current) observer.observe(loader.current);
 
         return () => {
-            if (loader.current) {
-                observer.unobserve(loader.current);
-            }
+            if (loader.current) observer.unobserve(loader.current);
         };
     }, []);
 
-    // 제품 즐겨찾기 상태 토굴 함수
+    // ✅ 즐겨찾기 토글 함수
     const handleHeart = async (itemId) => {
         if (!user) {
-            // 로그인하지 않은 상태일 경우 알림 표시
             alert("로그인 후 이용하실 수 있습니다.");
             navigate("/login");
             return;
         }
 
-        const isFavorite = favorite[category]?.includes(itemId); // 현재 항목이 즐겨찾기 인지 확인
+        const isFavorite = favorite[category]?.includes(itemId);
 
         if (isFavorite) {
-            // 즐겨찾기 항목 제거
-            setFavorite((prevFavorites) => ({
-                ...prevFavorites,
-                [category]: prevFavorites[category].filter(
-                    (id) => id !== itemId,
-                ),
+            // 즐겨찾기 제거
+            setFavorite((prev) => ({
+                ...prev,
+                [category]: prev[category].filter((id) => id !== itemId),
             }));
+
             const item = products.find((product) => product.id === itemId);
             if (item) {
                 await removeItem(itemId);
@@ -329,11 +338,12 @@ export default function BrandList({ category }) {
                 setTimeout(() => setSavedMessage(""), 2000);
             }
         } else {
-            // 즐겨찾기 항목 추가
-            setFavorite((prevFavorites) => ({
-                ...prevFavorites,
-                [category]: [...(prevFavorites[category] || []), itemId],
+            // 즐겨찾기 추가
+            setFavorite((prev) => ({
+                ...prev,
+                [category]: [...(prev[category] || []), itemId],
             }));
+
             const item = products.find((product) => product.id === itemId);
             if (item) {
                 await saveItem(item);
@@ -345,7 +355,7 @@ export default function BrandList({ category }) {
     };
 
     const imgError = (e) => {
-        e.target.src = `/imgnone.png`;
+        e.target.src = "/imgnone.png";
     };
 
     return (
@@ -384,9 +394,10 @@ export default function BrandList({ category }) {
             </TitleMain>
             <Sidebtn />
             <Notification>
-                전통주를 제외한 주류/담배등은 관령 법령에 의거하여 인터넷
+                전통주를 제외한 주류/담배 등은 관련 법령에 의거하여 인터넷
                 쇼핑몰에서는 판매가 불가합니다.
             </Notification>
+
             <Outline role="region">
                 {products.map((item) => (
                     <Product key={item.id}>
@@ -409,10 +420,15 @@ export default function BrandList({ category }) {
                                 {item.company}
                             </ProductImgCompany>
                         </Link>
+
                         <Favorite
                             onClick={() => handleHeart(item.id)}
                             active={favorite[category]?.includes(item.id)}
-                            aria-label={`좋아요 ${favorite[category]?.includes(item.id) ? "취소" : "추가"} 버튼`}
+                            aria-label={`좋아요 ${
+                                favorite[category]?.includes(item.id)
+                                    ? "취소"
+                                    : "추가"
+                            } 버튼`}
                         >
                             <FaRegHeart />
                             <FavoriteNumber>
@@ -422,15 +438,18 @@ export default function BrandList({ category }) {
                     </Product>
                 ))}
             </Outline>
+
             {loading && (
                 <Loader role="status" aria-live="polite">
                     <img src="/img/Spinner.webp" alt="로딩 중..." />
                 </Loader>
             )}
+
             <div
                 ref={loader}
                 style={{ height: "100px", background: "transparent" }}
             ></div>
+
             {savedMessage && (
                 <SavedMessage role="alert" aria-live="assertive">
                     {savedMessage}

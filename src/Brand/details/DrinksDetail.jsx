@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { auth, db } from "../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import Comments from "../comment/Comments";
 
 const Container = styled.div`
@@ -223,90 +222,63 @@ const SubmitBtn = styled.input`
 
 export default function DrinksDetail() {
     const { category, id } = useParams(); // URL 매개변수에서 category, id 가져오기
-    const [allData, setAllData] = useState([]); // 데이터를 저장할 상태
-    const [alcoholItem, setAlcoholItem] = useState(null); // 특정 소주 항목을 저장할 상태
+    const [alcoholItem, setAlcoholItem] = useState(null); // 선택한 제품 데이터
     const [text, setText] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate("");
+    const navigate = useNavigate();
 
-    // 엔드포인트에서 JSON 데이터 가져오기
-    const fetchData = async () => {
+    // ✅ Firestore에서 단일 아이템 불러오기
+    const fetchAlcoholItem = async () => {
         try {
-            const res = await Promise.all([
-                axios.get("/db/brandsoju.json"),
-                axios.get("/db/brandbeer.json"),
-                axios.get("/db/brandliquor.json"),
-                axios.get("/db/brandmakgeolli.json"),
-                axios.get("/db/brandnew.json"),
-            ]);
+            // ✅ 문서 참조
+            const docRef = doc(db, "brandlistdata", `brand${category}`);
+            const docSnap = await getDoc(docRef);
 
-            const mergedData = res.flatMap((response) => {
-                if (response.data.soju)
-                    return response.data.soju.map((item) => ({
-                        ...item,
-                        category: "soju",
-                    }));
-                if (response.data.beer)
-                    return response.data.beer.map((item) => ({
-                        ...item,
-                        category: "beer",
-                    }));
-                if (response.data.liquor)
-                    return response.data.liquor.map((item) => ({
-                        ...item,
-                        category: "liquor",
-                    }));
-                if (response.data.makgeolli)
-                    return response.data.makgeolli.map((item) => ({
-                        ...item,
-                        category: "makgeolli",
-                    }));
-                if (response.data.new)
-                    return response.data.new.map((item) => ({
-                        ...item,
-                        category: "new",
-                    }));
-                return [];
-            });
+            if (docSnap.exists()) {
+                // ✅ 해당 카테고리 배열에서 해당 ID 아이템 찾기
+                const items = docSnap.data().data[category];
+                const foundItem = items.find(
+                    (item) => item.id === parseInt(id, 10),
+                );
 
-            setAllData(mergedData);
+                if (foundItem) {
+                    setAlcoholItem(foundItem);
+                } else {
+                    console.error(
+                        `❌ ${id}에 해당하는 제품을 찾을 수 없습니다.`,
+                    );
+                }
+            } else {
+                console.error(
+                    `❌ Firestore에서 ${category} 문서를 찾을 수 없습니다.`,
+                );
+            }
         } catch (error) {
             console.error("데이터를 가져오는 중 오류 발생:", error);
         }
     };
 
-    // 컴포넌트가 마운트될 때 데이터 가져오기
     useEffect(() => {
-        fetchData();
-    }, []);
+        fetchAlcoholItem();
+    }, [category, id]);
 
-    // 카테고리와 아이디를 기반으로 특정 항목 필터링
-    useEffect(() => {
-        if (allData.length > 0) {
-            const foundItem = allData.find(
-                (item) =>
-                    item.category === category && item.id === parseInt(id),
-            );
-            setAlcoholItem(foundItem);
-        }
-    }, [category, id, allData]);
-
+    // ✅ 상품평 텍스트 변경
     const onTextChange = (e) => {
         setText(e.target.value);
     };
 
-    // 폼 제출 함수 -> 텍스트를 Firestore에 추가
+    // ✅ 상품평 등록
     const onSubmit = async (e) => {
         e.preventDefault();
         const user = auth.currentUser;
+
         if (!user) {
-            // 로그인하지 않은 상태일 경우 알림 표시
             alert("로그인 후 이용하실 수 있습니다.");
             navigate("/login");
             return;
         }
 
-        if (!user || isLoading || text === "" || text.length > 100) return;
+        if (isLoading || text.trim() === "" || text.length > 100) return;
 
         try {
             setIsLoading(true);
@@ -316,23 +288,26 @@ export default function DrinksDetail() {
                 username: user.displayName || "Anonymous",
                 userId: user.uid,
                 productId: id,
-                category: category,
+                category,
             });
+            setText(""); // 입력창 초기화
         } catch (err) {
-            console.log(err);
+            console.error("상품평 저장 오류:", err);
         } finally {
             setIsLoading(false);
         }
     };
 
+    // 이미지 에러 처리
     const imgError = (e) => {
-        e.target.src = `/imgnone.png`;
+        e.target.src = "/imgnone.png";
     };
 
     return (
         <Container>
             <Outline role="region" aria-labelledby="세부페이지">
                 <IntroduceTitle id="세부페이지">세부페이지</IntroduceTitle>
+
                 {alcoholItem ? (
                     <Product>
                         <ProductImg
@@ -347,6 +322,7 @@ export default function DrinksDetail() {
                             <ProductImgCompany>
                                 {alcoholItem.company}
                             </ProductImgCompany>
+
                             <ProductContent>
                                 <ProductCTS>
                                     <ProductCTitle>국가/지역</ProductCTitle>
@@ -381,6 +357,7 @@ export default function DrinksDetail() {
                     </p>
                 )}
             </Outline>
+
             <Section role="region" aria-labelledby="상품 설명">
                 <SectionSub id="상품 설명">상품 설명</SectionSub>
                 {alcoholItem ? (
@@ -394,8 +371,10 @@ export default function DrinksDetail() {
                     </p>
                 )}
             </Section>
+
             <Section role="region" aria-labelledby="상품평">
                 <SectionSub id="상품평">상품평</SectionSub>
+                {/* ✅ 기존 코멘트 컴포넌트 */}
                 {alcoholItem && <Comments category={category} productId={id} />}
                 <Form onSubmit={onSubmit} aria-label="상품평 작성 폼">
                     <TextArea

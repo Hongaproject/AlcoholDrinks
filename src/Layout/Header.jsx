@@ -2,8 +2,9 @@ import styled from "styled-components";
 import "../Font/Font.css";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import { useUserContext } from "../auth/Context/UserContext";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Container = styled.div`
     width: 100%;
@@ -300,84 +301,53 @@ const ProfileImage = styled.img`
 `;
 
 export default function Header() {
-    const [modalOpen, setModalOpen] = useState(false); // 모달 창 열고 닫기
-    const modalBackground = useRef(); // 모달 창 뒷배경 참조
+    const [modalOpen, setModalOpen] = useState(false); // 모달 열림 상태
+    const modalBackground = useRef();
+    const [search, setSearch] = useState(""); // 검색어 상태
+    const [brandData, setBrandData] = useState([]); // Firestore 데이터 저장
+    const [filterBrand, setFilterBrand] = useState([]); // 검색 결과 저장
+    const { user } = useUserContext();
+    const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
 
-    const modalClick = (e) => {
-        if (e.target === modalBackground.current) {
-            // 함수 내부에서 클릭 된 대상이 동일한지 확인
-            setModalOpen(false); // 맞다면 닫는다.
-        }
-    }; // 모달 창 배경을 클릭하면 모달 창이 닫히도록 하는 기능을 구현
-
-    const [search, setSearch] = useState(""); // 검색 내용 받아오기
-    const [brandData, setBrandData] = useState([]); // 데이터 저장하는 부분
-    const [filterBrand, setFilterBrand] = useState([]); // 필터링 된 데이터 저장
-
+    // ✅ Firestore에서 모든 브랜드 데이터 가져오기
     useEffect(() => {
-        // 여러 JSON 파일에서 데이터를 가져오는 비동기 작업
-        const jsonData = async () => {
+        const fetchBrandData = async () => {
             try {
-                const res = await Promise.all([
-                    axios.get("/db/brandsoju.json"),
-                    axios.get("/db/brandbeer.json"),
-                    axios.get("/db/brandliquor.json"),
-                    axios.get("/db/brandmakgeolli.json"),
-                    axios.get("/db/brandnew.json"),
-                ]);
+                const docsSnapshot = await getDocs(
+                    collection(db, "brandlistdata"),
+                );
+                let mergedData = [];
 
-                // 각 응답에서 데이터를 추출하여 병합
-                const sojuData = res[0].data.soju.map((item) => ({
-                    ...item,
-                    category: "soju",
-                }));
-                const beerData = res[1].data.beer.map((item) => ({
-                    ...item,
-                    category: "beer",
-                }));
-                const liquorData = res[2].data.liquor.map((item) => ({
-                    ...item,
-                    category: "liquor",
-                }));
-                const makgeolliData = res[3].data.makgeolli.map((item) => ({
-                    ...item,
-                    category: "makgeolli",
-                }));
-                const newData = res[4].data.new.map((item) => ({
-                    ...item,
-                    category: "new",
-                }));
+                docsSnapshot.forEach((docSnap) => {
+                    const docId = docSnap.id.replace("brand", "").toLowerCase(); // soju, beer 등 카테고리 추출
+                    const categoryData = docSnap.data().data[docId] || [];
 
-                // 모든 데이터를 하나의 배열로 병합
-                const mergeData = [
-                    ...sojuData,
-                    ...beerData,
-                    ...liquorData,
-                    ...makgeolliData,
-                    ...newData,
-                ];
+                    const formattedData = categoryData.map((item) => ({
+                        ...item,
+                        category: docId, // ✅ 카테고리 추가
+                    }));
 
-                // 상태에 병합된 데이터 저장
-                setBrandData(mergeData);
+                    mergedData = [...mergedData, ...formattedData];
+                });
+
+                setBrandData(mergedData);
             } catch (error) {
-                console.error("데이터를 가져오는 중 오류 발생:", error);
+                console.error("❌ Firestore 데이터 불러오기 실패:", error);
             }
         };
 
-        jsonData();
+        fetchBrandData();
     }, []);
 
-    // 검색 입력 값에 따라 데이터를 필터링하는 함수
+    // ✅ 검색어 입력 시 필터링
     const searchChange = (e) => {
         const value = e.target.value.trim().toLowerCase();
         setSearch(value);
 
-        // 입력 값이 존해하는 경우
         if (value) {
-            // 입력 값에 따라 데이터를 필터링
             const filtered = brandData.filter((item) => {
-                const name = item.name ? item.name.toLowerCase() : ""; // 시작 부분이 입력 값과 일치하는지 확인
-                // 입력 값으로 시작하는 항목만 필터링
+                const name = item.name ? item.name.toLowerCase() : "";
                 return name.startsWith(value);
             });
             setFilterBrand(filtered);
@@ -386,29 +356,30 @@ export default function Header() {
         }
     };
 
-    const { user } = useUserContext(); // Context에서 사용자 정보 가져옴
-
-    const [isOpen, setIsOpen] = useState(false); // 메뉴 열기 상태 관리
-    const location = useLocation();
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen); // 메뉴 상태 토글
+    // ✅ 모달 클릭 시 닫기
+    const modalClick = (e) => {
+        if (e.target === modalBackground.current) {
+            setModalOpen(false);
+        }
     };
 
-    const handleMenuItemClick = () => {
-        setIsOpen(false); // 메뉴 아이템 클릭 시 메뉴 닫기
-    };
+    // ✅ 햄버거 메뉴 토글
+    const toggleMenu = () => setIsOpen(!isOpen);
+    const handleMenuItemClick = () => setIsOpen(false);
 
     const isMainPage = location.pathname === "/";
 
     return (
         <Container activePath={location.pathname}>
             <Nav aria-label="주요 네비게이션">
+                {/* 로고 */}
                 <Link to="/" style={{ textDecoration: "none" }}>
                     <Logo activePath={location.pathname}>
                         대한민국 모든 주류
                     </Logo>
                 </Link>
+
+                {/* 햄버거 메뉴 */}
                 <HamburgerButton
                     onClick={toggleMenu}
                     aria-label="메뉴 토글버튼"
@@ -419,6 +390,8 @@ export default function Header() {
                     <div />
                     <div />
                 </HamburgerButton>
+
+                {/* 메뉴 리스트 */}
                 <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname.startsWith("/story")}>
                         <LinkWrapper
@@ -448,7 +421,6 @@ export default function Header() {
                             Brand
                         </LinkWrapper>
                     </MenuItem>
-
                     <MenuItem
                         active={
                             location.pathname.startsWith("/company") ||
@@ -469,7 +441,6 @@ export default function Header() {
                             Company
                         </LinkWrapper>
                     </MenuItem>
-
                     <MenuItem active={location.pathname.startsWith("/guide")}>
                         <LinkWrapper
                             to="/guide"
@@ -486,6 +457,7 @@ export default function Header() {
                     </MenuItem>
                 </MenuList>
 
+                {/* 검색 및 로그인 */}
                 <SearchLogin>
                     <SearchImg
                         onClick={() => setModalOpen(true)}
@@ -505,6 +477,7 @@ export default function Header() {
                             />
                         </svg>
                     </SearchImg>
+
                     {user ? (
                         <Link
                             to="/profile"
@@ -542,6 +515,8 @@ export default function Header() {
                     )}
                 </SearchLogin>
             </Nav>
+
+            {/* ✅ 검색 모달 */}
             {modalOpen && (
                 <Modal
                     ref={modalBackground}
@@ -564,8 +539,6 @@ export default function Header() {
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    x="0px"
-                                    y="0px"
                                     width="36"
                                     height="36"
                                     viewBox="0 0 50 50"
@@ -574,6 +547,8 @@ export default function Header() {
                                 </svg>
                             </ContentSearchClose>
                         </ContentSearch>
+
+                        {/* 검색 결과 */}
                         <ContentsRecently aria-label="검색한 상품">
                             <ContentsBoxes>
                                 {filterBrand.map((item) => (
@@ -599,9 +574,6 @@ export default function Header() {
                                             </ProductImgName>
                                             <ProductImgCompany>
                                                 {item.company}
-                                            </ProductImgCompany>
-                                            <ProductImgCompany>
-                                                {item.new}
                                             </ProductImgCompany>
                                         </ContentsBox>
                                     </Link>

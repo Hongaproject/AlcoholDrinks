@@ -348,7 +348,8 @@ export default function Header() {
         if (value) {
             const filtered = brandData.filter((item) => {
                 const name = item.name ? item.name.toLowerCase() : "";
-                return name.startsWith(value);
+                // ✅ brandnew 카테고리는 검색에서 제외
+                return item.category !== "new" && name.startsWith(value);
             });
             setFilterBrand(filtered);
         } else {

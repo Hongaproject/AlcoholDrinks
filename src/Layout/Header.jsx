@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { useUserContext } from "../auth/Context/UserContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { device } from "../breakpoints";
+import { FaUser } from "react-icons/fa";
 
 const Container = styled.div`
     width: 100%;
@@ -28,9 +30,17 @@ const Nav = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: relative;
     z-index: 2;
     white-space: nowrap;
+
+    @media ${device.tablet} {
+        height: auto;
+        padding: 10px 0px;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
 `;
 
 const Logo = styled.div`
@@ -47,8 +57,8 @@ const Logo = styled.div`
             ? "#fff"
             : "#000"};
 
-    @media (max-width: 768px) {
-        font-size: 2rem;
+    @media ${device.tablet} {
+        font-size: 1.75rem;
         line-height: 50px;
     }
 `;
@@ -75,15 +85,18 @@ const MenuList = styled.ul`
     padding: 0;
     margin: 0;
 
-    @media (max-width: 768px) {
-        display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
+    @media ${device.tablet} {
+        position: absolute; /* ✅ Nav 기준으로 위치 고정 */
+        top: 100%; /* ✅ Nav 바로 아래에 표시 */
         left: 0;
-        background: white;
         width: 100%;
-        z-index: 1;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+        border-top: 1px solid #ddd;
+        z-index: 10;
+        padding: 10px 0;
     }
 `;
 
@@ -113,7 +126,7 @@ const MenuItem = styled.li`
         }
     `}
 
-    @media (max-width: 768px) {
+    @media ${device.tablet} {
         margin: 10px 0;
         text-align: center;
         &:hover {
@@ -132,9 +145,10 @@ const HamburgerButton = styled.div`
     height: 20px;
     cursor: pointer;
 
-    @media (max-width: 768px) {
+    @media ${device.tablet} {
         display: flex;
-        margin-left: 80px;
+        order: 4; /* ✅ 메뉴 버튼을 맨 마지막으로 */
+        margin-left: 0;
     }
 
     div {
@@ -148,6 +162,10 @@ const SearchLogin = styled.div`
     height: 50px;
     display: flex;
     align-items: center;
+    gap: 12px;
+    @media ${device.tablet} {
+        order: 2; /* ✅ 로고 다음 */
+    }
 `;
 
 const SearchImg = styled.div`
@@ -159,13 +177,16 @@ const SearchImg = styled.div`
     color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
 `;
 
-const LoginButton = styled.button`
-    font-size: 1.25rem;
-    border: 0;
-    height: 24px;
-    background: none;
+const LoginIcon = styled.div`
+    display: flex;
+    align-items: center;
     cursor: pointer;
     color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
 `;
 
 const AvatarUpload = styled.label`
@@ -506,12 +527,10 @@ export default function Header() {
                             </AvatarUpload>
                         </Link>
                     ) : (
-                        <Link
-                            to="/login"
-                            style={{ textDecoration: "none" }}
-                            aria-label="로그인"
-                        >
-                            <LoginButton isMain={isMainPage}>Login</LoginButton>
+                        <Link to="/login" aria-label="로그인 페이지로 이동">
+                            <LoginIcon isMain={isMainPage}>
+                                <FaUser />
+                            </LoginIcon>
                         </Link>
                     )}
                 </SearchLogin>

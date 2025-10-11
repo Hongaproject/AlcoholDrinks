@@ -13,11 +13,7 @@ const TopBtn = styled.button`
     border-radius: 50px;
     cursor: pointer;
     @media (max-width: 768px) {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        margin-left: 16px;
-        margin-bottom: 16px;
+        display: none;
     }
 `;
 

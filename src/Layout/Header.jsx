@@ -232,12 +232,16 @@ const ModalContent = styled.div`
     height: 800px;
     padding: 15px;
     text-align: center;
-`;
+    border-radius: 20px;
+    overflow-y: auto;
 
-const ContentSearch = styled.div`
-    width: 100%;
-    height: 100px;
-    margin-top: 30px;
+    @media ${device.tablet} {
+        width: 90%;
+        max-width: 400px;
+        height: 60vh;
+        padding: 20px;
+        border-radius: 12px;
+    }
 `;
 
 const ContentInput = styled.input`
@@ -249,32 +253,81 @@ const ContentInput = styled.input`
     background-color: #e7e7e7;
     font-size: 20px;
     padding-left: 30px;
+
+    @media ${device.tablet} {
+        font-size: 16px;
+        height: 45px;
+        max-width: 280px;
+    }
+`;
+
+const ContentSearch = styled.div`
+    position: relative; /* ✅ close 버튼의 기준이 되게 만듦 */
+    width: 100%;
+    height: 100px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* ✅ input과 close 버튼 간격 */
+
+    @media ${device.tablet} {
+        height: auto;
+        margin-top: 10px;
+    }
 `;
 
 const ContentSearchClose = styled.button`
     position: absolute;
-    top: 11%;
-    right: 15.5%;
-    width: 64px;
-    height: 64px;
+    right: 20px; /* ✅ input 끝쪽에 고정 */
+    width: 50px;
+    height: 50px;
     background-color: #f6921f;
-    border-radius: 50px;
+    border-radius: 50%;
     border: 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media ${device.tablet} {
+        width: 36px;
+        height: 36px;
+        right: -5px;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+        @media ${device.tablet} {
+            width: 18px;
+            height: 18px;
+        }
+    }
 `;
 
 const ContentsRecently = styled.div`
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* 전체 영역은 가운데 정렬 */
+    @media ${device.tablet} {
+        margin-top: 40px;
+    }
 `;
 
 const ContentsBoxes = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: flex-start; /* 아이템은 왼쪽부터 채움 */
+    width: 100%;
+    margin: 0 auto; /* 박스 자체는 화면 중앙 정렬 */
+
+    @media ${device.tablet} {
+        gap: 10px;
+        max-width: 300px; /* 모바일에서는 폭 줄이기 */
+    }
 `;
 
 const ContentsBox = styled.div`
@@ -289,6 +342,11 @@ const ContentsBox = styled.div`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 20px;
+
+    @media ${device.tablet} {
+        width: 130px;
+        padding: 6px;
+    }
 `;
 
 const ProductImg = styled.img`
@@ -298,6 +356,11 @@ const ProductImg = styled.img`
     height: 254px;
     object-fit: contain;
     border-bottom: 1px solid #ddd;
+
+    @media ${device.tablet} {
+        width: 120px;
+        height: 150px;
+    }
 `;
 
 const ProductImgName = styled.h2`
@@ -305,6 +368,11 @@ const ProductImgName = styled.h2`
     color: #000;
     text-align: center;
     margin-top: 30px;
+
+    @media ${device.tablet} {
+        font-size: 16px;
+        margin-top: 20px;
+    }
 `;
 
 const ProductImgCompany = styled.span`
@@ -313,6 +381,10 @@ const ProductImgCompany = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media ${device.tablet} {
+        font-size: 16px;
+    }
 `;
 
 const ProfileImage = styled.img`

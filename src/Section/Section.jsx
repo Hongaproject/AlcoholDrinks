@@ -3,23 +3,25 @@ import styled from "styled-components";
 import Sidebtn from "./Sidebtn";
 import { Link } from "react-router-dom";
 import useCloudinaryImages from "../hooks/useCloudinaryImages";
+import { device } from "../breakpoints";
 
+// ✅ 반응형 전체 코드
 const Container = styled.div`
     width: 100%;
     height: 100%;
 `;
 
+// ----- 이미지 슬라이드 -----
 const ImgSlice = styled.div`
     width: 100%;
-    height: 60vh;
+    height: 480px;
     z-index: 1;
 
-    @media (max-width: 768px) {
-        display: none;
+    @media ${device.tablet} {
+        height: 200px; /* ✅ 반응형일 때 높이 줄이기 */
     }
 `;
 
-// 이미지 슬라이드 예시
 const Slide = styled.div`
     display: flex;
     justify-content: center;
@@ -28,7 +30,6 @@ const Slide = styled.div`
 
 const PrevButton = styled.div`
     display: flex;
-    flex-direction: row;
     align-items: center;
     position: absolute;
     top: 40%;
@@ -40,12 +41,17 @@ const PrevButton = styled.div`
     & > svg {
         transform: rotate(180deg);
         color: #858585;
+        width: 36px;
+        height: 36px;
+    }
+
+    @media ${device.tablet} {
+        display: none;
     }
 `;
 
 const NextButton = styled.div`
     display: flex;
-    flex-direction: row;
     align-items: center;
     position: absolute;
     top: 40%;
@@ -53,16 +59,29 @@ const NextButton = styled.div`
     transform: translateY(-50%);
     cursor: pointer;
     color: #858585;
+
+    & > svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    @media ${device.tablet} {
+        display: none;
+    }
 `;
 
 const Show = styled.div`
     width: 100vw;
-    height: 60vh;
+    height: 480px;
     display: flex;
     align-items: center;
     overflow: hidden;
     margin: 0 auto;
+    @media ${device.tablet} {
+        height: 200px; /* ✅ 반응형일 때 높이 줄이기 */
+    }
 `;
+
 const SliderWrapper = styled.div`
     display: flex;
     width: 100%;
@@ -73,12 +92,18 @@ const Img = styled.div`
     width: 100%;
     height: 100%;
     flex-shrink: 0;
-    text-align: center;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+
+    @media ${device.tablet} {
+        background-size: ${(props) =>
+            props.$isTall ? "contain" : "180% auto"};
+        background-position: center;
+    }
 `;
 
-// alcohol
+// ----- Alcohol Section -----
 const AlcoholContainer = styled.div`
     width: 100%;
     height: 900px;
@@ -87,6 +112,11 @@ const AlcoholContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media ${device.tablet} {
+        height: auto;
+        padding: 40px 0;
+    }
 `;
 
 const AlcoholTitle = styled.h2`
@@ -94,17 +124,28 @@ const AlcoholTitle = styled.h2`
     color: #fff;
     text-align: center;
     margin-bottom: 90px;
+
+    @media ${device.tablet} {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
 `;
 
 const AlcoholSort = styled.div`
     width: 100%;
     height: 550px;
-    box-sizing: border-box;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media ${device.tablet} {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        background: transparent;
+    }
 `;
 
 const AlcoholWrapper = styled.div`
@@ -113,8 +154,13 @@ const AlcoholWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: beige; */
     gap: 40px;
+
+    @media ${device.tablet} {
+        flex-wrap: wrap;
+        gap: 20px;
+        height: auto;
+    }
 `;
 
 const Overlay = styled.div`
@@ -123,7 +169,7 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); // 반투명 검정
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,10 +179,14 @@ const Overlay = styled.div`
     font-size: 20px;
     font-weight: bold;
     border-radius: 187.5px;
+
+    @media ${device.tablet} {
+        font-size: 16px;
+    }
 `;
 
 const Soju = styled.div`
-    position: relative; // 오버레이 기준
+    position: relative;
     width: 250px;
     height: 350px;
     background-color: #fff;
@@ -159,6 +209,12 @@ const Soju = styled.div`
         height: 100%;
         object-fit: cover;
     }
+
+    @media ${device.tablet} {
+        width: 150px;
+        height: 210px;
+        border-radius: 100px;
+    }
 `;
 
 const Beer = styled(Soju)``;
@@ -166,7 +222,46 @@ const Makgeolli = styled(Soju)``;
 const Liquor = styled(Soju)``;
 const New = styled(Soju)``;
 
-// lastSection
+// ----- Last Section -----
+const LastSection = styled.div`
+    width: 100%;
+    height: 600px;
+    padding: 20px 0;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+
+    @media ${device.tablet} {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+    }
+`;
+
+const Company = styled.div`
+    width: 100%;
+    height: 600px;
+    background: linear-gradient(
+            180deg,
+            rgba(0, 0, 13, 0) 0%,
+            rgba(0, 0, 13, 0.7) 100%
+        ),
+        url(${(props) => props.bgImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media ${device.tablet} {
+        height: 300px;
+    }
+`;
+
+const Story = styled(Company)``;
+const Guide = styled(Company)``;
+
 const OverlayContent = styled.div`
     height: 400px;
     width: 100%;
@@ -175,6 +270,11 @@ const OverlayContent = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    @media ${device.tablet} {
+        height: auto;
+        padding: 20px;
+    }
 `;
 
 const OverlayText = styled.div`
@@ -182,6 +282,11 @@ const OverlayText = styled.div`
     font-size: 42px;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+
+    @media ${device.tablet} {
+        font-size: 24px;
+        text-align: center;
+    }
 `;
 
 const MoreButton = styled.button`
@@ -199,35 +304,14 @@ const MoreButton = styled.button`
     &:hover {
         background: rgba(255, 255, 255, 0.7);
     }
-`;
 
-const LastSection = styled.div`
-    width: 100%;
-    height: 600px;
-    padding: 20px 0;
-    gap: 10px;
-    display: flex;
-    flex-direction: row;
+    @media ${device.tablet} {
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+        margin-top: 20px;
+    }
 `;
-const Company = styled.div`
-    width: 100%;
-    height: 600px;
-    background: linear-gradient(
-            180deg,
-            rgba(0, 0, 13, 0) 0%,
-            rgba(0, 0, 13, 0.7) 100%
-        ),
-        url(${(props) => props.bgImage});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
-const Story = styled(Company)``;
-const Guide = styled(Company)``;
 
 export default function Section() {
     const [currentIndex, setCurrentIndex] = useState(1);
@@ -336,6 +420,9 @@ export default function Section() {
                                 <Img
                                     key={index}
                                     style={{ backgroundImage: `url(${src})` }}
+                                    $isTall={src.includes(
+                                        "makgeollipst_kq8txj",
+                                    )}
                                 />
                             ))}
                         </SliderWrapper>

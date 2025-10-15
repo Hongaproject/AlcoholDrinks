@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
@@ -8,8 +9,10 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    @media (max-width: 768px) {
-        margin-top: 100px;
+
+    @media ${device.tablet} {
+        height: auto; /* 모바일에서는 높이를 자동으로 조정 */
+        padding: 40px 0;
     }
 `;
 
@@ -19,11 +22,20 @@ const CC = styled.div`
     height: 120px;
     margin-top: 40px;
     display: flex;
-    flex-direction: row; /* 가로 정렬로 변경 */
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between; /* 요소들을 양쪽 정렬 */
-    flex-wrap: wrap; /* 모바일 대응을 위해 wrap 추가 */
-    gap: 20px; /* 간격 추가 */
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @media ${device.tablet} {
+        flex-direction: column; /* 모바일에서는 세로 정렬 */
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-top: 20px;
+        gap: 15px;
+    }
 `;
 
 const Communication = styled.div`
@@ -32,8 +44,9 @@ const Communication = styled.div`
     align-items: flex-end;
     gap: 20px;
 
-    @media (max-width: 768px) {
+    @media ${device.tablet} {
         align-items: center;
+        gap: 10px;
     }
 `;
 
@@ -43,6 +56,10 @@ const SocialIcons = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+
+    @media ${device.tablet} {
+        gap: 15px;
+    }
 `;
 
 const Logo = styled.div`
@@ -51,26 +68,44 @@ const Logo = styled.div`
     color: #fff;
     text-align: center;
 
-    @media (max-width: 768px) {
+    @media ${device.tablet} {
         font-size: 2rem;
-        line-height: 50px;
+        line-height: 1.2;
     }
 `;
 
-const Email = styled.h2``;
+const Email = styled.h2`
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0;
+
+    @media ${device.tablet} {
+        font-size: 1rem;
+        text-align: center;
+    }
+`;
 
 const Copyright = styled.h1`
     color: #fff;
     text-align: center;
     font-size: 20px;
 
-    @media (max-width: 768px) {
-        font-size: 1.2rem;
+    @media ${device.tablet} {
+        font-size: 1rem;
     }
 `;
 
-const GitHub = styled.div``;
-const Blog = styled.div``;
+const GitHub = styled.div`
+    @media ${device.tablet} {
+        font-size: 0.9rem;
+    }
+`;
+
+const Blog = styled.div`
+    @media ${device.tablet} {
+        font-size: 0.9rem;
+    }
+`;
 
 export default function Footer() {
     return (

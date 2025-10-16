@@ -17,8 +17,11 @@ const ImgSlice = styled.div`
     height: 480px;
     z-index: 1;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         height: 200px; /* ✅ 반응형일 때 높이 줄이기 */
+    }
+    @media ${device.tablet} {
+        height: 300px; /* ✅ 반응형일 때 높이 줄이기 */
     }
 `;
 
@@ -77,8 +80,11 @@ const Show = styled.div`
     align-items: center;
     overflow: hidden;
     margin: 0 auto;
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         height: 200px; /* ✅ 반응형일 때 높이 줄이기 */
+    }
+    @media ${device.tablet} {
+        height: 300px; /* ✅ 반응형일 때 높이 줄이기 */
     }
 `;
 
@@ -210,8 +216,13 @@ const Soju = styled.div`
         object-fit: cover;
     }
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         width: 150px;
+        height: 210px;
+        border-radius: 100px;
+    }
+    @media ${device.tablet} {
+        width: 130px;
         height: 210px;
         border-radius: 100px;
     }

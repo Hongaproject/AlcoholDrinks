@@ -34,7 +34,15 @@ const Nav = styled.div`
     z-index: 2;
     white-space: nowrap;
 
+    box-sizing: border-box;
+    padding: 0 40px;
+
     @media ${device.tablet} {
+        height: 80px;
+        padding: 0 20px; /* ✅ 패딩을 주어도 너비가 100%를 초과하지 않습니다. */
+    }
+
+    @media ${device.mobile} {
         height: auto;
         padding: 10px 0px;
         gap: 30px;
@@ -58,6 +66,12 @@ const Logo = styled.div`
             : "#000"};
 
     @media ${device.tablet} {
+        font-size: 2.2rem; /* 👈 Tablet: Smaller font size */
+        max-width: 250px;
+        line-height: 50px;
+    }
+
+    @media ${device.mobile} {
         font-size: 1.75rem;
         line-height: 50px;
     }
@@ -66,6 +80,11 @@ const LinkWrapper = styled(Link)`
     text-decoration: none;
     padding: 15px 20px;
     color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+
+    @media ${device.tablet} {
+        padding: 10px 15px; /* 👈 Tablet: Smaller padding */
+        font-size: 0.95rem; /* 👈 Tablet: Slightly smaller text */
+    }
 
     &:visited {
         color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
@@ -86,8 +105,22 @@ const MenuList = styled.ul`
     margin: 0;
 
     @media ${device.tablet} {
-        position: absolute; /* ✅ Nav 기준으로 위치 고정 */
-        top: 100%; /* ✅ Nav 바로 아래에 표시 */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 768px;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+        border-top: 1px solid #ddd;
+        z-index: 10;
+        padding: 10px 0;
+    }
+
+    @media ${device.mobile} {
+        position: absolute;
+        top: 100%;
         left: 0;
         width: 100%;
         background: white;
@@ -104,6 +137,10 @@ const MenuItem = styled.li`
     margin: 0 20px;
     position: relative;
     cursor: pointer;
+
+    @media ${device.tablet} {
+        margin: 0 10px; /* 👈 Tablet: Smaller margin between items */
+    }
 
     &::after {
         content: "";
@@ -135,6 +172,31 @@ const MenuItem = styled.li`
             border-radius: 15px;
         }
     }
+
+    @media ${device.mobile} {
+        margin: 10px 0;
+        text-align: center;
+        &:hover {
+            background-color: lightgray;
+            transition: background-color 1s ease;
+            border-radius: 15px;
+        }
+    }
+`;
+
+// Nav의 오른쪽 끝 요소들을 묶어줄 새로운 Wrapper
+const RightControls = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px; /* SearchLogin과 HamburgerButton 사이의 간격 */
+
+    @media ${device.tablet} {
+        gap: 8px;
+    }
+
+    @media ${device.mobile} {
+        gap: 12px; /* 모바일에서는 다시 원래대로 */
+    }
 `;
 
 const HamburgerButton = styled.div`
@@ -147,7 +209,13 @@ const HamburgerButton = styled.div`
 
     @media ${device.tablet} {
         display: flex;
-        order: 4; /* ✅ 메뉴 버튼을 맨 마지막으로 */
+        order: 3;
+        margin-left: 0;
+    }
+
+    @media ${device.mobile} {
+        display: flex;
+        order: 3;
         margin-left: 0;
     }
 
@@ -163,8 +231,13 @@ const SearchLogin = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
+
     @media ${device.tablet} {
-        order: 2; /* ✅ 로고 다음 */
+        gap: 8px; /* 👈 Tablet: Reduce gap */
+    }
+
+    @media ${device.mobile} {
+        order: 2;
     }
 `;
 
@@ -175,6 +248,14 @@ const SearchImg = styled.div`
     margin-right: 10px;
     cursor: pointer;
     color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+
+    @media ${device.tablet} {
+        margin-right: 5px; /* 👈 Tablet: Reduce margin */
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
 `;
 
 const LoginIcon = styled.div`
@@ -186,6 +267,13 @@ const LoginIcon = styled.div`
     svg {
         width: 24px;
         height: 24px;
+    }
+
+    @media ${device.tablet} {
+        svg {
+            width: 22px; /* 👈 Tablet: Slightly smaller icon */
+            height: 22px;
+        }
     }
 `;
 
@@ -201,6 +289,11 @@ const AvatarUpload = styled.label`
     svg {
         width: 50px;
     }
+
+    @media ${device.tablet} {
+        width: 36px; /* 👈 Tablet: Smaller avatar */
+        height: 36px;
+    }
 `;
 
 const DefaultIcon = styled.div`
@@ -209,6 +302,13 @@ const DefaultIcon = styled.div`
     svg {
         width: 24px;
         height: 24px;
+    }
+
+    @media ${device.tablet} {
+        svg {
+            width: 22px; /* 👈 Tablet: Slightly smaller icon */
+            height: 22px;
+        }
     }
 `;
 
@@ -236,6 +336,12 @@ const ModalContent = styled.div`
     overflow-y: auto;
 
     @media ${device.tablet} {
+        max-width: 700px; /* 👈 Tablet: Adjust max width */
+        height: 80vh; /* 👈 Tablet: Adjust height to viewport */
+        padding: 15px;
+    }
+
+    @media ${device.mobile} {
         width: 90%;
         max-width: 400px;
         height: 60vh;
@@ -255,6 +361,12 @@ const ContentInput = styled.input`
     padding-left: 30px;
 
     @media ${device.tablet} {
+        max-width: 350px; /* 👈 Tablet: Smaller max width */
+        height: 45px;
+        font-size: 18px;
+    }
+
+    @media ${device.mobile} {
         font-size: 16px;
         height: 45px;
         max-width: 280px;
@@ -262,16 +374,20 @@ const ContentInput = styled.input`
 `;
 
 const ContentSearch = styled.div`
-    position: relative; /* ✅ close 버튼의 기준이 되게 만듦 */
+    position: relative;
     width: 100%;
     height: 100px;
     margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* ✅ input과 close 버튼 간격 */
+    gap: 10px;
 
     @media ${device.tablet} {
+        margin-top: 20px;
+    }
+
+    @media ${device.mobile} {
         height: auto;
         margin-top: 10px;
     }
@@ -279,7 +395,7 @@ const ContentSearch = styled.div`
 
 const ContentSearchClose = styled.button`
     position: absolute;
-    right: 20px; /* ✅ input 끝쪽에 고정 */
+    right: 20px;
     width: 50px;
     height: 50px;
     background-color: #f6921f;
@@ -291,15 +407,20 @@ const ContentSearchClose = styled.button`
     align-items: center;
 
     @media ${device.tablet} {
+        width: 40px; /* 👈 Tablet: Smaller button */
+        height: 40px;
+        right: 50px; /* 👈 Tablet: Adjust position relative to input */
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    @media ${device.mobile} {
         width: 36px;
         height: 36px;
         right: -5px;
-    }
-
-    svg {
-        width: 24px;
-        height: 24px;
-        @media ${device.tablet} {
+        svg {
             width: 18px;
             height: 18px;
         }
@@ -310,8 +431,13 @@ const ContentsRecently = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* 전체 영역은 가운데 정렬 */
+    align-items: center;
+
     @media ${device.tablet} {
+        margin-top: 30px;
+    }
+
+    @media ${device.mobile} {
         margin-top: 40px;
     }
 `;
@@ -320,13 +446,19 @@ const ContentsBoxes = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start; /* 아이템은 왼쪽부터 채움 */
+    justify-content: flex-start;
     width: 100%;
-    margin: 0 auto; /* 박스 자체는 화면 중앙 정렬 */
+    margin: 0 auto;
 
     @media ${device.tablet} {
+        gap: 15px; /* 👈 Tablet: Reduce gap */
+        max-width: 650px; /* 👈 Tablet: Adjust max width for 3 items per row */
+        justify-content: center; /* 👈 Tablet: Center items in modal */
+    }
+
+    @media ${device.mobile} {
         gap: 10px;
-        max-width: 300px; /* 모바일에서는 폭 줄이기 */
+        max-width: 300px;
     }
 `;
 
@@ -344,6 +476,13 @@ const ContentsBox = styled.div`
     border-radius: 20px;
 
     @media ${device.tablet} {
+        width: calc(
+            33.333% - 10px
+        ); /* 👈 Tablet: 3 items per row with margin */
+        min-width: 180px;
+    }
+
+    @media ${device.mobile} {
         width: 130px;
         padding: 6px;
     }
@@ -358,6 +497,11 @@ const ProductImg = styled.img`
     border-bottom: 1px solid #ddd;
 
     @media ${device.tablet} {
+        width: 100%; /* 👈 Tablet: Full width of box */
+        height: 180px; /* 👈 Tablet: Adjust height */
+    }
+
+    @media ${device.mobile} {
         width: 120px;
         height: 150px;
     }
@@ -370,6 +514,11 @@ const ProductImgName = styled.h2`
     margin-top: 30px;
 
     @media ${device.tablet} {
+        font-size: 18px; /* 👈 Tablet: Smaller font size */
+        margin-top: 20px;
+    }
+
+    @media ${device.mobile} {
         font-size: 16px;
         margin-top: 20px;
     }
@@ -383,6 +532,11 @@ const ProductImgCompany = styled.span`
     justify-content: center;
 
     @media ${device.tablet} {
+        font-size: 14px; /* 👈 Tablet: Smaller font size */
+        padding: 10px 0;
+    }
+
+    @media ${device.mobile} {
         font-size: 16px;
     }
 `;
@@ -391,6 +545,11 @@ const ProfileImage = styled.img`
     width: 40px;
     height: 40px;
     border-radius: 50%;
+
+    @media ${device.tablet} {
+        width: 36px;
+        height: 36px;
+    }
 `;
 
 export default function Header() {
@@ -473,18 +632,6 @@ export default function Header() {
                     </Logo>
                 </Link>
 
-                {/* 햄버거 메뉴 */}
-                <HamburgerButton
-                    onClick={toggleMenu}
-                    aria-label="메뉴 토글버튼"
-                    aria-expanded={isOpen}
-                    role="button"
-                >
-                    <div />
-                    <div />
-                    <div />
-                </HamburgerButton>
-
                 {/* 메뉴 리스트 */}
                 <MenuList isOpen={isOpen}>
                     <MenuItem active={location.pathname.startsWith("/story")}>
@@ -551,61 +698,75 @@ export default function Header() {
                     </MenuItem>
                 </MenuList>
 
-                {/* 검색 및 로그인 */}
-                <SearchLogin>
-                    <SearchImg
-                        onClick={() => setModalOpen(true)}
-                        aria-label="검색 모달 창 열기"
-                        role="button"
-                        isMain={isMainPage}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
+                <RightControls>
+                    {/* 검색 및 로그인 */}
+                    <SearchLogin>
+                        <SearchImg
+                            onClick={() => setModalOpen(true)}
+                            aria-label="검색 모달 창 열기"
+                            role="button"
+                            isMain={isMainPage}
                         >
-                            <path
-                                fill="currentColor"
-                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
-                            />
-                        </svg>
-                    </SearchImg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
+                                />
+                            </svg>
+                        </SearchImg>
 
-                    {user ? (
-                        <Link
-                            to="/profile"
-                            style={{ textDecoration: "none" }}
-                            aria-label="프로필"
-                        >
-                            <AvatarUpload>
-                                {user.photoURL ? (
-                                    <ProfileImage
-                                        src={user.photoURL}
-                                        alt="프로필"
-                                    />
-                                ) : (
-                                    <DefaultIcon isMain={isMainPage}>
-                                        <svg
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
-                                        </svg>
-                                    </DefaultIcon>
-                                )}
-                            </AvatarUpload>
-                        </Link>
-                    ) : (
-                        <Link to="/login" aria-label="로그인 페이지로 이동">
-                            <LoginIcon isMain={isMainPage}>
-                                <FaUser />
-                            </LoginIcon>
-                        </Link>
-                    )}
-                </SearchLogin>
+                        {user ? (
+                            <Link
+                                to="/profile"
+                                style={{ textDecoration: "none" }}
+                                aria-label="프로필"
+                            >
+                                <AvatarUpload>
+                                    {user.photoURL ? (
+                                        <ProfileImage
+                                            src={user.photoURL}
+                                            alt="프로필"
+                                        />
+                                    ) : (
+                                        <DefaultIcon isMain={isMainPage}>
+                                            <svg
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                aria-hidden="true"
+                                            >
+                                                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+                                            </svg>
+                                        </DefaultIcon>
+                                    )}
+                                </AvatarUpload>
+                            </Link>
+                        ) : (
+                            <Link to="/login" aria-label="로그인 페이지로 이동">
+                                <LoginIcon isMain={isMainPage}>
+                                    <FaUser />
+                                </LoginIcon>
+                            </Link>
+                        )}
+                    </SearchLogin>
+
+                    {/* 햄버거 메뉴 */}
+                    <HamburgerButton
+                        onClick={toggleMenu}
+                        aria-label="메뉴 토글버튼"
+                        aria-expanded={isOpen}
+                        role="button"
+                    >
+                        <div />
+                        <div />
+                        <div />
+                    </HamburgerButton>
+                </RightControls>
             </Nav>
 
             {/* ✅ 검색 모달 */}

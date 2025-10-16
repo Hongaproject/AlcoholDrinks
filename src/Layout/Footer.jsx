@@ -10,8 +10,12 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         height: auto; /* 모바일에서는 높이를 자동으로 조정 */
+        padding: 40px 0;
+    }
+    @media ${device.tablet} {
+        height: auto;
         padding: 40px 0;
     }
 `;
@@ -28,8 +32,16 @@ const CC = styled.div`
     flex-wrap: wrap;
     gap: 20px;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         flex-direction: column; /* 모바일에서는 세로 정렬 */
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-top: 20px;
+        gap: 15px;
+    }
+    @media ${device.tablet} {
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: auto;
@@ -44,6 +56,10 @@ const Communication = styled.div`
     align-items: flex-end;
     gap: 20px;
 
+    @media ${device.mobile} {
+        align-items: center;
+        gap: 10px;
+    }
     @media ${device.tablet} {
         align-items: center;
         gap: 10px;
@@ -57,6 +73,9 @@ const SocialIcons = styled.div`
     align-items: center;
     margin: 0 auto;
 
+    @media ${device.mobile} {
+        gap: 15px;
+    }
     @media ${device.tablet} {
         gap: 15px;
     }
@@ -68,44 +87,35 @@ const Logo = styled.div`
     color: #fff;
     text-align: center;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         font-size: 2rem;
+        line-height: 1.2;
+    }
+    @media ${device.tablet} {
+        font-size: 2.5rem;
         line-height: 1.2;
     }
 `;
 
-const Email = styled.h2`
-    color: #fff;
-    font-size: 1.1rem;
-    margin: 0;
-
-    @media ${device.tablet} {
-        font-size: 1rem;
-        text-align: center;
-    }
-`;
+const Email = styled.h2``;
 
 const Copyright = styled.h1`
     color: #fff;
     text-align: center;
     font-size: 20px;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
+        margin-top: 10px;
         font-size: 1rem;
     }
-`;
-
-const GitHub = styled.div`
     @media ${device.tablet} {
-        font-size: 0.9rem;
+        margin-top: 10px;
+        font-size: 1.25rem;
     }
 `;
 
-const Blog = styled.div`
-    @media ${device.tablet} {
-        font-size: 0.9rem;
-    }
-`;
+const GitHub = styled.div``;
+const Blog = styled.div``;
 
 export default function Footer() {
     return (

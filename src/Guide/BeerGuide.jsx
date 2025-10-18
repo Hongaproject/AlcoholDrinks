@@ -1,29 +1,68 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         padding: 0 20px;
     }
 `;
+
+// ----- 메인 제목 섹션 -----
 const TitleMain = styled.div`
     width: 100%;
+    max-width: 1000px; /* 최대 너비 제한 */
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 150px;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media ${device.laptop} {
+        margin-top: 150px;
+        margin-bottom: 100px;
+    }
+    @media ${device.tablet} {
+        margin-top: 150px;
+        margin-bottom: 80px;
+    }
+    @media ${device.mobile} {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+`;
+const Title = styled.h1`
+    font-size: 48px;
+    text-align: center;
+
+    @media ${device.laptop} {
+        font-size: 40px;
+    }
+    @media ${device.mobile} {
+        font-size: 32px;
+    }
 `;
 
+// ----- 네비게이션 바 -----
 const TitleNav = styled.nav`
     width: 800px;
+    max-width: 100%; /* 부모 TitleMain에 맞춰 너비 유연하게 조정 */
     height: auto;
     border-bottom: 2px solid #000;
     margin-top: 120px;
@@ -31,11 +70,35 @@ const TitleNav = styled.nav`
     align-items: center;
     justify-content: center;
     gap: 80px;
+
+    @media ${device.laptop} {
+        margin-top: 80px;
+        gap: 60px;
+    }
+    @media ${device.tablet} {
+        margin-top: 60px;
+        gap: 40px;
+    }
+    @media ${device.mobile} {
+        margin-top: 40px;
+        gap: 20px; /* 간격 더 줄임 */
+        border-bottom: 1px solid #000; /* 모바일에서는 선 굵기 줄임 */
+    }
 `;
 const TitleNavL = styled.div`
     font-size: 22px;
     padding-bottom: 20px;
     color: ${({ active }) => (active ? "#C98B20" : "#000")};
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+
+    @media ${device.laptop} {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+    @media ${device.mobile} {
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
 `;
 
 const TitleSub = styled.h2`
@@ -43,46 +106,85 @@ const TitleSub = styled.h2`
     text-align: center;
     margin-top: 150px;
     color: #c98b20;
+
+    @media ${device.laptop} {
+        font-size: 32px;
+        margin-top: 100px;
+    }
+    @media ${device.mobile} {
+        font-size: 24px;
+        margin-top: 60px;
+    }
 `;
+
+// ----- 본문 섹션 -----
 const Introduce = styled.div`
-    width: calc(100% - 440px);
+    width: 100%;
+    max-width: 800px; /* 내용의 최대 너비를 제한하여 가독성 확보 */
     height: 100%;
     margin: 0 auto;
     margin-bottom: 150px;
     box-sizing: border-box;
+    /* desktop/laptop에서는 text-align: left가 기본 */
 
-    @media (max-width: 768px) {
-        flex-direction: column;
-        width: 100%;
-        height: auto;
-        text-align: center;
-        padding: 0 20px;
+    @media ${device.laptop} {
+        margin-bottom: 100px;
+    }
+    @media ${device.mobile} {
+        margin-bottom: 80px;
+        /* 모바일에서는 텍스트 중앙 정렬을 풀어주고, Left 정렬을 기본으로 합니다. */
     }
 `;
+
 const TextSection = styled.div`
     width: 100%;
     height: 100%;
     margin-top: 90px;
+
+    @media ${device.laptop} {
+        margin-top: 70px;
+    }
+    @media ${device.mobile} {
+        margin-top: 50px;
+    }
 `;
 const TitleSub2 = styled.h2`
     font-size: 48px;
     margin-bottom: 40px;
+    text-align: left; /* 데스크톱/랩탑 기본 정렬 */
 
-    @media (max-width: 768px) {
-        text-align: center;
-        font-size: 2rem;
+    @media ${device.laptop} {
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+    @media ${device.tablet} {
+        font-size: 32px;
+    }
+    @media ${device.mobile} {
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 `;
 const Content = styled.span`
     font-size: 20px;
     color: #909090;
     line-height: 1.6;
+    display: block; /* 줄바꿈을 위해 block으로 변경 */
+
+    @media ${device.laptop} {
+        font-size: 18px;
+    }
+    @media ${device.mobile} {
+        font-size: 15px;
+        line-height: 1.5;
+    }
 `;
 
 export default function BeerGuide() {
     return (
         <Container>
             <TitleMain>
+                <Title>주류 상식 가이드</Title>
                 <TitleNav>
                     <Link to="/guide/soju" style={{ textDecoration: "none" }}>
                         <TitleNavL>소주 가이드</TitleNavL>

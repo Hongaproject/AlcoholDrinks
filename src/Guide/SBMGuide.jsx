@@ -30,14 +30,17 @@ const MainTitle = styled.h1`
 
     @media ${device.laptop} {
         text-align: center;
+        margin-top: 150px;
         font-size: 3.5rem;
     }
     @media ${device.tablet} {
         text-align: center;
+        margin-top: 150px;
         font-size: 3rem;
     }
     @media ${device.mobile} {
         text-align: center;
+        margin-top: 150px;
         font-size: 2rem;
     }
 `;

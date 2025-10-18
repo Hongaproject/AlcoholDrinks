@@ -265,6 +265,18 @@ const HamburgerButton = styled.div`
     height: 20px;
     cursor: pointer;
 
+    div {
+        height: 3px;
+        background: ${({ activePath }) =>
+            activePath.startsWith("/story") ||
+            activePath.startsWith("/brand") ||
+            activePath.startsWith("/company") ||
+            activePath.startsWith("/guide")
+                ? "#fff"
+                : "#000"};
+        transition: all 0.3s ease;
+    }
+
     @media ${device.mobile} {
         display: flex;
         order: 3;
@@ -281,12 +293,6 @@ const HamburgerButton = styled.div`
         display: flex;
         order: 3;
         margin-left: 0;
-    }
-
-    div {
-        height: 3px;
-        background: black;
-        transition: all 0.3s ease;
     }
 `;
 
@@ -883,6 +889,7 @@ export default function Header() {
                         aria-label="메뉴 토글버튼"
                         aria-expanded={isOpen}
                         role="button"
+                        activePath={location.pathname}
                     >
                         <div />
                         <div />

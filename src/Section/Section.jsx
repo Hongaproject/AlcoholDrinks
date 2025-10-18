@@ -41,7 +41,6 @@ const PrevButton = styled.div`
     top: 40%;
     left: 5%;
     transform: translateY(-50%);
-    z-index: 1;
     cursor: pointer;
 
     & > svg {

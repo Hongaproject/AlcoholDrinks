@@ -519,7 +519,8 @@ const ContentsBoxes = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center; /* 👈 Tablet: Center items in modal */
+
     width: 100%;
     margin: 0 auto;
 
@@ -570,7 +571,7 @@ const ContentsBox = styled.div`
         width: calc(
             33.333% - 10px
         ); /* 👈 Tablet: 3 items per row with margin */
-        min-width: 180px;
+        min-width: 250px;
     }
 `;
 
@@ -584,17 +585,17 @@ const ProductImg = styled.img`
 
     @media ${device.mobile} {
         width: 120px;
-        height: 150px;
+        height: 180px;
     }
 
     @media ${device.tablet} {
         width: 100%; /* 👈 Tablet: Full width of box */
-        height: 180px; /* 👈 Tablet: Adjust height */
+        height: 250px; /* 👈 Tablet: Adjust height */
     }
 
     @media ${device.laptop} {
         width: 100%; /* 👈 Tablet: Full width of box */
-        height: 180px; /* 👈 Tablet: Adjust height */
+        height: 320px; /* 👈 Tablet: Adjust height */
     }
 `;
 
@@ -610,12 +611,12 @@ const ProductImgName = styled.h2`
     }
 
     @media ${device.tablet} {
-        font-size: 18px; /* 👈 Tablet: Smaller font size */
+        font-size: 22px; /* 👈 Tablet: Smaller font size */
         margin-top: 20px;
     }
 
     @media ${device.laptop} {
-        font-size: 18px; /* 👈 Tablet: Smaller font size */
+        font-size: 28px; /* 👈 Tablet: Smaller font size */
         margin-top: 20px;
     }
 `;
@@ -628,16 +629,16 @@ const ProductImgCompany = styled.span`
     justify-content: center;
 
     @media ${device.mobile} {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     @media ${device.tablet} {
-        font-size: 14px; /* 👈 Tablet: Smaller font size */
+        font-size: 16px; /* 👈 Tablet: Smaller font size */
         padding: 10px 0;
     }
 
     @media ${device.laptop} {
-        font-size: 14px; /* 👈 Tablet: Smaller font size */
+        font-size: 18px; /* 👈 Tablet: Smaller font size */
         padding: 10px 0;
     }
 `;

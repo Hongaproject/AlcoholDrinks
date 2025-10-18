@@ -2,13 +2,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Sidebtn from "../Section/Sidebtn";
 import useCloudinaryImages from "../hooks/useCloudinaryImages";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         padding: 0 20px;
     }
 `;
@@ -18,9 +28,17 @@ const MainTitle = styled.h1`
     font-size: 64px;
     margin-top: 200px;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        text-align: center;
+        font-size: 3.5rem;
+    }
+    @media ${device.tablet} {
         text-align: center;
         font-size: 3rem;
+    }
+    @media ${device.mobile} {
+        text-align: center;
+        font-size: 2rem;
     }
 `;
 
@@ -32,9 +50,17 @@ const SubTitle = styled.span`
     margin-top: 25px;
     color: #909090;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    @media ${device.tablet} {
         text-align: center;
         font-size: 1.25rem;
+    }
+    @media ${device.mobile} {
+        text-align: center;
+        font-size: 1rem;
     }
 `;
 const Guide = styled.div`
@@ -42,10 +68,6 @@ const Guide = styled.div`
     height: 100%;
     margin-bottom: 100px;
     box-sizing: border-box;
-
-    @media (max-width: 768px) {
-        padding: 0 20px;
-    }
 `;
 const BeerSojuGuide = styled.div`
     width: 1400px;
@@ -57,7 +79,28 @@ const BeerSojuGuide = styled.div`
     margin-top: 100px;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         flex-direction: column;
         width: 100%;
         height: auto;
@@ -76,7 +119,28 @@ const BeerSojuGuide2 = styled.div`
     box-sizing: border-box;
     flex-direction: row-reverse;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         flex-direction: column;
         width: 100%;
         height: auto;
@@ -91,7 +155,17 @@ const BeerImg = styled.img`
     border-radius: 50%;
     object-fit: contain;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.tablet} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.mobile} {
         width: 250px;
         height: 250px;
         margin-bottom: 20px;
@@ -102,7 +176,26 @@ const Content = styled.div`
     height: 250px;
     margin-left: 60px;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        max-width: 900px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
+
+    @media ${device.laptop} {
+        max-width: 800px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
+    @media ${device.mobile} {
         width: 100%;
         height: auto;
         margin: 0;
@@ -114,8 +207,20 @@ const BeerTitle = styled.h2`
     margin-bottom: 30px;
     color: #c98b20;
 
-    @media (max-width: 768px) {
-        margin-top: 20px;
+    @media ${device.desktop} {
+        margin-top: 40px;
+    }
+
+    @media ${device.laptop} {
+        margin-top: 40px;
+        font-size: 2rem;
+    }
+    @media ${device.tablet} {
+        margin-top: 40px;
+        font-size: 1.75rem;
+    }
+    @media ${device.mobile} {
+        margin-top: 40px;
         font-size: 1.5rem;
     }
 `;
@@ -125,6 +230,13 @@ const BeerSpan = styled.span`
     display: block;
     margin-bottom: 30px;
     color: #909090;
+
+    @media ${device.laptop} {
+        font-size: 22px;
+    }
+    @media ${device.tablet} {
+        font-size: 22px;
+    }
 `;
 const BeerBtn = styled.button`
     width: 350px;
@@ -137,6 +249,16 @@ const BeerBtn = styled.button`
     margin-top: 70px;
     border-radius: 204px;
     border: none;
+
+    @media ${device.laptop} {
+        margin-top: 30px;
+    }
+    @media ${device.tablet} {
+        margin-top: 30px;
+    }
+    @media ${device.mobile} {
+        margin-top: 30px;
+    }
 `;
 
 const Content2 = styled.div`
@@ -144,8 +266,26 @@ const Content2 = styled.div`
     height: 250px;
     margin-right: 60px;
     text-align: right;
+    @media ${device.desktop} {
+        max-width: 900px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        max-width: 800px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+        height: auto;
+        margin: 0;
+        text-align: center;
+    }
+    @media ${device.mobile} {
         width: 100%;
         height: auto;
         margin: 0;
@@ -160,7 +300,17 @@ const SojuImg = styled.img`
     border-radius: 50%;
     object-fit: contain;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.tablet} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.mobile} {
         width: 250px;
         height: 250px;
         margin-bottom: 20px;
@@ -171,8 +321,20 @@ const SojuTitle = styled.h2`
     margin-bottom: 30px;
     color: #008810;
 
-    @media (max-width: 768px) {
-        margin-top: 20px;
+    @media ${device.desktop} {
+        margin-top: 40px;
+    }
+
+    @media ${device.laptop} {
+        margin-top: 40px;
+        font-size: 2rem;
+    }
+    @media ${device.tablet} {
+        margin-top: 40px;
+        font-size: 1.75rem;
+    }
+    @media ${device.mobile} {
+        margin-top: 40px;
         font-size: 1.5rem;
     }
 `;
@@ -182,6 +344,13 @@ const SojuSpan = styled.span`
     display: block;
     margin-bottom: 30px;
     color: #909090;
+
+    @media ${device.laptop} {
+        font-size: 22px;
+    }
+    @media ${device.tablet} {
+        font-size: 22px;
+    }
 `;
 const SojuBtn = styled.button`
     width: 350px;
@@ -194,20 +363,40 @@ const SojuBtn = styled.button`
     margin-top: 70px;
     border-radius: 204px;
     border: none;
+
+    @media ${device.laptop} {
+        margin-top: 30px;
+    }
+    @media ${device.tablet} {
+        margin-top: 30px;
+    }
+    @media ${device.mobile} {
+        margin-top: 30px;
+    }
 `;
 
 const Makgeolli = styled.div`
     width: 1200px;
     height: 700px;
     margin: auto;
-    margin-top: 120px;
+    margin-top: 100px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    @media ${device.tablet} {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    @media ${device.mobile} {
         width: 100%;
         height: auto;
         text-align: center;
@@ -219,7 +408,17 @@ const MakgeolliImg = styled.img`
     border-radius: 50%;
     object-fit: contain;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.tablet} {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+    @media ${device.mobile} {
         width: 250px;
         height: 250px;
         margin-bottom: 20px;
@@ -231,9 +430,17 @@ const MakgeolliTitle = styled.h2`
     margin-bottom: 30px;
     color: #0066d3;
 
-    @media (max-width: 768px) {
-        margin-top: 20px;
+    @media ${device.laptop} {
+        margin-top: 40px;
+        font-size: 2rem;
+    }
+    @media ${device.tablet} {
+        margin-top: 40px;
         font-size: 1.75rem;
+    }
+    @media ${device.mobile} {
+        margin-top: 40px;
+        font-size: 1.5rem;
     }
 `;
 const MakgeolliSpan = styled.span`
@@ -242,6 +449,13 @@ const MakgeolliSpan = styled.span`
     display: block;
     margin-bottom: 30px;
     color: #909090;
+
+    @media ${device.laptop} {
+        font-size: 22px;
+    }
+    @media ${device.tablet} {
+        font-size: 22px;
+    }
 `;
 const MakgeolliBtn = styled.button`
     width: 350px;
@@ -254,6 +468,16 @@ const MakgeolliBtn = styled.button`
     margin-top: 70px;
     border-radius: 204px;
     border: none;
+
+    @media ${device.laptop} {
+        margin-top: 30px;
+    }
+    @media ${device.tablet} {
+        margin-top: 30px;
+    }
+    @media ${device.mobile} {
+        margin-top: 30px;
+    }
 `;
 
 const Soju = styled.div`

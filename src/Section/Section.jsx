@@ -23,6 +23,9 @@ const ImgSlice = styled.div`
     @media ${device.tablet} {
         height: 300px; /* ✅ 반응형일 때 높이 줄이기 */
     }
+    @media ${device.laptop} {
+        height: 400px; /* ✅ 반응형일 때 높이 줄이기 */
+    }
 `;
 
 const Slide = styled.div`
@@ -47,8 +50,15 @@ const PrevButton = styled.div`
         width: 36px;
         height: 36px;
     }
+    @media ${device.mobile} {
+        display: none;
+    }
 
     @media ${device.tablet} {
+        display: none;
+    }
+
+    @media ${device.laptop} {
         display: none;
     }
 `;
@@ -68,7 +78,13 @@ const NextButton = styled.div`
         height: 36px;
     }
 
+    @media ${device.mobile} {
+        display: none;
+    }
     @media ${device.tablet} {
+        display: none;
+    }
+    @media ${device.laptop} {
         display: none;
     }
 `;
@@ -80,11 +96,16 @@ const Show = styled.div`
     align-items: center;
     overflow: hidden;
     margin: 0 auto;
+
     @media ${device.mobile} {
         height: 200px; /* ✅ 반응형일 때 높이 줄이기 */
     }
+
     @media ${device.tablet} {
         height: 300px; /* ✅ 반응형일 때 높이 줄이기 */
+    }
+    @media ${device.laptop} {
+        height: 400px; /* ✅ 반응형일 때 높이 줄이기 */
     }
 `;
 
@@ -119,7 +140,25 @@ const AlcoholContainer = styled.div`
     align-items: center;
     justify-content: center;
 
+    @media ${device.mobile} {
+        margin-top: 20px;
+        height: auto;
+        padding: 40px 0;
+    }
+
     @media ${device.tablet} {
+        margin-top: 10px;
+        height: auto;
+        padding: 40px 0;
+    }
+
+    @media ${device.laptop} {
+        margin-top: 20px;
+        height: auto;
+        padding: 40px 0;
+    }
+    @media ${device.desktop} {
+        margin-top: 20px;
         height: auto;
         padding: 40px 0;
     }
@@ -131,8 +170,16 @@ const AlcoholTitle = styled.h2`
     text-align: center;
     margin-bottom: 90px;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         font-size: 24px;
+        margin-bottom: 40px;
+    }
+    @media ${device.tablet} {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+    @media ${device.laptop} {
+        font-size: 36px;
         margin-bottom: 40px;
     }
 `;
@@ -146,7 +193,25 @@ const AlcoholSort = styled.div`
     align-items: center;
     justify-content: center;
 
+    @media ${device.mobile} {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        background: transparent;
+    }
     @media ${device.tablet} {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        background: transparent;
+    }
+    @media ${device.laptop} {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        background: transparent;
+    }
+    @media ${device.desktop} {
         flex-direction: column;
         height: auto;
         padding: 20px 0;
@@ -162,7 +227,22 @@ const AlcoholWrapper = styled.div`
     justify-content: center;
     gap: 40px;
 
+    @media ${device.mobile} {
+        flex-wrap: wrap;
+        gap: 20px;
+        height: auto;
+    }
     @media ${device.tablet} {
+        flex-wrap: wrap;
+        gap: 20px;
+        height: auto;
+    }
+    @media ${device.laptop} {
+        flex-wrap: wrap;
+        gap: 20px;
+        height: auto;
+    }
+    @media ${device.desktop} {
         flex-wrap: wrap;
         gap: 20px;
         height: auto;
@@ -226,6 +306,16 @@ const Soju = styled.div`
         height: 210px;
         border-radius: 100px;
     }
+    @media ${device.laptop} {
+        width: 140px;
+        height: 210px;
+        border-radius: 100px;
+    }
+    @media ${device.desktop} {
+        width: 210px;
+        height: 300px;
+        border-radius: 100px;
+    }
 `;
 
 const Beer = styled(Soju)``;
@@ -242,7 +332,17 @@ const LastSection = styled.div`
     display: flex;
     flex-direction: row;
 
+    @media ${device.mobile} {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+    }
     @media ${device.tablet} {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+    }
+    @media ${device.laptop} {
         flex-direction: column;
         height: auto;
         gap: 20px;
@@ -265,8 +365,14 @@ const Company = styled.div`
     align-items: center;
     justify-content: center;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         height: 300px;
+    }
+    @media ${device.tablet} {
+        height: 350px;
+    }
+    @media ${device.laptop} {
+        height: 375px;
     }
 `;
 
@@ -282,7 +388,15 @@ const OverlayContent = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media ${device.mobile} {
+        height: auto;
+        padding: 20px;
+    }
     @media ${device.tablet} {
+        height: auto;
+        padding: 20px;
+    }
+    @media ${device.laptop} {
         height: auto;
         padding: 20px;
     }
@@ -294,8 +408,16 @@ const OverlayText = styled.div`
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 
+    @media ${device.mobile} {
+        font-size: 24px;
+        text-align: center;
+    }
     @media ${device.tablet} {
         font-size: 24px;
+        text-align: center;
+    }
+    @media ${device.laptop} {
+        font-size: 32px;
         text-align: center;
     }
 `;
@@ -316,10 +438,22 @@ const MoreButton = styled.button`
         background: rgba(255, 255, 255, 0.7);
     }
 
+    @media ${device.mobile} {
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+        margin-top: 20px;
+    }
     @media ${device.tablet} {
         width: 180px;
         height: 45px;
         font-size: 16px;
+        margin-top: 20px;
+    }
+    @media ${device.laptop} {
+        width: 180px;
+        height: 45px;
+        font-size: 24px;
         margin-top: 20px;
     }
 `;

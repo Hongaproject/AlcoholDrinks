@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     height: 180px;
@@ -12,7 +13,15 @@ const TopBtn = styled.button`
     height: 64px;
     border-radius: 50px;
     cursor: pointer;
-    @media (max-width: 768px) {
+    @media ${device.mobile} {
+        display: none;
+    }
+
+    @media ${device.tablet} {
+        display: none;
+    }
+
+    @media ${device.laptop} {
         display: none;
     }
 `;
@@ -25,7 +34,15 @@ const ServiceBtn = styled.button`
     margin-top: 35px;
     cursor: pointer;
 
-    @media (max-width: 768px) {
+    @media ${device.mobile} {
+        display: none;
+    }
+
+    @media ${device.tablet} {
+        display: none;
+    }
+
+    @media ${device.laptop} {
         display: none;
     }
 `;

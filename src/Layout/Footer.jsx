@@ -10,6 +10,8 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
+    box-sizing: border-box;
+
     @media ${device.mobile} {
         height: auto; /* 모바일에서는 높이를 자동으로 조정 */
         padding: 40px 0;
@@ -17,6 +19,13 @@ const Container = styled.div`
     @media ${device.tablet} {
         height: auto;
         padding: 40px 0;
+    }
+    @media ${device.laptop} {
+        height: auto;
+        padding: 40px 0;
+    }
+    @media ${device.desktop} {
+        padding: 0 20px;
     }
 `;
 
@@ -48,6 +57,14 @@ const CC = styled.div`
         margin-top: 20px;
         gap: 15px;
     }
+    @media ${device.laptop} {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        margin-top: 20px;
+        gap: 15px;
+    }
 `;
 
 const Communication = styled.div`
@@ -61,6 +78,10 @@ const Communication = styled.div`
         gap: 10px;
     }
     @media ${device.tablet} {
+        align-items: center;
+        gap: 10px;
+    }
+    @media ${device.laptop} {
         align-items: center;
         gap: 10px;
     }
@@ -79,6 +100,9 @@ const SocialIcons = styled.div`
     @media ${device.tablet} {
         gap: 15px;
     }
+    @media ${device.laptop} {
+        gap: 15px;
+    }
 `;
 
 const Logo = styled.div`
@@ -93,6 +117,10 @@ const Logo = styled.div`
     }
     @media ${device.tablet} {
         font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    @media ${device.laptop} {
+        font-size: 3rem;
         line-height: 1.2;
     }
 `;
@@ -111,6 +139,10 @@ const Copyright = styled.h1`
     @media ${device.tablet} {
         margin-top: 10px;
         font-size: 1.25rem;
+    }
+    @media ${device.laptop} {
+        margin-top: 10px;
+        font-size: 1.5rem;
     }
 `;
 

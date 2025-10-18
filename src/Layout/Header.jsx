@@ -37,17 +37,21 @@ const Nav = styled.div`
     box-sizing: border-box;
     padding: 0 40px;
 
-    @media ${device.tablet} {
-        height: 80px;
-        padding: 0 20px; /* ✅ 패딩을 주어도 너비가 100%를 초과하지 않습니다. */
-    }
-
     @media ${device.mobile} {
         height: auto;
         padding: 10px 0px;
         gap: 30px;
         justify-content: center;
         flex-wrap: nowrap;
+    }
+    @media ${device.tablet} {
+        height: 80px;
+        padding: 0 20px; /* ✅ 패딩을 주어도 너비가 100%를 초과하지 않습니다. */
+    }
+
+    @media ${device.laptop} {
+        height: 100px;
+        padding: 0 40px; /* ✅ 패딩을 주어도 너비가 100%를 초과하지 않습니다. */
     }
 `;
 
@@ -65,14 +69,18 @@ const Logo = styled.div`
             ? "#fff"
             : "#000"};
 
+    @media ${device.mobile} {
+        font-size: 1.75rem;
+        line-height: 50px;
+    }
     @media ${device.tablet} {
         font-size: 2.2rem; /* 👈 Tablet: Smaller font size */
         max-width: 250px;
         line-height: 50px;
     }
-
-    @media ${device.mobile} {
-        font-size: 1.75rem;
+    @media ${device.laptop} {
+        font-size: 2.5rem; /* 👈 Tablet: Smaller font size */
+        max-width: 280px;
         line-height: 50px;
     }
 `;
@@ -93,7 +101,7 @@ const LinkWrapper = styled(Link)`
 
 const MenuList = styled.ul`
     flex: 1;
-    max-width: 600px;
+    width: 600px;
     height: auto;
     color: black;
     line-height: 50px;
@@ -104,11 +112,11 @@ const MenuList = styled.ul`
     padding: 0;
     margin: 0;
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         position: absolute;
         top: 100%;
         left: 0;
-        min-width: 768px;
+        width: 100%;
         background: white;
         flex-direction: column;
         align-items: center;
@@ -118,7 +126,21 @@ const MenuList = styled.ul`
         padding: 10px 0;
     }
 
-    @media ${device.mobile} {
+    @media ${device.tablet} {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+        border-top: 1px solid #ddd;
+        z-index: 10;
+        padding: 10px 0;
+    }
+
+    @media ${device.laptop} {
         position: absolute;
         top: 100%;
         left: 0;
@@ -163,7 +185,7 @@ const MenuItem = styled.li`
         }
     `}
 
-    @media ${device.tablet} {
+    @media ${device.mobile} {
         margin: 10px 0;
         text-align: center;
         &:hover {
@@ -173,9 +195,22 @@ const MenuItem = styled.li`
         }
     }
 
-    @media ${device.mobile} {
+    @media ${device.tablet} {
         margin: 10px 0;
         text-align: center;
+        font-size: 20px;
+        &:hover {
+            background-color: lightgray;
+            transition: background-color 1s ease;
+            border-radius: 15px;
+        }
+    }
+
+    @media ${device.laptop} {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 24px; /* 👈 Tablet: Smaller font size */
+
         &:hover {
             background-color: lightgray;
             transition: background-color 1s ease;
@@ -190,12 +225,15 @@ const RightControls = styled.div`
     align-items: center;
     gap: 12px; /* SearchLogin과 HamburgerButton 사이의 간격 */
 
+    @media ${device.mobile} {
+        gap: 12px; /* 모바일에서는 다시 원래대로 */
+    }
+
     @media ${device.tablet} {
         gap: 8px;
     }
-
-    @media ${device.mobile} {
-        gap: 12px; /* 모바일에서는 다시 원래대로 */
+    @media ${device.laptop} {
+        gap: 10px;
     }
 `;
 
@@ -207,13 +245,19 @@ const HamburgerButton = styled.div`
     height: 20px;
     cursor: pointer;
 
+    @media ${device.mobile} {
+        display: flex;
+        order: 3;
+        margin-left: 0;
+    }
+
     @media ${device.tablet} {
         display: flex;
         order: 3;
         margin-left: 0;
     }
 
-    @media ${device.mobile} {
+    @media ${device.laptop} {
         display: flex;
         order: 3;
         margin-left: 0;
@@ -335,18 +379,23 @@ const ModalContent = styled.div`
     border-radius: 20px;
     overflow-y: auto;
 
-    @media ${device.tablet} {
-        max-width: 700px; /* 👈 Tablet: Adjust max width */
-        height: 80vh; /* 👈 Tablet: Adjust height to viewport */
-        padding: 15px;
-    }
-
     @media ${device.mobile} {
         width: 90%;
         max-width: 400px;
         height: 60vh;
         padding: 20px;
         border-radius: 12px;
+    }
+
+    @media ${device.tablet} {
+        max-width: 700px; /* 👈 Tablet: Adjust max width */
+        height: 80vh; /* 👈 Tablet: Adjust height to viewport */
+        padding: 15px;
+    }
+    @media ${device.laptop} {
+        max-width: 700px; /* 👈 Tablet: Adjust max width */
+        height: 80vh; /* 👈 Tablet: Adjust height to viewport */
+        padding: 15px;
     }
 `;
 
@@ -360,16 +409,22 @@ const ContentInput = styled.input`
     font-size: 20px;
     padding-left: 30px;
 
+    @media ${device.mobile} {
+        font-size: 16px;
+        height: 45px;
+        max-width: 280px;
+    }
+
     @media ${device.tablet} {
         max-width: 350px; /* 👈 Tablet: Smaller max width */
         height: 45px;
         font-size: 18px;
     }
 
-    @media ${device.mobile} {
-        font-size: 16px;
+    @media ${device.laptop} {
+        max-width: 350px; /* 👈 Tablet: Smaller max width */
         height: 45px;
-        max-width: 280px;
+        font-size: 18px;
     }
 `;
 
@@ -383,13 +438,17 @@ const ContentSearch = styled.div`
     align-items: center;
     gap: 10px;
 
+    @media ${device.mobile} {
+        height: auto;
+        margin-top: 10px;
+    }
+
     @media ${device.tablet} {
         margin-top: 20px;
     }
 
-    @media ${device.mobile} {
-        height: auto;
-        margin-top: 10px;
+    @media ${device.laptop} {
+        margin-top: 20px;
     }
 `;
 
@@ -406,6 +465,16 @@ const ContentSearchClose = styled.button`
     justify-content: center;
     align-items: center;
 
+    @media ${device.mobile} {
+        width: 36px;
+        height: 36px;
+        right: -5px;
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
     @media ${device.tablet} {
         width: 40px; /* 👈 Tablet: Smaller button */
         height: 40px;
@@ -416,13 +485,13 @@ const ContentSearchClose = styled.button`
         }
     }
 
-    @media ${device.mobile} {
-        width: 36px;
-        height: 36px;
-        right: -5px;
+    @media ${device.laptop} {
+        width: 40px; /* 👈 Tablet: Smaller button */
+        height: 40px;
+        right: 50px; /* 👈 Tablet: Adjust position relative to input */
         svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
         }
     }
 `;
@@ -433,12 +502,16 @@ const ContentsRecently = styled.div`
     flex-direction: column;
     align-items: center;
 
+    @media ${device.mobile} {
+        margin-top: 40px;
+    }
+
     @media ${device.tablet} {
         margin-top: 30px;
     }
 
-    @media ${device.mobile} {
-        margin-top: 40px;
+    @media ${device.laptop} {
+        margin-top: 30px;
     }
 `;
 
@@ -450,15 +523,21 @@ const ContentsBoxes = styled.div`
     width: 100%;
     margin: 0 auto;
 
+    @media ${device.mobile} {
+        gap: 10px;
+        max-width: 300px;
+    }
+
     @media ${device.tablet} {
         gap: 15px; /* 👈 Tablet: Reduce gap */
         max-width: 650px; /* 👈 Tablet: Adjust max width for 3 items per row */
         justify-content: center; /* 👈 Tablet: Center items in modal */
     }
 
-    @media ${device.mobile} {
-        gap: 10px;
-        max-width: 300px;
+    @media ${device.laptop} {
+        gap: 15px; /* 👈 Tablet: Reduce gap */
+        max-width: 650px; /* 👈 Tablet: Adjust max width for 3 items per row */
+        justify-content: center; /* 👈 Tablet: Center items in modal */
     }
 `;
 
@@ -475,6 +554,11 @@ const ContentsBox = styled.div`
     background-color: #fff;
     border-radius: 20px;
 
+    @media ${device.mobile} {
+        width: 130px;
+        padding: 6px;
+    }
+
     @media ${device.tablet} {
         width: calc(
             33.333% - 10px
@@ -482,9 +566,11 @@ const ContentsBox = styled.div`
         min-width: 180px;
     }
 
-    @media ${device.mobile} {
-        width: 130px;
-        padding: 6px;
+    @media ${device.laptop} {
+        width: calc(
+            33.333% - 10px
+        ); /* 👈 Tablet: 3 items per row with margin */
+        min-width: 180px;
     }
 `;
 
@@ -496,14 +582,19 @@ const ProductImg = styled.img`
     object-fit: contain;
     border-bottom: 1px solid #ddd;
 
+    @media ${device.mobile} {
+        width: 120px;
+        height: 150px;
+    }
+
     @media ${device.tablet} {
         width: 100%; /* 👈 Tablet: Full width of box */
         height: 180px; /* 👈 Tablet: Adjust height */
     }
 
-    @media ${device.mobile} {
-        width: 120px;
-        height: 150px;
+    @media ${device.laptop} {
+        width: 100%; /* 👈 Tablet: Full width of box */
+        height: 180px; /* 👈 Tablet: Adjust height */
     }
 `;
 
@@ -513,13 +604,18 @@ const ProductImgName = styled.h2`
     text-align: center;
     margin-top: 30px;
 
+    @media ${device.mobile} {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
     @media ${device.tablet} {
         font-size: 18px; /* 👈 Tablet: Smaller font size */
         margin-top: 20px;
     }
 
-    @media ${device.mobile} {
-        font-size: 16px;
+    @media ${device.laptop} {
+        font-size: 18px; /* 👈 Tablet: Smaller font size */
         margin-top: 20px;
     }
 `;
@@ -531,13 +627,18 @@ const ProductImgCompany = styled.span`
     align-items: center;
     justify-content: center;
 
+    @media ${device.mobile} {
+        font-size: 16px;
+    }
+
     @media ${device.tablet} {
         font-size: 14px; /* 👈 Tablet: Smaller font size */
         padding: 10px 0;
     }
 
-    @media ${device.mobile} {
-        font-size: 16px;
+    @media ${device.laptop} {
+        font-size: 14px; /* 👈 Tablet: Smaller font size */
+        padding: 10px 0;
     }
 `;
 

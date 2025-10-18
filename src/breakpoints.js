@@ -8,8 +8,8 @@ const breakpoints = {
 
 export const device = {
     mobile: `(max-width: ${breakpoints.mobile})`,
-    tablet: `(max-width: ${breakpoints.tablet})`,
-    laptop: `(max-width: ${breakpoints.laptop})`,
-    desktop: `(max-width: ${breakpoints.desktop})`,
+    tablet: `(min-width: 481px) and (max-width: ${breakpoints.tablet})`,
+    laptop: `(min-width: 769px) and (max-width: ${breakpoints.laptop})`,
+    desktop: `(min-width: 1025px) and (max-width: ${breakpoints.desktop})`,
     wideScreen: `(max-width: ${breakpoints.wideScreen})`,
 };

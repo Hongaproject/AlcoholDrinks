@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         padding: 0 20px;
     }
 `;
@@ -22,6 +32,16 @@ const TitleMain = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media ${device.laptop} {
+        margin-top: 150px;
+    }
+    @media ${device.tablet} {
+        margin-top: 150px;
+    }
+    @media ${device.mobile} {
+        margin-top: 150px;
+    }
 `;
 const Title = styled.h1`
     font-size: 48px;
@@ -36,6 +56,16 @@ const TitleNav = styled.nav`
     align-items: center;
     justify-content: center;
     gap: 80px;
+
+    @media ${device.laptop} {
+        max-width: 780px;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+    }
+    @media ${device.mobile} {
+        max-width: 380px;
+    }
 `;
 const TitleNavL = styled.div`
     font-size: 22px;
@@ -50,14 +80,18 @@ const TitleSub = styled.h2`
     color: #0066d3;
 `;
 
-const TitleDes = styled.h1`
+const TitleDes = styled.p`
     font-size: 20px;
     text-align: center;
     margin-top: 70px;
     line-height: 2;
+
+    @media ${device.laptop} {
+        font-size: 24px;
+    }
 `;
 
-const SojuGuide = styled.button`
+const MakgeolliGuide = styled.button`
     width: 400px;
     height: 85px;
     background-color: #c0deff;
@@ -117,7 +151,7 @@ export default function MakgeolliStory() {
                     to="/guide/makgeolli"
                     aria-label="막걸리 가이드 페이지로 이동"
                 >
-                    <SojuGuide>막걸리 가이드 확인하기</SojuGuide>
+                    <MakgeolliGuide>막걸리 가이드 확인하기</MakgeolliGuide>
                 </Link>
             </TitleMain>
         </Container>

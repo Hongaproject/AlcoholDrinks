@@ -89,13 +89,29 @@ const LinkWrapper = styled(Link)`
     padding: 15px 20px;
     color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
 
-    @media ${device.tablet} {
-        padding: 10px 15px; /* 👈 Tablet: Smaller padding */
-        font-size: 0.95rem; /* 👈 Tablet: Slightly smaller text */
-    }
-
     &:visited {
         color: ${({ isMain }) => (isMain ? "#000" : "#fff")};
+    }
+
+    @media ${device.mobile} {
+        color: #000 !important;
+        &:visited {
+            color: #000 !important;
+        }
+    }
+
+    @media ${device.tablet} {
+        color: #000 !important;
+        &:visited {
+            color: #000 !important;
+        }
+    }
+
+    @media ${device.laptop} {
+        color: #000 !important;
+        &:visited {
+            color: #000 !important;
+        }
     }
 `;
 
@@ -188,6 +204,7 @@ const MenuItem = styled.li`
     @media ${device.mobile} {
         margin: 10px 0;
         text-align: center;
+        color: #000;
         &:hover {
             background-color: lightgray;
             transition: background-color 1s ease;
@@ -199,6 +216,8 @@ const MenuItem = styled.li`
         margin: 10px 0;
         text-align: center;
         font-size: 20px;
+        color: #000;
+
         &:hover {
             background-color: lightgray;
             transition: background-color 1s ease;
@@ -210,6 +229,7 @@ const MenuItem = styled.li`
         margin: 10px 0;
         text-align: center;
         font-size: 24px; /* 👈 Tablet: Smaller font size */
+        color: #000;
 
         &:hover {
             background-color: lightgray;

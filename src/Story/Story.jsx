@@ -1,13 +1,26 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useCloudinaryImages from "../hooks/useCloudinaryImages";
+import { device } from "../breakpoints";
+
+// ⚠️ 참고: device 객체는 이미 전역에서 가져온다고 가정합니다.
+// import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
         padding: 0 20px;
     }
 `;
@@ -18,6 +31,8 @@ const TitleMain = styled.div`
     margin: 0 auto;
     height: auto;
 `;
+
+// ----- 텍스트 스타일 반응형 적용 -----
 const TitlePoint = styled.p`
     font-family: "JejuHallasan";
     font-style: normal;
@@ -25,24 +40,73 @@ const TitlePoint = styled.p`
     font-size: 128px;
     text-align: center;
     margin-top: 120px;
+
+    @media ${device.desktop} {
+        font-size: 100px;
+        margin-top: 100px;
+    }
+    @media ${device.laptop} {
+        font-size: 80px;
+        margin-top: 80px;
+    }
+    @media ${device.tablet} {
+        font-size: 64px;
+        margin-top: 60px;
+    }
+    @media ${device.mobile} {
+        font-size: 48px;
+        margin-top: 40px;
+    }
 `;
 const Title = styled.h1`
     font-size: 48px;
     text-align: center;
     margin-top: 50px;
+
+    @media ${device.laptop} {
+        font-size: 42px;
+        margin-top: 40px;
+    }
+    @media ${device.mobile} {
+        font-size: 28px;
+        margin-top: 30px;
+    }
 `;
 const TitleDes = styled.h1`
     font-size: 20px;
     text-align: center;
     margin-top: 40px;
     line-height: 1.6;
+
+    @media ${device.laptop} {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+    @media ${device.mobile} {
+        font-size: 16px;
+        margin-top: 20px;
+    }
 `;
 const TitleDesP = styled.p`
     font-size: 16px;
     color: #808080;
     line-height: 1.4;
+
+    @media ${device.mobile} {
+        font-size: 14px;
+    }
+    @media ${device.laptop} {
+        font-size: 18px;
+    }
+    @media ${device.tablet} {
+        font-size: 20px;
+    }
+    @media ${device.mobile} {
+        font-size: 14px;
+    }
 `;
 
+// ----- 시장 규모 섹션 반응형 적용 -----
 const MarketShare = styled.div`
     width: 100%;
     max-width: 1200px;
@@ -53,20 +117,56 @@ const MarketTitle = styled.h2`
     font-size: 48px;
     text-align: center;
     margin-top: 180px;
+
+    @media ${device.laptop} {
+        font-size: 38px;
+        margin-top: 120px;
+    }
+    @media ${device.mobile} {
+        font-size: 28px;
+        margin-top: 80px;
+    }
 `;
+
 const MarketImgC = styled.div`
     display: flex;
     gap: 120px;
-    align-items: center;
+    align-items: flex-start; /* 이미지가 위에서 정렬되도록 변경 */
     justify-content: center;
     margin-top: 80px;
+
+    @media ${device.laptop} {
+        gap: 60px;
+        margin-top: 60px;
+    }
+    @media ${device.tablet} {
+        flex-direction: column; /* 태블릿부터 세로 정렬 */
+        gap: 40px;
+        margin-top: 40px;
+    }
+    @media ${device.mobile} {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 30px;
+    }
 `;
+
 const MarketImgW = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 70px;
+    max-width: 500px; /* 데스크톱/랩탑에서 최대 너비 제한 */
+
+    @media ${device.tablet} {
+        gap: 30px;
+        align-items: center; /* 태블릿/모바일에서 중앙 정렬 */
+        max-width: 100%;
+    }
+    @media ${device.mobile} {
+        gap: 20px;
+    }
 `;
 
+// ----- 주류 역사 섹션 반응형 적용 -----
 const AlcoholSort = styled.div`
     width: 100%;
     height: 550px;
@@ -76,6 +176,19 @@ const AlcoholSort = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media ${device.laptop} {
+        height: 450px;
+    }
+    @media ${device.tablet} {
+        height: auto;
+        padding: 80px 0;
+    }
+    @media ${device.mobile} {
+        height: auto;
+        padding: 30px 0;
+        margin-top: 60px;
+    }
 `;
 
 const AlcoholWrapper = styled.div`
@@ -85,6 +198,26 @@ const AlcoholWrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 60px;
+
+    @media ${device.desktop} {
+        max-width: 900px;
+        gap: 40px;
+    }
+    @media ${device.laptop} {
+        max-width: 700px;
+        gap: 30px;
+        height: 300px; /* 원 크기에 맞게 높이 조정 */
+    }
+    @media ${device.tablet} {
+        height: auto;
+        gap: 20px;
+        max-width: 500px;
+    }
+    @media ${device.mobile} {
+        flex-direction: column; /* 모바일에서는 세로로 나열 */
+        height: auto;
+        gap: 20px;
+    }
 `;
 
 const Overlay = styled.div`
@@ -93,7 +226,7 @@ const Overlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); // 반투명 검정
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,10 +235,15 @@ const Overlay = styled.div`
     color: white;
     font-size: 20px;
     font-weight: bold;
+
+    @media ${device.mobile} {
+        font-size: 16px;
+    }
 `;
 
-const Soju = styled.div`
-    position: relative; // 오버레이 기준
+// 원형 이미지 컴포넌트의 크기 반응형 조정
+const BaseAlcoholCircle = styled.div`
+    position: relative;
     width: 300px;
     height: 300px;
     background-color: #fff;
@@ -128,10 +266,24 @@ const Soju = styled.div`
         height: 100%;
         object-fit: cover;
     }
+
+    @media ${device.laptop} {
+        width: 230px;
+        height: 230px;
+    }
+    @media ${device.tablet} {
+        width: 200px;
+        height: 200px;
+    }
+    @media ${device.mobile} {
+        width: 200px;
+        height: 200px;
+    }
 `;
 
-const Beer = styled(Soju)``;
-const Makgeolli = styled(Soju)``;
+const Soju = styled(BaseAlcoholCircle)``;
+const Beer = styled(BaseAlcoholCircle)``;
+const Makgeolli = styled(BaseAlcoholCircle)``;
 
 export default function Story() {
     const { imageSrc, loading, error } = useCloudinaryImages([
@@ -167,11 +319,10 @@ export default function Story() {
                 <MarketTitle>주류 시장 규모</MarketTitle>
                 <MarketImgC>
                     <MarketImgW>
-                        <TitleDes>대한민국 주류 시장 규모</TitleDes>
                         {imageSrc[0] && (
                             <img
                                 src={imageSrc[0]}
-                                alt="소주"
+                                alt="대한민국 주류 시장 규모 그래프"
                                 style={{
                                     width: "100%",
                                     height: "100%",
@@ -185,11 +336,10 @@ export default function Story() {
                         </TitleDesP>
                     </MarketImgW>
                     <MarketImgW>
-                        <TitleDes>글로벌 주류 시장 규모</TitleDes>
                         {imageSrc[1] && (
                             <img
                                 src={imageSrc[1]}
-                                alt="소주"
+                                alt="글로벌 주류 시장 규모 그래프"
                                 style={{
                                     width: "100%",
                                     height: "100%",
@@ -216,11 +366,11 @@ export default function Story() {
                             {imageSrc[2] && (
                                 <img
                                     src={imageSrc[2]}
-                                    alt="소주"
+                                    alt="진로 소주"
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "contain",
+                                        objectFit: "cover", // cover로 변경하여 원 안에 꽉 차게 함
                                     }}
                                 />
                             )}
@@ -232,11 +382,11 @@ export default function Story() {
                             {imageSrc[3] && (
                                 <img
                                     src={imageSrc[3]}
-                                    alt="소주"
+                                    alt="하이트 맥주"
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "contain",
+                                        objectFit: "cover",
                                     }}
                                 />
                             )}
@@ -248,11 +398,11 @@ export default function Story() {
                             {imageSrc[4] && (
                                 <img
                                     src={imageSrc[4]}
-                                    alt="소주"
+                                    alt="지평 생막걸리"
                                     style={{
                                         width: "100%",
                                         height: "100%",
-                                        objectFit: "contain",
+                                        objectFit: "cover",
                                     }}
                                 />
                             )}

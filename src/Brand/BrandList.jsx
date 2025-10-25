@@ -6,15 +6,12 @@ import { useUserContext } from "../auth/Context/UserContext";
 import { FaRegHeart } from "react-icons/fa";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-
-    @media (max-width: 768px) {
-        padding: 0 20px;
-    }
 `;
 
 const Notification = styled.span`
@@ -25,9 +22,22 @@ const Notification = styled.span`
     align-items: center;
     justify-content: center;
     text-align: center;
-    @media (max-width: 768px) {
-        font-size: 1rem;
-        padding: 0 10px;
+    box-sizing: border-box;
+    @media ${device.desktop} {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+    @media ${device.laptop} {
+        font-size: 1.3rem;
+        padding: 0 20px;
+    }
+    @media ${device.tablet} {
+        font-size: 1.1rem;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
+        font-size: 0.9rem;
+        padding: 0 20px;
     }
 `;
 
@@ -41,6 +51,23 @@ const TitleMain = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media ${device.desktop} {
+        margin-top: 95px;
+        margin-bottom: 95px;
+    }
+    @media ${device.laptop} {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    @media ${device.tablet} {
+        margin-top: 65px;
+        margin-bottom: 65px;
+    }
+    @media ${device.mobile} {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 `;
 
 const TitleNav = styled.nav`
@@ -52,30 +79,51 @@ const TitleNav = styled.nav`
     align-items: center;
     justify-content: center;
     gap: 80px;
+
+    @media ${device.laptop} {
+        max-width: 780px;
+        gap: 75px;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+        gap: 45px;
+    }
+    @media ${device.mobile} {
+        max-width: 380px;
+        gap: 25px;
+    }
 `;
-const TitleNavL = styled.div`
+const TitleNavLBase = styled.div`
     font-size: 22px;
     padding-bottom: 20px;
+    white-space: nowrap;
+    text-align: center;
+
+    @media ${device.laptop} {
+        font-size: 1.75rem;
+    }
+    @media ${device.tablet} {
+        font-size: 1.5rem;
+    }
+    @media ${device.mobile} {
+        font-size: 1.1rem;
+    }
+`;
+
+// 각 카테고리 링크에 Base 스타일을 적용하고 색상만 변경
+const TitleNavL = styled(TitleNavLBase)`
     color: ${({ active }) => (active ? "#008810" : "#000")};
 `;
-const TitleNavL2 = styled.div`
-    font-size: 22px;
-    padding-bottom: 20px;
+const TitleNavL2 = styled(TitleNavLBase)`
     color: ${(props) => (props.active ? "#C98B20" : "#000")};
 `;
-const TitleNavL3 = styled.div`
-    font-size: 22px;
-    padding-bottom: 20px;
+const TitleNavL3 = styled(TitleNavLBase)`
     color: ${({ active }) => (active ? "#0066D3" : "#000")};
 `;
-const TitleNavL4 = styled.div`
-    font-size: 22px;
-    padding-bottom: 20px;
+const TitleNavL4 = styled(TitleNavLBase)`
     color: ${({ active }) => (active ? "#ccc" : "#000")};
 `;
-const TitleNavL5 = styled.div`
-    font-size: 22px;
-    padding-bottom: 20px;
+const TitleNavL5 = styled(TitleNavLBase)`
     color: ${({ active }) => (active ? "#e05555" : "#000")};
 `;
 
@@ -91,9 +139,17 @@ const Outline = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
         width: 100%;
-        padding: 0 20px;
+        justify-content: center;
+    }
+    @media ${device.tablet} {
+        width: 100%;
+        justify-content: center;
+    }
+    @media ${device.mobile} {
+        width: 100%;
+        justify-content: center;
     }
 `;
 
@@ -104,12 +160,17 @@ const Product = styled.div`
     box-shadow: 0px 2px 4px rgb(0, 0, 0, 0.3);
     border-radius: 20px;
 
-    @media (max-width: 768px) {
-        width: 35%;
+    @media ${device.laptop} {
+        justify-content: center;
         padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    }
+    @media ${device.tablet} {
+        width: 200px;
+        margin-top: 50px;
+    }
+    @media ${device.mobile} {
+        width: 180px;
+        margin-top: 30px;
     }
 `;
 
@@ -121,9 +182,11 @@ const ProductImg = styled.img`
     object-fit: contain;
     cursor: pointer;
 
-    @media (max-width: 768px) {
-        width: 180px;
-        height: 224px;
+    @media ${device.tablet} {
+        max-width: 180px;
+    }
+    @media ${device.mobile} {
+        max-width: 150px;
     }
 `;
 
@@ -133,8 +196,17 @@ const ProductImgName = styled.h1`
     text-align: center;
     margin-top: 30px;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        font-size: 1.8rem;
+        margin-top: 20px;
+    }
+    @media ${device.tablet} {
         font-size: 1.5rem;
+        margin-top: 20px;
+    }
+    @media ${device.mobile} {
+        font-size: 1.2rem;
+        margin-top: 15px;
     }
 `;
 
@@ -146,8 +218,17 @@ const ProductImgCompany = styled.span`
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 768px) {
-        font-size: 1.25rem;
+    media ${device.laptop} {
+        font-size: 1.2rem;
+        padding: 15px 0 10px;
+    }
+    media ${device.tablet} {
+        font-size: 1rem;
+        padding: 15px 0 10px;
+    }
+    @media ${device.mobile} {
+        font-size: 0.9rem;
+        padding: 10px 0 5px;
     }
 `;
 
@@ -191,6 +272,12 @@ const Favorite = styled.button`
         display: flex;
         align-items: center;
     }
+    @media ${device.mobile} {
+        height: 40px;
+        svg {
+            font-size: 24px;
+        }
+    }
 `;
 
 const FavoriteNumber = styled.span`
@@ -198,6 +285,11 @@ const FavoriteNumber = styled.span`
     height: 24px;
     color: #909090;
     font-weight: bold;
+
+    @media ${device.mobile} {
+        font-size: 18px;
+        height: 20px;
+    }
 `;
 
 // Main Component

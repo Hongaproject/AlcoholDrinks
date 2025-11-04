@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { auth, db } from "../../firebase";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
+import { device } from "../../breakpoints";
 
 const Container = styled.div`
     display: grid;
@@ -14,7 +15,17 @@ const Container = styled.div`
     gap: 10px;
     margin: auto;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        width: 90%;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    @media ${device.tablet} {
+        width: 90%;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    @media ${device.mobile} {
         width: 90%;
         grid-template-columns: 1fr;
         text-align: center;
@@ -23,7 +34,7 @@ const Container = styled.div`
 const Column = styled.div`
     padding: 20px;
 
-    @media (max-width: 768px) {
+    @media ${device.mobile} {
         display: flex;
         flex-direction: column;
         align-items: center;

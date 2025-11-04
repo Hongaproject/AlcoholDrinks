@@ -4,33 +4,63 @@ import styled from "styled-components";
 import { auth, db } from "../../firebase";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import Comments from "../comment/Comments";
+import { device } from "../../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    /* 배경이 컨테이너 크기에 맞춰져 있는지 확인 */
 `;
 
 const IntroduceTitle = styled.div`
-    width: 295px;
+    width: 100%;
+    max-width: 1280px; /* 데스크톱 최대 너비 */
     height: 75px;
     font-size: 48px;
+    margin: 0 auto;
+    padding-left: 40px; /* 좌측 여백 추가 */
+    box-sizing: border-box;
 
-    @media (max-width: 768px) {
-        width: 100%;
+    @media ${device.laptop} {
+        font-size: 44px;
+        padding-left: 30px;
+    }
+    @media ${device.tablet} {
+        /* 태블릿 이하에서는 중앙 정렬 */
         text-align: center;
-        font-size: 2.75rem;
+        font-size: 38px;
+        padding-left: 0;
+        height: auto;
+    }
+    @media ${device.mobile} {
+        font-size: 32px;
     }
 `;
 
 const Outline = styled.div`
-    width: calc(100% - 600px);
+    /* 중앙 정렬을 위해 calc 대신 max-width와 margin: auto 사용 */
+    width: 100%;
+    max-width: 1200px; /* 중앙 컨텐츠 영역 최대 너비 */
     height: 100%;
     margin: auto;
     margin-top: 160px;
+    padding: 0 40px; /* 좌우 패딩으로 컨텐츠가 벽에 붙는 것 방지 */
+    box-sizing: border-box;
 
-    @media (max-width: 768px) {
-        width: 90%;
-        margin-top: 80px;
+    @media ${device.laptop} {
+        max-width: 1000px;
+        margin-top: 120px;
+        padding: 0 30px;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+        margin-top: 120px;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
+        max-width: 450px;
+        margin-top: 120px;
+        padding: 0 15px;
     }
 `;
 const Product = styled.div`
@@ -38,11 +68,22 @@ const Product = styled.div`
     height: 100%;
     margin-top: 60px;
     display: flex;
+    gap: 80px; /* 이미지와 정보 사이 간격 */
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        gap: 40px;
+        margin-top: 50px;
+    }
+    @media ${device.tablet} {
+        /* 태블릿에서는 세로 방향으로 변경 */
         flex-direction: column;
         align-items: center;
         text-align: center;
+        margin-top: 40px;
+    }
+    @media ${device.mobile} {
+        margin-top: 30px;
+        gap: 20px;
     }
 `;
 
@@ -50,21 +91,50 @@ const ProductImg = styled.img`
     width: 300px;
     height: 350px;
     object-fit: contain;
+
+    @media ${device.laptop} {
+        width: 250px;
+        height: 300px;
+    }
+    @media ${device.tablet} {
+        width: 200px;
+        height: 250px;
+    }
+    @media ${device.mobile} {
+        width: 210px;
+        height: 240px;
+    }
 `;
+
 const ProductDiv = styled.div`
-    width: 350px;
+    /* 고정 너비 350px 대신 flex 성질 부여 */
+    width: 100%;
+    flex-grow: 1; /* 남은 공간을 채우도록 함 */
     height: 80px;
 
-    @media (max-width: 768px) {
+    @media ${device.tablet} {
         width: 100%;
         text-align: center;
+        height: auto;
     }
 `;
 const ProductImgTitle = styled.h1`
     font-size: 48px;
     margin-top: 90px;
-    @media (max-width: 768px) {
-        font-size: 2.5rem;
+    text-align: left; /* 데스크톱 기본 정렬 */
+
+    @media ${device.laptop} {
+        font-size: 40px;
+        margin-top: 70px;
+    }
+    @media ${device.tablet} {
+        font-size: 32px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    @media ${device.mobile} {
+        font-size: 24px;
+        margin-top: 10px;
     }
 `;
 const ProductImgCompany = styled.span`
@@ -73,32 +143,59 @@ const ProductImgCompany = styled.span`
     display: flex;
     color: #909090;
     margin-bottom: 30px;
+    justify-content: flex-start; /* 데스크톱 기본 정렬 */
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        font-size: 18px;
+    }
+    @media ${device.tablet} {
         justify-content: center;
+        font-size: 16px;
+        margin-bottom: 20px;
     }
 `;
 
 const ProductContent = styled.div`
-    width: 500px;
+    /* 고정 너비 500px 대신 유동적으로 변경 */
+    width: 100%;
     height: 100px;
     display: flex;
+    flex-wrap: wrap; /* 내용이 넘치면 줄바꿈 */
 
-    @media (max-width: 768px) {
-        flex-wrap: wrap;
+    @media ${device.tablet} {
         justify-content: center;
         align-items: center;
+        height: auto;
+        margin-top: 20px;
+        gap: 10px; /* 모바일/태블릿에서 요소 간 간격 추가 */
     }
 `;
 const ProductCTS = styled.div`
     width: 150px;
     height: 60px;
     margin-right: 30px;
+
+    @media ${device.laptop} {
+        width: 130px;
+        margin-right: 20px;
+    }
+    @media ${device.mobile} {
+        width: 120px; /* 모바일에서 2열 배치 가능하도록 너비 조정 */
+        margin-right: 10px;
+        height: 50px;
+    }
 `;
 
 const ProductCTitle = styled.h2`
     font-size: 24px;
     text-align: center;
+
+    @media ${device.laptop} {
+        font-size: 20px;
+    }
+    @media ${device.mobile} {
+        font-size: 16px;
+    }
 `;
 
 const ProductCSpan = styled.span`
@@ -108,6 +205,14 @@ const ProductCSpan = styled.span`
     padding: 10px 0;
     align-items: center;
     justify-content: center;
+
+    @media ${device.laptop} {
+        font-size: 16px;
+    }
+    @media ${device.mobile} {
+        font-size: 14px;
+        padding: 5px 0;
+    }
 `;
 
 const Section = styled.div`
@@ -116,9 +221,15 @@ const Section = styled.div`
     margin-top: 130px;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
-        margin-top: 280px;
-        padding: 0 20px;
+    @media ${device.laptop} {
+        margin-top: 100px;
+    }
+    @media ${device.tablet} {
+        /* 원본의 280px은 너무 크므로 80px로 조정 */
+        margin-top: 80px;
+    }
+    @media ${device.mobile} {
+        margin-top: 80px;
     }
 `;
 
@@ -133,25 +244,47 @@ const SectionSub = styled.h1`
     justify-content: center;
     align-items: center;
     margin: auto;
+
+    @media ${device.laptop} {
+        width: 200px;
+        height: 70px;
+        font-size: 28px;
+    }
+    @media ${device.mobile} {
+        width: 180px;
+        height: 60px;
+        font-size: 24px;
+    }
 `;
 const SectionIntroduce = styled.div`
-    width: calc(100% - 600px);
+    /* 중앙 정렬 및 유동 너비 */
+    width: 100%;
+    max-width: 1000px;
     height: 100%;
     margin: 0 auto;
     margin-top: 80px;
     margin-bottom: 160px;
+    padding: 0 40px;
+    box-sizing: border-box;
 
-    @media (max-width: 768px) {
-        width: 90%;
-        text-align: center;
+    @media ${device.laptop} {
+        max-width: 900px;
+        margin-top: 60px;
+        margin-bottom: 120px;
+        padding: 0 30px;
     }
-`;
-
-const SectionTitle = styled.h2`
-    font-size: 48px;
-
-    @media (max-width: 768px) {
-        font-size: 2.5rem;
+    @media ${device.tablet} {
+        max-width: 700px;
+        margin-top: 40px;
+        margin-bottom: 100px;
+        text-align: center;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
+        max-width: 450px;
+        margin-top: 80px;
+        margin-bottom: 0px;
+        padding: 0 15px;
     }
 `;
 
@@ -161,19 +294,48 @@ const SectionSpan = styled.span`
     display: block;
     line-height: 1.4;
     white-space: pre-line;
+    text-align: left; /* 텍스트는 항상 왼쪽 정렬 유지 (SectionIntroduce의 text-align: center를 덮음) */
+
+    @media ${device.laptop} {
+        font-size: 18px;
+        margin-top: 40px;
+    }
+    @media ${device.mobile} {
+        font-size: 16px;
+        margin-top: 30px;
+    }
 `;
 
 const Form = styled.form`
-    width: calc(100% - 600px);
+    /* 중앙 정렬 및 유동 너비 */
+    width: 100%;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: auto;
     margin-bottom: 160px;
     margin-top: 80px;
+    padding: 0 40px;
+    box-sizing: border-box;
 
-    @media (max-width: 768px) {
-        width: 90%;
+    @media ${device.laptop} {
+        max-width: 900px;
+        margin-bottom: 120px;
+        margin-top: 60px;
+        padding: 0 30px;
+    }
+    @media ${device.tablet} {
+        max-width: 700px;
+        margin-bottom: 100px;
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+    @media ${device.mobile} {
+        max-width: 450px;
+        margin-bottom: 80px;
+        margin-top: 30px;
+        padding: 0 15px;
     }
 `;
 
@@ -185,6 +347,7 @@ const TextArea = styled.textarea`
     color: #000;
     border: 1px solid #000;
     resize: none;
+    height: 100px; /* 높이 고정 */
     font-family:
         system-ui,
         -apple-system,
@@ -362,7 +525,6 @@ export default function DrinksDetail() {
                 <SectionSub id="상품 설명">상품 설명</SectionSub>
                 {alcoholItem ? (
                     <SectionIntroduce>
-                        <SectionTitle>{alcoholItem.name}</SectionTitle>
                         <SectionSpan>{alcoholItem.discription}</SectionSpan>
                     </SectionIntroduce>
                 ) : (

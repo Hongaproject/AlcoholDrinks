@@ -2,14 +2,27 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Sidebtn from "../Section/Sidebtn";
+import { device } from "../breakpoints";
 
 const Container = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 768px) {
+    @media ${device.desktop} {
+        padding: 0 40px; /* 데스크톱에서 양쪽 여백 추가 */
+    }
+
+    @media ${device.laptop} {
+        padding: 0 30px;
+    }
+
+    @media ${device.tablet} {
         padding: 0 20px;
+    }
+
+    @media ${device.mobile} {
+        padding: 0 15px;
     }
 `;
 
@@ -18,17 +31,24 @@ const IntroduceTitle = styled.h1`
     text-align: center;
     margin-top: 200px;
 
-    @media (max-width: 768px) {
-        width: 100%;
-        margin-left: 0;
-        text-align: center;
-        font-size: 2rem;
+    @media ${device.laptop} {
+        font-size: 48px;
+        margin-top: 150px;
+    }
+
+    @media ${device.tablet} {
+        font-size: 36px;
+        margin-top: 120px;
+    }
+
+    @media ${device.mobile} {
+        font-size: 32px; /* 2rem 대신 px로 일관성 유지 */
         margin-top: 120px;
     }
 `;
 
 const Outline = styled.div`
-    width: calc(100% - 440px);
+    max-width: 1200px;
     height: 100%;
     margin: 0 auto;
     margin-top: 100px;
@@ -39,11 +59,27 @@ const Outline = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
 
-    @media (max-width: 768px) {
-        width: 100%;
+    @media ${device.laptop} {
+        max-width: 900px;
         margin-top: 80px;
+        margin-bottom: 100px;
         justify-content: center;
-        gap: 50px;
+        gap: 80px 4%;
+    }
+
+    @media ${device.tablet} {
+        max-width: 900px;
+        margin-top: 70px;
+        /* 태블릿에서는 항목을 중앙 정렬하고, 한 줄에 하나씩 크게 표시하도록 유도 */
+        justify-content: center;
+        gap: 50px 0; /* 가로 간격 제거 */
+    }
+
+    @media ${device.mobile} {
+        width: 100%;
+        margin-top: 70px;
+        justify-content: center;
+        gap: 50px 0;
     }
 `;
 
@@ -57,8 +93,20 @@ const Companys = styled.div`
     box-sizing: border-box;
     margin-bottom: 50px;
 
-    @media (max-width: 768px) {
-        width: 90%;
+    media ${device.laptop} {
+        width: 100%; /* 간격 조정 */
+        height: 180px;
+        margin-bottom: 40px;
+    }
+
+    @media ${device.tablet} {
+        width: 70%; /* 한 줄에 하나씩 */
+        height: 150px;
+    }
+
+    @media ${device.mobile} {
+        width: 90%; /* 모바일에서 더 넓게 사용 */
+        height: 120px;
     }
 `;
 
@@ -71,12 +119,30 @@ const CompanyImg = styled.img`
 const CompanyTitle = styled.h2`
     font-size: 24px;
     margin-top: 20px;
+
+    @media ${device.tablet} {
+        font-size: 20px;
+    }
+
+    @media ${device.mobile} {
+        font-size: 18px;
+        margin-top: 15px;
+    }
 `;
 
 const CompanyHomepage = styled.span`
     font-size: 18px;
     margin-top: 12px;
     display: block;
+
+    @media ${device.tablet} {
+        font-size: 16px;
+    }
+
+    @media ${device.mobile} {
+        font-size: 14px;
+        margin-top: 8px;
+    }
 `;
 
 const PaginationControls = styled.div`
@@ -86,9 +152,19 @@ const PaginationControls = styled.div`
     margin-top: 160px;
     margin-bottom: 100px;
 
-    @media (max-width: 768px) {
+    @media ${device.laptop} {
+        margin-top: 120px;
+        margin-bottom: 80px;
+    }
+
+    @media ${device.tablet} {
         margin-top: 80px;
         margin-bottom: 50px;
+    }
+
+    @media ${device.mobile} {
+        margin-top: 60px;
+        margin-bottom: 40px;
     }
 `;
 
@@ -102,14 +178,19 @@ const PaginationButton = styled.button`
         cursor: not-allowed;
         opacity: 0.5;
     }
+    @media ${device.mobile} {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 `;
 
 const PageNumber = styled.span`
     font-size: 18px;
     margin: 0 10px;
 
-    @media (max-width: 768px) {
+    @media ${device.mobile} {
         font-size: 16px;
+        margin: 0 8px;
     }
 `;
 

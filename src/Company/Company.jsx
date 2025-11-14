@@ -1,8 +1,9 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Sidebtn from "../Section/Sidebtn";
 import { device } from "../breakpoints";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Container = styled.div`
     width: 100%;
@@ -199,10 +200,26 @@ export default function Company() {
     const [currentPage, setCurrentPage] = useState(1);
     const companiesPerPage = 8;
 
-    // API로 company 데이터를 가져 옴
+    // Firestore에서 company 데이터 가져오기
     const companyImgApi = async () => {
-        const res = await axios.get("/db/company.json");
-        setCompanyImg(res.data.company.filter((item) => item.name !== "")); // 이름이 비어있지 않은 항목만 상태에 저장
+        try {
+            const docRef = doc(db, "brandlistdata", "company");
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const companies = data?.data?.company || [];
+
+                // 이름(name)이 비어있지 않은 항목만 저장
+                const filtered = companies.filter((item) => item.name !== "");
+
+                setCompanyImg(filtered);
+            } else {
+                console.error("No such document!");
+            }
+        } catch (error) {
+            console.error("Error fetching company data:", error);
+        }
     };
 
     // 컴포넌트 마운트시 회사 이미지 데이터 가져오기
@@ -210,26 +227,20 @@ export default function Company() {
         companyImgApi();
     }, []);
 
-    const totalPages = Math.ceil(companyImg.length / companiesPerPage); // 총 페이지수 계산
+    const totalPages = Math.ceil(companyImg.length / companiesPerPage);
 
-    // 현재 페이지에 해당하는 회사 이미지 목록을 slice해서 가져옴
+    // 현재 페이지 회사 리스트
     const currentCompanies = companyImg.slice(
         (currentPage - 1) * companiesPerPage,
         currentPage * companiesPerPage,
     );
 
-    // 이전 페이지 이동 함수
     const handlePrevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
     };
 
-    // 다음 페이지 이동 함수
     const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
     const imgError = (e) => {
@@ -240,11 +251,12 @@ export default function Company() {
         <Container>
             <IntroduceTitle>주류 회사 소개</IntroduceTitle>
             <Sidebtn />
+
             <Outline role="region">
                 {currentCompanies.map((item) => (
                     <Companys
                         key={item.id}
-                        onClick={() => window.open(`${item.homepage}`)}
+                        onClick={() => window.open(item.homepage)}
                         role="link"
                         aria-label={`주류 회사 페이지: ${item.name}`}
                     >
@@ -258,6 +270,7 @@ export default function Company() {
                     </Companys>
                 ))}
             </Outline>
+
             <PaginationControls>
                 <PaginationButton
                     onClick={handlePrevPage}
@@ -266,9 +279,11 @@ export default function Company() {
                 >
                     이전
                 </PaginationButton>
+
                 <PageNumber>
                     {currentPage} / {totalPages}
                 </PageNumber>
+
                 <PaginationButton
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}

@@ -9,8 +9,10 @@ import { device } from "../breakpoints";
 const Container = styled.div`
     width: 100%;
     height: 100%;
+    padding: 0 80px;
+    margin: 0 auto;
+    box-sizing: border-box;
 `;
-
 // ----- 이미지 슬라이드 -----
 const ImgSlice = styled.div`
     width: 100%;
